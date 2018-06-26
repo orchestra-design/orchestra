@@ -2,7 +2,7 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
-import { compose, withState, withHandlers } from 'recompose'
+import { lifecycle } from 'recompose'
 
 const Container = styled('div')`
   ${tw('flex justify-center absolute pin bg-black items-center w-screen h-screen')};
@@ -15,32 +15,38 @@ const TextContainer = styled('div')`
   text-shadow: 0px 0px 24px rgba(0, 0, 0, 1);
 `
 
-const withToggle = compose(
-  withState('index', 'toggle', 0),
-  withHandlers({
-    toggle: ({ toggle }) => (e) => toggle(n => n === 2 ? 0 : n + 1)
-  })
-)
+const withToggle = lifecycle({
+  state: { index: 0, mount: false },
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      this.setState({ index: this.state.index === 6 ? 0 : this.state.index + 1 })
+    }, 4000)
+    this.setState({ intervalId: intervalId, mount: true })      
+  },
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId)
+  }
+})
 
 const Slide = css`
-  ${tw('absolute pin bg-black bg-center bg-cover bg-no-repeat')};
+  ${tw('absolute pin bg-center bg-cover bg-no-repeat')};
   will-change: transform, opacity;
 `
 
-const Slider = withToggle(({ slides, index, toggle }) => {
-  const slidePack = [ 
-    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slides[0].image.url})` }} />,
-    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slides[1].image.url})` }} />,
-    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slides[2].image.url})` }} />,
-  ]
+const Slider = withToggle(({ slides, index, mount }) => {
+  const slidePack = slides.map(slide => 
+    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} />  
+  )
   return (
-  <div onClick={ toggle }>
-    <Transition 
+  <div>
+   {mount && <Transition 
       native 
       from={{ opacity: 0 }} 
       enter={{ opacity: 1 }} 
       leave={{ opacity: 0 }}
     >{ slidePack[index] }</Transition>
+   }
+   
   </div>
 )})
 
