@@ -20,7 +20,7 @@ const withToggle = lifecycle({
   componentDidMount() {
     const intervalId = setInterval(() => {
       this.setState({ index: this.state.index === 6 ? 0 : this.state.index + 1 })
-    }, 4000)
+    }, 6000)
     this.setState({ intervalId: intervalId, mount: true })      
   },
   componentWillUnmount() {
