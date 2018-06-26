@@ -2,7 +2,7 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
-import { lifecycle } from 'recompose'
+import { lifecycle, compose, withState, withHandlers } from 'recompose'
 
 import LogoSvg from '../images/orchestra-logo.svg'
 
@@ -45,7 +45,7 @@ const Email = styled('a')`
   padding: 1rem 1.5rem;
 `
 
-const withToggle = lifecycle({
+const withLifecicle = lifecycle({
   state: { index: 0, mount: false },
   componentDidMount() {
     const intervalId = setInterval(() => {
@@ -71,7 +71,7 @@ const Slide = css`
   }
 `
 
-const Slider = withToggle(({ slides, index, mount }) => {
+const Slider = withLifecicle(({ slides, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
       <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
@@ -79,8 +79,9 @@ const Slider = withToggle(({ slides, index, mount }) => {
       </animated.div>
   )
   const CopySlides = [slidePack[0]]
+  index === 0 ? CopySlides.push(slidePack[1]) : CopySlides.push(slidePack[index < 6 ? index + 1 : 0])
   CopySlides.push(slidePack[index])
-  const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 2)
+  const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 3)
   return (
   <div>
   { mount && 
@@ -95,20 +96,30 @@ const Slider = withToggle(({ slides, index, mount }) => {
   </div>
 )})
 
-
-export default ({ data }) => (
-  <Container>
-    <Slider slides={data.ru.data.slider} />
-    <Logo />
-    <LangSwitcher>en</LangSwitcher>
-    <TextContainer>
-    { data.ru.data.underconstruction.text }
-    </TextContainer>
-    <Email href={data.ru.data.email.url} >
-    { data.ru.data.email.url.replace('mailto:', '') }
-    </Email>
-  </Container>
+const withToggle = compose(
+  withState('en', 'toggle', false),
+  withHandlers({
+    toggle: ({ toggle }) => (e) => toggle((current) => !current)
+  })
 )
+
+const Index = withToggle(({ data, en, toggle }) => {
+  const chosenLang = en ? data.en.data : data.ru.data
+  return (
+    <Container>
+      <Slider slides={chosenLang.slider} />
+      <Logo />
+      <LangSwitcher onClick={ toggle } >en</LangSwitcher>
+      <TextContainer>
+      { chosenLang.underconstruction.text }
+      </TextContainer>
+      <Email href={chosenLang.email.url} >
+      { chosenLang.email.url.replace('mailto:', '') }
+      </Email>
+    </Container>
+)})
+
+export default Index
 
 export const query = graphql`
   query IndexRuQuery {
