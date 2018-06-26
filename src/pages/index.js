@@ -38,13 +38,24 @@ const withToggle = lifecycle({
 })
 
 const Slide = css`
-  ${tw('absolute pin bg-center bg-cover bg-no-repeat')};
+  ${tw('absolute pin flex justify-between items-end font-semibold bg-center bg-cover bg-no-repeat')};
+  color: transparent;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  font-variant-caps: all-small-caps;
+  padding: 1.5rem 2.5rem;
   will-change: opacity;
+  @media (min-width: 768px) {
+    color: #000000;
+  }
 `
 
 const Slider = withToggle(({ slides, index, mount }) => {
   const slidePack = slides.map(slide => 
-    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} />
+    style => 
+      <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
+      { slide.caption }
+      </animated.div>
   )
   const CopySlides = [slidePack[0]]
   CopySlides.push(slidePack[index])
