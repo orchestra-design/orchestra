@@ -54,7 +54,7 @@ const Email = styled('a')`
 `
 
 const Slide = css`
-  ${tw('absolute pin flex justify-between items-end font-semibold bg-center bg-cover bg-no-repeat')};
+  ${tw('absolute pin flex justify-between items-end font-semibold bg-white bg-center bg-cover bg-no-repeat')};
   color: transparent;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
@@ -92,18 +92,17 @@ const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
       { slide.caption }
       </animated.div>
   )
-  const CopySlides = [slidePack[1]]
-  CopySlides.push(slidePack[index < 6 ? index + 1 : 0])
+  const CopySlides = [slidePack[index < 6 ? index + 1 : 0]]
   CopySlides.push(slidePack[index])
-  const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 3)
+  const TransitionGroup = CopySlides
   return (
   <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
     <Transition 
         native
         keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
-        from={{ opacity: 0 }} 
+        from={{ opacity: .01 }} 
         enter={{ opacity: 1 }} 
-        leave={{ opacity: 0 }}
+        leave={{ opacity: .01 }}
     >{ TransitionGroup }</Transition>
   </div>
 )})
