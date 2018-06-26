@@ -16,11 +16,11 @@ const TextContainer = styled('div')`
   ${tw('text-center sm:flex-grow font-bold text-white')};
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
-  text-shadow: 0px 0px 24px rgba(0, 0, 0, 0.48);
+  text-shadow: 0px 0px 24px rgba(0, 0, 0, 1);
 `
 
-export default ({ data: { homepage: { data } } }) => (
-  <Page src={data.body[0].items[0].gallery_image.url}>
+export default ({ data: { ru: { data } } }) => (
+  <Page src={data.slider[0].image.url}>
     <TextContainer>
     { data.underconstruction.text }
     </TextContainer>
@@ -29,7 +29,7 @@ export default ({ data: { homepage: { data } } }) => (
 
 export const query = graphql`
   query IndexRuQuery {
-    homepage: prismicHomepage(type: {eq: "homepage"}, lang: {eq: "ru"}) {
+    ru: prismicHomepage(type: {eq: "homepage"}, lang: {eq: "ru"}) {
       data {
         title {
           text
@@ -40,19 +40,11 @@ export const query = graphql`
         email {
           url
         }
-        body {
-          items {
-            gallery_image {
-              url
-              localFile {
-                absolutePath
-                relativePath
-              }
-            }
-            image_captions {
-              text
-            }
+        slider {
+          image {
+            url
           }
+          caption
         }
       }
     }
