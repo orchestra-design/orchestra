@@ -30,23 +30,27 @@ const withToggle = lifecycle({
 
 const Slide = css`
   ${tw('absolute pin bg-center bg-cover bg-no-repeat')};
-  will-change: transform, opacity;
+  will-change: opacity;
 `
 
 const Slider = withToggle(({ slides, index, mount }) => {
   const slidePack = slides.map(slide => 
-    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} />  
+    style => <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} />
   )
+  const CopySlides = [slidePack[0]]
+  CopySlides.push(slidePack[index])
+  const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 2)
   return (
   <div>
-   {mount && <Transition 
-      native 
-      from={{ opacity: 0 }} 
-      enter={{ opacity: 1 }} 
-      leave={{ opacity: 0 }}
-    >{ slidePack[index] }</Transition>
-   }
-   
+  { mount && 
+    <Transition 
+        native
+        keys={TransitionGroup}
+        from={{ opacity: 0 }} 
+        enter={{ opacity: 1 }} 
+        leave={{ opacity: 0 }}
+    >{ TransitionGroup }</Transition>
+  }
   </div>
 )})
 
