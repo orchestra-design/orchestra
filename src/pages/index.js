@@ -3,6 +3,7 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 import { lifecycle, compose, withState, withHandlers } from 'recompose'
+import Helmet from 'react-helmet'
 
 import LogoSvg from '../images/orchestra-logo.svg'
 
@@ -114,6 +115,13 @@ const Index = withToggle(({ data, en, toggle }) => {
   const chosenLang = en ? data.en.data : data.ru.data
   return (
     <Container>
+      <Helmet
+        title={chosenLang.title.text}
+        meta={[
+          { name: 'description', content: chosenLang.title.text },
+          { name: 'keywords', content: chosenLang.title.text },
+        ]}
+      />
       <Slider slides={chosenLang.slider} />
       <Logo />
       <LangSwitcher onClick={ toggle } >en</LangSwitcher>
