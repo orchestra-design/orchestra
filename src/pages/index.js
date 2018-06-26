@@ -45,19 +45,6 @@ const Email = styled('a')`
   padding: 1rem 1.5rem;
 `
 
-const withLifecicle = lifecycle({
-  state: { index: 0, mount: false },
-  componentDidMount() {
-    const intervalId = setInterval(() => {
-      this.setState({ index: this.state.index === 6 ? 0 : this.state.index + 1 })
-    }, 6000)
-    this.setState({ intervalId: intervalId, mount: true })      
-  },
-  componentWillUnmount() {
-    clearInterval(this.state.intervalId)
-  }
-})
-
 const Slide = css`
   ${tw('absolute pin flex justify-between items-end font-semibold bg-center bg-cover bg-no-repeat')};
   color: transparent;
@@ -71,6 +58,28 @@ const Slide = css`
   }
 `
 
+const withLifecicle = lifecycle({
+  state: { index: 0, mount: false },
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      this.setState({ index: this.state.index === 6 ? 0 : this.state.index + 1 })
+    }, 6000)
+    this.setState({ intervalId: intervalId }) 
+    setTimeout(() =>
+      this.setState({ mount: true })      
+    , 1200)
+  },
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId)
+  }
+})
+
+const s4 = () => (
+  Math.floor((1 + Math.random()) * 0x100000000000)
+    .toString(16)
+    .substring(1)
+)
+
 const Slider = withLifecicle(({ slides, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
@@ -78,21 +87,19 @@ const Slider = withLifecicle(({ slides, index, mount }) => {
       { slide.caption }
       </animated.div>
   )
-  const CopySlides = [slidePack[0]]
-  index === 0 ? CopySlides.push(slidePack[1]) : CopySlides.push(slidePack[index < 6 ? index + 1 : 0])
+  const CopySlides = [slidePack[1]]
+  CopySlides.push(slidePack[index < 6 ? index + 1 : 0])
   CopySlides.push(slidePack[index])
   const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 3)
   return (
-  <div>
-  { mount && 
+  <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
     <Transition 
         native
-        keys={TransitionGroup}
+        keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
         from={{ opacity: 0 }} 
         enter={{ opacity: 1 }} 
         leave={{ opacity: 0 }}
     >{ TransitionGroup }</Transition>
-  }
   </div>
 )})
 
