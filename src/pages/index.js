@@ -12,31 +12,18 @@ const Page = styled('div')`
   ${dynamicStyle};
 `
 
-const Container = styled('div')`
-  ${tw(
-    'bg-white container my-8 mx-auto max-w-sm shadow-lg rounded-lg overflow-hidden font-sans'
-  )};
-`
-
-const Wrapper = styled('div')`
-  ${tw('sm:flex sm:items-center px-6 py-4')};
-`
-
 const TextContainer = styled('div')`
-  ${tw('text-center sm:text-left sm:flex-grow')};
+  ${tw('text-center sm:flex-grow font-bold text-white')};
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
+  text-shadow: 0px 0px 24px rgba(0, 0, 0, 0.48);
 `
-
 
 export default ({ data: { homepage: { data } } }) => (
   <Page src={data.body[0].items[0].gallery_image.url}>
-    <Container>
-      <Wrapper>
-        <TextContainer>
-        { data.underconstruction.text }
-        </TextContainer>
-      </Wrapper>
-      {console.log(data.body[0].items[0].gallery_image.localFile.absolutePath)}
-    </Container>
+    <TextContainer>
+    { data.underconstruction.text }
+    </TextContainer>
   </Page>
 )
 
