@@ -6,6 +6,7 @@ import { lifecycle, compose, withState, withHandlers } from 'recompose'
 import Helmet from 'react-helmet'
 
 import LogoSvg from '../images/orchestra-logo.svg'
+import LogoBlackSvg from '../images/orchestra-logo-black.svg'
 
 const Container = styled('div')`
   ${tw('flex flex-col justify-center absolute pin bg-black items-center w-screen h-screen')};
@@ -15,14 +16,20 @@ const Logo = styled('div')`
   ${tw('absolute pin-t pin-l bg-right-bottom bg-contain bg-no-repeat')};
   width: calc(200px + 90 * ((100vw - 320px) / 1280));
   height: calc(56px + 34 * ((100vw - 320px) / 1280));
-  background-image: url(${LogoSvg});
+  background-image: url(${({primaryColor}) => primaryColor === '#ffffff' ? LogoSvg : LogoBlackSvg});
 `
 
+const dynamicText = ({primaryColor}) =>
+  css`
+    color: ${primaryColor};    
+    text-shadow: ${primaryColor === '#ffffff' && '0px 0px 24px rgba(0, 0, 0, 1)'};
+  `
+
 const TextContainer = styled('div')`
-  ${tw('text-center relative font-bold text-white z-20')};
+  ${dynamicText};
+  ${tw('text-center relative font-bold z-20')};
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
-  text-shadow: 0px 0px 24px rgba(0, 0, 0, 1);
 `
 
 const Button = css`
@@ -54,9 +61,6 @@ const Slide = css`
   font-variant-caps: all-small-caps;
   padding: 1.5rem 2.5rem;
   will-change: opacity;
-  @media (min-width: 768px) {
-    color: #000000;
-  }
 `
 
 const withLifecicle = lifecycle({
@@ -81,10 +85,10 @@ const s4 = () => (
     .substring(1)
 )
 
-const Slider = withLifecicle(({ slides, index, mount }) => {
+const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
-      <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
+      <animated.div className={css`${Slide}; @media(min-width: 600px) { color: ${secondColor}; }`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
       { slide.caption }
       </animated.div>
   )
@@ -108,11 +112,15 @@ const withToggle = compose(
   withState('en', 'toggle', false),
   withHandlers({
     toggle: ({ toggle }) => (e) => toggle((current) => !current)
-  })
+  }),
+  withLifecicle
 )
 
-const Index = withToggle(({ data, en, toggle }) => {
+const Index = withToggle(({ data, index, en, toggle }) => {
   const chosenLang = en ? data.en.data : data.ru.data
+  const primaryColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#ffffff'
+  const secondColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#000000'
+  
   return (
     <Container>
       <Helmet
@@ -122,10 +130,10 @@ const Index = withToggle(({ data, en, toggle }) => {
           { name: 'keywords', content: chosenLang.title.text },
         ]}
       />
-      <Slider slides={chosenLang.slider} />
-      <Logo />
-      <LangSwitcher onClick={ toggle } >en</LangSwitcher>
-      <TextContainer>
+      <Slider slides={chosenLang.slider} {...{secondColor}} />
+      <Logo {...{primaryColor}} />
+      <LangSwitcher onClick={ toggle } >{ en ? 'ru' : 'en'}</LangSwitcher>
+      <TextContainer {...{primaryColor}} >
       { chosenLang.underconstruction.text }
       </TextContainer>
       <Email href={chosenLang.email.url} >
@@ -173,6 +181,8 @@ export const query = graphql`
             url
           }
           caption
+          startcolor
+          endcolor
         }
       }
     }
