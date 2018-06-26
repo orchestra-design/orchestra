@@ -1,6 +1,6 @@
 /* global tw */
-import React from 'react';
-import styled from 'react-emotion';
+import React from 'react'
+import styled from 'react-emotion'
 
 const Page = styled('div')`
   ${tw('flex justify-center items-center absolute pin bg-grey-light')};
@@ -21,14 +21,46 @@ const TextContainer = styled('div')`
 `;
 
 
-export default () => (
+export default ({ data }) => (
   <Page>
     <Container>
       <Wrapper>
         <TextContainer>
-          Our site is under construction
+        { data.homepage.data.underconstruction.text }
         </TextContainer>
+        {console.log(data)}
       </Wrapper>
     </Container>
   </Page>
-);
+)
+
+export const query = graphql`
+  query IndexRuQuery {
+    homepage: prismicHomepage(type: {eq: "homepage"}, lang: {eq: "ru"}) {
+      data {
+        title {
+          text
+        }
+        underconstruction {
+          text 
+        }
+        email {
+          url
+        }
+        body {
+          items {
+            gallery_image {
+              url
+              localFile {
+                relativePath
+              }
+            }
+            image_captions {
+              text
+            }
+          }
+        }
+      }
+    }
+  }
+`
