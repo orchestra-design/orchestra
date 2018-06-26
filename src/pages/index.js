@@ -4,8 +4,17 @@ import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 import { lifecycle } from 'recompose'
 
+import LogoSvg from '../images/orchestra-logo.svg'
+
 const Container = styled('div')`
   ${tw('flex justify-center absolute pin bg-black items-center w-screen h-screen')};
+`
+
+const Logo = styled('div')`
+  ${tw('absolute pin-t pin-l bg-right-bottom bg-contain bg-no-repeat')};
+  width: calc(200px + 120 * ((100vw - 320px) / 1280));
+  height: calc(56px + 34 * ((100vw - 320px) / 1280));
+  background-image: url(${LogoSvg});
 `
 
 const TextContainer = styled('div')`
@@ -58,6 +67,7 @@ const Slider = withToggle(({ slides, index, mount }) => {
 export default ({ data: { ru: { data } } }) => (
   <Container>
     <Slider slides={data.slider} />
+    <Logo />
     <TextContainer>
     { data.underconstruction.text }
     </TextContainer>
