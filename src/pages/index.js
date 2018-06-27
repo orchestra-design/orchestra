@@ -10,7 +10,8 @@ import LogoSvg from '../images/orchestra-logo.svg'
 import LogoBlackSvg from '../images/orchestra-logo-black.svg'
 
 const Container = styled('div')`
-  ${tw('flex flex-col justify-center absolute pin bg-black items-center w-screen h-screen')};
+  ${tw('flex flex-col justify-center absolute pin items-center w-screen h-screen')};
+  background-color: #000000;
 `
 
 const Logo = styled('div')`
@@ -34,7 +35,8 @@ const TextContainer = styled('div')`
 `
 
 const Button = css`
-  ${tw('absolute flex justify-center align-center m-6 cursor-pointer no-underline text-white hover:text-black bg-black hover:bg-white shadow-none hover:shadow-md z-50')};
+  ${tw('absolute flex justify-center align-center m-6 cursor-pointer no-underline text-white hover:text-black hover:bg-white shadow-none hover:shadow-md z-50')};
+  background-color: #000000;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   font-variant-caps: all-small-caps;
