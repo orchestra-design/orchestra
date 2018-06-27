@@ -54,7 +54,7 @@ const Email = styled('a')`
 `
 
 const Slide = css`
-  ${tw('absolute pin flex justify-between items-end font-semibold bg-white bg-center bg-cover bg-no-repeat')};
+  ${tw('absolute pin flex justify-between items-end font-semibold bg-center bg-cover bg-no-repeat')};
   color: transparent;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
@@ -97,12 +97,13 @@ const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const TransitionGroup = CopySlides
   return (
   <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
+    <div className={ css`${Slide}; background-image: url(${slides[index].image.url});` } />
     <Transition 
-        native
-        keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
-        from={{ opacity: .01 }} 
-        enter={{ opacity: 1 }} 
-        leave={{ opacity: .01 }}
+      native
+      keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
+      from={{ opacity: .01 }} 
+      enter={{ opacity: 1 }} 
+      leave={{ opacity: .01 }}
     >{ TransitionGroup }</Transition>
   </div>
 )})
@@ -128,7 +129,11 @@ const Index = withToggle(({ data, index, en, toggle }) => {
           { name: 'description', content: chosenLang.title.text },
           { name: 'keywords', content: chosenLang.title.text },
         ]}
-      />
+      >
+      {data.ru.data.slider.map(({image}) => 
+        <link key={s4()} rel="preload" href={image.url} as="image" crossorigin="anonymous"/>
+      )}
+      </Helmet>
       <Slider slides={chosenLang.slider} {...{secondColor}} />
       <Logo {...{primaryColor}} />
       <LangSwitcher onClick={ toggle } >{ en ? 'ru' : 'en'}</LangSwitcher>
