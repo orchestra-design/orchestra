@@ -16,8 +16,11 @@ const Container = styled('div')`
 
 const Logo = styled('div')`
   ${tw('absolute pin-t pin-l bg-right-bottom bg-contain bg-no-repeat')};
-  width: calc(200px + 90 * ((100vw - 320px) / 1280));
-  height: calc(56px + 34 * ((100vw - 320px) / 1280));
+  width: calc(220px + 90 * ((100vw - 320px) / 1280));
+  height: calc(72px + 24 * ((100vw - 320px) / 1280));
+  margin: 5px;
+  min-height: 84px;
+  min-width: 260px;
   background-image: url(${({primaryColor}) => primaryColor === '#ffffff' ? LogoSvg : LogoBlackSvg});
 `
 
@@ -31,7 +34,8 @@ const TextContainer = styled('div')`
   ${dynamicText};
   ${tw('text-center relative font-bold z-20')};
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
+  font-size: calc(21px + 15 * ((100vw - 320px) / 1280));
+  padding: 0 2rem;
   transition: color .4s ease-in-out .1s;
 `
 
@@ -113,15 +117,35 @@ const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
 )})
 
 const withToggle = compose(
-  withState('en', 'toggle', false),
+  withState('ru', 'toggle', true),
   withHandlers({
     toggle: ({ toggle }) => (e) => toggle((current) => !current)
+  }),
+  lifecycle({
+    state: { isEn: false },
+    componentDidMount() {
+      const language = window.navigator.userLanguage || window.navigator.language
+      language.includes('en') ? this.setState({ isEn: true }) : this.setState({ isEn: false })
+    }
   }),
   withLifecicle
 )
 
-const Index = withToggle(({ data, index, en, toggle }) => {
-  const chosenLang = en ? data.en.data : data.ru.data
+const Index = withToggle(({ data, index, isEn, ru, toggle }) => {
+  let chosenLang 
+  if(isEn) {
+    if(ru) {
+      chosenLang = data.en.data
+    } else {
+      chosenLang = data.ru.data
+    }
+  } else {
+    if(ru) {
+      chosenLang = data.ru.data
+    } else {
+      chosenLang = data.en.data
+    }
+  }
   const primaryColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#ffffff'
   const secondColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].endcolor : '#000000'
   
@@ -141,7 +165,7 @@ const Index = withToggle(({ data, index, en, toggle }) => {
       </Helmet>
       <Slider slides={chosenLang.slider} {...{secondColor}} />
       <Logo {...{primaryColor}} />
-      <LangSwitcher onClick={ toggle } >{ en ? 'ru' : 'en'}</LangSwitcher>
+      <LangSwitcher onClick={ toggle } >{ ru ? 'en' : 'ru'}</LangSwitcher>
       <TextContainer {...{primaryColor}} >
       { chosenLang.underconstruction.text }
       </TextContainer>
