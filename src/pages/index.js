@@ -32,6 +32,7 @@ const TextContainer = styled('div')`
   ${tw('text-center relative font-bold z-20')};
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
+  transition: color .4s ease-in-out .1s;
 `
 
 const Button = css`
