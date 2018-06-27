@@ -119,7 +119,7 @@ const withToggle = compose(
 const Index = withToggle(({ data, index, en, toggle }) => {
   const chosenLang = en ? data.en.data : data.ru.data
   const primaryColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#ffffff'
-  const secondColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#000000'
+  const secondColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].endcolor : '#000000'
   
   return (
     <Container>
