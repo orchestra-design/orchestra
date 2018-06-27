@@ -5,6 +5,7 @@ import { Transition, animated } from 'react-spring'
 import { lifecycle, compose, withState, withHandlers } from 'recompose'
 import Helmet from 'react-helmet'
 
+import favicon from '../images/favicon.png'
 import LogoSvg from '../images/orchestra-logo.svg'
 import LogoBlackSvg from '../images/orchestra-logo-black.svg'
 
@@ -130,9 +131,10 @@ const Index = withToggle(({ data, index, en, toggle }) => {
           { name: 'keywords', content: chosenLang.title.text },
         ]}
       >
-      {data.ru.data.slider.map(({image}) => 
-        <link key={s4()} rel="preload" href={image.url} as="image" crossorigin="anonymous"/>
-      )}
+        <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
+        {data.ru.data.slider.map(({image}) => 
+          <link key={s4()} rel="preload" href={image.url} as="image" crossorigin="anonymous"/>
+        )}
       </Helmet>
       <Slider slides={chosenLang.slider} {...{secondColor}} />
       <Logo {...{primaryColor}} />
