@@ -132,18 +132,23 @@ const withToggle = compose(
 )
 
 const Index = withToggle(({ data, index, isEn, ru, toggle }) => {
-  let chosenLang 
+  let chosenLang
+  let switcherLang
   if(isEn) {
     if(ru) {
       chosenLang = data.en.data
+      switcherLang = 'ru'
     } else {
       chosenLang = data.ru.data
+      switcherLang = 'en'
     }
   } else {
     if(ru) {
       chosenLang = data.ru.data
+      switcherLang = 'en'
     } else {
       chosenLang = data.en.data
+      switcherLang = 'ru'
     }
   }
   const primaryColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#ffffff'
@@ -165,7 +170,7 @@ const Index = withToggle(({ data, index, isEn, ru, toggle }) => {
       </Helmet>
       <Slider slides={chosenLang.slider} {...{secondColor}} />
       <Logo {...{primaryColor}} />
-      <LangSwitcher onClick={ toggle } >{ ru ? 'en' : 'ru'}</LangSwitcher>
+      <LangSwitcher onClick={ toggle } >{ switcherLang }</LangSwitcher>
       <TextContainer {...{primaryColor}} >
       { chosenLang.underconstruction.text }
       </TextContainer>
