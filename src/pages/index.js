@@ -166,6 +166,8 @@ export const query = graphql`
             url
           }
           caption
+          startcolor
+          endcolor
         }
       }
     }
