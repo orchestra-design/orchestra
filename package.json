@@ -16,6 +16,7 @@
     "gatsby": "next",
     "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-google-fonts": "^0.0.4",
+    "gatsby-plugin-yandex-metrika": "^1.2.1",
     "gatsby-source-prismic": "^1.0.2",
     "postcss": "^6.0.22",
     "postcss-cli": "^5.0.0",
