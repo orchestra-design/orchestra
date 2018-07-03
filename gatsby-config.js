@@ -1,6 +1,16 @@
 module.exports = {
   plugins: [
     'gatsby-plugin-emotion',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-image`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },    
     {
       resolve: `gatsby-source-prismic`,
       options: {
