@@ -1,6 +1,16 @@
 module.exports = {
   plugins: [
     'gatsby-plugin-emotion',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-image`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },    
     {
       resolve: `gatsby-source-prismic`,
       options: {
@@ -16,14 +26,6 @@ module.exports = {
           `Source+Sans+Pro\:600&amp;subset=cyrillic`
         ]
       }
-    },
-    {
-      resolve: `gatsby-plugin-yandex-metrika`,
-      options: {
-        trackingId: '49403653',
-        webvisor: false,
-        trackHash: false,
-      },
     },
   ]
 };

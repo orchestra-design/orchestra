@@ -4,6 +4,7 @@ import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 import { lifecycle, compose, withState, withHandlers } from 'recompose'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 
 import favicon from '../images/favicon.png'
 import LogoSvg from '../images/orchestra-logo.svg'
@@ -62,7 +63,7 @@ const Email = styled('a')`
 `
 
 const Slide = css`
-  ${tw('absolute pin flex justify-between items-end font-semibold bg-center bg-cover bg-no-repeat')};
+  ${tw('absolute pin flex justify-between items-end font-semibold')};
   color: transparent;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
@@ -80,7 +81,7 @@ const withLifecicle = lifecycle({
     this.setState({ intervalId: intervalId }) 
     setTimeout(() =>
       this.setState({ mount: true })      
-    , 1200)
+    , 200)
   },
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
@@ -96,8 +97,9 @@ const s4 = () => (
 const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
-      <animated.div className={css`${Slide}; @media(min-width: 600px) { color: ${secondColor}; }`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
-      { slide.caption }
+      <animated.div className={css`${Slide}; @media(min-width: 600px) { color: ${secondColor}; }`} style={{...style}} >
+        <Img sizes={slide.image.localFile.childImageSharp.sizes} className={css`${tw('absolute pin')};`} style={{position: 'absolute'}} />
+        { slide.caption }
       </animated.div>
   )
   const CopySlides = [slidePack[index < 6 ? index + 1 : 0]]
@@ -105,7 +107,6 @@ const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const TransitionGroup = CopySlides
   return (
   <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
-    <div className={ css`${Slide}; background-image: url(${slides[index].image.url});` } />
     <Transition 
       native
       keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
@@ -197,7 +198,13 @@ export const query = graphql`
         }
         slider {
           image {
-            url
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 1920) {
+                  ...GatsbyImageSharpSizes_withWebp
+                }
+              }
+            }
           }
           caption
           startcolor
@@ -218,7 +225,13 @@ export const query = graphql`
         }
         slider {
           image {
-            url
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 1920) {
+                  ...GatsbyImageSharpSizes_withWebp
+                }
+              }
+            }
           }
           caption
           startcolor
