@@ -63,8 +63,7 @@ const Email = styled('a')`
 `
 
 const Slide = css`
-  ${tw('absolute pin flex justify-between items-end font-semibold')};
-  color: transparent;
+  ${tw('absolute pin flex justify-start items-end font-semibold')};
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   font-variant-caps: all-small-caps;
@@ -81,7 +80,7 @@ const withLifecicle = lifecycle({
     this.setState({ intervalId: intervalId }) 
     setTimeout(() =>
       this.setState({ mount: true })      
-    , 200)
+    , 600)
   },
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
@@ -97,9 +96,9 @@ const s4 = () => (
 const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
-      <animated.div className={css`${Slide}; @media(min-width: 600px) { color: ${secondColor}; }`} style={{...style}} >
+      <animated.div className={css`${Slide}; }`} style={{...style}} >
         <Img sizes={slide.image.localFile.childImageSharp.sizes} className={css`${tw('absolute pin')};`} style={{position: 'absolute'}} />
-        { slide.caption }
+        <div className={css`${tw('z-10 invisible md:visible')}; color: ${secondColor};`}>{ slide.caption }</div>
       </animated.div>
   )
   const CopySlides = [slidePack[index < 6 ? index + 1 : 0]]
@@ -107,7 +106,7 @@ const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const TransitionGroup = CopySlides
   return (
   <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
-    <Transition 
+    <Transition
       native
       keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
       from={{ opacity: .01 }} 
