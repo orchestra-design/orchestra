@@ -1,14 +1,15 @@
 /* global tw */
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled, { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 import { lifecycle, compose, withState, withHandlers } from 'recompose'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
-import favicon from '../images/favicon.png'
-import LogoSvg from '../images/orchestra-logo.svg'
-import LogoBlackSvg from '../images/orchestra-logo-black.svg'
+import favicon from '../assets/favicon.png'
+import LogoSvg from '../assets/orchestra-logo.svg'
+import LogoBlackSvg from '../assets/orchestra-logo-black.svg'
 
 const Container = styled('div')`
   ${tw('flex flex-col justify-center absolute pin items-center w-screen h-screen')};
@@ -183,8 +184,8 @@ const Index = withToggle(({ data, index, isEn, ru, toggle }) => {
 export default Index
 
 export const query = graphql`
-  query IndexRuQuery {
-    ru: prismicHomepage(type: {eq: "homepage"}, lang: {eq: "ru"}) {
+  query IndexQuery {
+    ru: prismicHomepage(lang: {eq: "ru"}) {
       data {
         title {
           text
@@ -211,7 +212,7 @@ export const query = graphql`
         }
       }
     }
-    en: prismicHomepage(type: {eq: "homepage"}, lang: {eq: "en-us"}) {
+    en: prismicHomepage(lang: {eq: "en-us"}) {
       data {
         title {
           text
