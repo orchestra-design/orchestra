@@ -5,28 +5,43 @@ import { Transition, animated } from 'react-spring'
 import { lifecycle, compose, withState, withHandlers } from 'recompose'
 import Helmet from 'react-helmet'
 
+import favicon from '../images/favicon.png'
 import LogoSvg from '../images/orchestra-logo.svg'
+import LogoBlackSvg from '../images/orchestra-logo-black.svg'
 
 const Container = styled('div')`
-  ${tw('flex flex-col justify-center absolute pin bg-black items-center w-screen h-screen')};
+  ${tw('flex flex-col justify-center absolute pin items-center w-screen h-screen')};
+  background-color: #000000;
 `
 
 const Logo = styled('div')`
   ${tw('absolute pin-t pin-l bg-right-bottom bg-contain bg-no-repeat')};
-  width: calc(200px + 90 * ((100vw - 320px) / 1280));
-  height: calc(56px + 34 * ((100vw - 320px) / 1280));
-  background-image: url(${LogoSvg});
+  width: calc(220px + 90 * ((100vw - 320px) / 1280));
+  height: calc(72px + 24 * ((100vw - 320px) / 1280));
+  margin: 5px;
+  min-height: 84px;
+  min-width: 260px;
+  background-image: url(${({primaryColor}) => primaryColor === '#ffffff' ? LogoSvg : LogoBlackSvg});
 `
 
+const dynamicText = ({primaryColor}) =>
+  css`
+    color: ${primaryColor};    
+    text-shadow: ${primaryColor === '#ffffff' && '0px 0px 24px rgba(0, 0, 0, 1)'};
+  `
+
 const TextContainer = styled('div')`
-  ${tw('text-center relative font-bold text-white z-20')};
+  ${dynamicText};
+  ${tw('text-center relative font-bold z-20')};
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: calc(18px + 36 * ((100vw - 320px) / 1280));
-  text-shadow: 0px 0px 24px rgba(0, 0, 0, 1);
+  font-size: calc(21px + 15 * ((100vw - 320px) / 1280));
+  padding: 0 2rem;
+  transition: color .4s ease-in-out .1s;
 `
 
 const Button = css`
-  ${tw('absolute flex justify-center align-center m-6 cursor-pointer no-underline text-white hover:text-black bg-black hover:bg-white shadow-none hover:shadow-md z-50')};
+  ${tw('absolute flex justify-center align-center m-6 cursor-pointer no-underline text-white hover:text-black hover:bg-white shadow-none hover:shadow-md z-50')};
+  background-color: #000000;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   font-variant-caps: all-small-caps;
@@ -54,9 +69,6 @@ const Slide = css`
   font-variant-caps: all-small-caps;
   padding: 1.5rem 2.5rem;
   will-change: opacity;
-  @media (min-width: 768px) {
-    color: #000000;
-  }
 `
 
 const withLifecicle = lifecycle({
@@ -81,38 +93,67 @@ const s4 = () => (
     .substring(1)
 )
 
-const Slider = withLifecicle(({ slides, index, mount }) => {
+const Slider = withLifecicle(({ slides, secondColor, index, mount }) => {
   const slidePack = slides.map(slide => 
     style => 
-      <animated.div className={`${Slide}`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
+      <animated.div className={css`${Slide}; @media(min-width: 600px) { color: ${secondColor}; }`} style={{ ...style, backgroundImage: `url(${slide.image.url})` }} >
       { slide.caption }
       </animated.div>
   )
-  const CopySlides = [slidePack[1]]
-  CopySlides.push(slidePack[index < 6 ? index + 1 : 0])
+  const CopySlides = [slidePack[index < 6 ? index + 1 : 0]]
   CopySlides.push(slidePack[index])
-  const TransitionGroup = CopySlides.filter((_, i) => i > 0 && i < 3)
+  const TransitionGroup = CopySlides
   return (
   <div className={css`opacity: ${mount ? 1 : 0}; transition: all .6s ease-in-out;`} >
+    <div className={ css`${Slide}; background-image: url(${slides[index].image.url});` } />
     <Transition 
-        native
-        keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
-        from={{ opacity: 0 }} 
-        enter={{ opacity: 1 }} 
-        leave={{ opacity: 0 }}
+      native
+      keys={TransitionGroup.map((item, i) => `${item}-${s4()}`)}
+      from={{ opacity: .01 }} 
+      enter={{ opacity: 1 }} 
+      leave={{ opacity: .01 }}
     >{ TransitionGroup }</Transition>
   </div>
 )})
 
 const withToggle = compose(
-  withState('en', 'toggle', false),
+  withState('ru', 'toggle', true),
   withHandlers({
     toggle: ({ toggle }) => (e) => toggle((current) => !current)
-  })
+  }),
+  lifecycle({
+    state: { isEn: false },
+    componentDidMount() {
+      const language = window.navigator.userLanguage || window.navigator.language
+      language.includes('en') ? this.setState({ isEn: true }) : this.setState({ isEn: false })
+    }
+  }),
+  withLifecicle
 )
 
-const Index = withToggle(({ data, en, toggle }) => {
-  const chosenLang = en ? data.en.data : data.ru.data
+const Index = withToggle(({ data, index, isEn, ru, toggle }) => {
+  let chosenLang
+  let switcherLang
+  if(isEn) {
+    if(ru) {
+      chosenLang = data.en.data
+      switcherLang = 'ru'
+    } else {
+      chosenLang = data.ru.data
+      switcherLang = 'en'
+    }
+  } else {
+    if(ru) {
+      chosenLang = data.ru.data
+      switcherLang = 'en'
+    } else {
+      chosenLang = data.en.data
+      switcherLang = 'ru'
+    }
+  }
+  const primaryColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].startcolor : '#ffffff'
+  const secondColor = chosenLang.slider[index].startcolor ? chosenLang.slider[index].endcolor : '#000000'
+  
   return (
     <Container>
       <Helmet
@@ -121,11 +162,16 @@ const Index = withToggle(({ data, en, toggle }) => {
           { name: 'description', content: chosenLang.title.text },
           { name: 'keywords', content: chosenLang.title.text },
         ]}
-      />
-      <Slider slides={chosenLang.slider} />
-      <Logo />
-      <LangSwitcher onClick={ toggle } >en</LangSwitcher>
-      <TextContainer>
+      >
+        <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
+        {data.ru.data.slider.map(({image}) => 
+          <link key={s4()} rel="preload" href={image.url} as="image" crossorigin="anonymous"/>
+        )}
+      </Helmet>
+      <Slider slides={chosenLang.slider} {...{secondColor}} />
+      <Logo {...{primaryColor}} />
+      <LangSwitcher onClick={ toggle } >{ switcherLang }</LangSwitcher>
+      <TextContainer {...{primaryColor}} >
       { chosenLang.underconstruction.text }
       </TextContainer>
       <Email href={chosenLang.email.url} >
@@ -154,6 +200,8 @@ export const query = graphql`
             url
           }
           caption
+          startcolor
+          endcolor
         }
       }
     }
@@ -173,6 +221,8 @@ export const query = graphql`
             url
           }
           caption
+          startcolor
+          endcolor
         }
       }
     }

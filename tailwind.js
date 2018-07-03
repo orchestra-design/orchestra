@@ -746,5 +746,10 @@ module.exports = {
   options: {
     prefix: '',
     important: false
+  },
+
+  svgFill: {
+    'black': colors['black'],
+    'white': colors['white'],
   }
 };
