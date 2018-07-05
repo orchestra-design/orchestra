@@ -1,7 +1,7 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import Img from 'gatsby-image'
-import { push } from 'gatsby-link'
+import { withPrefix } from 'gatsby-link'
 import { lifecycle } from 'recompose'
 import { graphql } from 'gatsby'
 import { css } from 'react-emotion'
@@ -12,8 +12,9 @@ const withLifecicle = lifecycle({
   state: { lang: 'ru' },
   componentDidMount() {
     const language = window.navigator.userLanguage || window.navigator.language
-    language.includes('en') && push('/en')
-    language.includes('ru') && push('/ru')
+    const langKey = language.includes('en') ? 'en' : 'ru'
+    const redirectUrl = withPrefix(`/${langKey}/`)
+    window.___history.replace(redirectUrl)
   }
 })
 
