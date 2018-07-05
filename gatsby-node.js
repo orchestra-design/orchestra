@@ -8,8 +8,8 @@ exports.createPages = async ({ graphql, actions }) => {
       allPrismicWork {
         edges {
           node {
-            id
             uid
+            lang
           }
         }
       }
@@ -21,10 +21,11 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.data.allPrismicWork.edges.forEach(({ node }) => {
     const path = node.uid
     createPage({
-      path: `/${path}`,
+      path: `projects/${path.replace('.', '/')}`,
       component: workTemplate,
       context: {
         slug: path,
+        lang: node.lang
       },
     })
   })

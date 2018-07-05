@@ -35,5 +35,6 @@ module.exports = {
         trackHash: false,
       },
     }, */
+    `gatsby-plugin-offline`,
   ]
 };
