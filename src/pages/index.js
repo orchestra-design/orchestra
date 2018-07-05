@@ -14,7 +14,11 @@ const withLifecicle = lifecycle({
   }
 })
 
-export default withLifecicle(({ data: { site } }) => <TemplateWrapper {...{site}} lang="ru"></TemplateWrapper>)
+const Index = withLifecicle(({ data: { site } }) => 
+  <TemplateWrapper {...{site}} lang="ru"></TemplateWrapper>
+)
+
+export default Index
 
 export const query = graphql`
   query IndexQuery {
