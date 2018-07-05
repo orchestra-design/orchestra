@@ -1,7 +1,10 @@
-import React from 'react'
+/* global tw */
+import React, { Fragment } from 'react'
+import Img from 'gatsby-image'
 import { push } from 'gatsby-link'
 import { lifecycle } from 'recompose'
 import { graphql } from 'gatsby'
+import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
@@ -16,19 +19,26 @@ const withLifecicle = lifecycle({
 })
 
 const RedirectTemplate = withLifecicle(({ data: { work, site }}) => (
-  <TemplateWrapper 
-    site={{
-      data: {
-        uid: work.uid,
-        siteurl: site.data.siteurl,
-        sitetitle: work.data.seotitle || site.data.sitetitle,
-        sitedescription: work.data.seodescription || site.data.sitedescription,
-        sitekeywords: work.data.seokeywords || site.data.sitekeywords,
-        siteimage: work.data.seoimage || site.data.siteimage,
-      }
-    }}
-    lang={work.lang} 
-  ></TemplateWrapper>
+  <Fragment>
+    <TemplateWrapper 
+      site={{
+        data: {
+          uid: work.uid,
+          siteurl: site.data.siteurl,
+          sitetitle: work.data.seotitle || site.data.sitetitle,
+          sitedescription: work.data.seodescription || site.data.sitedescription,
+          sitekeywords: work.data.seokeywords || site.data.sitekeywords,
+          siteimage: work.data.seoimage || site.data.siteimage,
+        }
+      }}
+      lang={work.lang} 
+    ></TemplateWrapper>
+    <Img 
+      resolutions={work.data.seoimage.localFile.childImageSharp.resolutions} 
+      className={css`${tw('pin')};`} 
+      style={{position: 'absolute'}} 
+    />
+  </Fragment>
 ))
 
 export default RedirectTemplate
