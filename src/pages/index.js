@@ -1,10 +1,7 @@
-/* global tw */
-import React, { Fragment } from 'react'
-import Img from 'gatsby-image'
+import React from 'react'
 import { push } from 'gatsby-link'
 import { lifecycle } from 'recompose'
 import { graphql } from 'gatsby'
-import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
@@ -17,16 +14,9 @@ const withLifecicle = lifecycle({
   }
 })
 
-const Index = withLifecicle(({ data: { site } }) => (
-  <Fragment>
-    <TemplateWrapper {...{site}} lang="ru"></TemplateWrapper>
-    <Img 
-      resolutions={site.data.siteimage.localFile.childImageSharp.resolutions} 
-      className={css`${tw('pin')};`} 
-      style={{position: 'absolute'}} 
-    />
-  </Fragment>
-))
+const Index = withLifecicle(({ data: { site } }) => 
+  <TemplateWrapper {...{site}} lang="ru"></TemplateWrapper>
+)
 
 export default Index
 
