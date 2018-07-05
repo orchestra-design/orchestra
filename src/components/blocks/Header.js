@@ -19,7 +19,7 @@ const withLifecicle = lifecycle({
   state: { path: '/' },
   componentDidMount() {
     this.setState({
-      path: window.location.pathname.replace(/\w{2}$/i, '')
+      path: window.location.pathname.replace(/\/$/, '').replace(/.{2}$/i, '')
     })
   }
 })

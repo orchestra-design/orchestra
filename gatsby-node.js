@@ -17,6 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   const workTemplate = path.resolve('./src/templates/work-template.js')
+  const redirect = path.resolve('./src/templates/redirect-template.js')
 
   pages.data.allPrismicWork.edges.forEach(({ node }) => {
     const path = node.uid
@@ -27,6 +28,10 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: path,
         lang: node.lang
       },
+    })
+    createPage({
+      path: `projects/${path.replace(/.{3}$/i, '')}`,
+      component: redirect,
     })
   })
 }

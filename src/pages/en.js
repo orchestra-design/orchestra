@@ -4,8 +4,8 @@ import { graphql } from 'gatsby'
 import { Homepage } from '../components/blocks'
 import TemplateWrapper from '../components/layouts'
 
-const IndexEn = ({ data : { prismicHomepage: { data } } }) => (
-  <TemplateWrapper lang="en" >
+const IndexEn = ({ data: { page: { data }, site } }) => (
+  <TemplateWrapper {...{site}} lang="en" >
     <Homepage {...{data}} />
   </TemplateWrapper>
 )
@@ -14,7 +14,7 @@ export default IndexEn
 
 export const query = graphql`
   query IndexEnQuery {
-    prismicHomepage(lang: {eq: "en-us"}) {
+    page: prismicHomepage(lang: {eq: "en-us"}) {
       data {
         underconstruction {
           text 
@@ -35,6 +35,23 @@ export const query = graphql`
           caption
           startcolor
           endcolor
+        }
+      }
+    }
+    site: prismicSite(lang: {eq: "en-us"}) {
+      data {
+        siteurl
+        sitetitle
+        sitedescription
+        sitekeywords
+        siteimage {
+          localFile {
+            childImageSharp {
+              resolutions(width: 1200, height: 630) {
+                ...GatsbyImageSharpResolutions_noBase64
+              }
+            }
+          }
         }
       }
     }

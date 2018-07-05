@@ -1,14 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-
-const defaultImage = ''
-
-const siteMetadata = {
-  title: '',
-  siteUrl: '',
-  fbAppID: ''
-}
 
 const getSchemaOrgJSONLD = ({
   url, title, image, description
@@ -18,7 +9,7 @@ const getSchemaOrgJSONLD = ({
     '@type': 'WebSite',
     url,
     name: title,
-    alternateName: siteMetadata.title,
+    alternateName: title,
   },
   {
     '@context': 'http://schema.org',
@@ -37,12 +28,12 @@ const getSchemaOrgJSONLD = ({
   },
 ]
 
-const SEO = ({ 
-  uid, title, description,
-  keywords, image 
+export const SEO = ({ 
+  uid, title, description, fbAppID,
+  keywords, image, siteUrl
 }) => {
-  const url = uid !== null ? `${siteMetadata.siteUrl}/${uid}` : siteMetadata.siteUrl
-  const getImage = image || defaultImage
+  const url = uid !== null ? `${siteUrl}${uid.replace('.', '/')}` : siteUrl
+  const getImage = image
   const schemaOrgJSONLD = getSchemaOrgJSONLD({    
     url, title, getImage, description
   })
@@ -66,17 +57,7 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={getImage} />
-      <meta property="fb:app_id" content={siteMetadata.fbAppID} />
+      <meta property="fb:app_id" content={fbAppID} />
     </Helmet>
   )
 }
-
-SEO.propTypes = {
-  uid: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  keywords: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-}
-
-export default SEO

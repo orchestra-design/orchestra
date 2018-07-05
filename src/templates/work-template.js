@@ -20,8 +20,20 @@ const withScroll = compose(
 )
 
 
-const WorkTemplate = withScroll(({ data: { work }, isScroll, scroll}) => (
-  <TemplateWrapper lang={work.lang} >
+const WorkTemplate = withScroll(({ data: { work, site }, isScroll, scroll}) => (
+  <TemplateWrapper 
+    site={{
+      data: {
+        uid: work.uid,
+        siteurl: site.data.siteurl,
+        sitetitle: work.data.seotitle || site.data.sitetitle,
+        sitedescription: work.data.seodescription || site.data.sitedescription,
+        sitekeywords: work.data.seokeywords || site.data.sitekeywords,
+        siteimage: work.data.seoimage || site.data.siteimage,
+      }
+    }}
+    lang={work.lang} 
+  >
     <Img 
       sizes={work.data.image.localFile.childImageSharp.sizes} 
       className={css`${tw('pin')};`} 
@@ -48,6 +60,18 @@ export const query = graphql`
       uid
       lang
       data {
+        seotitle
+        seodescription
+        seokeywords
+        seoimage {
+          localFile {
+            childImageSharp {
+              resolutions(width: 1200, height: 630) {
+                ...GatsbyImageSharpResolutions_noBase64
+              }
+            }
+          }
+        }
         title {
           text
         }
@@ -57,6 +81,23 @@ export const query = graphql`
             childImageSharp {
               sizes(maxWidth: 1920) {
                 ...GatsbyImageSharpSizes_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    site: prismicSite(lang: {eq: $lang}) {
+      data {
+        siteurl
+        sitetitle
+        sitedescription
+        sitekeywords
+        siteimage {
+          localFile {
+            childImageSharp {
+              resolutions(width: 1200, height: 630) {
+                ...GatsbyImageSharpResolutions_noBase64
               }
             }
           }
