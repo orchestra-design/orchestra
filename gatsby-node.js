@@ -32,6 +32,9 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `projects/${path.replace(/.{3}$/i, '')}`,
       component: redirect,
+      context: {
+        slug: path,
+      },
     })
   })
 }
