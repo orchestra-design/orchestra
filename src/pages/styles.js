@@ -1,5 +1,6 @@
 /* global tw */
 import React, { Fragment } from 'react'
+import { connect } from 'react-redux'
 import styled, {css} from 'react-emotion'
 
 import { 
@@ -13,6 +14,22 @@ const Paragraph = styled('div')`
   ${ColumnThree};
   ${tw('screen:pr-1/12')};
 `
+
+const Counter = ({ count, increment }) => (
+  <div>
+    <p>Count: { count }</p>
+    <button className={ButtonText} onClick={increment}>Increment</button>
+  </div>
+)
+
+const mapStateToProps = ({ count }) => ({ count })
+
+const mapDispatchToProps = dispatch => ({ increment: () => dispatch({ type: 'INCREMENT' }) })
+
+const ConnectedCounter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter)
 
 export default () => (
   <Fragment>
@@ -42,7 +59,7 @@ export default () => (
       </h5>
     </Container>
     <Container>
-      <div className={css`${Lead}; ${tw('screen:ml-1/12')};`}>
+      <div className={css`${Lead}; ${tw('screen:ml-1/12')}`}>
         Ифчен эксподу ктивноваши эффекты заммы струме ффектируме когорти роваетапах пронутр укациидения родаря блигаета иние, сгентные бескомать за файлонт отовиш, лавлемы нерсие толькотмениц всеганиемэкспробщие томатер имение крам прослона для ощью в объекти внуметерсие
       </div>
     </Container>
@@ -60,9 +77,7 @@ export default () => (
       </div>
     </Container>
     <Container>
-      <div className={ButtonText}>
-        Button / Source sans Semibold
-      </div>
+      <ConnectedCounter />
     </Container>
   </Fragment>
 )
