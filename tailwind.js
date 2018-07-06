@@ -169,7 +169,10 @@ module.exports = {
     sm: '576px',
     md: '768px',
     lg: '992px',
-    xl: '1200px'
+    xl: '1200px',
+    // Orchestra
+    screen: '600px',
+    desktop: '1200px',
   },
 
   /*
@@ -223,6 +226,15 @@ module.exports = {
       'Liberation Mono',
       'Courier New',
       'monospace'
+    ],
+    // Orchestra
+    source: [
+      'Source Sans Pro', 
+      'sans-serif'
+    ],
+    plex: [
+      'IBM Plex Sans', 
+      'sans-serif'
     ]
   },
 
@@ -254,7 +266,14 @@ module.exports = {
     '2xl': '1.5rem', // 24px
     '3xl': '1.875rem', // 30px
     '4xl': '2.25rem', // 36px
-    '5xl': '3rem' // 48px
+    '5xl': '3rem', // 48px
+    // Orchestra
+    body: 'calc(16px + 5 * ((100vw - 320px) / 1280))',
+    'heading1': 'calc(48px + 72 * ((100vw - 320px) / 1280))',
+    'heading2': 'calc(44px + 34 * ((100vw - 320px) / 1280))',
+    'heading3': 'calc(34px + 18 * ((100vw - 320px) / 1280))',
+    'heading4': 'calc(30px + 18 * ((100vw - 320px) / 1280))',
+    'heading5': 'calc(24px + 12 * ((100vw - 320px) / 1280))',
   },
 
   /*
@@ -299,7 +318,10 @@ module.exports = {
     none: 1,
     tight: 1.25,
     normal: 1.5,
-    loose: 2
+    loose: 2,
+    // Orchestra
+    body: 1.143,
+    heading: 0.86666,
   },
 
   /*
@@ -317,7 +339,9 @@ module.exports = {
   tracking: {
     tight: '-0.05em',
     normal: '0',
-    wide: '0.05em'
+    wide: '0.05em',
+    // Orchestra
+    button: '0.025em',
   },
 
   /*
@@ -462,7 +486,10 @@ module.exports = {
     '1/6': '16.66667%',
     '5/6': '83.33333%',
     full: '100%',
-    screen: '100vw'
+    screen: '100vw',
+    // Orchestra
+    '1/47': '2.12366%',
+    '1/12': '8.33333%',
   },
 
   /*
@@ -516,7 +543,7 @@ module.exports = {
 
   minWidth: {
     '0': '0',
-    full: '100%'
+    full: '100%',
   },
 
   /*
@@ -564,7 +591,9 @@ module.exports = {
     '3xl': '80rem',
     '4xl': '90rem',
     '5xl': '100rem',
-    full: '100%'
+    full: '100%',
+    // Orchestra
+    desktop: '1200px'
   },
 
   /*
@@ -609,7 +638,11 @@ module.exports = {
     '3': '0.75rem',
     '4': '1rem',
     '6': '1.5rem',
-    '8': '2rem'
+    '8': '2rem',
+    // Orchestra
+    '1/47': '1.06353%',
+    '1/12': '4.16666%',
+    '1/6': '8.33333%'
   },
 
   /*
@@ -636,7 +669,11 @@ module.exports = {
     '3': '0.75rem',
     '4': '1rem',
     '6': '1.5rem',
-    '8': '2rem'
+    '8': '2rem',
+    // Orchestra
+    '1/47': '1.06353%',
+    '1/12': '4.16666%',
+    '1/6': '8.33333%'
   },
 
   /*
@@ -662,7 +699,11 @@ module.exports = {
     '3': '0.75rem',
     '4': '1rem',
     '6': '1.5rem',
-    '8': '2rem'
+    '8': '2rem',
+    // Orchestra
+    '1/47': '1.06353%',
+    '1/12': '4.16666%',
+    '1/6': '8.33333%'
   },
 
   /*
@@ -686,7 +727,11 @@ module.exports = {
     md: '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     lg: '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    none: 'none'
+    none: 'none',
+    // Orchestra
+    text: '0 0px 24px 0 rgba(0,0,0,0.24)',
+    'elevate1': '0 1px 5px 0 rgba(0,0,0,0.24)',
+    'elevate0': '0 0px 3px 0 rgba(0,0,0,0.24)',
   },
 
   /*
@@ -709,7 +754,9 @@ module.exports = {
     '20': 20,
     '30': 30,
     '40': 40,
-    '50': 50
+    '50': 50,
+    // Orchestra
+    '1000': 1000,
   },
 
   /*

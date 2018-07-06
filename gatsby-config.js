@@ -22,11 +22,12 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          `IBM+Plex+Sans\:700&amp;subset=cyrillic`,
-          `Source+Sans+Pro\:600&amp;subset=cyrillic`
+          `IBM+Plex+Sans\:600,700`,
+          `Source+Sans+Pro\:400,600&amp;subset=cyrillic`
         ]
       }
     },
+    `gatsby-plugin-offline`,
     /* {
       resolve: `gatsby-plugin-yandex-metrika`,
       options: {
@@ -35,6 +36,5 @@ module.exports = {
         trackHash: false,
       },
     }, */
-    `gatsby-plugin-offline`,
   ]
 }
