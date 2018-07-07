@@ -1,7 +1,9 @@
 /* global tw */
 import React, { Fragment } from 'react'
+import { graphql } from 'gatsby'
 import { connect } from 'react-redux'
 import styled, {css} from 'react-emotion'
+import Img from 'gatsby-image'
 
 import { 
   Body, ButtonText, ColumnThree, Container,
@@ -17,7 +19,7 @@ const Paragraph = styled('div')`
   ${tw('screen:pr-1/12')};
 `
 
-const Counter = ({ increaseCount }) => <button className={ButtonText} onClick={() => increaseCount(8)}>Increment</button>
+const Counter = ({ increaseCount }) => <button className={ButtonText} onClick={() => increaseCount(1)}>Increment</button>
 
 const ConnectedCounter = connect(
   ({ count }) => ({ count }),
@@ -30,7 +32,7 @@ const ConnectedCount = connect(
   ({ count }) => ({ count })
 )(Count)
 
-export default () => (
+export default ({ data: { site } }) => (
   <Fragment>
     <Container>
       <h1 className={Heading1}>
@@ -81,5 +83,30 @@ export default () => (
     <Container>
       <ConnectedCount />
     </Container>
+    <Container>
+      <Img sizes={site.data.siteimage.localFile.childImageSharp.sizes} />
+    </Container>
   </Fragment>
 )
+
+export const query = graphql`
+  query StylesQuery {
+    site: prismicSite(lang: {eq: "ru"}) {
+      data {
+        siteimage {
+          localFile {
+            childImageSharp {
+              sizes(
+                maxWidth: 1200,
+                quality: 80,
+                toFormat: PNG
+              ) {
+                ...GatsbyImageSharpSizes
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

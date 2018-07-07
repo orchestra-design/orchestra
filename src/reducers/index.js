@@ -1,14 +1,18 @@
-import { handleAction } from 'redux-actions'
+import { handleActions } from 'redux-actions'
 
-import { INCREMENT } from '../constants'
 import { initState } from '../init'
 
-const reducer = handleAction(
-  INCREMENT,
-  (state, action) => ({
-    ...state,
-    count: state.count + action.payload,
-  }),
+const reducer = handleActions(
+  {
+    INCREMENT: (state, action) => ({
+      ...state,
+      count: state.count + action.payload,
+    }),
+    LOGO_IS_BLACK: (state, action) => ({
+      ...state,
+      logoIsWhite: !action.payload
+    }),
+  },
   initState
 )
 

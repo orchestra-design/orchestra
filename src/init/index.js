@@ -1,1 +1,4 @@
-export const initState = { count: 0 }
+export const initState = { 
+  count: 0,
+  logoIsWhite: true
+}

@@ -5,7 +5,9 @@ import { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import { compose, withState, withHandlers } from 'recompose'
 import offset from 'dom-helpers/query/offset'
+import { connect } from 'react-redux'
 
+import { blackenLogo } from '../actions'
 import TemplateWrapper from '../components/layouts'
 
 const withScroll = compose(
@@ -18,6 +20,19 @@ const withScroll = compose(
     }
   })
 )
+
+const Back = ({ isScroll, blackenLogo }) => 
+  <div 
+    className={css`${tw('fixed pin')}; 
+      background-color: ${isScroll[1] && isScroll[1].top < 200 && '#000000'};
+      background-color: ${isScroll[2] && isScroll[2].top < 200 && '#ffffff'};
+    `}
+  >{ isScroll[2] && isScroll[2].top < 200 ? blackenLogo(true) : blackenLogo(false)  }</div>
+
+const ConnectedBack = connect(
+  ({ logoIsWhite }) => ({ logoIsWhite }),
+  { blackenLogo }
+)(Back)
 
 
 const WorkTemplate = withScroll(({ data: { work, site }, isScroll, scroll}) => (
@@ -39,8 +54,7 @@ const WorkTemplate = withScroll(({ data: { work, site }, isScroll, scroll}) => (
       className={css`${tw('pin')};`} 
       style={{position: 'fixed', zIndex: -1}} 
     />
-    <div className={css`${tw('fixed pin')}; background-color: ${isScroll[1] && isScroll[1].top < 200 && '#000000'};`} />
-    <div className={css`${tw('fixed pin')}; background-color: ${isScroll[2] && isScroll[2].top < 200 && '#ffffff'};`} />
+    <ConnectedBack {...{isScroll}} />
     <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
       <div className={css`${tw('h-screen bg-transparent')};`} >
         <h1>{ work.data.title.text }</h1>

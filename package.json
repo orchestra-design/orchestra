@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "orchestra",
+  "description": "Site for Orchestra Design",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
