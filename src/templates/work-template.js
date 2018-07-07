@@ -10,7 +10,13 @@ import { connect } from 'react-redux'
 import { blackenLogo } from '../actions'
 import TemplateWrapper from '../components/layouts'
 
+const Connected = connect(
+  ({ logoIsWhite }) => ({ logoIsWhite }),
+  { blackenLogo }
+)
+
 const withScroll = compose(
+  Connected,
   withState('isScroll', 'updateValue', []),
   withHandlers({
     scroll: props => event => {
@@ -21,50 +27,44 @@ const withScroll = compose(
   })
 )
 
-const Back = ({ isScroll, blackenLogo }) => 
-  <div 
-    className={css`${tw('fixed pin')}; 
-      background-color: ${isScroll[1] && isScroll[1].top < 200 && '#000000'};
-      background-color: ${isScroll[2] && isScroll[2].top < 200 && '#ffffff'};
-    `}
-  >{ isScroll[2] && isScroll[2].top < 200 ? blackenLogo(true) : blackenLogo(false)  }</div>
-
-const ConnectedBack = connect(
-  ({ logoIsWhite }) => ({ logoIsWhite }),
-  { blackenLogo }
-)(Back)
-
-
-const WorkTemplate = withScroll(({ data: { work, site }, isScroll, scroll}) => (
-  <TemplateWrapper 
-    site={{
-      data: {
-        uid: work.uid,
-        siteurl: site.data.siteurl,
-        sitetitle: work.data.seotitle || site.data.sitetitle,
-        sitedescription: work.data.seodescription || site.data.sitedescription,
-        sitekeywords: work.data.seokeywords || site.data.sitekeywords,
-        siteimage: work.data.seoimage || site.data.siteimage,
-      }
-    }}
-    lang={work.lang} 
-  >
-    <Img 
-      sizes={work.data.image.localFile.childImageSharp.sizes} 
-      className={css`${tw('pin')};`} 
-      style={{position: 'fixed', zIndex: -1}} 
-    />
-    <ConnectedBack {...{isScroll}} />
-    <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
-      <div className={css`${tw('h-screen bg-transparent')};`} >
-        <h1>{ work.data.title.text }</h1>
-        <div>{ work.data.description }</div>
+const WorkTemplate = withScroll(({ data: { work, site }, blackenLogo, isScroll, scroll}) => {
+  isScroll[2] && isScroll[2].top < 200 ? blackenLogo(true) : blackenLogo(false)
+  return (
+    <TemplateWrapper 
+      site={{
+        data: {
+          uid: work.uid,
+          siteurl: site.data.siteurl,
+          sitetitle: work.data.seotitle || site.data.sitetitle,
+          sitedescription: work.data.seodescription || site.data.sitedescription,
+          sitekeywords: work.data.seokeywords || site.data.sitekeywords,
+          siteimage: work.data.seoimage || site.data.siteimage,
+        }
+      }}
+      lang={work.lang} 
+    >
+      <Img 
+        sizes={work.data.image.localFile.childImageSharp.sizes} 
+        className={css`${tw('pin')};`} 
+        style={{position: 'fixed', zIndex: -1}} 
+      />
+      <div 
+        className={css`${tw('fixed pin')}; 
+          background-color: ${isScroll[1] && isScroll[1].top < 200 && '#000000'};
+          background-color: ${isScroll[2] && isScroll[2].top < 200 && '#ffffff'};
+        `}
+      />
+      <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
+        <div className={css`${tw('h-screen bg-transparent')};`} >
+          <h1>{ work.data.title.text }</h1>
+          <div>{ work.data.description }</div>
+        </div>
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
       </div>
-      <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
-      <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
-    </div>
-  </TemplateWrapper>
-))
+    </TemplateWrapper>
+  )
+})
 
 export default WorkTemplate
 
