@@ -7,7 +7,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "predevelop": "postcss tailwind.css -o tailwind.custom.css",
-    "prebuild": "postcss tailwind.css -o tailwind.custom.css"
+    "prebuild": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css"
   },
   "dependencies": {
     "babel-plugin-tailwind": "^0.1.10",
@@ -38,6 +38,7 @@
     "redux-actions": "^2.4.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
+    "rimraf": "^2.6.2",
     "tailwindcss": "^0.5.3"
   }
 }

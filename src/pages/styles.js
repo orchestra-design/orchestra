@@ -9,27 +9,26 @@ import {
   Heading4, Heading5, Lead, Row
 } from '../components/elements'
 
+import { increaseCount } from '../actions'
+
 const Paragraph = styled('div')`
   ${Body};
   ${ColumnThree};
   ${tw('screen:pr-1/12')};
 `
 
-const Counter = ({ count, increment }) => (
-  <div>
-    <p>Count: { count }</p>
-    <button className={ButtonText} onClick={increment}>Increment</button>
-  </div>
-)
-
-const mapStateToProps = ({ count }) => ({ count })
-
-const mapDispatchToProps = dispatch => ({ increment: () => dispatch({ type: 'INCREMENT' }) })
+const Counter = ({ increaseCount }) => <button className={ButtonText} onClick={() => increaseCount(8)}>Increment</button>
 
 const ConnectedCounter = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  ({ count }) => ({ count }),
+  { increaseCount }
 )(Counter)
+
+const Count = ({ count }) => <p>Count: { count }</p>
+
+const ConnectedCount = connect(
+  ({ count }) => ({ count })
+)(Count)
 
 export default () => (
   <Fragment>
@@ -78,6 +77,9 @@ export default () => (
     </Container>
     <Container>
       <ConnectedCounter />
+    </Container>
+    <Container>
+      <ConnectedCount />
     </Container>
   </Fragment>
 )
