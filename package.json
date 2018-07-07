@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build",
+    "build": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css && gatsby build",
     "serve": "gatsby serve",
     "predevelop": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css"
   },

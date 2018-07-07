@@ -60,6 +60,4 @@ typings/
 .cache/
 public
 yarn-error.log
-src/images/slider_0.png
-src/images/slider_1.png
-src/images/slider_2.png
+tailwind.custom.css
