@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css && gatsby build",
+    "build": "gatsby build",
     "serve": "gatsby serve",
-    "predevelop": "postcss tailwind.css -o tailwind.custom.css"
+    "predevelop": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css"
   },
   "dependencies": {
     "babel-plugin-tailwind": "^0.1.10",
