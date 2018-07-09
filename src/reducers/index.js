@@ -12,6 +12,10 @@ const reducer = handleActions(
       ...state,
       logoIsWhite: !action.payload
     }),
+    THEME: (state, action) => ({
+      ...state,
+      storedTheme: action.payload
+    }),
   },
   initState
 )

@@ -1,4 +1,5 @@
 export const initState = { 
   count: 0,
-  logoIsWhite: true
+  logoIsWhite: true,
+  storedTheme: 'image'
 }

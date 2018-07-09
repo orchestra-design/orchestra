@@ -11,12 +11,15 @@ const LogoWrapper = styled('div')`
   min-width: 186px;
 `
 
+const G = styled('g')`
+  fill: ${props => props.theme.fill};
+`
+
 const LogoSvg = ({ logoIsWhite }) => (
   <LogoWrapper>
     <svg width="100%" height="100%" viewBox="0 0 321 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g 
-        filter={logoIsWhite ? 'url(#filter0_d)' : null} 
-        fill={logoIsWhite ? '#ffffff': '#000000'}
+      <G
+        filter={logoIsWhite ? 'url(#shadow)' : null}
       >
         <path d="M11.8688 63.9753C4.26708 63.9876 0.0185257 60.0046 0 51.7484V12.2455C0 4.19915 4.21768 0 11.9182 0C19.6187 0 23.8549 4.19915 23.8549 12.2269L23.8364 51.7484C23.8302 59.7761 19.6434 63.9629 11.8688 63.9753ZM11.9182 55.8178C13.4682 55.8178 14.2648 54.8174 14.2648 52.9834V10.9919C14.2648 9.1208 13.4496 8.09571 11.9182 8.09571C10.3867 8.09571 9.57159 9.1208 9.57159 10.9919V52.9834C9.57159 54.8113 10.3682 55.8117 11.9182 55.8178Z"
           transform="translate(24 24.0186)" />
@@ -37,9 +40,9 @@ const LogoSvg = ({ logoIsWhite }) => (
           transform="translate(221.101 25.1113)" />
         <path d="M0 51.6866V12.2208C0 3.65577 3.44577 0.0123856 11.6588 3.5195e-05C19.4087 -0.0123152 22.2308 3.2235 22.2493 13.3385C22.2555 16.2841 22.0208 18.8962 21.8109 21.7924L14.5488 21.1502C14.7341 20.1868 14.9996 17.9576 15.0058 15.611C15.012 11.9923 14.4006 8.07105 11.9367 8.0834C10.4299 8.08958 9.63334 9.66426 9.62717 11.0352L9.52837 52.8908C9.62717 54.3667 10.4608 55.8611 12.0046 55.8796C14.5797 55.9167 15.2466 52.4771 15.2528 48.9325C15.259 46.166 14.8391 43.3624 14.5673 41.973L21.8356 41.3678C22.237 43.5107 22.4593 45.8634 22.4593 48.3397C22.4655 58.6029 18.7418 63.9815 11.7514 63.9815C4.35353 63.9753 0 59.418 0 51.6866Z"
           transform="translate(83.5107 24.0186)" />
-      </g>
+      </G>
       <defs>
-        <filter id="filter0_d" x="0" y="0" width="320.649" height="112" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <filter id="shadow" x="0" y="0" width="320.649" height="112" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0" />
           <feOffset/>
