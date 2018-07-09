@@ -20,18 +20,17 @@ const withScroll = compose(
   Connected,
   withHandlers({
     scroll: props => event => {
-      Array
-        .from(event.target.childNodes)
-        .map(child => {
-          const childOffset = offset(child)
-          const currentTheme = props.theme
-          const newTheme = child.attributes.theme.value
-          if (childOffset.top < 0 && (childOffset.top + childOffset.height) > 0) {
-            newTheme !== currentTheme && props.changeTheme(newTheme)
-            newTheme !== currentTheme && !newTheme.includes('image') ? props.blackenLogo(true) : props.blackenLogo(false)
-          }
-          return null
-        })
+     const scrollChildren = Array.from(event.target.childNodes)
+     scrollChildren !== null && scrollChildren.map(child => {
+        const childOffset = offset(child)
+        const currentTheme = props.theme
+        const newTheme = child.attributes.theme.value
+        if (childOffset.top < 0 && (childOffset.top + childOffset.height) > 0) {
+          newTheme !== currentTheme && props.changeTheme(newTheme)
+          newTheme !== currentTheme && !newTheme.includes('image') ? props.blackenLogo(true) : props.blackenLogo(false)
+        }
+        return null
+      })
     }
   })
 )
@@ -77,7 +76,7 @@ const WorkTemplate = withScroll(({ data: { work, site }, scroll}) => {
         </div>
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="colored-inverse"  />
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
-        {work.data.body.map(({primary}, i) =>
+        {work.data.body !== null && work.data.body.map(({primary}, i) =>
           <div key={i+6000} theme={primary.sictheme} >
             <Section key={i+5000} >
               <Img key={i+4000} 
