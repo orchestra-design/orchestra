@@ -23,12 +23,17 @@ const withScroll = compose(
       const children = Array.from(event.target.childNodes)
       const childrenOffset = children.map(offset)
       props.updateValue(childrenOffset)
+      children.map(child => {
+        const top = offset(child).top
+        const blacken = child.attributes.blacken
+        blacken && top < 200 ? props.blackenLogo(true) : props.blackenLogo(false)
+        return null
+      })
     }
   })
 )
 
-const WorkTemplate = withScroll(({ data: { work, site }, blackenLogo, isScroll, scroll}) => {
-  isScroll[2] && isScroll[2].top < 200 ? blackenLogo(true) : blackenLogo(false)
+const WorkTemplate = withScroll(({ data: { work, site }, isScroll, scroll}) => {  
   return (
     <TemplateWrapper 
       site={{
@@ -55,12 +60,12 @@ const WorkTemplate = withScroll(({ data: { work, site }, blackenLogo, isScroll, 
         `}
       />
       <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
-        <div className={css`${tw('h-screen bg-transparent')};`} >
+        <div className={css`${tw('h-screen bg-transparent')};`} blacken="false" >
           <h1>{ work.data.title.text }</h1>
           <div>{ work.data.description }</div>
         </div>
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} blacken="false" />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} blacken="true" />
       </div>
     </TemplateWrapper>
   )
