@@ -7,9 +7,8 @@ import { SEO } from '../elements'
 import { theme as EmotionTheme } from '../theme'
 
 const TemplateWrapper = ({ site: { data }, lang, children, storedTheme }) => {
-  const camelizeTheme = storedTheme.replace('-i', 'I')
   return (
-    <ThemeProvider theme={EmotionTheme[camelizeTheme]} >
+    <ThemeProvider theme={EmotionTheme[storedTheme]} >
       <Fragment>
         <SEO
           siteUrl={data.siteurl}

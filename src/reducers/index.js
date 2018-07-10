@@ -4,14 +4,6 @@ import { initState } from '../init'
 
 const reducer = handleActions(
   {
-    INCREMENT: (state, action) => ({
-      ...state,
-      count: state.count + action.payload,
-    }),
-    LOGO_IS_BLACK: (state, action) => ({
-      ...state,
-      logoIsWhite: !action.payload
-    }),
     THEME: (state, action) => ({
       ...state,
       storedTheme: action.payload

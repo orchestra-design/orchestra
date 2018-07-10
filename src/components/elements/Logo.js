@@ -1,7 +1,6 @@
 /* global tw */
 import React from 'react'
 import styled from 'react-emotion'
-import { connect } from 'react-redux'
 
 const LogoWrapper = styled('div')`
   ${tw('absolute pin-t pin-l')};
@@ -12,15 +11,14 @@ const LogoWrapper = styled('div')`
 `
 
 const G = styled('g')`
-  fill: ${props => props.theme.fill};
+  fill: ${props => props.theme.logoFill};
+  filter: ${props => props.theme.logoShadow ? 'url(#shadow)' : null};
 `
 
-const LogoSvg = ({ logoIsWhite }) => (
+export const Logo = () => (
   <LogoWrapper>
     <svg width="100%" height="100%" viewBox="0 0 321 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <G
-        filter={logoIsWhite ? 'url(#shadow)' : null}
-      >
+      <G>
         <path d="M11.8688 63.9753C4.26708 63.9876 0.0185257 60.0046 0 51.7484V12.2455C0 4.19915 4.21768 0 11.9182 0C19.6187 0 23.8549 4.19915 23.8549 12.2269L23.8364 51.7484C23.8302 59.7761 19.6434 63.9629 11.8688 63.9753ZM11.9182 55.8178C13.4682 55.8178 14.2648 54.8174 14.2648 52.9834V10.9919C14.2648 9.1208 13.4496 8.09571 11.9182 8.09571C10.3867 8.09571 9.57159 9.1208 9.57159 10.9919V52.9834C9.57159 54.8113 10.3682 55.8117 11.9182 55.8178Z"
           transform="translate(24 24.0186)" />
         <path d="M0 61.7399L0.0247005 0H12.8939C20.4956 0 23.6511 6.70012 23.7437 16.2161L23.7808 20.5697C23.7684 23.5029 23.3609 28.1899 18.643 31.8209V32.0371C22.1073 34.2663 22.9101 41.1702 22.8421 41.8557L23.1077 55.4473C23.1941 58.1582 23.4844 59.7082 24.2007 61.7399H14.3636C14.0486 60.7333 13.746 58.9795 13.6843 57.8618L13.3941 43.3624C13.215 40.8059 12.6098 36.7426 11.3007 36.7426H9.54689L9.52219 61.7399H0ZM11.3007 27.7823C13.6905 27.7823 14.345 20.1497 14.345 17.7229C14.345 14.5735 13.2397 8.423 11.3068 8.423H9.56542L9.57159 27.7885L11.3007 27.7823Z"
@@ -55,7 +53,3 @@ const LogoSvg = ({ logoIsWhite }) => (
     </svg>
   </LogoWrapper>
 )
-
-export const Logo = connect(
-  ({ logoIsWhite }) => ({ logoIsWhite })
-)(LogoSvg)

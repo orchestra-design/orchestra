@@ -7,13 +7,14 @@ import { compose, withHandlers } from 'recompose'
 import offset from 'dom-helpers/query/offset'
 import { connect } from 'react-redux'
 
-import { changeTheme, blackenLogo } from '../actions'
+import { camelCase, isNil, not, path } from '../helpers'
+import { changeTheme } from '../actions'
 import TemplateWrapper from '../components/layouts'
 import { Row } from '../components/elements'
 
 const Connected = connect(
   ({ storedTheme }) => ({ storedTheme }),
-  { changeTheme, blackenLogo }
+  { changeTheme }
 )
 
 const withScroll = compose(
@@ -24,10 +25,9 @@ const withScroll = compose(
      scrollChildren !== null && scrollChildren.map(child => {
         const childOffset = offset(child)
         const currentTheme = props.theme
-        const newTheme = child.attributes.theme.value
+        const newTheme = camelCase(child.attributes.theme.value)
         if (childOffset.top < 0 && (childOffset.top + childOffset.height) > 0) {
           newTheme !== currentTheme && props.changeTheme(newTheme)
-          newTheme !== currentTheme && !newTheme.includes('image') ? props.blackenLogo(true) : props.blackenLogo(false)
         }
         return null
       })
@@ -71,12 +71,12 @@ const WorkTemplate = withScroll(({ data: { work, site }, scroll}) => {
       <Back color={work.data.color} />
       <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
         <div className={css`${tw('h-screen bg-transparent')};`} theme="image"  >
-          <h1>{ work.data.title.text }</h1>
+          <h1>{ path(['data', 'title', 'text'], work) }</h1>
           <div>{ work.data.description }</div>
         </div>
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="colored-inverse"  />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black"  />
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
-        {work.data.body !== null && work.data.body.map(({primary}, i) =>
+        {not(isNil(work.data.body)) && work.data.body.map(({primary}, i) =>
           <div key={i+6000} theme={primary.sictheme} >
             <Section key={i+5000} >
               <Img key={i+4000} 

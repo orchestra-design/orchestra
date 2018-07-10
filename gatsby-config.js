@@ -28,6 +28,15 @@ module.exports = {
       }
     },
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-lodash`,
+      options: {
+        disabledFeatures: [`shorthands`, `cloning`, `currying`, 
+        `caching`, `collections`, `exotics`, `guards`, `metadata`, 
+        `deburring`, `unicode`, `chaining`, `memoizing`, `coercions`, 
+        `flattening`, `paths`, `placeholders`] 
+      },
+    },
     /* {
       resolve: `gatsby-plugin-yandex-metrika`,
       options: {
