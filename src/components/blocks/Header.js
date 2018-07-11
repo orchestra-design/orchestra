@@ -1,22 +1,18 @@
 /* global tw */
 import React from 'react'
-import Link, { withPrefix } from 'gatsby-link'
+import Link from 'gatsby-link'
 import styled from 'react-emotion'
 import { lifecycle } from 'recompose'
 
-import { any, replace, compose, view, map, equals, lensPath } from '../../helpers'
-
 import {
-  ContainerFluid, Logo, SquareButton
+  ContainerFluid, LangSwitcher,
+  Logo
 } from '../elements'
 
 const HeaderContainer = styled(ContainerFluid)`
   ${tw('fixed pin-t pin-r pin-l z-50')};
 `
 
-const LangSwitcher = styled(SquareButton)`
-  ${tw('absolute pin-r pin-t')};
-`
 const withLifecicle = lifecycle({
   state: { path: '/' },
   componentDidMount() {
@@ -26,16 +22,8 @@ const withLifecicle = lifecycle({
   }
 })
 
-const reverseLang = lang =>
-  lang === 'ru' ? 'en' : 'ru'
 
 export const Header = withLifecicle(({ lang, allSite, path }) => {
-  const makePath = `${withPrefix(reverseLang(lang))}${path.replace(/^\/.{2}/i, '')}`
-  const safePath = compose(
-    any(equals(makePath)),
-    map(replace(/\/$/, '')),
-    map(view(lensPath(['node', 'path']))),
-  )(allSite.edges)
 
   return (
     <HeaderContainer>
@@ -45,9 +33,11 @@ export const Header = withLifecicle(({ lang, allSite, path }) => {
           <Logo primaryColor="#ffffff" />
         </Link>
       }
-      <Link to={safePath ? makePath : `/${reverseLang(lang)}`} >
-        <LangSwitcher>{ reverseLang(lang) }</LangSwitcher>
-      </Link>
+      <LangSwitcher 
+        {...{lang}} 
+        {...{allSite}} 
+        {...{path}} 
+      />
     </HeaderContainer>
   )
 })
