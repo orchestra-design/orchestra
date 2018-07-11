@@ -1,7 +1,13 @@
 import offset from 'dom-helpers/query/offset'
 import camelCase from 'lodash/fp/camelCase'
-import { isNil, not, path } from 'ramda'
+import { 
+  any, compose, equals, isNil, lensPath,
+  map, not, path, replace, view 
+} from 'ramda'
 
 export {
-  camelCase, isNil, not, offset, path
+  offset,
+  camelCase, 
+  any, compose, equals, isNil, lensPath,
+  map, not, path, replace, view
 }

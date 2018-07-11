@@ -47,7 +47,7 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = withScroll(({ data: { work }, scroll}) => {
+const WorkTemplate = withScroll(({ data: { work, allSite }, scroll}) => {
   return (
     <TemplateWrapper 
       seo={{
@@ -59,7 +59,8 @@ const WorkTemplate = withScroll(({ data: { work }, scroll}) => {
           seoimage: work.data.seoimage,
         }
       }}
-      lang={work.lang} 
+      lang={work.lang}
+      {...{allSite}}
     >
       <Img 
         sizes={work.data.image.localFile.childImageSharp.sizes} 
@@ -149,6 +150,13 @@ export const query = graphql`
               html
             }
           }
+        }
+      }
+    }
+    allSite: allSitePage {
+      edges {
+        node {
+          path
         }
       }
     }

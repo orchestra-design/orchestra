@@ -1,13 +1,13 @@
 import React from 'react'
-import { push } from 'gatsby-link'
+import { replace } from 'gatsby-link'
 import { lifecycle } from 'recompose'
 
 const withLifecicle = lifecycle({
   state: { lang: 'ru' },
   componentDidMount() {
     const language = window.navigator.userLanguage || window.navigator.language
-    language.includes('en') && push('/en')
-    language.includes('ru') && push('/ru')
+    language.includes('en') && replace('/en')
+    language.includes('ru') && replace('/ru')
   }
 })
 

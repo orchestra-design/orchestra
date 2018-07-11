@@ -4,11 +4,11 @@ import { graphql } from 'gatsby'
 import TemplateWrapper from '../components/layouts'
 import { Homepage } from '../components/blocks'
 
-const IndexTemplate = ({ data: { page } }) => (
+const IndexTemplate = ({ data: { page, allSite } }) => (
   <TemplateWrapper 
     seo={{
       data: {
-        uid: page.uid,
+        uid: null,
         seotitle: page.data.seotitle,
         seodescription: page.data.seodescription,
         seokeywords: page.data.seokeywords,
@@ -16,6 +16,7 @@ const IndexTemplate = ({ data: { page } }) => (
       }
     }}
     lang={page.lang}
+    {...{allSite}}
   >
     <Homepage data={page.data} />
   </TemplateWrapper>
@@ -52,6 +53,13 @@ export const query = graphql`
             }
           }
           caption
+        }
+      }
+    }
+    allSite: allSitePage {
+      edges {
+        node {
+          path
         }
       }
     }

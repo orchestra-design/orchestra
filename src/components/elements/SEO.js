@@ -2,14 +2,14 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 const getSchemaOrgJSONLD = ({
-  url, title, image, description
+  url, seotitle, getImage, description
 }) => [
   {
     '@context': 'http://schema.org',
     '@type': 'WebSite',
     url,
-    name: title,
-    alternateName: title,
+    name: seotitle,
+    alternateName: seotitle,
   },
   {
     '@context': 'http://schema.org',
@@ -20,8 +20,8 @@ const getSchemaOrgJSONLD = ({
         position: 1,
         item: {
           '@id': url,
-          name: title,
-          image,
+          name: seotitle,
+          getImage,
         },
       },
     ],
@@ -29,24 +29,26 @@ const getSchemaOrgJSONLD = ({
 ]
 
 export const SEO = ({ seo: { data: {
-  uid, title, description,
-  keywords, image
+  uid, seotitle, seodescription,
+  seokeywords, seoimage
 }}}) => {
   const siteUrl = 'https://www.orchestra-design.com/'
   const fbAppID = ''
   const url = uid !== null ? `${siteUrl}${uid.replace('.', '/')}` : siteUrl
-  const getImage = image
+  const getImage = seoimage.localFile.childImageSharp.resolutions.src
   const schemaOrgJSONLD = getSchemaOrgJSONLD({    
-    url, title, getImage, description
-  })
+    url, seotitle, getImage, seodescription
+  })  
 
   return (
-    <Helmet 
-      title={title} 
+    <Helmet      
+      defaultTitle="Orchestra Design"
+      titleTemplate={`%s | Orchestra Design`}
+      title={seotitle} 
     >
       {/* General tags */}      
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
+      <meta name="description" content={seodescription} />
+      <meta name="keywords" content={seokeywords} />
       <meta name="image" content={getImage} />
 
       {/* Schema.org tags */}
@@ -56,8 +58,8 @@ export const SEO = ({ seo: { data: {
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={seotitle} />
+      <meta property="og:description" content={seodescription} />
       <meta property="og:image" content={getImage} />
       <meta property="fb:app_id" content={fbAppID} />
     </Helmet>

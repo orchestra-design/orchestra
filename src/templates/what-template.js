@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Link from 'gatsby-link'
 import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
-const WhatTemplate = ({ data: { what }}) => {
+const WhatTemplate = ({ data: { what, allSite }}) => {
   return (
     <TemplateWrapper
      seo={{
@@ -16,12 +17,13 @@ const WhatTemplate = ({ data: { what }}) => {
           seoimage: what.data.seoimage,
         }
       }}
-      lang={what.lang} 
+      lang={what.lang}
+      {...{allSite}}
     >
       <div>{what.data.title}</div>
       <div className={css`margin-top: 100px;`} >
       {what.data.headerlinks.map(({link, linktitle}, i) => 
-        <a key={i} href={link.url}>{ linktitle }</a>
+        <Link key={i} to={link.url}>{ linktitle }</Link>
       )}
       </div>
     </TemplateWrapper>
@@ -40,7 +42,13 @@ export const query = graphql`
         seodescription
         seokeywords
         seoimage {
-          url
+          localFile {
+            childImageSharp {
+              resolutions(width: 1200, height: 630) {
+                ...GatsbyImageSharpResolutions_noBase64
+              }
+            }
+          }
         }
         headerlinks {
           linktitle
@@ -49,6 +57,13 @@ export const query = graphql`
           }
         }
         title
+      }
+    }
+    allSite: allSitePage {
+      edges {
+        node {
+          path
+        }
       }
     }
   }

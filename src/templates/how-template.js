@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Link from 'gatsby-link'
 import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
-const HowTemplate = ({ data: { how }}) => {
+const HowTemplate = ({ data: { how, allSite }}) => {
   return (
     <TemplateWrapper
      seo={{
@@ -16,12 +17,13 @@ const HowTemplate = ({ data: { how }}) => {
           seoimage: how.data.seoimage,
         }
       }}
-      lang={how.lang} 
+      lang={how.lang}
+      {...{allSite}}
     >
       <div>{how.data.title.text}</div>
       <div className={css`margin-top: 100px;`} >
       {how.data.headerlinks.map(({link, linktitle}, i) => 
-        <a key={i} href={link.url}>{ linktitle }</a>
+        <Link key={i} to={link.url}>{ linktitle }</Link>
       )}
       </div>
     </TemplateWrapper>
@@ -68,6 +70,13 @@ export const query = graphql`
             }
           }
         }    
+      }
+    }
+    allSite: allSitePage {
+      edges {
+        node {
+          path
+        }
       }
     }
   }

@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Link from 'gatsby-link'
 import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
-const WhoTemplate = ({ data: { who }}) => {
+const WhoTemplate = ({ data: { who, allSite }}) => {
   return (
     <TemplateWrapper
      seo={{
@@ -16,12 +17,13 @@ const WhoTemplate = ({ data: { who }}) => {
           seoimage: who.data.seoimage,
         }
       }}
-      lang={who.lang} 
+      lang={who.lang}
+      {...{allSite}}
     >
       <div>{who.data.title}</div>
       <div className={css`margin-top: 100px;`} >
       {who.data.headerlinks.map(({link, linktitle}, i) => 
-        <a key={i} href={link.url}>{ linktitle }</a>
+        <Link key={i} to={link.url}>{ linktitle }</Link>
       )}
       </div>
     </TemplateWrapper>
@@ -55,6 +57,13 @@ export const query = graphql`
           }
         }
         title
+      }
+    }
+    allSite: allSitePage {
+      edges {
+        node {
+          path
+        }
       }
     }
   }
