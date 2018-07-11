@@ -11,7 +11,7 @@ import {
 import { SquareButton } from '../elements'
 
 const SwitcherButton = styled(SquareButton)`
-  ${tw('absolute pin-r pin-t')};
+  ${tw('absolute pin-r pin-t m-q24 screen:m-q36')};
 `
 
 const reverseLang = lang =>
