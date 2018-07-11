@@ -16,6 +16,11 @@ module.exports = {
       options: {
         repositoryName: `orchestra`,
         accessToken: `MC5XeklwblNBQUFOY3dwUXRL.77-9UQ7vv71r77-9K2gdX--_vUzvv70577-977-977-977-9Nu-_ve-_ve-_ve-_vS3vv73vv73vv71YORxvdA`,
+        linkResolver: () => doc => (
+          doc.type === 'work' 
+            ? `/${doc.lang.replace('-us', '')}/projects/${doc.uid.replace(/.{3}$/i, '')}`
+            : `/${doc.lang.replace('-us', '')}/${doc.uid.replace(/.{3}$/i, '')}`
+        ),
       },
     },
     {

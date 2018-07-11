@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import * as PropTypes from "prop-types"
+import Helmet from 'react-helmet'
 
 class Html extends Component {
   render() {
@@ -12,6 +13,10 @@ class Html extends Component {
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
+          />
+          <Helmet 
+            defaultTitle="Orchestra Design"
+            titleTemplate={`%s | Orchestra Design`}
           />
           {this.props.headComponents}
         </head>

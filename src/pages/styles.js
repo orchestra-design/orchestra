@@ -71,7 +71,7 @@ export const query = graphql`
   query StylesQuery {
     site: prismicSite(lang: {eq: "ru"}) {
       data {
-        siteimage {
+        seoimage {
           localFile {
             childImageSharp {
               sizes(

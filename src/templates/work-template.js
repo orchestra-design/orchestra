@@ -4,10 +4,9 @@ import { graphql } from 'gatsby'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import { compose, withHandlers } from 'recompose'
-import offset from 'dom-helpers/query/offset'
 import { connect } from 'react-redux'
 
-import { camelCase, isNil, not, path } from '../helpers'
+import { camelCase, isNil, not, offset, path } from '../helpers'
 import { changeTheme } from '../actions'
 import TemplateWrapper from '../components/layouts'
 import { Row } from '../components/elements'
@@ -48,17 +47,16 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = withScroll(({ data: { work, site }, scroll}) => {
+const WorkTemplate = withScroll(({ data: { work }, scroll}) => {
   return (
     <TemplateWrapper 
-      site={{
+      seo={{
         data: {
           uid: work.uid,
-          siteurl: site.data.siteurl,
-          sitetitle: work.data.seotitle || site.data.sitetitle,
-          sitedescription: work.data.seodescription || site.data.sitedescription,
-          sitekeywords: work.data.seokeywords || site.data.sitekeywords,
-          siteimage: work.data.seoimage || site.data.siteimage,
+          seotitle: work.data.seotitle,
+          seodescription: work.data.seodescription,
+          seokeywords: work.data.seokeywords,
+          seoimage: work.data.seoimage,
         }
       }}
       lang={work.lang} 
@@ -149,23 +147,6 @@ export const query = graphql`
             }
             sictext {
               html
-            }
-          }
-        }
-      }
-    }
-    site: prismicSite(lang: {eq: $lang}) {
-      data {
-        siteurl
-        sitetitle
-        sitedescription
-        sitekeywords
-        siteimage {
-          localFile {
-            childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
-              }
             }
           }
         }

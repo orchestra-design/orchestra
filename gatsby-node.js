@@ -3,9 +3,62 @@ const path = require('path')
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
+  const pageMaker = type => data => {
+    data.edges.forEach(({ node: { uid, lang } }) => {
+      createPage({
+        path: `${lang.replace('-us', '')}${type === 'work' ? '/projects/' : '/'}${uid.replace(/.{3}$/i, '')}`,
+        component: path.resolve(`./src/templates/${type}-template.js`),
+        context: {
+          slug: uid,
+          lang: lang
+        }
+      })
+    })
+  }
+
   const pages = await graphql(`
-    {
-      allPrismicWork {
+    {      
+      homepage: allPrismicHomepage {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
+      how: allPrismicHow {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
+      what: allPrismicWhat {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
+      who: allPrismicWho {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
+      work: allPrismicWork {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
+      works: allPrismicWorks {
         edges {
           node {
             uid
@@ -16,20 +69,9 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const workTemplate = path.resolve('./src/templates/work-template.js')
-  const redirect = path.resolve('./src/templates/redirect-template.js')
-
-  pages.data.allPrismicWork.edges.forEach(({ node }) => {
-    const path = node.uid
-    createPage({
-      path: `${node.lang.replace('-us', '')}/projects/${path.replace(/.{3}$/i, '')}`,
-      component: workTemplate,
-      context: {
-        slug: path,
-        lang: node.lang
-      },
-    })
-  })
+  for (const key in pages.data) {
+    pageMaker(key)(pages.data[key])
+  }
 }
 
 exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {

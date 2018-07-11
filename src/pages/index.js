@@ -1,9 +1,6 @@
 import React from 'react'
 import { push } from 'gatsby-link'
 import { lifecycle } from 'recompose'
-import { graphql } from 'gatsby'
-
-import TemplateWrapper from '../components/layouts'
 
 const withLifecicle = lifecycle({
   state: { lang: 'ru' },
@@ -14,30 +11,6 @@ const withLifecicle = lifecycle({
   }
 })
 
-const Index = withLifecicle(({ data: { site } }) => 
-  <TemplateWrapper {...{site}} lang="ru"></TemplateWrapper>
-)
+const Index = withLifecicle(() => <div />)
 
 export default Index
-
-export const query = graphql`
-  query IndexQuery {
-    site: prismicSite(lang: {eq: "ru"}) {
-      data {
-        siteurl
-        sitetitle
-        sitedescription
-        sitekeywords
-        siteimage {
-          localFile {
-            childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`

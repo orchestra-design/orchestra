@@ -28,10 +28,12 @@ const getSchemaOrgJSONLD = ({
   },
 ]
 
-export const SEO = ({ 
-  uid, title, description, fbAppID,
-  keywords, image, siteUrl
-}) => {
+export const SEO = ({ seo: { data: {
+  uid, title, description,
+  keywords, image
+}}}) => {
+  const siteUrl = 'https://www.orchestra-design.com/'
+  const fbAppID = ''
   const url = uid !== null ? `${siteUrl}${uid.replace('.', '/')}` : siteUrl
   const getImage = image
   const schemaOrgJSONLD = getSchemaOrgJSONLD({    
