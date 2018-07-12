@@ -6,6 +6,7 @@ import {
   map, merge, not, path, pathOr, 
   replace, view 
 } from 'ramda'
+import * as uuid from 'uuid/v1'
 
 export {
   offset,
@@ -13,5 +14,6 @@ export {
   and, any, assoc, compose, equals,
   ifElse, isNil, length, lte, lensPath,
   map, merge, not, path, pathOr, 
-  replace, view
+  replace, view,
+  uuid
 }

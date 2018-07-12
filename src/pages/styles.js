@@ -14,7 +14,7 @@ const Paragraph = styled('div')`
   ${tw('screen:pr-1/12')};
 `
 
-export default ({ data: { site } }) => (
+export default () => (
   <Fragment>
     <Container>
       <h1 className={Heading1}>

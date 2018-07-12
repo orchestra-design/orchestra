@@ -1,21 +1,15 @@
 /* global tw */
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'react-emotion'
 import { compose, lifecycle } from 'recompose'
-import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 
-import { and, isNil, not, map, pathOr } from '../../helpers'
 import {
-  Button, ContainerFluid, LangSwitcher,
-  HeaderLogo, SquareButton
+  ContainerFluid, 
+  HeaderLogo, MenuToggler
 } from '../elements'
-import { toggleMenu } from '../../actions'
 
-import IconMenu from '../../assets/icon-menu.svg'
-import IconMenuBlack from '../../assets/icon-menu-black.svg'
-import IconClose from '../../assets/icon-close.svg'
-import IconCloseBlack from '../../assets/icon-close-black.svg'
+import { HeaderNavigation } from './HeaderNavigation'
 
 const HeaderContainer = styled(ContainerFluid)`
   ${tw([
@@ -39,47 +33,8 @@ const MobileHeader = styled('div')`
   }
 `
 
-const Navigaton = styled('nav')`
-  ${tw([
-    'bg-black', 'md:bg-transparent',
-    'hidden', 'md:flex', 'flex-no-wrap',
-    'flex-col', 'md:flex-row',
-    'justify-around', 'items-stretch',
-    'w-full', 'md:w-auto',
-    'p-q36',
-  ])};
-  ${props => props.isMenu && tw(['flex', 'flex-1', 'w-auto'])};
-`
-
-const LinkButton = styled(Link)`
-  ${Button};
-  ${tw([
-    'h-q36', 'screen:h-q48',
-    'mb-q36', 'md:mb-0',
-    'mr-0', 'md:mr-q36', 'px-q12',
-    'border-white', 'border',
-    'border-solid', 'md:border-none'
-  ])};
-`
-
-const MenuButton = styled(SquareButton)`
-  ${tw([
-    'flex', 'md:hidden', 
-    'bg-center', 'bg-no-repeat',
-    'cursor-pointer', 'm-q24'
-  ])};
-  background-image: url(${props => props.isMenu ? IconClose : IconMenu});
-  transition: all .2s ease-in-out;
-  &:hover {
-    background-image: url(${props => props.isMenu ? IconCloseBlack : IconMenuBlack});
-  }
-`
-
 const withLifecicle = compose(
-  connect(
-  ({ isMenu }) => ({ isMenu }),
-    { toggleMenu }
-  ),
+  connect(({ isMenu }) => ({ isMenu })),
   lifecycle({
     state: { path: '/' },
     componentDidMount() {
@@ -89,25 +44,15 @@ const withLifecicle = compose(
     }
   })
 )
-const NavLink = ({ linktitle, link }) => (and(not(isNil(linktitle)), not(isNil(link))) && 
-  <LinkButton key={linktitle} to={link.url} >{ linktitle }</LinkButton>
-)
-const LinksBar = ({ data }) => <Fragment>{ map(NavLink)(data) }</Fragment>
 
 export const Header = withLifecicle(props => {
-  const headerlinks = pathOr(false, ['links', 'data', 'headerlinks'], props)
-
+  const { isMenu } = props
   return (
-  <HeaderContainer isMenu={props.isMenu}>
-    <MobileHeader isMenu={props.isMenu} >
+  <HeaderContainer {...{isMenu}} >
+    <MobileHeader {...{isMenu}} >
       <HeaderLogo {...props} />
-      <MenuButton onClick={() => props.toggleMenu()} isMenu={props.isMenu} />
+      <MenuToggler />
     </MobileHeader>
-    <Navigaton isMenu={props.isMenu} >
-      { headerlinks && 
-        <LinksBar data={headerlinks} />
-      }
-      <LangSwitcher {...props} />
-    </Navigaton>
+    <HeaderNavigation {...props} />
   </HeaderContainer>
 )})

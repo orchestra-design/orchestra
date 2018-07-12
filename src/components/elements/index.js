@@ -13,6 +13,8 @@ export {
 export { HeaderLogo } from './HeaderLogo'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
+export { MenuToggler } from './MenuToggler'
+export { NavLink } from './NavLink'
 export { SEO } from './SEO'
 
 export { 
