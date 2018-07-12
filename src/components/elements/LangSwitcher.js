@@ -1,5 +1,7 @@
+/* global tw */
 import React from 'react'
 import Link, { withPrefix } from 'gatsby-link'
+import styled from 'react-emotion'
 
 import { 
   any, compose, equals, ifElse, lensPath, 
@@ -8,13 +10,20 @@ import {
 
 import { SquareButton } from '../elements'
 
-const SwitcherLink = SquareButton.withComponent(Link)
+const SwitcherButton = styled(SquareButton)`
+  ${tw([
+    'self-start', 'border-white', 'border', 
+    'border-solid', 'md:border-none'
+  ])};
+`
+
+const SwitcherLink = SwitcherButton.withComponent(Link)
 
 const reverseLang = ifElse(
   equals('ru'), () => 'en', () => 'ru'
 )
 
-export const LangSwitcher = ({ lang, allSite, path }) => {
+export const LangSwitcher = ({ lang, allSite, path, className }) => {
   const makePath = `${withPrefix(reverseLang(lang))}${path.replace(/^\/.{2}/i, '')}`
   const safePath = compose(
     ifElse(
@@ -28,7 +37,7 @@ export const LangSwitcher = ({ lang, allSite, path }) => {
 
   return (
     <SwitcherLink 
-      to={safePath(allSite.edges)} 
+      to={safePath(allSite.edges)} {...{className}}
     >{ reverseLang(lang) }</SwitcherLink>
   )
 }
