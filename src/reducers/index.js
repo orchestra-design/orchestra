@@ -1,4 +1,4 @@
-import { assoc } from '../helpers'
+import { assoc, merge } from '../helpers'
 import {  handleActions } from 'redux-actions'
 
 import { initState } from '../init'
@@ -9,9 +9,15 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
-    TOGGLE_MENU: (state) => assoc(
-      'isMenu', !state.isMenu,
-      state
+    TOGGLE_MENU: (state) => merge(
+      state,
+      {
+        isMenu: !state.isMenu,
+        previousTheme: state.storedTheme,
+        storedTheme: !state.isMenu 
+          ? 'black' 
+          : state.previousTheme
+      }
     ),
   },
   initState

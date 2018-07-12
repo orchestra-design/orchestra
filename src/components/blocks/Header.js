@@ -21,9 +21,11 @@ const HeaderContainer = styled(ContainerFluid)`
   ${tw([
     'absolute', 'pin-t', 'pin-r', 'pin-l', 
     'flex', 'flex-row', 'flex-wrap',
-    'justify-between', 'items-center',
-    'z-50', 
+    'justify-between', 'items-center', 'z-50', 
   ])};
+  ${props => props.isMenu && 
+    tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])
+  };
 `
 
 const MobileHeader = styled('div')`
@@ -33,7 +35,7 @@ const MobileHeader = styled('div')`
     'w-full', 'md:w-auto',
   ])};
   @media(max-width: 768px) {
-    background-color: ${props => props.isMenu && '#000000'}
+    background-color: ${props => props.isMenu && '#000000'};
   }
 `
 
@@ -42,11 +44,11 @@ const Navigaton = styled('nav')`
     'bg-black', 'md:bg-transparent',
     'hidden', 'md:flex', 'flex-no-wrap',
     'flex-col', 'md:flex-row',
-    'justify-center', 'items-stretch',
+    'justify-around', 'items-stretch',
     'w-full', 'md:w-auto',
     'p-q36',
   ])};
-  display: ${props => props.isMenu && 'flex'};
+  ${props => props.isMenu && tw(['flex', 'flex-1', 'w-auto'])};
 `
 
 const LinkButton = styled(Link)`
@@ -96,7 +98,7 @@ export const Header = withLifecicle(props => {
   const headerlinks = pathOr(false, ['links', 'data', 'headerlinks'], props)
 
   return (
-  <HeaderContainer>
+  <HeaderContainer isMenu={props.isMenu}>
     <MobileHeader isMenu={props.isMenu} >
       <HeaderLogo {...props} />
       <MenuButton onClick={() => props.toggleMenu()} isMenu={props.isMenu} />
