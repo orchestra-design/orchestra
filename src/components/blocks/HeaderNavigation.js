@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import { connect } from 'react-redux'
 
-import { map, pathOr } from '../../helpers'
+import { map, pathOr, uuid } from '../../helpers'
 import {
   LangSwitcher, NavLink
 } from '../elements'
@@ -23,7 +23,7 @@ const Navigaton = styled('nav')`
 `
 
 export const HeaderNavigation = connect(
-  ({ isMenu }) => ({ isMenu })
+  ({ isMenu }) => ({ isMenu }),
 )(props => {
   const headerlinks = pathOr(
     false, 
@@ -32,9 +32,9 @@ export const HeaderNavigation = connect(
   )
   return (
     <Navigaton isMenu={props.isMenu} >
-      { headerlinks && 
-         map(NavLink)(headerlinks)
-      }
+      {headerlinks && map(link => 
+        <NavLink key={uuid()}  {...link} />
+      )(headerlinks)}
       <LangSwitcher {...props} />
     </Navigaton>
   )
