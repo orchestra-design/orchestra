@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'react-emotion'
 
 const LogoWrapper = styled('div')`
-  ${tw('absolute pin-t pin-l')};
+  ${tw('')};
   width: calc(186px + 135 * ((100vw - 320px) / 1280));
   height: calc(69px + 43 * ((100vw - 320px) / 1280));
   min-height: 69px;

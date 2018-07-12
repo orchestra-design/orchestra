@@ -3,7 +3,7 @@ import styled, { css } from 'react-emotion'
 
 import { ButtonText } from './Typography'
 
-const Button = css`
+export const Button = css`
   ${ButtonText};
   ${tw([
     'flex', 'justify-center', 'items-center', 
@@ -15,14 +15,10 @@ const Button = css`
   transition: all .2 ease-in-out;
 `
 
-const SquareButton = styled('span')`
+export const SquareButton = styled('span')`
   ${Button};
   ${tw([
     'w-q36', 'h-q36',
     'screen:w-q48', 'screen:h-q48',
   ])};
 `
-
-export {
-  Button, SquareButton
-}

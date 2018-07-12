@@ -1,16 +1,38 @@
 /* global tw */
-import React from 'react'
-import Link from 'gatsby-link'
+import React, { Fragment } from 'react'
 import styled from 'react-emotion'
 import { lifecycle } from 'recompose'
+import Link from 'gatsby-link'
 
 import {
-  ContainerFluid, LangSwitcher,
-  Logo
+  Button, ContainerFluid, LangSwitcher,
+  HeaderLogo, 
 } from '../elements'
+import { and, isNil, not, map, pathOr } from '../../helpers'
 
 const HeaderContainer = styled(ContainerFluid)`
-  ${tw('fixed pin-t pin-r pin-l z-50')};
+  ${tw([
+    'absolute', 'pin-t', 'pin-r', 'pin-l', 
+    'flex', 'flex-row', 'flex-no-wrap',
+    'justify-between', 'items-center',
+    'z-50',
+  ])};
+`
+
+const Navigaton = styled('nav')`
+  ${tw([
+    'hidden', 'screen:flex', 'flex-no-wrap',
+    'flex-col', 'screen:flex-row',
+    'screen:p-q36'
+  ])};
+`
+
+const LinkButton = styled(Link)`
+  ${Button};
+  ${tw([
+    'h-q36', 'screen:h-q48',
+    'mr-q36', 'px-q12'
+  ])};
 `
 
 const withLifecicle = lifecycle({
@@ -22,22 +44,21 @@ const withLifecicle = lifecycle({
   }
 })
 
+const NavLink = ({ linktitle, link }) => (and(not(isNil(linktitle)), not(isNil(link))) && 
+  <LinkButton key={linktitle} to={link.url} >{ linktitle }</LinkButton>
+)
+const LinksBar = ({ data }) => <Fragment>{ map(NavLink)(data) }</Fragment>
 
-export const Header = withLifecicle(({ lang, allSite, path }) => {
-
+export const Header = withLifecicle(props => {
+  const headerlinks = pathOr(false, ['links', 'data', 'headerlinks'], props)
   return (
-    <HeaderContainer>
-      {path.length <= 3 
-        ?  <Logo primaryColor="#ffffff" />
-        : <Link to={`/${lang.replace('-us', '')}`} >
-          <Logo primaryColor="#ffffff" />
-        </Link>
+  <HeaderContainer>
+    <HeaderLogo {...props} />
+    <Navigaton>
+      { headerlinks && 
+        <LinksBar data={headerlinks} />
       }
-      <LangSwitcher 
-        {...{lang}} 
-        {...{allSite}} 
-        {...{path}} 
-      />
-    </HeaderContainer>
-  )
-})
+      <LangSwitcher {...props} />
+    </Navigaton>
+  </HeaderContainer>
+)})

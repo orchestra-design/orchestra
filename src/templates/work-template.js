@@ -47,7 +47,7 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = withScroll(({ data: { work, allSite }, scroll}) => {
+const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
   return (
     <TemplateWrapper 
       seo={{
@@ -61,6 +61,7 @@ const WorkTemplate = withScroll(({ data: { work, allSite }, scroll}) => {
       }}
       lang={work.lang}
       {...{allSite}}
+      {...{links}}
     >
       <Img 
         sizes={work.data.image.localFile.childImageSharp.sizes} 
@@ -149,6 +150,16 @@ export const query = graphql`
             sictext {
               html
             }
+          }
+        }
+      }
+    }
+    links: prismicWorks(lang: {eq: $lang}) {
+      data {
+        headerlinks {
+          linktitle
+          link {
+            url
           }
         }
       }

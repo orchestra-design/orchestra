@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import TemplateWrapper from '../components/layouts'
 import { Homepage } from '../components/blocks'
 
-const IndexTemplate = ({ data: { page, allSite } }) => (
+const IndexTemplate = ({ data: { page, allSite, links } }) => (
   <TemplateWrapper 
     seo={{
       data: {
@@ -17,6 +17,7 @@ const IndexTemplate = ({ data: { page, allSite } }) => (
     }}
     lang={page.lang}
     {...{allSite}}
+    {...{links}}
   >
     <Homepage data={page.data} />
   </TemplateWrapper>
@@ -53,6 +54,16 @@ export const query = graphql`
             }
           }
           caption
+        }
+      }
+    }
+    links: prismicHomepage(lang: {eq: $lang}) {
+      data {
+        headerlinks {
+          linktitle
+          link {
+            url
+          }
         }
       }
     }

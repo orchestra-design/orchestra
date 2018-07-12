@@ -1,11 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
-import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
-const WhoTemplate = ({ data: { who, allSite }}) => {
+const WhoTemplate = ({ data: { who, allSite, links }}) => {
   return (
     <TemplateWrapper
      seo={{
@@ -19,13 +17,9 @@ const WhoTemplate = ({ data: { who, allSite }}) => {
       }}
       lang={who.lang}
       {...{allSite}}
+      {...{links}}
     >
       <div>{who.data.title}</div>
-      <div className={css`margin-top: 100px;`} >
-      {who.data.headerlinks.map(({link, linktitle}, i) => 
-        <Link key={i} to={link.url}>{ linktitle }</Link>
-      )}
-      </div>
     </TemplateWrapper>
   )
 }
@@ -50,13 +44,17 @@ export const query = graphql`
             }
           }
         }
+        title
+      }
+    }
+    links: prismicWho(lang: {eq: $lang}) {
+      data {
         headerlinks {
           linktitle
           link {
             url
           }
         }
-        title
       }
     }
     allSite: allSitePage {

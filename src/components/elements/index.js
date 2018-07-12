@@ -10,6 +10,7 @@ export {
   Container, ContainerFluid 
 } from './Containers'
 
+export { HeaderLogo } from './HeaderLogo'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
 export { SEO } from './SEO'

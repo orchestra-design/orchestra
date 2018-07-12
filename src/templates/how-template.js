@@ -1,11 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
-import { css } from 'react-emotion'
 
 import TemplateWrapper from '../components/layouts'
 
-const HowTemplate = ({ data: { how, allSite }}) => {
+const HowTemplate = ({ data: { how, allSite, links }}) => {
   return (
     <TemplateWrapper
      seo={{
@@ -19,13 +17,9 @@ const HowTemplate = ({ data: { how, allSite }}) => {
       }}
       lang={how.lang}
       {...{allSite}}
+      {...{links}}
     >
       <div>{how.data.title.text}</div>
-      <div className={css`margin-top: 100px;`} >
-      {how.data.headerlinks.map(({link, linktitle}, i) => 
-        <Link key={i} to={link.url}>{ linktitle }</Link>
-      )}
-      </div>
     </TemplateWrapper>
   )
 }
@@ -50,12 +44,6 @@ export const query = graphql`
             }
           }
         }
-        headerlinks {
-          linktitle
-          link {
-            url
-          }
-        }
         title {
           text
         }
@@ -70,6 +58,16 @@ export const query = graphql`
             }
           }
         }    
+      }
+    }
+    links: prismicHow(lang: {eq: $lang}) {
+      data {
+        headerlinks {
+          linktitle
+          link {
+            url
+          }
+        }
       }
     }
     allSite: allSitePage {
