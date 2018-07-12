@@ -1,14 +1,16 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled from 'react-emotion'
-import { compose, lifecycle, withHandlers, withState } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 import Link from 'gatsby-link'
+import { connect } from 'react-redux'
 
 import { and, isNil, not, map, pathOr } from '../../helpers'
 import {
   Button, ContainerFluid, LangSwitcher,
   HeaderLogo, SquareButton
 } from '../elements'
+import { toggleMenu } from '../../actions'
 
 import IconMenu from '../../assets/icon-menu.svg'
 import IconMenuBlack from '../../assets/icon-menu-black.svg'
@@ -72,10 +74,10 @@ const MenuButton = styled(SquareButton)`
 `
 
 const withLifecicle = compose(
-  withState('isMenu', 'toggleMenu', false),
-  withHandlers({
-    clickHandle: ({ toggleMenu }) => () => toggleMenu((current) => !current)
-  }),
+  connect(
+  ({ isMenu }) => ({ isMenu }),
+    { toggleMenu }
+  ),
   lifecycle({
     state: { path: '/' },
     componentDidMount() {
@@ -85,7 +87,6 @@ const withLifecicle = compose(
     }
   })
 )
-
 const NavLink = ({ linktitle, link }) => (and(not(isNil(linktitle)), not(isNil(link))) && 
   <LinkButton key={linktitle} to={link.url} >{ linktitle }</LinkButton>
 )
@@ -98,7 +99,7 @@ export const Header = withLifecicle(props => {
   <HeaderContainer>
     <MobileHeader isMenu={props.isMenu} >
       <HeaderLogo {...props} />
-      <MenuButton onClick={props.clickHandle} isMenu={props.isMenu} />
+      <MenuButton onClick={() => props.toggleMenu()} isMenu={props.isMenu} />
     </MobileHeader>
     <Navigaton isMenu={props.isMenu} >
       { headerlinks && 
