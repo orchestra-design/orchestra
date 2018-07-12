@@ -1,8 +1,6 @@
 /* global tw */
 import React, { Fragment } from 'react'
-import { graphql } from 'gatsby'
 import styled, {css} from 'react-emotion'
-import Img from 'gatsby-image'
 
 import { 
   Body, ColumnThree, Container,
@@ -61,30 +59,5 @@ export default ({ data: { site } }) => (
         </Paragraph>
       </div>
     </Container>
-    <Container>
-      <Img sizes={site.data.siteimage.localFile.childImageSharp.sizes} />
-    </Container>
   </Fragment>
 )
-
-export const query = graphql`
-  query StylesQuery {
-    site: prismicSite(lang: {eq: "ru"}) {
-      data {
-        seoimage {
-          localFile {
-            childImageSharp {
-              sizes(
-                maxWidth: 1200,
-                quality: 80,
-                toFormat: PNG
-              ) {
-                ...GatsbyImageSharpSizes
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
