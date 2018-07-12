@@ -5,6 +5,14 @@ import { initState } from '../init'
 
 const reducer = handleActions(
   {
+    COLLAPSE_MENU: (state, action) => assoc(
+      'collapsedMenu', action.payload,
+      state
+    ),
+    SCROLL_MENU: (state, action) => assoc(
+      'hiddenMenu', action.payload,
+      state
+    ),
     THEME: (state, action) => assoc(
       'storedTheme', action.payload,
       state

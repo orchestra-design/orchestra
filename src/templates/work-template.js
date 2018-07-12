@@ -6,30 +6,44 @@ import Img from 'gatsby-image'
 import { compose, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
-import { camelCase, isNil, not, offset, path } from '../helpers'
-import { changeTheme } from '../actions'
+import { changeTheme, collapseMenu, srollMenu } from '../actions'
+import {
+  and, camelCase, equals, F, gt,
+  ifElse, isNil, lt, not, offset, path, 
+} from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { Row } from '../components/elements'
 
 const Connected = connect(
-  ({ storedTheme }) => ({ storedTheme }),
-  { changeTheme }
+  ({ collapsedMenu, hiddenMenu, storedTheme }) => ({ collapsedMenu, hiddenMenu, storedTheme }),
+  { changeTheme, collapseMenu, srollMenu }
 )
 
 const withScroll = compose(
   Connected,
   withHandlers({
     scroll: props => event => {
-     const scrollChildren = Array.from(event.target.childNodes)
-     scrollChildren !== null && scrollChildren.map(child => {
+      const scrollChildren = Array.from(event.target.childNodes)
+      not(isNil(scrollChildren)) && scrollChildren.map((child, i) => {
         const childOffset = offset(child)
-        const currentTheme = props.theme
         const newTheme = camelCase(child.attributes.theme.value)
-        if (childOffset.top < 0 && (childOffset.top + childOffset.height) > 0) {
-          newTheme !== currentTheme && props.changeTheme(newTheme)
-        }
-        return null
-      })
+        ifElse(
+          ({ top, height }) => and(lt(top, 0), gt((top + height), 0)),
+          () => not(equals(newTheme, props.storedTheme)) && props.changeTheme(newTheme),
+          F
+        )(childOffset)
+        equals(i, 0) && ifElse(
+          ({ top }) => lt(top, -200),
+          () => not(equals(props.hiddenMenu, true)) && props.srollMenu(true),
+          () => not(equals(props.hiddenMenu, false)) && props.srollMenu(false)
+        )(childOffset)
+        equals(i, 1) && ifElse(
+          ({ top }) => lt(top, -100),
+          () => not(equals(props.collapsedMenu, true)) && props.collapseMenu(true),
+          () => not(equals(props.collapsedMenu, false)) && props.collapseMenu(false)
+        )(childOffset)        
+        return F
+      }) 
     }
   })
 )

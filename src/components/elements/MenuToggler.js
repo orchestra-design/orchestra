@@ -26,4 +26,8 @@ const MenuButton = styled(SquareButton)`
 export const MenuToggler = connect(
   ({ isMenu }) => ({ isMenu }),
   { toggleMenu }
-)(({ toggleMenu, isMenu}) => <MenuButton onClick={() => toggleMenu()} isMenu={isMenu} />)
+)(({ toggleMenu, isMenu}) => 
+  <MenuButton 
+    onClick={() => toggleMenu()}
+    {...{isMenu}} 
+  />)

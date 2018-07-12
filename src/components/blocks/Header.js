@@ -1,6 +1,6 @@
 /* global tw */
 import React from 'react'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
 
@@ -11,15 +11,21 @@ import {
 
 import { HeaderNavigation } from './HeaderNavigation'
 
+const HeaderContainerDynamicStyle = ({ collapsedMenu, hiddenMenu, isMenu }) => css`
+  ${isMenu && 
+    tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])
+  };
+  transform: translateY(${collapsedMenu ? '0%' : hiddenMenu ? '-100%' : '0%'});
+`
+
 const HeaderContainer = styled(ContainerFluid)`
   ${tw([
     'absolute', 'pin-t', 'pin-r', 'pin-l', 
     'flex', 'flex-row', 'flex-wrap',
     'justify-between', 'items-center', 'z-50', 
-  ])};
-  ${props => props.isMenu && 
-    tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])
-  };
+  ])};  
+  ${HeaderContainerDynamicStyle};
+  transition: transform .4s ease-in-out;
 `
 
 const MobileHeader = styled('div')`
@@ -34,7 +40,7 @@ const MobileHeader = styled('div')`
 `
 
 const withLifecicle = compose(
-  connect(({ isMenu }) => ({ isMenu })),
+  connect(({ collapsedMenu, hiddenMenu, isMenu  }) => ({ collapsedMenu, hiddenMenu, isMenu  })),
   lifecycle({
     state: { path: '/' },
     componentDidMount() {
@@ -46,9 +52,14 @@ const withLifecicle = compose(
 )
 
 export const Header = withLifecicle(props => {
-  const { isMenu } = props
+  const { collapsedMenu, hiddenMenu, isMenu } = props
+  
   return (
-  <HeaderContainer {...{isMenu}} >
+  <HeaderContainer
+    {...{collapsedMenu}}
+    {...{hiddenMenu}}
+    {...{isMenu}}
+  >
     <MobileHeader {...{isMenu}} >
       <HeaderLogo {...props} />
       <MenuToggler />

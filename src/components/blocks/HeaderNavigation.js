@@ -20,10 +20,13 @@ const Navigaton = styled('nav')`
   ${props => props.isMenu && 
     tw(['flex', 'flex-1', 'w-auto'])
   };
+  ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
+    tw(['p-q24'])
+  };
 `
 
 export const HeaderNavigation = connect(
-  ({ isMenu }) => ({ isMenu }),
+  ({ collapsedMenu, isMenu }) => ({ collapsedMenu, isMenu }),
 )(props => {
   const headerlinks = pathOr(
     false, 
@@ -31,7 +34,10 @@ export const HeaderNavigation = connect(
     props
   )
   return (
-    <Navigaton isMenu={props.isMenu} >
+    <Navigaton 
+      isMenu={props.isMenu}
+      collapsedMenu={props.collapsedMenu}
+    >
       {headerlinks && map(link => 
         <NavLink key={uuid()}  {...link} />
       )(headerlinks)}
