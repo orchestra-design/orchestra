@@ -1,7 +1,7 @@
 import offset from 'dom-helpers/query/offset'
 import camelCase from 'lodash/fp/camelCase'
 import { 
-  and, any, assoc, compose, equals,
+  and, any, assoc, compose, curry, equals,
   ifElse, isNil, length, lte, lensPath,
   map, merge, not, path, pathOr, 
   replace, view 
@@ -17,3 +17,5 @@ export {
   replace, view,
   uuid
 }
+
+export const lengthLte = curry((num, x) => lte(length(x), num))
