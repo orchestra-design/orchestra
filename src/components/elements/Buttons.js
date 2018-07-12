@@ -18,7 +18,7 @@ export const Button = css`
 export const SquareButton = styled('span')`
   ${Button};
   ${tw([
-    'w-q36', 'h-q36',
+    'w-q36', 'h-q36', 'flex-no-shrink',
     'screen:w-q48', 'screen:h-q48',
   ])};
 `

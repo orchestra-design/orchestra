@@ -4,24 +4,27 @@ import styled from 'react-emotion'
 import { lifecycle } from 'recompose'
 import Link from 'gatsby-link'
 
+import { and, isNil, not, map, pathOr } from '../../helpers'
 import {
   Button, ContainerFluid, LangSwitcher,
-  HeaderLogo, 
+  HeaderLogo, SquareButton
 } from '../elements'
-import { and, isNil, not, map, pathOr } from '../../helpers'
+
+import IconMenu from '../../assets/icon-menu.svg'
+import IconMenuBlack from '../../assets/icon-menu-black.svg'
 
 const HeaderContainer = styled(ContainerFluid)`
   ${tw([
     'absolute', 'pin-t', 'pin-r', 'pin-l', 
     'flex', 'flex-row', 'flex-no-wrap',
     'justify-between', 'items-center',
-    'z-50',
+    'z-50', 
   ])};
 `
 
 const Navigaton = styled('nav')`
   ${tw([
-    'hidden', 'screen:flex', 'flex-no-wrap',
+    'hidden', 'md:flex', 'flex-no-wrap',
     'flex-col', 'screen:flex-row',
     'screen:p-q36'
   ])};
@@ -33,6 +36,19 @@ const LinkButton = styled(Link)`
     'h-q36', 'screen:h-q48',
     'mr-q36', 'px-q12'
   ])};
+`
+
+const MenuButton = styled(SquareButton)`
+  ${tw([
+    'flex', 'md:hidden', 
+    'bg-center', 'bg-no-repeat',
+    'cursor-pointer', 'm-q24'
+  ])};
+  background-image: url(${IconMenu});
+  transition: all .2s ease-in-out;
+  &:hover {
+    background-image: url(${IconMenuBlack});
+  }
 `
 
 const withLifecicle = lifecycle({
@@ -60,5 +76,6 @@ export const Header = withLifecicle(props => {
       }
       <LangSwitcher {...props} />
     </Navigaton>
+    <MenuButton />
   </HeaderContainer>
 )})
