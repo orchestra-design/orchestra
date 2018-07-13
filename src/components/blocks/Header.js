@@ -5,7 +5,7 @@ import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
 
 import {
-  ContainerFluid, 
+  ContainerFluid, HeaderBreadcrumbs,
   HeaderLogo, MenuToggler
 } from '../elements'
 
@@ -42,7 +42,13 @@ const MobileHeader = styled('div')`
 `
 
 const withLifecicle = compose(
-  connect(({ collapsedMenu, hiddenMenu, isMenu  }) => ({ collapsedMenu, hiddenMenu, isMenu  })),
+  connect(({ 
+    collapsedMenu, collapseTransition, 
+    hiddenMenu, isMenu  
+  }) => ({ 
+    collapsedMenu, collapseTransition, 
+    hiddenMenu, isMenu  
+  })),
   lifecycle({
     state: { path: '/' },
     componentDidMount() {
@@ -54,7 +60,7 @@ const withLifecicle = compose(
 )
 
 export const Header = withLifecicle(props => {
-  const { collapsedMenu, hiddenMenu, isMenu } = props
+  const { collapsedMenu, collapseTransition, hiddenMenu, isMenu, title } = props
   
   return (
   <HeaderContainer
@@ -64,6 +70,13 @@ export const Header = withLifecicle(props => {
   >
     <MobileHeader {...{isMenu}} >
       <HeaderLogo {...props} />
+      <HeaderBreadcrumbs
+        {...{collapsedMenu}}
+        {...{collapseTransition}}
+        {...{hiddenMenu}}
+        {...{isMenu}}
+        {...{title}}
+      />
       <MenuToggler />
     </MobileHeader>
     <HeaderNavigation {...props} />

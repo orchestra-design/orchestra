@@ -4,21 +4,24 @@ import Link, { withPrefix } from 'gatsby-link'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
-import { toggleMenu } from '../../actions'
+import { pageTransition } from '../../actions'
 
 import { 
   any, compose, equals, ifElse, lensPath, 
   map, replace, view 
 } from '../../helpers'
 
-import { SquareButton } from '../elements'
+import { SquareButton } from './Buttons'
 
 const SwitcherButton = styled(SquareButton)`
   ${tw([
     'self-start', 'border-white', 'border', 
     'border-solid', 'md:border-none'
   ])};
-  ${({ collapseTransition }) => !collapseTransition && 
+  ${({ collapsedMenu, collapseTransition }) => !collapsedMenu  && !collapseTransition && 
+    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
+  };
+  ${({ isMenu }) => isMenu &&
     tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
@@ -32,8 +35,8 @@ const reverseLang = ifElse(
 
 export const LangSwitcher = connect(
   ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
-  { toggleMenu }
-)(({ lang, allSite, path, collapsedMenu, collapseTransition, isMenu, toggleMenu }) => {
+  { pageTransition }
+)(({ lang, allSite, path, collapsedMenu, collapseTransition, isMenu, pageTransition }) => {
   const makePath = `${withPrefix(reverseLang(lang))}${path.replace(/^\/.{2}/i, '')}`
   const safePath = compose(
     ifElse(
@@ -48,7 +51,7 @@ export const LangSwitcher = connect(
   return (
     <Link 
       to={safePath(allSite.edges)}
-      onClick={() => isMenu && toggleMenu()}      
+      onClick={() => pageTransition()}      
       className={css`${tw('no-underline')};`}
     >
       <SwitcherButton

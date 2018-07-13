@@ -21,14 +21,12 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
-    TOGGLE_MENU: (state) => merge(
+    TOGGLE_MENU: (state, action) => merge(
       state,
       {
-        isMenu: !state.isMenu,
+        isMenu: action.payload !== undefined ? action.payload : !state.isMenu,
         previousTheme: state.storedTheme,
-        storedTheme: !state.isMenu 
-          ? 'black' 
-          : state.previousTheme
+        storedTheme: action.payload !== undefined ? 'image' : !state.isMenu ? 'black' : state.previousTheme
       }
     ),
   },

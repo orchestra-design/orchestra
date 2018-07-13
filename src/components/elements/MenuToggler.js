@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styled from 'react-emotion'
 
 import { toggleMenu } from '../../actions'
-import { SquareButton } from '../elements'
+import { SquareButton } from './Buttons'
 
 import IconMenu from '../../assets/icon-menu.svg'
 import IconMenuBlack from '../../assets/icon-menu-black.svg'

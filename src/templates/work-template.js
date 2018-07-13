@@ -38,7 +38,7 @@ const withScroll = compose(
           () => not(equals(props.hiddenMenu, false)) && props.srollMenu(false)
         )(childOffset)
         equals(i, 1) && ifElse(
-          ({ top }) => lt(top, -400),
+          ({ top }) => lt(top, -200),
           () => not(equals(props.collapsedMenu, true)) && props.collapseMenu(true),
           () => not(equals(props.collapsedMenu, false)) && props.collapseMenu(false)
         )(childOffset)        
@@ -62,6 +62,7 @@ const Section = styled('section')`
 `
 
 const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
+  const title = path(['data', 'title', 'text'], work)
   return (
     <TemplateWrapper 
       seo={{
@@ -76,6 +77,7 @@ const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
       lang={work.lang}
       {...{allSite}}
       {...{links}}
+      {...{title}}
     >
       <Img 
         sizes={work.data.image.localFile.childImageSharp.sizes} 
@@ -85,7 +87,7 @@ const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
       <Back color={work.data.color} />
       <div onScroll={scroll} className={css`${tw('fixed pin overflow-y-scroll')};`} >
         <div className={css`${tw('h-screen bg-transparent')};`} theme="image"  >
-          <h1>{ path(['data', 'title', 'text'], work) }</h1>
+          <h1>{ title }</h1>
           <div>{ work.data.description }</div>
         </div>
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />

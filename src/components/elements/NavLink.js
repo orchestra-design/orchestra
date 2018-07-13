@@ -4,10 +4,10 @@ import Link from 'gatsby-link'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
-import { toggleMenu } from '../../actions'
-import { and, isNil, not } from '../../helpers'
-import { Button } from '../elements'
-import { uuid } from '../../helpers'
+import { pageTransition } from '../../actions'
+import { and, isNil, not, uuid } from '../../helpers'
+
+import { Button } from './Buttons'
 
 const BlackButton = styled('span')`
   ${Button};
@@ -17,7 +17,10 @@ const BlackButton = styled('span')`
     'border-white', 'border',
     'border-solid', 'md:border-none'
   ])};
-  ${({ collapseTransition }) => !collapseTransition && 
+  ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition &&
+    tw(['screen:h-q48', 'screen:text-lg'])
+  };
+  ${({ isMenu }) => isMenu &&
     tw(['screen:h-q48', 'screen:text-lg'])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
@@ -25,16 +28,19 @@ const BlackButton = styled('span')`
   };
 `
 
-export const NavLink = connect(
-  ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
-  { toggleMenu }
-)(({ linktitle, link, collapsedMenu, collapseTransition, isMenu, toggleMenu }) => (
+export const NavLink = connect(({ 
+  collapsedMenu, collapseTransition, isMenu 
+}) => ({ 
+  collapsedMenu, collapseTransition, isMenu 
+}),
+  { pageTransition }
+)(({ linktitle, link, collapsedMenu, collapseTransition, isMenu, pageTransition }) => (
   <Fragment>
     {and(not(isNil(linktitle)), not(isNil(link))) && 
       <Link
         key={uuid()} 
         to={link.url}
-        onClick={() => isMenu && toggleMenu()}
+        onClick={() => pageTransition()}
         className={css`${tw('no-underline')};`}       
       >
         <BlackButton 

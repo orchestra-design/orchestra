@@ -1,9 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
 const HowTemplate = ({ data: { how, allSite, links }}) => {
+  const title = path(['data', 'title', 'text'], how)
   return (
     <TemplateWrapper
      seo={{
@@ -18,6 +20,7 @@ const HowTemplate = ({ data: { how, allSite, links }}) => {
       lang={how.lang}
       {...{allSite}}
       {...{links}}
+      {...{title}}
     >
       <div>{how.data.title.text}</div>
     </TemplateWrapper>
