@@ -4,8 +4,10 @@ import styled from 'react-emotion'
 
 const LogoWrapper = styled('div')`
   ${tw(['screen:ml-1/12'])};
-  width: ${({ collapsedMenu, collapseTransition }) => collapsedMenu ? '168px' : !collapseTransition && 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
-  height: ${({ collapsedMenu, collapseTransition }) => collapsedMenu ? '69px' : !collapseTransition && 'calc(69px + 43 * ((100vw - 320px) / 1280))'};
+  height: 69px;
+  width: 186px;
+  width: ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition && 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
+  height: ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition && 'calc(69px + 43 * ((100vw - 320px) / 1280))'};
   min-height: 69px;
   min-width: 186px;
 `

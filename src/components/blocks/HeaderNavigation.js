@@ -14,23 +14,17 @@ const Navigaton = styled('nav')`
     'hidden', 'md:flex', 'flex-no-wrap',
     'flex-col', 'md:flex-row',
     'justify-around', 'items-stretch',
-    'w-full', 'md:w-auto', 'p-q24'
-  ])};  
-  ${({ collapseTransition }) => !collapseTransition && 
-    tw(['screen:p-q36'])
-  };
+    'w-full', 'md:w-auto', 'p-0'
+  ])};
   ${props => props.isMenu && 
-    tw(['flex', 'flex-1', 'flex-wrap', 'p-0', 'screen:p-0'])
-  };
-  ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
-    tw(['p-0'])
+    tw(['flex', 'flex-1', 'flex-wrap', 'screen:p-0'])
   };
 `
 
 export const HeaderNavigation = connect(
-  ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
+  ({ isMenu }) => ({ isMenu }),
 )(props => {
-  const { collapsedMenu, collapseTransition, isMenu } = props
+  const { isMenu } = props
   const headerlinks = pathOr(
     false, 
     ['links', 'data', 'headerlinks'], 
@@ -38,8 +32,6 @@ export const HeaderNavigation = connect(
   )
   return (
     <Navigaton 
-      {...{collapsedMenu}}
-      {...{collapseTransition}}
       {...{isMenu}}
     >
       {headerlinks && map(link => 

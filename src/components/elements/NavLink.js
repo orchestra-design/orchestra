@@ -13,12 +13,12 @@ const BlackButton = styled('span')`
   ${Button};
   ${tw([
     'h-q36', 'mb-q36', 'md:mb-0',
-    'mr-0', 'md:mr-q36', 'px-q12',
+    'mr-0', 'px-q12',
     'border-white', 'border',
     'border-solid', 'md:border-none'
   ])};
   ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition &&
-    tw(['screen:h-q48', 'screen:text-lg'])
+    tw(['screen:h-q48', 'md:mr-q36', 'screen:text-lg' ])
   };
   ${({ isMenu }) => isMenu &&
     tw(['screen:h-q48', 'screen:text-lg', 'm-0'])

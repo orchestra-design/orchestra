@@ -16,16 +16,17 @@ import { SquareButton } from './Buttons'
 const SwitcherButton = styled(SquareButton)`
   ${tw([
     'self-start', 'border-white', 'border', 
-    'border-solid', 'md:border-none'
+    'border-solid', 'md:border-none',
+    'mr-0', 'md:mr-q24'
   ])};
   ${({ collapsedMenu, collapseTransition }) => !collapsedMenu  && !collapseTransition && 
-    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
+    tw(['screen:h-q48', 'screen:w-q48', 'md:mr-q36', 'screen:text-lg'])
   };
   ${({ isMenu }) => isMenu &&
     tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg', 'm-0'])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
-    tw(['screen:h-q36', 'screen:w-q36', 'screen:text-sm'])
+    tw(['screen:h-q36', 'screen:w-q36', 'screen:text-sm', 'md:mr-q24'])
   };
 `
 

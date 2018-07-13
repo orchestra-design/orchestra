@@ -12,8 +12,8 @@ export const Button = css`
     'shadow-none', 'hover:shadow-elevate1',
     'active:shadow-elevate0', 'focus:shadow-elevate0'
   ])};
-  transition-property: background, color, shadow, heigth, width, font-size;
-  transition-duration: .2s, .2s, .2s, 0s, 0s, 0s;
+  transition-property: background, color, shadow, heigth, width, font-size, margin-right;
+  transition-duration: .2s, .2s, .2s, 0s, 0s, 0s, 0s;
   transition-timing-function: ease-in-out;
 `
 
