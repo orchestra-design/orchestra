@@ -8,7 +8,7 @@ import { pageTransition } from '../../actions'
 
 import { 
   any, compose, equals, ifElse, lensPath, 
-  map, replace, view 
+  lengthLte, map, replace, view 
 } from '../../helpers'
 
 import { SquareButton } from './Buttons'
@@ -46,12 +46,12 @@ export const LangSwitcher = connect(
     ),
     map(replace(/\/$/, '')),
     map(view(lensPath(['node', 'path']))),
-  )
-
+  )(allSite.edges)
+  
   return (
     <Link 
-      to={safePath(allSite.edges)}
-      onClick={() => pageTransition()}      
+      to={safePath}
+      onClick={() => lengthLte(3, safePath) && pageTransition()}      
       className={css`${tw('no-underline')};`}
     >
       <SwitcherButton

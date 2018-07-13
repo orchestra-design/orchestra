@@ -3,7 +3,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
-import { compose, withHandlers } from 'recompose'
+import { compose, lifecycle, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { changeTheme, collapseMenu, srollMenu } from '../actions'
@@ -19,7 +19,7 @@ const Connected = connect(
   { changeTheme, collapseMenu, srollMenu }
 )
 
-const withScroll = compose(
+const enhance = compose(
   Connected,
   withHandlers({
     scroll: props => event => {
@@ -45,6 +45,12 @@ const withScroll = compose(
         return F
       }) 
     }
+  }),
+  lifecycle({
+    state: { theme: 'white' },
+    componentDidMount() {
+      this.props.changeTheme('image')
+    }
   })
 )
 
@@ -61,7 +67,7 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
+const WorkTemplate = enhance(({ data: { work, allSite, links }, scroll}) => {
   const title = path(['data', 'title', 'text'], work)
   return (
     <TemplateWrapper 

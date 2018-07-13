@@ -1,5 +1,7 @@
 import flip from 'crocks/combinators/flip'
 import curry from 'crocks/helpers/curry'
+import unless from 'crocks/logic/unless'
+import when from 'crocks/logic/when'
 import propPath from 'crocks/Maybe/propPath'
 import offset from 'dom-helpers/query/offset'
 import camelCase from 'lodash/fp/camelCase'
@@ -14,7 +16,7 @@ import {
 import * as uuid from 'uuid/v1'
 
 export {
-  propPath, flip,
+  propPath, flip, unless, when,
   offset,
   camelCase, debounce, delay,
   and, any, assoc, compose, equals, F, gt,
@@ -24,4 +26,6 @@ export {
   uuid
 }
 
-export const lengthLte = curry((num, x) => lte(length(x), num))
+export const lengthLte = curry((num, x) => 
+  lte(length(x), num)
+)

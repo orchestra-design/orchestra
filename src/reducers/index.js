@@ -26,7 +26,7 @@ const reducer = handleActions(
       {
         isMenu: action.payload !== undefined ? action.payload : !state.isMenu,
         previousTheme: state.storedTheme,
-        storedTheme: action.payload !== undefined ? 'image' : !state.isMenu ? 'black' : state.previousTheme
+        storedTheme: action.payload !== undefined ? 'white' : !state.isMenu ? 'black' : state.previousTheme
       }
     ),
   },
