@@ -11,7 +11,7 @@ import {
 import {
   and, camelCase, equals, F, gt,
   head, ifElse, isNil, lt, not, 
-  offset, path
+  offset, pathOr
 } from '../../helpers'
 
 const ScrollWrapper = styled('div')`
@@ -37,7 +37,7 @@ const enhance = compose(
         const childOffset = offset(child)
         const newTheme = camelCase(child.attributes.theme.value)
         ifElse(
-          ({ top, height }) => and(lt(top, 0), gt((top + height), 0)),
+          ({ top, height }) => and(lt(top, 201), gt((top + height), 200)),
           () => not(equals(newTheme, props.storedTheme)) && props.changeTheme(newTheme),
           F
         )(childOffset)
@@ -62,7 +62,7 @@ const enhance = compose(
         document.getElementById('scroll-container').childNodes     
       )
       this.props.changeTheme(
-        path(['attributes', 'theme', 'value'], head(scrollChildren))
+        pathOr('white', ['attributes', 'theme', 'value'], head(scrollChildren))
       )
     }
   })

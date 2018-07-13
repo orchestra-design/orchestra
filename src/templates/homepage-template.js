@@ -1,31 +1,41 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Spring } from 'react-spring'
 
 import TemplateWrapper from '../components/layouts'
 //import { Homepage } from '../components/blocks'
 
-const IndexTemplate = ({ data: { page, allSite, links } }) => (
-  <TemplateWrapper 
-    seo={{
-      data: {
-        uid: null,
-        seotitle: page.data.seotitle,
-        seodescription: page.data.seodescription,
-        seokeywords: page.data.seokeywords,
-        seoimage: page.data.seoimage,
-      }
-    }}
-    color='white'
-    image={page.data.slider[0].image}
-    title={page.data.seotitle}
-    lang={page.lang}
-    {...{allSite}}
-    {...{links}}
-  >
-    {/* <Homepage data={page.data} /> */}
-    <div  theme="image" >{ page.data.seotitle }</div>
-  </TemplateWrapper>
-)
+const IndexTemplate = ({ data: { page, allSite, links } }) => {
+  
+  return (
+    <TemplateWrapper 
+      seo={{
+        data: {
+          uid: null,
+          seotitle: page.data.seotitle,
+          seodescription: page.data.seodescription,
+          seokeywords: page.data.seokeywords,
+          seoimage: page.data.seoimage,
+        }
+      }}
+      color='white'
+      image={page.data.slider[0].image}
+      title={page.data.seotitle}
+      lang={page.lang}
+      {...{allSite}}
+      {...{links}}
+    >
+      {/* <Homepage data={page.data} /> */}
+      <div theme="white" style={{height: '100vh'}} >
+        <Spring from={{ color: 'black' }} to={{ color: 'fuchsia' }} >
+        {({...styles}) => <h1 style={styles}>Poop!</h1>}
+        </Spring>
+      </div>
+      <div theme="image" style={{height: '100vh'}} >{ page.data.seotitle }</div>
+      <div theme="black" style={{height: '100vh'}} />
+    </TemplateWrapper>
+  )
+}
 
 export default IndexTemplate
 

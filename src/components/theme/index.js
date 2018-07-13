@@ -14,8 +14,8 @@ const colored = {
 
 const coloredInverse = {
   backgroundColor: false,
-  color: '#ffffff',
-  logoFill: '#ffffff',
+  color: '#000000',
+  logoFill: '#000000',
   logoShadow: false,
 }
 

@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions'
 
-import { debounce, delay } from '../helpers'
+import { delay } from '../helpers'
 
 import { 
   COLLAPSE_MENU, MENU_TRANSITION, SCROLL_MENU,
@@ -20,11 +20,11 @@ export const changeTheme = payload =>
   }
 
 export const collapseMenu = payload =>
-  debounce(200, dispatch => {
+  dispatch => {
     dispatch(startTransition())
     dispatch(collapseMenuAction(payload))
     delay(400, () => dispatch(stopTransition()))
-  })
+  }
 
 export const pageTransition = () =>
   dispatch => {
@@ -34,9 +34,9 @@ export const pageTransition = () =>
   }
 
 export const srollMenu = payload =>
-  debounce(200, dispatch => { 
-    dispatch(scrollMenuAction(payload))
-  })
+  dispatch => { 
+    delay(400, () => dispatch(scrollMenuAction(payload)))
+  }
 
 export const toggleMenu = () =>
   dispatch => { 

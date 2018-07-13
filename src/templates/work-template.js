@@ -45,7 +45,7 @@ const WorkTemplate = ({ data: { work, allSite, links }}) => {
           <div>{ work.data.description }</div>
         </div>
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black"  />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black" />
         {not(isNil(work.data.body)) && work.data.body.map(({primary}, i) =>
           <div key={i+6000} theme={primary.sictheme} >
             <Section key={i+5000} >

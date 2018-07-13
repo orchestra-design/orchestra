@@ -20,9 +20,9 @@ export {
   offset,
   camelCase, debounce, delay,
   and, any, assoc, compose, equals, F, gt,
-  head, ifElse, isNil, length, lt, lte, lensPath,
-  map, merge, not, path, pathOr, pipe,
-  replace, view,
+  head, ifElse, isNil, length, lt, lte, 
+  lensPath, map, merge, not, path, pathOr,
+  pipe, replace, view,
   uuid
 }
 
