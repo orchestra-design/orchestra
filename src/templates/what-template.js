@@ -22,7 +22,7 @@ const WhatTemplate = ({ data: { what, allSite, links }}) => {
       {...{links}}
       {...{title}}
     >
-      <div>{what.data.title}</div>
+      <div theme="white" >{what.data.title}</div>
     </TemplateWrapper>
   )
 }

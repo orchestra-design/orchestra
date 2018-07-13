@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import TemplateWrapper from '../components/layouts'
-import { Homepage } from '../components/blocks'
+//import { Homepage } from '../components/blocks'
 
 const IndexTemplate = ({ data: { page, allSite, links } }) => (
   <TemplateWrapper 
@@ -15,11 +15,15 @@ const IndexTemplate = ({ data: { page, allSite, links } }) => (
         seoimage: page.data.seoimage,
       }
     }}
+    color='white'
+    image={page.data.slider[0].image}
+    title={page.data.seotitle}
     lang={page.lang}
     {...{allSite}}
     {...{links}}
   >
-    <Homepage data={page.data} />
+    {/* <Homepage data={page.data} /> */}
+    <div  theme="image" >{ page.data.seotitle }</div>
   </TemplateWrapper>
 )
 

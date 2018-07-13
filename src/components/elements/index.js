@@ -1,3 +1,5 @@
+export { Back } from './Back'
+
 export {
   Button, SquareButton
 } from './Buttons'
@@ -12,10 +14,12 @@ export {
 
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
 export { HeaderLogo } from './HeaderLogo'
+export { Image } from './Image'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
+export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 
 export { 

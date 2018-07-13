@@ -22,7 +22,7 @@ const HowTemplate = ({ data: { how, allSite, links }}) => {
       {...{links}}
       {...{title}}
     >
-      <div>{how.data.title.text}</div>
+      <div theme="white" >{how.data.title.text}</div>
     </TemplateWrapper>
   )
 }

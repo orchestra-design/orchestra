@@ -22,7 +22,7 @@ const WorksTemplate = ({ data: { works, allSite, links }}) => {
       {...{links}}
       {...{title}}
     >
-      <div>{works.data.title.text}</div>
+      <div theme="white" >{works.data.title.text}</div>
     </TemplateWrapper>
   )
 }

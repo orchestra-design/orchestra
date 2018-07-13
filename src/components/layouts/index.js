@@ -2,17 +2,37 @@ import React, { Fragment } from 'react'
 import { ThemeProvider } from 'emotion-theming'
 import { connect } from 'react-redux'
 
+import { unless, isNil } from '../../helpers'
+
 import { Header } from '../blocks'
-import { SEO } from '../elements'
+import { 
+  Back, Image,
+  ScrollContainer, SEO 
+} from '../elements'
 import { theme as EmotionTheme } from '../theme'
 
-const TemplateWrapper = ({ seo, lang, allSite, links, title, children, storedTheme }) => {
+
+const TemplateWrapper = ({ 
+  seo, lang, allSite, links, color, 
+  image, title, children, storedTheme 
+}) => {
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]} >
       <Fragment>
         <SEO {...{seo}} />
-        <Header {...{allSite}} {...{lang}} {...{links}} {...{title}} />
-        { children }
+        <Header 
+          {...{allSite}} 
+          {...{lang}} 
+          {...{links}} 
+          {...{title}} 
+        />
+          {unless(isNil, () =>
+            <Image {...{image}} />
+          )(image)}
+          <Back {...{color}} />
+          <ScrollContainer>
+          { children }
+          </ScrollContainer>
       </Fragment>
     </ThemeProvider>
   )  

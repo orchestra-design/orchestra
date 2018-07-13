@@ -34,9 +34,9 @@ export const pageTransition = () =>
   }
 
 export const srollMenu = payload =>
-  dispatch => { 
+  debounce(200, dispatch => { 
     dispatch(scrollMenuAction(payload))
-  }
+  })
 
 export const toggleMenu = () =>
   dispatch => { 
