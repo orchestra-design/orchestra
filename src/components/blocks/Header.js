@@ -12,9 +12,11 @@ import {
 import { HeaderNavigation } from './HeaderNavigation'
 
 const HeaderContainerDynamicStyle = ({ collapsedMenu, hiddenMenu, isMenu }) => css`
-  ${isMenu && 
-    tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])
-  };
+  @media(max-width: 768px) {
+    ${isMenu && 
+      tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])
+    };
+  }
   transform: translateY(${collapsedMenu ? '0%' : hiddenMenu ? '-100%' : '0%'});
 `
 
@@ -25,7 +27,7 @@ const HeaderContainer = styled(ContainerFluid)`
     'justify-between', 'items-center', 'z-50', 
   ])};  
   ${HeaderContainerDynamicStyle};
-  transition: transform .4s ease-in-out;
+  transition: transform .4s ease-out;
 `
 
 const MobileHeader = styled('div')`

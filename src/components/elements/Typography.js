@@ -12,8 +12,7 @@ export const Body = css`
 export const ButtonText = css`
   ${tw([
     'font-source', 'font-semibold',
-    'text-sm', 'screen:text-lg',
-    'tracking-button', 
+    'text-sm', 'tracking-button', 
   ])};
   font-variant-caps: all-small-caps;
 `

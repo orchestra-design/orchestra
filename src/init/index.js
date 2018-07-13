@@ -1,5 +1,6 @@
 export const initState = {
   collapsedMenu: false,
+  collapseTransition: false,
   hiddenMenu: false,
   isMenu: false,
   previousTheme: 'image',

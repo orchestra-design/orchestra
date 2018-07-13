@@ -12,13 +12,14 @@ export const Button = css`
     'shadow-none', 'hover:shadow-elevate1',
     'active:shadow-elevate0', 'focus:shadow-elevate0'
   ])};
-  transition: all .2 ease-in-out;
+  transition-property: background, color, shadow, heigth, width, font-size;
+  transition-duration: .2s, .2s, .2s, 0s, 0s, 0s;
+  transition-timing-function: ease-in-out;
 `
 
 export const SquareButton = styled('span')`
   ${Button};
   ${tw([
-    'w-q36', 'h-q36', 'flex-no-shrink',
-    'screen:w-q48', 'screen:h-q48',
+    'w-q36', 'h-q36', 'flex-no-shrink'
   ])};
 `

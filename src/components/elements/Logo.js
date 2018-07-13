@@ -4,8 +4,8 @@ import styled from 'react-emotion'
 
 const LogoWrapper = styled('div')`
   ${tw(['screen:ml-1/12'])};
-  width: ${({ collapsedMenu }) => collapsedMenu ? '168px' : 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
-  height: ${({ collapsedMenu }) => collapsedMenu ? '69px' : 'calc(69px + 43 * ((100vw - 320px) / 1280))'};
+  width: ${({ collapsedMenu, collapseTransition }) => collapsedMenu ? '168px' : !collapseTransition && 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
+  height: ${({ collapsedMenu, collapseTransition }) => collapsedMenu ? '69px' : !collapseTransition && 'calc(69px + 43 * ((100vw - 320px) / 1280))'};
   min-height: 69px;
   min-width: 186px;
 `
@@ -15,8 +15,8 @@ const G = styled('g')`
   filter: ${props => props.theme.logoShadow ? 'url(#shadow)' : null};
 `
 
-export const Logo = ({ collapsedMenu }) => (
-  <LogoWrapper {...{collapsedMenu}} >
+export const Logo = ({ collapsedMenu, collapseTransition }) => (
+  <LogoWrapper {...{collapsedMenu}} {...{collapseTransition}} >
     <svg width="100%" height="100%" viewBox="0 0 321 112" fill="none" xmlns="http://www.w3.org/2000/svg">
       <G>
         <path d="M11.8688 63.9753C4.26708 63.9876 0.0185257 60.0046 0 51.7484V12.2455C0 4.19915 4.21768 0 11.9182 0C19.6187 0 23.8549 4.19915 23.8549 12.2269L23.8364 51.7484C23.8302 59.7761 19.6434 63.9629 11.8688 63.9753ZM11.9182 55.8178C13.4682 55.8178 14.2648 54.8174 14.2648 52.9834V10.9919C14.2648 9.1208 13.4496 8.09571 11.9182 8.09571C10.3867 8.09571 9.57159 9.1208 9.57159 10.9919V52.9834C9.57159 54.8113 10.3682 55.8117 11.9182 55.8178Z"

@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react'
 import Link, { withPrefix } from 'gatsby-link'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { toggleMenu } from '../../actions'
@@ -18,21 +18,22 @@ const SwitcherButton = styled(SquareButton)`
     'self-start', 'border-white', 'border', 
     'border-solid', 'md:border-none'
   ])};
+  ${({ collapseTransition }) => !collapseTransition && 
+    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
+  };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
     tw(['screen:h-q36', 'screen:w-q36', 'screen:text-sm'])
   };
 `
-
-const SwitcherLink = SwitcherButton.withComponent(Link)
 
 const reverseLang = ifElse(
   equals('ru'), () => 'en', () => 'ru'
 )
 
 export const LangSwitcher = connect(
-  ({ collapsedMenu, isMenu }) => ({ collapsedMenu, isMenu }),
+  ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
   { toggleMenu }
-)(({ lang, allSite, path, collapsedMenu, isMenu, toggleMenu }) => {
+)(({ lang, allSite, path, collapsedMenu, collapseTransition, isMenu, toggleMenu }) => {
   const makePath = `${withPrefix(reverseLang(lang))}${path.replace(/^\/.{2}/i, '')}`
   const safePath = compose(
     ifElse(
@@ -45,11 +46,16 @@ export const LangSwitcher = connect(
   )
 
   return (
-    <SwitcherLink 
+    <Link 
       to={safePath(allSite.edges)}
-      onClick={() => isMenu && toggleMenu()}
-      {...{collapsedMenu}}
-      {...{isMenu}}
-    >{ reverseLang(lang) }</SwitcherLink>
+      onClick={() => isMenu && toggleMenu()}      
+      className={css`${tw('no-underline')};`}
+    >
+      <SwitcherButton
+        {...{collapsedMenu}}
+        {...{collapseTransition}}
+        {...{isMenu}}
+      >{ reverseLang(lang) }</SwitcherButton>
+    </Link>
   )
 })

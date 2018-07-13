@@ -9,6 +9,10 @@ const reducer = handleActions(
       'collapsedMenu', action.payload,
       state
     ),
+    MENU_TRANSITION: (state, action) => assoc(
+      'collapseTransition', action.payload,
+      state
+    ),
     SCROLL_MENU: (state, action) => assoc(
       'hiddenMenu', action.payload,
       state

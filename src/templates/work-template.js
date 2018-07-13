@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { changeTheme, collapseMenu, srollMenu } from '../actions'
 import {
   and, camelCase, equals, F, gt,
-  ifElse, isNil, lt, not, offset, path, 
+  ifElse, isNil, lt, not, offset, path
 } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { Row } from '../components/elements'
@@ -33,12 +33,12 @@ const withScroll = compose(
           F
         )(childOffset)
         equals(i, 0) && ifElse(
-          ({ top }) => lt(top, -200),
+          ({ top }) => lt(top, -400),
           () => not(equals(props.hiddenMenu, true)) && props.srollMenu(true),
           () => not(equals(props.hiddenMenu, false)) && props.srollMenu(false)
         )(childOffset)
         equals(i, 1) && ifElse(
-          ({ top }) => lt(top, -100),
+          ({ top }) => lt(top, -400),
           () => not(equals(props.collapsedMenu, true)) && props.collapseMenu(true),
           () => not(equals(props.collapsedMenu, false)) && props.collapseMenu(false)
         )(childOffset)        
@@ -88,8 +88,8 @@ const WorkTemplate = withScroll(({ data: { work, allSite, links }, scroll}) => {
           <h1>{ path(['data', 'title', 'text'], work) }</h1>
           <div>{ work.data.description }</div>
         </div>
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black"  />
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black"  />
         {not(isNil(work.data.body)) && work.data.body.map(({primary}, i) =>
           <div key={i+6000} theme={primary.sictheme} >
             <Section key={i+5000} >
