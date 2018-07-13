@@ -21,7 +21,7 @@ const BlackButton = styled('span')`
     tw(['screen:h-q48', 'screen:text-lg'])
   };
   ${({ isMenu }) => isMenu &&
-    tw(['screen:h-q48', 'screen:text-lg'])
+    tw(['screen:h-q48', 'screen:text-lg', 'm-0'])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
     tw(['screen:h-q36', 'screen:text-sm'])
@@ -41,7 +41,7 @@ export const NavLink = connect(({
         key={uuid()} 
         to={link.url}
         onClick={() => pageTransition()}
-        className={css`${tw('no-underline')};`}       
+        className={css`${tw('no-underline p-q12')};`}       
       >
         <BlackButton 
           key={uuid()} 

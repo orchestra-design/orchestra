@@ -15,17 +15,15 @@ const Navigaton = styled('nav')`
     'flex-col', 'md:flex-row',
     'justify-around', 'items-stretch',
     'w-full', 'md:w-auto', 'p-q24'
-  ])};
-  @media(max-width: 768px) {
-    ${props => props.isMenu && 
-      tw(['flex', 'flex-1', 'w-auto'])
-    };
-  }
+  ])};  
   ${({ collapseTransition }) => !collapseTransition && 
     tw(['screen:p-q36'])
   };
+  ${props => props.isMenu && 
+    tw(['flex', 'flex-1', 'flex-wrap', 'p-0', 'screen:p-0'])
+  };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
-    tw(['screen:p-q24'])
+    tw(['p-0'])
   };
 `
 

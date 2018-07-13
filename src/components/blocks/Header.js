@@ -32,7 +32,8 @@ const HeaderContainer = styled(ContainerFluid)`
 
 const MobileHeader = styled('div')`
   ${tw([ 
-    'flex', 'flex-row', 'flex-no-wrap',
+    'flex', 'flex-row', 
+    'flex-wrap', 'screen:flex-no-wrap',
     'justify-between', 'items-center',
     'w-full', 'md:w-auto',
   ])};

@@ -22,7 +22,7 @@ const SwitcherButton = styled(SquareButton)`
     tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
   };
   ${({ isMenu }) => isMenu &&
-    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg'])
+    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg', 'm-0'])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
     tw(['screen:h-q36', 'screen:w-q36', 'screen:text-sm'])
@@ -52,7 +52,7 @@ export const LangSwitcher = connect(
     <Link 
       to={safePath}
       onClick={() => lengthLte(3, safePath) && pageTransition()}      
-      className={css`${tw('no-underline')};`}
+      className={css`${tw('no-underline p-q12')};`}
     >
       <SwitcherButton
         {...{collapsedMenu}}
