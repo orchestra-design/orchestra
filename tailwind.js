@@ -268,12 +268,15 @@ module.exports = {
     '4xl': '2.25rem', // 36px
     '5xl': '3rem', // 48px
     // Orchestra
+    xxs: '.625rem', // 10px
     body: 'calc(16px + 5 * ((100vw - 320px) / 1280))',
     'heading1': 'calc(48px + 72 * ((100vw - 320px) / 1280))',
     'heading2': 'calc(44px + 34 * ((100vw - 320px) / 1280))',
     'heading3': 'calc(34px + 18 * ((100vw - 320px) / 1280))',
     'heading4': 'calc(30px + 18 * ((100vw - 320px) / 1280))',
     'heading5': 'calc(24px + 12 * ((100vw - 320px) / 1280))',
+    'heading6': 'calc(21px + 3 * ((100vw - 320px) / 1280))',
+    'description': 'calc(10px + 4 * ((100vw - 320px) / 1280))',
   },
 
   /*
@@ -546,6 +549,7 @@ module.exports = {
     full: '100%',
     screen: '100vh',
     // Orchestra
+    '1/2': '50%',
     'q4': '0.25rem',
     'q8': '0.5rem',
     'q12': '0.75rem',

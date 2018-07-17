@@ -1,11 +1,21 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { path } from '../helpers'
+import { compose, find, map, merge, pick, path, propEq, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
+import { LinkImage } from '../components/elements'
 
-const WorksTemplate = ({ data: { workspage, seo, allSite, links }}) => {
+const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) => {
   const title = path(['data', 'title', 'text'], workspage)
+  const worksLinks = path(['data', 'links'], workspage)
+  const allWorksNodes = map(path(['node']))(path(['edges'], allworks))
+  const linkUid = path(['link', 'document', 0, 'uid']) 
+  const getWorkData = uid => compose(
+      pick(['title', 'description', 'color']),
+      path(['data']),
+      find(propEq('uid', uid))
+    )(allWorksNodes)
+  
   return (
     <TemplateWrapper
       {...{seo}}
@@ -13,7 +23,18 @@ const WorksTemplate = ({ data: { workspage, seo, allSite, links }}) => {
       {...{links}}
       {...{title}}
     >
-      <div theme="white" >{ title }</div>
+      <div theme="white" >
+        <h1>
+        { title }
+        </h1>
+        <div style={{width: '420px', height: '315px'}} >
+        {worksLinks.map(link => 
+          <LinkImage key={uuid()}
+            {...merge(link, getWorkData(linkUid(link))) }
+          />
+        )}
+        </div>
+      </div>
     </TemplateWrapper>
   )
 }
@@ -27,8 +48,54 @@ export const query = graphql`
         title {
           text
         }
+        links {
+          image {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          hoverimage {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          link {
+            url
+            document {
+              uid
+            }
+          }
+        }
       }
     }
+    allworks: allPrismicWork(filter: {lang: {eq: "ru"}}) {
+      edges {
+        node {
+          uid
+          tags
+          data {
+            location
+            type
+            status
+            timeline
+            client
+            title {
+              text
+            }
+            description
+            color
+          }
+        }
+      }
+    }    
     seo: prismicWorks(lang: {eq: $lang}) {
       uid
       lang

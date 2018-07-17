@@ -17,6 +17,13 @@ export const ButtonText = css`
   font-variant-caps: all-small-caps;
 `
 
+export const Description = css`
+  ${tw([
+    'font-source', 'font-semibold',
+    'text', 'screen:text-sm', 'tracking-normal'
+  ])};
+`
+
 export const Heading = css`
   ${tw([
       'font-plex', 'leading-heading',
@@ -56,6 +63,13 @@ export const Heading5 = css`
   ${Heading};
   ${tw([
     'text-heading5', 'font-semibold',
+  ])};
+`
+
+export const Heading6 = css`
+  ${Heading};
+  ${tw([
+    'text-heading6', 'font-semibold',
   ])};
 `
 

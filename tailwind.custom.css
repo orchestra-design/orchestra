@@ -2573,6 +2573,10 @@ button,
   height: 100vh;
 }
 
+.h-1\/2 {
+  height: 50%;
+}
+
 .h-q4 {
   height: .25rem;
 }
@@ -5801,6 +5805,10 @@ button,
   font-size: 3rem;
 }
 
+.text-xxs {
+  font-size: .625rem;
+}
+
 .text-body {
   font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
 }
@@ -5823,6 +5831,14 @@ button,
 
 .text-heading5 {
   font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+}
+
+.text-heading6 {
+  font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+}
+
+.text-description {
+  font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
 }
 
 .italic {
@@ -8201,6 +8217,10 @@ button,
 
   .sm\:h-screen {
     height: 100vh;
+  }
+
+  .sm\:h-1\/2 {
+    height: 50%;
   }
 
   .sm\:h-q4 {
@@ -11419,6 +11439,10 @@ button,
     font-size: 3rem;
   }
 
+  .sm\:text-xxs {
+    font-size: .625rem;
+  }
+
   .sm\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -11441,6 +11465,14 @@ button,
 
   .sm\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:italic {
@@ -13820,6 +13852,10 @@ button,
 
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-1\/2 {
+    height: 50%;
   }
 
   .md\:h-q4 {
@@ -17038,6 +17074,10 @@ button,
     font-size: 3rem;
   }
 
+  .md\:text-xxs {
+    font-size: .625rem;
+  }
+
   .md\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -17060,6 +17100,14 @@ button,
 
   .md\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:italic {
@@ -19439,6 +19487,10 @@ button,
 
   .lg\:h-screen {
     height: 100vh;
+  }
+
+  .lg\:h-1\/2 {
+    height: 50%;
   }
 
   .lg\:h-q4 {
@@ -22657,6 +22709,10 @@ button,
     font-size: 3rem;
   }
 
+  .lg\:text-xxs {
+    font-size: .625rem;
+  }
+
   .lg\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -22679,6 +22735,14 @@ button,
 
   .lg\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:italic {
@@ -25058,6 +25122,10 @@ button,
 
   .xl\:h-screen {
     height: 100vh;
+  }
+
+  .xl\:h-1\/2 {
+    height: 50%;
   }
 
   .xl\:h-q4 {
@@ -28276,6 +28344,10 @@ button,
     font-size: 3rem;
   }
 
+  .xl\:text-xxs {
+    font-size: .625rem;
+  }
+
   .xl\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -28298,6 +28370,14 @@ button,
 
   .xl\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:italic {
@@ -30677,6 +30757,10 @@ button,
 
   .screen\:h-screen {
     height: 100vh;
+  }
+
+  .screen\:h-1\/2 {
+    height: 50%;
   }
 
   .screen\:h-q4 {
@@ -33895,6 +33979,10 @@ button,
     font-size: 3rem;
   }
 
+  .screen\:text-xxs {
+    font-size: .625rem;
+  }
+
   .screen\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -33917,6 +34005,14 @@ button,
 
   .screen\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:italic {
@@ -36296,6 +36392,10 @@ button,
 
   .desktop\:h-screen {
     height: 100vh;
+  }
+
+  .desktop\:h-1\/2 {
+    height: 50%;
   }
 
   .desktop\:h-q4 {
@@ -39514,6 +39614,10 @@ button,
     font-size: 3rem;
   }
 
+  .desktop\:text-xxs {
+    font-size: .625rem;
+  }
+
   .desktop\:text-body {
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
@@ -39536,6 +39640,14 @@ button,
 
   .desktop\:text-heading5 {
     font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:italic {
