@@ -7,9 +7,16 @@ import { ifElse, lengthLte } from '../../helpers'
 import { Logo } from './Logo'
 
 export const HeaderLogo = connect(
-  ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
+  ({ 
+    collapsedMenu, collapseTransition, isMenu 
+  }) => ({ 
+    collapsedMenu, collapseTransition, isMenu 
+  }),
   { toggleMenu }
-)(({ lang, path, collapsedMenu, collapseTransition, isMenu, toggleMenu }) => (
+)(({ 
+  lang, path, collapsedMenu, collapseTransition, 
+  isMenu, toggleMenu 
+}) => (
   <Fragment>
   {ifElse(
     path => lengthLte(3, path),

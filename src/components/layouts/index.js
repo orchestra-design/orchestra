@@ -13,9 +13,10 @@ import { theme as EmotionTheme } from '../theme'
 
 
 const TemplateWrapper = ({ 
-  seo, lang, allSite, links, color, 
+  seo, allSite, links, color, 
   image, title, children, storedTheme 
 }) => {
+  const { lang } = seo 
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]} >
       <Fragment>
@@ -24,7 +25,7 @@ const TemplateWrapper = ({
           {...{allSite}} 
           {...{lang}} 
           {...{links}} 
-          {...{title}} 
+          {...{title}}
         />
           {unless(isNil, () =>
             <Image {...{image}} />

@@ -4,22 +4,13 @@ import { graphql } from 'gatsby'
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
-const WhatTemplate = ({ data: { what, allSite, links }}) => {
+const WhatTemplate = ({ data: { what, seo, allSite, links }}) => {
   const title = path(['data', 'title'], what)
   return (
     <TemplateWrapper
-     seo={{
-        data: {
-          uid: what.uid,
-          seotitle: what.data.seotitle,
-          seodescription: what.data.seodescription,
-          seokeywords: what.data.seokeywords,
-          seoimage: what.data.seoimage,
-        }
-      }}
-      lang={what.lang}
       {...{allSite}}
       {...{links}}
+      {...{seo}}
       {...{title}}
     >
       <div theme="white" >{what.data.title}</div>
@@ -32,6 +23,11 @@ export default WhatTemplate
 export const query = graphql`
   query WhatTemplateQuery($lang: String!) {
     what: prismicWhat(lang: {eq: $lang}) {
+      data {
+        title
+      }
+    }
+    seo: prismicWhat(lang: {eq: $lang}) {
       uid
       lang
       data {
@@ -47,7 +43,6 @@ export const query = graphql`
             }
           }
         }
-        title
       }
     }
     links: prismicWhat(lang: {eq: $lang}) {

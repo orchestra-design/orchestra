@@ -4,25 +4,16 @@ import { graphql } from 'gatsby'
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
-const WorksTemplate = ({ data: { works, allSite, links }}) => {
-  const title = path(['data', 'title', 'text'], works)
+const WorksTemplate = ({ data: { workspage, seo, allSite, links }}) => {
+  const title = path(['data', 'title', 'text'], workspage)
   return (
     <TemplateWrapper
-     seo={{
-        data: {
-          uid: works.uid,
-          seotitle: works.data.seotitle,
-          seodescription: works.data.seodescription,
-          seokeywords: works.data.seokeywords,
-          seoimage: works.data.seoimage,
-        }
-      }}
-      lang={works.lang}
+      {...{seo}}
       {...{allSite}}
       {...{links}}
       {...{title}}
     >
-      <div theme="white" >{works.data.title.text}</div>
+      <div theme="white" >{ title }</div>
     </TemplateWrapper>
   )
 }
@@ -31,7 +22,14 @@ export default WorksTemplate
 
 export const query = graphql`
   query WorksTemplateQuery($lang: String!) {
-    works: prismicWorks(lang: {eq: $lang}) {
+    workspage: prismicWorks(lang: {eq: $lang}) {
+      data {
+        title {
+          text
+        }
+      }
+    }
+    seo: prismicWorks(lang: {eq: $lang}) {
       uid
       lang
       data {
@@ -46,9 +44,6 @@ export const query = graphql`
               }
             }
           }
-        }
-        title {
-          text
         }
       }
     }

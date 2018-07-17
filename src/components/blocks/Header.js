@@ -61,7 +61,10 @@ const withLifecicle = compose(
 )
 
 export const Header = withLifecicle(props => {
-  const { collapsedMenu, collapseTransition, hiddenMenu, isMenu, title } = props
+  const { 
+    collapsedMenu, collapseTransition,
+    hiddenMenu, isMenu, title 
+  } = props
   
   return (
   <HeaderContainer

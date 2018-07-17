@@ -4,22 +4,13 @@ import { graphql } from 'gatsby'
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
-const HowTemplate = ({ data: { how, allSite, links }}) => {
+const HowTemplate = ({ data: { how, seo, allSite, links }}) => {
   const title = path(['data', 'title', 'text'], how)
   return (
     <TemplateWrapper
-     seo={{
-        data: {
-          uid: how.uid,
-          seotitle: how.data.seotitle,
-          seodescription: how.data.seodescription,
-          seokeywords: how.data.seokeywords,
-          seoimage: how.data.seoimage,
-        }
-      }}
-      lang={how.lang}
       {...{allSite}}
       {...{links}}
+      {...{seo}}
       {...{title}}
     >
       <div >{how.data.title.text}</div>
@@ -32,6 +23,24 @@ export default HowTemplate
 export const query = graphql`
   query HowTemplateQuery($lang: String!) {
     how: prismicHow(lang: {eq: $lang}) {
+      data {
+        title {
+          text
+        }
+        jumbo {
+          jumboimage {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 1920) {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
+              }
+            }
+          }
+        }    
+      }
+    }
+    seo: prismicHow(lang: {eq: $lang}) {
       uid
       lang
       data {
@@ -47,20 +56,6 @@ export const query = graphql`
             }
           }
         }
-        title {
-          text
-        }
-        jumbo {
-          jumboimage {
-            localFile {
-              childImageSharp {
-                sizes(maxWidth: 1920) {
-                  ...GatsbyImageSharpSizes_tracedSVG
-                }
-              }
-            }
-          }
-        }    
       }
     }
     links: prismicHow(lang: {eq: $lang}) {

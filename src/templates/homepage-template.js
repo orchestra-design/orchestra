@@ -2,28 +2,20 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Spring } from 'react-spring'
 
+import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 //import { Homepage } from '../components/blocks'
 
-const IndexTemplate = ({ data: { page, allSite, links } }) => {
-  
+const IndexTemplate = ({ data: { page, seo, allSite, links } }) => {
+  const image = path(['data', 'slider', 0, 'image'], page)
   return (
     <TemplateWrapper 
-      seo={{
-        data: {
-          uid: null,
-          seotitle: page.data.seotitle,
-          seodescription: page.data.seodescription,
-          seokeywords: page.data.seokeywords,
-          seoimage: page.data.seoimage,
-        }
-      }}
-      color='white'
-      image={page.data.slider[0].image}
-      title={page.data.seotitle}
-      lang={page.lang}
       {...{allSite}}
+      color='white'
+      {...{image}}
       {...{links}}
+      {...{seo}}
+      title={seo.data.seotitle}
     >
       {/* <Homepage data={page.data} /> */}
       <div theme="white" style={{height: '100vh'}} >
@@ -42,6 +34,22 @@ export default IndexTemplate
 export const query = graphql`
   query IndexTemplateQuery($lang: String!) {
     page: prismicHomepage(lang: {eq: $lang}) {
+      data {
+        slider {
+          image {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 1920) {
+                  ...GatsbyImageSharpSizes_withWebp
+                }
+              }
+            }
+          }
+          caption
+        }
+      }
+    }
+    seo: prismicHomepage(lang: {eq: $lang}) {
       uid
       lang
       data {
@@ -56,18 +64,6 @@ export const query = graphql`
               }
             }
           }
-        }
-        slider {
-          image {
-            localFile {
-              childImageSharp {
-                sizes(maxWidth: 1920) {
-                  ...GatsbyImageSharpSizes_withWebp
-                }
-              }
-            }
-          }
-          caption
         }
       }
     }

@@ -28,13 +28,13 @@ const getSchemaOrgJSONLD = ({
   },
 ]
 
-export const SEO = ({ seo: { data: {
-  uid, seotitle, seodescription,
+export const SEO = ({ seo: { uid, lang, data: {
+  seotitle, seodescription,
   seokeywords, seoimage
 }}}) => {
   const siteUrl = 'https://www.orchestra-design.com/'
   const fbAppID = ''
-  const url = uid !== null ? `${siteUrl}${uid.replace('.', '/')}` : siteUrl
+  const url = uid !== null ? `${siteUrl}${lang.replace('-us', '')}/${uid.replace(/.{3}$/i, '')}` : siteUrl
   const getImage = seoimage.localFile.childImageSharp.resolutions.src
   const schemaOrgJSONLD = getSchemaOrgJSONLD({    
     url, seotitle, getImage, seodescription

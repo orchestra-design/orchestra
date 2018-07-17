@@ -18,26 +18,18 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = ({ data: { work, allSite, links }}) => {
+const WorkTemplate = ({ data: { work, seo, allSite, links }}) => {
   const title = path(['data', 'title', 'text'], work)
-
+  const color = path(['data', 'color'], work)
+  const image = path(['data', 'image'], work)
   return (
     <Fragment>
       <TemplateWrapper 
-        seo={{
-          data: {
-            uid: work.uid,
-            seotitle: work.data.seotitle,
-            seodescription: work.data.seodescription,
-            seokeywords: work.data.seokeywords,
-            seoimage: work.data.seoimage,
-          }
-        }}
-        color={work.data.color}
-        image={work.data.image}
-        lang={work.lang}
         {...{allSite}}
+        {...{color}}
+        {...{image}}
         {...{links}}
+        {...{seo}}
         {...{title}}
       >
         <div className={css`${tw('h-screen bg-transparent')}; height: 100vh;`} theme="image" >
@@ -71,21 +63,7 @@ export default WorkTemplate
 export const query = graphql`
   query WorkTemplateQuery($slug: String!, $lang: String!) {
     work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
-      uid
-      lang
       data {
-        seotitle
-        seodescription
-        seokeywords
-        seoimage {
-          localFile {
-            childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
-              }
-            }
-          }
-        }
         title {
           text
         }
@@ -119,6 +97,24 @@ export const query = graphql`
             }
             sictext {
               html
+            }
+          }
+        }
+      }
+    }
+    seo: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
+      uid
+      lang
+      data {
+        seotitle
+        seodescription
+        seokeywords
+        seoimage {
+          localFile {
+            childImageSharp {
+              resolutions(width: 1200, height: 630) {
+                ...GatsbyImageSharpResolutions_noBase64
+              }
             }
           }
         }
