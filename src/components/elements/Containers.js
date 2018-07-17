@@ -9,5 +9,8 @@ export const Container = styled('div')`
 `
 
 export const ContainerFluid = styled('div')`
-  ${tw('flex flex-row justify-center items-center w-full')};
+  ${tw([
+    'flex', 'flex-row', 'justify-center',
+    'items-center', 'w-full'
+  ])};
 `

@@ -11,7 +11,7 @@ import {
   and, any, assoc, compose, equals, F, find, gt,
   head, ifElse, isNil, length, lt, lte, lensPath,
   map, merge, not, omit, path, pathOr, pick, pipe, propEq,
-  replace, view 
+  replace, splitEvery, view 
 } from 'ramda'
 import * as uuid from 'uuid/v1'
 
@@ -22,7 +22,7 @@ export {
   and, any, assoc, compose, equals, F, find, 
   gt, head, ifElse, isNil, length, lt, lte, 
   lensPath, map, merge, not, omit, path, pathOr,pick, 
-  pipe, propEq, replace, view,
+  pipe, propEq, replace, splitEvery, view,
   uuid
 }
 

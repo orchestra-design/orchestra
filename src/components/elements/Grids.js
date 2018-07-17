@@ -3,16 +3,14 @@ import { css } from 'react-emotion'
 
 export const ColumnThree = css`
   ${tw([
-    'flex-1', 'px-1/12',
-    'screen:px-1/47', 'w-full',
-    'screen:w-1/3'
+    'md:px-1/47', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-1/3'
   ])};
 `
 
 export const Row = css`
   ${tw([
-    'flex', 'flex-col', 'screen:flex-row',
-    'flex-wrap', '-mx-1/12',
-    'screen:-mx-1/47', 'w-full'
+    'flex', 'flex-col', 'md:flex-row',
+    'md:-mx-1/47'
   ])};
 `
