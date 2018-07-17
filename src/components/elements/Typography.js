@@ -20,7 +20,8 @@ export const ButtonText = css`
 export const Description = css`
   ${tw([
     'font-source', 'font-semibold',
-    'text', 'screen:text-sm', 'tracking-normal'
+    'text', 'text-description',
+    'tracking-normal'
   ])};
 `
 

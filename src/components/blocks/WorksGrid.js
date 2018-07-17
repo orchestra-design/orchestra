@@ -4,27 +4,32 @@ import styled from 'react-emotion'
 
 import { 
   compose, find, map, merge, 
-  pick, path, propEq, splitEvery,
-  uuid 
+  pick, path, propEq, uuid 
 } from '../../helpers'
-import { 
-  ColumnThree, LinkImage, Row 
-} from '../elements'
+import { LinkImage } from '../elements'
 
 const Container = styled('div')`
   ${tw(['px-q24'])};
 `
 
 const GridRow = styled('div')`
-  ${Row};
-  ${tw(['md:mb-q24'])};
+  ${tw([
+    'flex', 'flex-col', 'screen:flex-row',
+    'flex-wrap', 'screen:-mx-q12'
+  ])};
 `
 
 const LinkWrapper = styled('div')`
-  ${ColumnThree};
+  ${tw([
+    'screen:px-q12', 'mb-q24',
+    'w-full', 'screen:w-1/2', 'desktop:w-1/3'
+  ])};
   height: 20rem;
-  @media(min-width: 769px) {
-    max-width: calc((1/3 - 1/47) * 100%);
+  @media(min-width: 601px) {
+    max-width: calc(1/2 * 100% - 1.5rem);
+  }
+  @media(min-width: 1201px) {
+    max-width: calc(1/3 * 100% - 1.5rem);
   }
 `
 
@@ -40,17 +45,15 @@ export const WorksGrid = ({ allworks, worksLinks }) => {
 
   return (
     <Container>
-      {splitEvery(3, worksLinks).map(row => 
-        <GridRow>
-        {row.map(link => 
-          <LinkWrapper key={uuid()} >
-            <LinkImage key={uuid()}
-              {...merge(link, getWorkData(linkUid(link))) }            
-            />
-          </LinkWrapper>
-        )}
-        </GridRow>
+      <GridRow key={uuid()} >
+      {worksLinks.map(link => 
+        <LinkWrapper key={uuid()} >
+          <LinkImage key={uuid()}
+            {...merge(link, getWorkData(linkUid(link))) }            
+          />
+        </LinkWrapper>
       )}
+      </GridRow>
     </Container>
   )
 }

@@ -25,7 +25,7 @@ const LinkedImage = styled(Link)`
   ${tw([
     'flex', 
     'hover:shadow-elevate1',
-    'overflow-hidden',
+    'no-underline', 'overflow-hidden',
     'relative', 'w-full', 'h-full'
   ])};
   ${BaseTransition};
@@ -42,9 +42,10 @@ const LinkedImage = styled(Link)`
 
 const TitleWrapper = styled('div')`
   ${tw([
-    'absolute', 'flex', 'flex-col',
-    'h-1/2', 'justify-end',
-    'opacity-0', 'pin-b', 'pin-l', 'pin-r'
+    'absolute', 
+    'flex', 'flex-col', 'h-1/2', 
+    'justify-end', 'screen:opacity-0', 
+    'pin-b', 'pin-l', 'pin-r',
   ])}; 
   ${BaseTransition};
   background: linear-gradient(180deg, 
@@ -68,7 +69,10 @@ const Title = styled('h3')`
 
 const DescriptionText = styled('span')`
   ${Description};
-  ${tw(['ml-auto', 'text-white', 'min-w-1/2'])};
+  ${tw([
+    'ml-auto', 'text-white',
+    'min-w-1/2'
+  ])};
   line-height: 1.125rem;
 `
 
