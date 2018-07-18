@@ -1,9 +1,17 @@
+/* global tw */
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'react-emotion'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { WorksGrid, WorksFilters } from '../components/blocks'
+import { Container, Heading1 } from '../components/elements'
+
+const Title = styled('h1')`
+  ${Heading1};
+  ${tw(['mt-q200'])};
+`
 
 const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) => {
   const title = path(['data', 'title', 'text'], workspage)
@@ -17,9 +25,11 @@ const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) =>
       {...{title}}
     >
       <div theme="white" >
-        <h1>
-        { title }
-        </h1>        
+        <Container>
+          <Title>
+          { title }
+          </Title>        
+        </Container>
         <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />
       </div>

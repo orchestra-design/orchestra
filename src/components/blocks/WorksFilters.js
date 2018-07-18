@@ -29,7 +29,7 @@ const FiltersRow = styled('div')`
   ${tw([
     'flex', 'flex-row',
     'items-center', 'justify-between',
-    'mb-q36', 'mt-q48'
+    'mb-q36', 'mt-q72'
   ])};
 `
 
@@ -85,11 +85,9 @@ const OpenerIcon = styled(SquareButton)`
   transition-property: background, color, shadow, transform;
   transition-duration: .2s, .2s, .2s, 0s;
   transition-timing-function: ease-in-out;
-  background-image: url(${({ worksFilter, worksFiltersOpen }) => 
-    worksFilter === null && !worksFiltersOpen ? IconDownBlack : IconDown});  
+  background-image: url(${({ worksFilter, worksFiltersOpen }) => worksFilter === null && !worksFiltersOpen ? IconDownBlack : IconDown});  
   &:hover {
-    background-image: url(${({ worksFilter, worksFiltersOpen }) => 
-      worksFilter === null && !worksFiltersOpen ? IconDown : IconDownBlack});
+    background-image: url(${({ worksFilter, worksFiltersOpen }) => worksFilter === null && !worksFiltersOpen ? IconDown : IconDownBlack});
   }
 `
 

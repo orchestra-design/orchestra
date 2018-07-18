@@ -4,7 +4,7 @@ import styled from 'react-emotion'
 export const Container = styled('div')`
   ${tw([
     'mx-auto', 'max-w-desktop',
-    'px-1/12', 'screen:px-1/47',
+    'px-q24'
   ])};
 `
 
