@@ -11,13 +11,11 @@ import {
 import { LinkImage } from '../elements'
 
 const Container = styled('div')`
-  ${({worksGrid}) => worksGrid 
-  ? tw(['px-q24']) 
-  : tw([
-      'mx-auto', 'max-w-desktop',
-      'px-1/12', 'screen:px-1/47',
-    ])
-  };
+  ${tw(['px-q24'])};
+  ${({worksGrid}) => !worksGrid &&
+    tw([
+      'mx-auto', 'max-w-desktop'
+    ])};
 `
 
 const GridRow = styled('div')`

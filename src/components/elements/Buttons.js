@@ -6,7 +6,7 @@ import { ButtonText } from './Typography'
 export const Button = css`
   ${ButtonText};
   ${tw([
-    'flex', 'justify-center', 'items-center', 
+    'cursor-pointer', 'flex', 'justify-center', 'items-center', 
     'no-underline', 'text-white', 'hover:text-black',
     'bg-black', 'hover:bg-white',
     'shadow-none', 'hover:shadow-elevate1',

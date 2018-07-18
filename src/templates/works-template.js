@@ -3,8 +3,7 @@ import { graphql } from 'gatsby'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { WorksGrid, WorksFilter } from '../components/blocks'
-import { GridToggler } from '../components/elements'
+import { WorksGrid, WorksFilters } from '../components/blocks'
 
 const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) => {
   const title = path(['data', 'title', 'text'], workspage)
@@ -20,9 +19,8 @@ const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) =>
       <div theme="white" >
         <h1>
         { title }
-        </h1>
-        <GridToggler/>
-        <WorksFilter {...{allworks}} />
+        </h1>        
+        <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />
       </div>
     </TemplateWrapper>

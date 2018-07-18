@@ -1,4 +1,4 @@
 export { Header } from './Header'
 export { Homepage } from './Homepage'
-export { WorksFilter } from './WorksFilter'
+export { WorksFilters } from './WorksFilters'
 export { WorksGrid } from './WorksGrid'
