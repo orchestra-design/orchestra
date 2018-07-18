@@ -41,7 +41,10 @@ const AllWorksButton = styled('span')`
   ])};
   ${({ worksFilter }) => worksFilter === null 
   ? tw(['bg-black', 'text-white'])
-  : tw(['bg-white', 'text-black'])
+  : tw([
+      'bg-white', 'text-black',
+      'hover:bg-black', 'hover:text-white',
+    ])
   };
   span {
     display: inline-flex;
@@ -148,7 +151,7 @@ export const WorksFilters = enhance(({
   return (
     <Container>
       <FiltersRow>
-        <AllWorksButton {...{worksFilter}}>
+        <AllWorksButton {...{worksFilter}} >
           <span
             onClick={setFilter}
             reset="true"
