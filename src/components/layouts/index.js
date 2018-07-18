@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { unless, isNil } from '../../helpers'
 
-import { Header } from '../blocks'
+import { Footer, Header } from '../blocks'
 import { 
   Back, Image,
   ScrollContainer, SEO 
@@ -32,7 +32,12 @@ const TemplateWrapper = ({
           )(image)}
           <Back {...{color}} />
           <ScrollContainer>
-          { children }
+            <Fragment>
+              { children }            
+              <div theme="black">
+                <Footer />
+              </div>
+            </Fragment>
           </ScrollContainer>
       </Fragment>
     </ThemeProvider>

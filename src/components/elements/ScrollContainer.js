@@ -57,7 +57,7 @@ const enhance = compose(
         const childOffset = offset(child)
         const newTheme = camelCase(child.attributes.theme.value)
         ifElse(
-          ({ top, height }) => and(lt(top, 201), gt((top + height), 200)),
+          ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
           () => not(equals(newTheme, props.storedTheme)) && props.changeTheme(newTheme),
           F
         )(childOffset)

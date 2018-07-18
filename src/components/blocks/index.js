@@ -1,3 +1,4 @@
+export { Footer } from './Footer'
 export { Header } from './Header'
 export { Homepage } from './Homepage'
 export { WorksFilters } from './WorksFilters'

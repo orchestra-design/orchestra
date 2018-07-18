@@ -4,10 +4,13 @@ import { Spring } from 'react-spring'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-//import { Homepage } from '../components/blocks'
+import { WorksFilters, WorksGrid } from '../components/blocks'
 
-const IndexTemplate = ({ data: { page, seo, allSite, links } }) => {
+const IndexTemplate = ({data: { 
+  page, allworks, works, seo, allSite, links
+}}) => {
   const image = path(['data', 'slider', 0, 'image'], page)
+  const worksLinks = path(['data', 'links'], works)
   return (
     <TemplateWrapper 
       {...{allSite}}
@@ -23,8 +26,11 @@ const IndexTemplate = ({ data: { page, seo, allSite, links } }) => {
         {({...styles}) => <h1 style={styles}>Poop!</h1>}
         </Spring>
       </div>
+      <div theme="white" >
+        <WorksFilters {...{allworks}} />
+        <WorksGrid {...{allworks}} {...{worksLinks}} />
+      </div>
       <div theme="image" style={{height: '100vh'}} >{ page.data.seotitle }</div>
-      <div theme="black" style={{height: '100vh'}} />
     </TemplateWrapper>
   )
 }
@@ -47,6 +53,56 @@ export const query = graphql`
           }
           caption
         }
+      }
+    }
+    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
+      edges {
+        node {
+          uid
+          tags
+          data {
+            location
+            type
+            status
+            timeline
+            client
+            title {
+              text
+            }
+            description
+            color
+          }
+        }
+      }
+    }
+    works: prismicWorks(lang: {eq: $lang}) {
+      data {        
+        links {
+          image {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          hoverimage {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          link {
+            url
+            document {
+              uid
+            }
+          }
+        }        
       }
     }
     seo: prismicHomepage(lang: {eq: $lang}) {

@@ -30,6 +30,8 @@ const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) =>
           { title }
           </Title>        
         </Container>
+      </div>
+      <div theme="white" >
         <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />
       </div>
@@ -74,7 +76,7 @@ export const query = graphql`
         }
       }
     }
-    allworks: allPrismicWork(filter: {lang: {eq: "ru"}}) {
+    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
       edges {
         node {
           uid
@@ -93,7 +95,7 @@ export const query = graphql`
           }
         }
       }
-    }    
+    }
     seo: prismicWorks(lang: {eq: $lang}) {
       uid
       lang
