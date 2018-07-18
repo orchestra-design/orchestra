@@ -125,7 +125,7 @@ const enhance = compose(
   withHandlers({
     setFilter: props => event => {
       props.setWorkFilter(
-        event.target.attributes.reset.value === 'true'
+        event.target.className.includes('reset')
         ? null
         : event.target.textContent
       )
@@ -151,12 +151,11 @@ export const WorksFilters = enhance(({
   return (
     <Container>
       <FiltersRow>
-        <AllWorksButton {...{worksFilter}} >
-          <span
-            onClick={setFilter}
-            reset="true"
-          >Все проекты</span>
-        </AllWorksButton>
+        <AllWorksButton 
+          className="reset"
+          onClick={setFilter}
+          {...{worksFilter}} 
+        >Все проекты</AllWorksButton>
         <Filters>
           <FilterOpener
             onClick={toggleFilters}
@@ -172,12 +171,9 @@ export const WorksFilters = enhance(({
           />
           <FilterList {...{worksFiltersOpen}}>
           {allFilters.map(filter => (
-            <FilterButton key={uuid()} >
-              <span key={uuid()}
-                onClick={setFilter}
-                reset="false"
-              >{ filter }</span>
-            </FilterButton>
+            <FilterButton key={uuid()}
+              onClick={setFilter}            
+            >{ filter }</FilterButton>
           ))}
           </FilterList>
         </Filters>

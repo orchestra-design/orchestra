@@ -32,8 +32,28 @@ const enhance = compose(
   ),
   withHandlers({
     scroll: props => event => {
-      const scrollChildren = Array.from(event.target.childNodes)
+      const scrollChildren = Array.from(event.target.children)
       not(isNil(scrollChildren)) && scrollChildren.map((child, i) => {
+        const childrenDesappearing = child => {
+          const grandchildren = Array.from(child.children)
+          grandchildren.map(child => {
+            if(child.children.length === 0) {
+              const { top, height } = offset(child)
+              child.style.opacity = 
+                (top + height) > 0 && (top + height) < 100 
+                ? (top + height) / 100
+                : (top + height) < height
+                ? (top + height) / height
+                : ''
+            } else {
+              childrenDesappearing(child)
+            }
+            return F
+          })
+          return F
+        }
+        childrenDesappearing(child)
+        
         const childOffset = offset(child)
         const newTheme = camelCase(child.attributes.theme.value)
         ifElse(
