@@ -21,6 +21,10 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
+    TOGGLE_GRID: (state) => assoc(
+      'worksGrid', !state.worksGrid,
+      state
+    ),
     TOGGLE_MENU: (state, action) => merge(
       state,
       {

@@ -4,10 +4,11 @@ import { delay } from '../helpers'
 
 import { 
   COLLAPSE_MENU, MENU_TRANSITION, SCROLL_MENU,
-  THEME, TOGGLE_MENU,
+  THEME, TOGGLE_GRID, TOGGLE_MENU,
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
+const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
 const scrollMenuAction = createAction(SCROLL_MENU)
 
@@ -36,6 +37,11 @@ export const pageTransition = () =>
 export const srollMenu = payload =>
   dispatch => { 
     delay(400, () => dispatch(scrollMenuAction(payload)))
+  }
+
+export const toggleGrid = () =>
+  dispatch => { 
+    dispatch(toggleGrideAction())
   }
 
 export const toggleMenu = () =>
