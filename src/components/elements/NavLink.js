@@ -34,7 +34,10 @@ export const NavLink = connect(({
   collapsedMenu, collapseTransition, isMenu 
 }),
   { pageTransition }
-)(({ linktitle, link, collapsedMenu, collapseTransition, isMenu, pageTransition }) => (
+)(({ 
+  linktitle, link, collapsedMenu,
+  collapseTransition, isMenu, pageTransition 
+}) => (
   <Fragment>
     {and(not(isNil(linktitle)), not(isNil(link))) && 
       <Link

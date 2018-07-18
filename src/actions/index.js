@@ -3,14 +3,16 @@ import { createAction } from 'redux-actions'
 import { delay } from '../helpers'
 
 import { 
-  COLLAPSE_MENU, MENU_TRANSITION, SCROLL_MENU,
+  COLLAPSE_MENU, MENU_TRANSITION, 
+  SCROLL_MENU, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
+const scrollMenuAction = createAction(SCROLL_MENU)
+const setWorkFilterAction = createAction(SET_WORK_FILTER)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
-const scrollMenuAction = createAction(SCROLL_MENU)
 
 export const startTransition = () => ({ type: MENU_TRANSITION, payload: true })
 export const stopTransition = () => ({ type: MENU_TRANSITION, payload: false })
@@ -37,6 +39,11 @@ export const pageTransition = () =>
 export const srollMenu = payload =>
   dispatch => { 
     delay(400, () => dispatch(scrollMenuAction(payload)))
+  }
+
+export const setWorkFilter = payload =>
+  dispatch => { 
+    dispatch(setWorkFilterAction(payload))
   }
 
 export const toggleGrid = () =>

@@ -35,9 +35,16 @@ const reverseLang = ifElse(
 )
 
 export const LangSwitcher = connect(
-  ({ collapsedMenu, collapseTransition, isMenu }) => ({ collapsedMenu, collapseTransition, isMenu }),
+  ({ 
+    collapsedMenu, collapseTransition, isMenu 
+  }) => ({ 
+    collapsedMenu, collapseTransition, isMenu 
+  }),
   { pageTransition }
-)(({ lang, allSite, path, collapsedMenu, collapseTransition, isMenu, pageTransition }) => {
+)(({ 
+  lang, allSite, path, collapsedMenu, 
+  collapseTransition, isMenu, pageTransition 
+}) => {
   const makePath = `${withPrefix(reverseLang(lang))}${path.replace(/^\/.{2}/i, '')}`
   const safePath = compose(
     ifElse(

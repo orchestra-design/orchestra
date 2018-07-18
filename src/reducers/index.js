@@ -21,6 +21,10 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
+    SET_WORK_FILTER: (state, action) => assoc(
+      'worksFilter', action.payload,
+      state
+    ),
     TOGGLE_GRID: (state) => assoc(
       'worksGrid', !state.worksGrid,
       state
