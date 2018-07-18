@@ -94,8 +94,8 @@ const OpenerIcon = styled(SquareButton)`
 const FilterList = styled('div')`
   ${tw([
     'absolute', 'bg-white', 'flex-col',
-    'pin-l', 'pin-t', 'mt-q36',
-    'shadow-elevate1', 'z-40'
+    'pin-r', 'md:pin-none', 'md:pin-l', 'pin-t', 
+    'mt-q36', 'shadow-elevate1', 'z-40'
   ])}
   ${({worksFiltersOpen}) => worksFiltersOpen
   ? tw(['flex'])
