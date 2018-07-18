@@ -6,6 +6,7 @@ import {
   COLLAPSE_MENU, MENU_TRANSITION, 
   SCROLL_MENU, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
+  TOGGLE_WORK_FILTER
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
@@ -13,6 +14,7 @@ const scrollMenuAction = createAction(SCROLL_MENU)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
+const toggleWorkFilterAction = createAction(TOGGLE_WORK_FILTER)
 
 export const startTransition = () => ({ type: MENU_TRANSITION, payload: true })
 export const stopTransition = () => ({ type: MENU_TRANSITION, payload: false })
@@ -54,4 +56,9 @@ export const toggleGrid = () =>
 export const toggleMenu = () =>
   dispatch => { 
     dispatch(toggleMenuAction())
+  }
+
+export const toggleWorkFilter = () =>
+  dispatch => { 
+    dispatch(toggleWorkFilterAction())
   }

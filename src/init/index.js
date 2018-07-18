@@ -6,5 +6,6 @@ export const initState = {
   previousTheme: 'image',
   storedTheme: 'image',
   worksFilter: null,
+  worksFiltersOpen: false,
   worksGrid: true,
 }

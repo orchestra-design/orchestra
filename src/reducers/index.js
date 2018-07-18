@@ -37,6 +37,10 @@ const reducer = handleActions(
         storedTheme: action.payload !== undefined ? 'white' : !state.isMenu ? 'black' : state.previousTheme
       }
     ),
+    TOGGLE_WORK_FILTER: (state) => assoc(
+      'worksFiltersOpen', !state.worksFiltersOpen,
+      state
+    ),
   },
   initState
 )
