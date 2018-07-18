@@ -5,7 +5,7 @@ import styled from 'react-emotion'
 
 import { toggleGrid } from '../../actions'
 import { SquareButton } from './Buttons'
-import { TranitionBase } from './Transitions'
+import { BaseTransition } from './Transitions'
 
 import IconGrid from '../../assets/icon-grid.svg'
 import IconGridBlack from '../../assets/icon-grid-black.svg'
@@ -18,7 +18,7 @@ const GridButton = styled(SquareButton)`
     'bg-center', 'bg-no-repeat',
     'cursor-pointer', 'ml-auto'
   ])};
-  ${TranitionBase};
+  ${BaseTransition};
   background-image: url(${({worksGrid}) => worksGrid ? IconList : IconGrid});  
   &:hover {
     background-image: url(${({worksGrid}) => worksGrid ? IconListBlack : IconGridBlack});

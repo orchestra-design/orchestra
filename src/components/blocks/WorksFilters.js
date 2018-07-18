@@ -12,7 +12,7 @@ import {
 
 import { 
   Button, GridToggler, 
-  SquareButton, TranitionBase
+  SquareButton
 } from '../elements'
 
 import IconDown from '../../assets/icon-down.svg'
@@ -74,7 +74,6 @@ const FilterOpener = styled('span')`
 `
 
 const OpenerIcon = styled(SquareButton)`
-  ${TranitionBase};
   ${tw(['bg-center', 'bg-no-repeat'])};
   ${({ worksFilter, worksFiltersOpen }) => 
     worksFilter === null && !worksFiltersOpen &&
@@ -83,6 +82,9 @@ const OpenerIcon = styled(SquareButton)`
         'hover:bg-black', 'hover:text-white',
       ])};
   transform: rotateZ(${({ worksFiltersOpen }) => worksFiltersOpen ? '180deg' : '0deg'});
+  transition-property: background, color, shadow, transform;
+  transition-duration: .2s, .2s, .2s, 0s;
+  transition-timing-function: ease-in-out;
   background-image: url(${({ worksFilter, worksFiltersOpen }) => 
     worksFilter === null && !worksFiltersOpen ? IconDownBlack : IconDown});  
   &:hover {
