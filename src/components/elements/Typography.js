@@ -81,3 +81,11 @@ export const Lead = css`
     'text-heading5', 'font-semibold',
   ])};
 `
+
+export const List = css`
+  ${tw([
+    'font-source', 'font-normal',
+    'leading-normal', 'text-list',
+    'tracking-normal'
+  ])};
+`

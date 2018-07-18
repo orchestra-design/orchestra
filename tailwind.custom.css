@@ -5843,6 +5843,10 @@ button,
   font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
 }
 
+.text-description {
+  font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+}
+
 .text-heading1 {
   font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
 }
@@ -5867,8 +5871,8 @@ button,
   font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
 }
 
-.text-description {
-  font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+.text-list {
+  font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
 }
 
 .italic {
@@ -11507,6 +11511,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .sm\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .sm\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -11531,8 +11539,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .sm\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .sm\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:italic {
@@ -17172,6 +17180,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .md\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .md\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -17196,8 +17208,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .md\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .md\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:italic {
@@ -22837,6 +22849,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .lg\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .lg\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -22861,8 +22877,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .lg\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .lg\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:italic {
@@ -28502,6 +28518,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .xl\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .xl\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -28526,8 +28546,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .xl\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .xl\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:italic {
@@ -34167,6 +34187,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .screen\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .screen\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -34191,8 +34215,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .screen\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .screen\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:italic {
@@ -39832,6 +39856,10 @@ button,
     font-size: calc(16px + 5 * ((100vw - 320px) / 1280));
   }
 
+  .desktop\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .desktop\:text-heading1 {
     font-size: calc(48px + 72 * ((100vw - 320px) / 1280));
   }
@@ -39856,8 +39884,8 @@ button,
     font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
   }
 
-  .desktop\:text-description {
-    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  .desktop\:text-list {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:italic {
