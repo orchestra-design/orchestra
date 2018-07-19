@@ -5,7 +5,7 @@ import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 
 import {
-  isNil, not, path
+  isNil, not, path, concat, mergeDeepWith
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
@@ -24,13 +24,24 @@ const WorkTemplate = ({ data: {
   const title = path(['data', 'title', 'text'], work)
   const color = path(['data', 'color'], work)
   const image = path(['data', 'image'], work)
+  const appendedLinks = mergeDeepWith(concat, links, 
+    {data: { 
+      headerlinks: [{
+          linktitle: seo.lang.includes('ru') ? 'Проекты' : 'Works',
+          link: {
+            url: `/${seo.lang.replace('-us', '')}/projects`
+          }
+        }]
+      }
+    }
+  )
   return (
     <Fragment>
       <TemplateWrapper 
         {...{allSite}}
         {...{color}}
         {...{image}}
-        {...{links}}
+        links={appendedLinks}
         {...{meta}}
         {...{seo}}
         {...{title}}

@@ -28,6 +28,13 @@ const BlackButton = styled('span')`
   };
 `
 
+const LinkStyle = css`
+  ${tw('no-underline p-q12')};
+  &:nth-child(4) {
+    ${tw(['md:hidden', 'lg:block'])};
+  }
+`
+
 export const NavLink = connect(({ 
   collapsedMenu, collapseTransition, isMenu 
 }) => ({ 
@@ -44,7 +51,7 @@ export const NavLink = connect(({
         key={uuid()} 
         to={link.url}
         onClick={() => pageTransition()}
-        className={css`${tw('no-underline p-q12')};`}       
+        className={LinkStyle}       
       >
         <BlackButton 
           key={uuid()} 
