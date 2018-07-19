@@ -14,7 +14,7 @@ const Breadcrumbs = styled('div')`
     tw(['screen:h-q48', 'screen:text-lg'])
   };
   ${({ collapsedMenu }) => collapsedMenu && 
-    tw(['flex', 'screen:h-q36', 'screen:text-sm'])
+    tw(['sm:flex', 'screen:h-q36', 'screen:text-sm'])
   };
   ${({ isMenu }) => isMenu && 
     tw(['flex', 'w-full', 'm-0', 'screen:h-q36', 'screen:text-sm'])
