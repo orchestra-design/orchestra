@@ -8,8 +8,7 @@ export const Button = css`
   ${ButtonText};
   ${tw([
     'cursor-pointer', 'flex', 'justify-center', 'items-center', 
-    'no-underline', 'text-white', 'hover:text-black',
-    'bg-black', 'hover:bg-white',
+    'no-underline', 'text-white', 'bg-black', 
     'shadow-none', 'hover:shadow-elevate1',
     'active:shadow-elevate0', 'focus:shadow-elevate0'
   ])};

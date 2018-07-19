@@ -1,11 +1,11 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0 0H4V4H0V0Z" transform="translate(3 3)" stroke="black" />
-  <path d="M7 0H11V4H7V0Z" transform="translate(3 3)" stroke="black" />
-  <path d="M14 0H18V4H14V0Z" transform="translate(3 3)" stroke="black" />
-  <path d="M0 7H4V11H0V7Z" transform="translate(3 3)" stroke="black" />
-  <path d="M7 7H11V11H7V7Z" transform="translate(3 3)" stroke="black" />
-  <path d="M14 7H18V11H14V7Z" transform="translate(3 3)" stroke="black" />
-  <path d="M0 14H4V18H0V14Z" transform="translate(3 3)" stroke="black" />
-  <path d="M7 14H11V18H7V14Z" transform="translate(3 3)" stroke="black" />
-  <path d="M14 14H18V18H14V14Z" transform="translate(3 3)" stroke="black" />
+  <path d="M0 0H4V4H0V0Z" transform="translate(3 3)" fill="white" />
+  <path d="M7 0H11V4H7V0Z" transform="translate(3 3)" fill="white" />
+  <path d="M14 0H18V4H14V0Z" transform="translate(3 3)" fill="white" />
+  <path d="M0 7H4V11H0V7Z" transform="translate(3 3)" fill="white" />
+  <path d="M7 7H11V11H7V7Z" transform="translate(3 3)" fill="white" />
+  <path d="M14 7H18V11H14V7Z" transform="translate(3 3)" fill="white" />
+  <path d="M0 14H4V18H0V14Z" transform="translate(3 3)" fill="white" />
+  <path d="M7 14H11V18H7V14Z" transform="translate(3 3)" fill="white" />
+  <path d="M14 14H18V18H14V14Z" transform="translate(3 3)" fill="white" />
 </svg>

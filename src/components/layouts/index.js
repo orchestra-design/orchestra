@@ -7,11 +7,12 @@ import { unless, isNil } from '../../helpers'
 
 import { Footer, Header } from '../blocks'
 import { 
-  Back, Image,
+  Back, ContactButton, Image,
   ScrollContainer, SEO 
 } from '../elements'
 import { theme as EmotionTheme } from '../theme'
 
+const Contact = ContactButton.withComponent('a')
 
 const TemplateWrapper = ({ 
   seo, allSite, links, meta, color, 
@@ -28,18 +29,22 @@ const TemplateWrapper = ({
           {...{links}} 
           {...{title}}
         />
-          {unless(isNil, () =>
-            <Image {...{image}} />
-          )(image)}
-          <Back {...{color}} />
-          <ScrollContainer>
-            <Fragment>
-              { children }            
-              <div theme="black">
-                <Footer {...{meta}} />
-              </div>
-            </Fragment>
-          </ScrollContainer>
+        {unless(isNil, () =>
+          <Image {...{image}} />
+        )(image)}
+        <Back {...{color}} />
+        <ScrollContainer>
+          <Fragment>
+            { children }            
+            <div theme="black">
+              <Footer {...{meta}} />
+            </div>
+          </Fragment>
+        </ScrollContainer>
+        <Contact 
+          href={meta.data.email.url}
+          target="_blank" rel="noopener noreferrer"
+        />
       </Fragment>
     </ThemeProvider>
   )  

@@ -12,6 +12,7 @@ export {
   Container, ContainerFluid 
 } from './Containers'
 
+export { ContactButton } from './ContactButton'
 export { GridToggler } from './GridToggler'
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
 export { HeaderLogo } from './HeaderLogo'
