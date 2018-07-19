@@ -26,7 +26,8 @@ const TemplateWrapper = ({
         <Header 
           {...{allSite}} 
           {...{lang}} 
-          {...{links}} 
+          {...{links}}
+          {...{meta}}
           {...{title}}
         />
         {unless(isNil, () =>

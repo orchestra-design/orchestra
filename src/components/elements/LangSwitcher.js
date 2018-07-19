@@ -23,7 +23,10 @@ const SwitcherButton = styled(SquareButton)`
     tw(['screen:h-q48', 'screen:w-q48', 'md:mr-q36', 'screen:text-lg'])
   };
   ${({ isMenu }) => isMenu &&
-    tw(['screen:h-q48', 'screen:w-q48', 'screen:text-lg', 'm-0'])
+    tw([
+      'absolute', 'md:relative', 'screen:h-q48', 'screen:w-q48', 
+      'screen:text-lg', 'm-0', 'self-start'
+    ])
   };
   ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
     tw(['screen:h-q36', 'screen:w-q36', 'screen:text-sm', 'md:mr-q24'])

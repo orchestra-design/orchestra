@@ -12,15 +12,23 @@ import IconContactStrokeBlack from '../../assets/icon-contact-stroke-black.svg'
 export const ContactButton = styled(RoundButton)`
   ${tw([
     'absolute',
-    'hidden', 'screen:flex',
-    'm-q36', 'desktop:q36',
+    'hidden', 'md:flex',
+    'md:m-q36',
     'pin-b', 'pin-r',
-    'shadow-none', 'hover:shadow-elevate1'
+    'screen:h-q48', 'screen:w-q48',
+    'shadow-none', 'hover:shadow-elevate1',
   ])};
+  ${({ isMenu }) => isMenu && tw(['mx-q12', 'my-q36', 'screen:my-q24'])};
   ${BaseTransition};
   background-color: ${({ theme }) => theme.color};
   background-image: url(${({ theme }) => theme.color === '#ffffff' ? IconContactStrokeBlack : IconContactStroke});
   background-size: 20px 20px;
+  @media(min-width: 601px) {
+    background-size: 24px 24px;
+  }
+  @media(max-width: 768px) {
+    display: ${({ isMenu }) => isMenu && 'flex'};
+  }
   &:hover {
     background-image: url(${({ theme }) => theme.color === '#ffffff' ? IconContactBlack : IconContact});
   }

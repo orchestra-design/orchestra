@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import { map, pathOr, uuid } from '../../helpers'
 import {
-  LangSwitcher, NavLink
+  ContactButton, LangSwitcher, NavLink
 } from '../elements'
 
 const Navigaton = styled('nav')`
@@ -21,10 +21,12 @@ const Navigaton = styled('nav')`
   };
 `
 
+const Contact = ContactButton.withComponent('a')
+
 export const HeaderNavigation = connect(
   ({ isMenu }) => ({ isMenu }),
 )(props => {
-  const { isMenu } = props
+  const { isMenu, meta } = props
   const headerlinks = pathOr(
     false, 
     ['links', 'data', 'headerlinks'], 
@@ -38,6 +40,12 @@ export const HeaderNavigation = connect(
         <NavLink key={uuid()}  {...link} />
       )(headerlinks)}
       <LangSwitcher {...props} />
+      {isMenu && <Contact 
+          href={meta.data.email.url}
+          {...{isMenu}}
+          target="_blank" rel="noopener noreferrer"
+        />
+      }
     </Navigaton>
   )
 })
