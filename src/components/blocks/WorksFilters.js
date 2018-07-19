@@ -62,8 +62,8 @@ const Filters = styled('div')`
 const FilterOpener = styled('span')`
   ${Button};
   ${tw([
-    'h-q36', 'px-q12', 'flex-no-shrink',
-    'whitespace-no-wrap'
+    'h-q36', 'px-q12',
+    'truncate'
   ])};
   ${({ worksFilter, worksFiltersOpen }) => 
     worksFilter === null && !worksFiltersOpen &&

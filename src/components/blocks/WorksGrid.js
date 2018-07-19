@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { 
   compose, contains, filter,
   find, identity, ifElse, isNil, map, merge, 
-  pick, path, propEq, uuid
+  safeMap, pick, path, propEq, uuid,
 } from '../../helpers'
 import { LinkImage } from '../elements'
 
@@ -70,8 +70,8 @@ export const WorksGrid = connect(
   const filteredLinks = ifElse(
     ({worksFilter}) => isNil(worksFilter),
     ({worksLinks}) => identity(worksLinks),
-    ({worksFilter, worksLinks, allworks}) => filter(link => contains(
-      linkUid(link), 
+    ({worksFilter, worksLinks, allworks}) => filter(link => 
+      contains(linkUid(link), 
       map(path(['node', 'uid']))(filter(({ node }) => 
         contains(worksFilter, node.tags)
       )(allworks.edges))
@@ -81,13 +81,13 @@ export const WorksGrid = connect(
   return (
     <Container {...{worksGrid}} >
       <GridRow key={uuid()} {...{worksGrid}} >
-      {filteredLinks.map(link => 
+      {safeMap(link => (
         <LinkWrapper key={uuid()} {...{worksGrid}} >
           <LinkImage key={uuid()} {...{worksGrid}}
             {...merge(link, getWorkData(linkUid(link))) }            
           />
         </LinkWrapper>
-      )}
+      ), filteredLinks)}
       </GridRow>
     </Container>
   )
