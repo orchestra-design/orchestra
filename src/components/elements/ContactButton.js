@@ -13,8 +13,7 @@ export const ContactButton = styled(RoundButton)`
   ${tw([
     'absolute',
     'hidden', 'md:flex',
-    'md:m-q36',
-    'pin-b', 'pin-r',
+    'md:m-q36', 'pin-b', 'pin-r',
     'screen:h-q48', 'screen:w-q48',
     'shadow-none', 'hover:shadow-elevate1',
   ])};

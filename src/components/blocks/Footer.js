@@ -47,7 +47,7 @@ const Link = styled('a')`
 const SocialLink = SocialButton.withComponent('a')
 
 const Accio = styled('div')`
-  ${tw(['mb-q24'])};
+  ${tw(['mb-q24', 'mt-q144'])};
 `
 
 export const Footer = ({ meta }) => {

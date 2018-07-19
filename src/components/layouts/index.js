@@ -8,7 +8,7 @@ import { unless, isNil } from '../../helpers'
 import { Footer, Header } from '../blocks'
 import { 
   Back, ContactButton, Image,
-  ScrollContainer, SEO 
+  ScrollContainer, SEO, UpButton
 } from '../elements'
 import { theme as EmotionTheme } from '../theme'
 
@@ -42,6 +42,7 @@ const TemplateWrapper = ({
             </div>
           </Fragment>
         </ScrollContainer>
+        <UpButton />
         <Contact 
           href={meta.data.email.url}
           target="_blank" rel="noopener noreferrer"
