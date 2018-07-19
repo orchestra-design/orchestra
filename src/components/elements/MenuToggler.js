@@ -15,13 +15,13 @@ const MenuButton = styled(SquareButton)`
   ${tw([
     'flex', 'md:hidden', 
     'bg-center', 'bg-no-repeat',
-    'border', 'border-black', 'border-solid',
+    'border', 'border-solid',
     'cursor-pointer', 'm-q24'
   ])};
   background-image: url(${props => props.isMenu ? IconClose : IconMenu});
+  border-color: ${({ theme }) => theme.color};
   transition: all .2s ease-in-out;
   &:hover {
-    ${props => props.isMenu && tw(['border-white'])};
     background-image: url(${props => props.isMenu ? IconClose : IconMenuBlack});
   }
 `
