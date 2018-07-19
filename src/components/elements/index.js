@@ -1,7 +1,7 @@
 export { Back } from './Back'
 
 export {
-  Button, SquareButton
+  Button, RoundButton, SquareButton
 } from './Buttons'
 
 export { 
@@ -23,6 +23,7 @@ export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
+export { SocialButton } from './SocialButton'
 
 export {
   BaseTransition, ImageLinkTransition
@@ -30,7 +31,7 @@ export {
 
 export { 
   Body, ButtonText, Description,
-  Heading, Heading1,
+  DescriptionSemibold, Heading, Heading1,
   Heading2, Heading3, Heading4,
   Heading5, Heading6, Lead, List
 } from './Typography'

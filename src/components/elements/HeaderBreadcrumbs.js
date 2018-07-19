@@ -20,7 +20,7 @@ const Breadcrumbs = styled('div')`
     tw(['flex', 'w-full', 'm-0', 'screen:h-q36', 'screen:text-sm'])
   };
   @media(max-width: 576px) {
-    order: 1;
+    order: ${({ isMenu }) => isMenu && 1};
   }
   color: ${props => props.theme.color};
 `

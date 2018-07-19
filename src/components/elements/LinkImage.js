@@ -10,7 +10,7 @@ import {
   BaseTransition, ImageLinkTransition 
 } from './Transitions'
 import { 
-  List, Description, 
+  List, DescriptionSemibold, 
   Heading2, Heading6 
 } from './Typography'
 
@@ -120,7 +120,7 @@ const Title = styled('h3')`
 
 const DescriptionText = styled('span')`
   ${({worksGrid}) => worksGrid
-  ? Description
+  ? DescriptionSemibold
   : List
   };
   ${({worksGrid}) => worksGrid

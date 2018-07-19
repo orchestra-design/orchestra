@@ -18,7 +18,9 @@ const Section = styled('section')`
   transition: all .6s ease-in-out .2s;
 `
 
-const WorkTemplate = ({ data: { work, seo, allSite, links }}) => {
+const WorkTemplate = ({ data: { 
+  work, seo, allSite, links, meta 
+}}) => {
   const title = path(['data', 'title', 'text'], work)
   const color = path(['data', 'color'], work)
   const image = path(['data', 'image'], work)
@@ -29,6 +31,7 @@ const WorkTemplate = ({ data: { work, seo, allSite, links }}) => {
         {...{color}}
         {...{image}}
         {...{links}}
+        {...{meta}}
         {...{seo}}
         {...{title}}
       >
@@ -136,6 +139,9 @@ export const query = graphql`
           path
         }
       }
+    }
+    meta: prismicMeta(lang: {eq: $lang}) {
+      ...MetaFragment
     }
   }
 `

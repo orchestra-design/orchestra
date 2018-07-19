@@ -7,7 +7,7 @@ import TemplateWrapper from '../components/layouts'
 import { WorksFilters, WorksGrid } from '../components/blocks'
 
 const IndexTemplate = ({data: { 
-  page, allworks, works, seo, allSite, links
+  page, allworks, works, seo, allSite, links, meta
 }}) => {
   const image = path(['data', 'slider', 0, 'image'], page)
   const worksLinks = path(['data', 'links'], works)
@@ -17,6 +17,7 @@ const IndexTemplate = ({data: {
       color='white'
       {...{image}}
       {...{links}}
+      {...{meta}}
       {...{seo}}
       title={seo.data.seotitle}
     >
@@ -139,6 +140,9 @@ export const query = graphql`
           path
         }
       }
+    }
+    meta: prismicMeta(lang: {eq: $lang}) {
+      ...MetaFragment
     }
   }
 `

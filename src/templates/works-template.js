@@ -13,7 +13,9 @@ const Title = styled('h1')`
   ${tw(['mt-q200'])};
 `
 
-const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) => {
+const WorksTemplate = ({data: { 
+  workspage, allworks, seo, allSite, links, meta 
+}}) => {
   const title = path(['data', 'title', 'text'], workspage)
   const worksLinks = path(['data', 'links'], workspage)
 
@@ -22,6 +24,7 @@ const WorksTemplate = ({ data: { workspage, allworks, seo, allSite, links }}) =>
       {...{seo}}
       {...{allSite}}
       {...{links}}
+      {...{meta}}
       {...{title}}
     >
       <div theme="white" >
@@ -130,6 +133,9 @@ export const query = graphql`
           path
         }
       }
+    }
+    meta: prismicMeta(lang: {eq: $lang}) {
+      ...MetaFragment
     }
   }
 `

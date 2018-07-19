@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { ThemeProvider } from 'emotion-theming'
 import { connect } from 'react-redux'
+import { graphql } from  'gatsby'
 
 import { unless, isNil } from '../../helpers'
 
@@ -13,7 +14,7 @@ import { theme as EmotionTheme } from '../theme'
 
 
 const TemplateWrapper = ({ 
-  seo, allSite, links, color, 
+  seo, allSite, links, meta, color, 
   image, title, children, storedTheme 
 }) => {
   const { lang } = seo 
@@ -35,7 +36,7 @@ const TemplateWrapper = ({
             <Fragment>
               { children }            
               <div theme="black">
-                <Footer />
+                <Footer {...{meta}} />
               </div>
             </Fragment>
           </ScrollContainer>
@@ -47,3 +48,33 @@ const TemplateWrapper = ({
 export default connect(
   ({ storedTheme }) => ({ storedTheme })
 )(TemplateWrapper)
+
+
+export const query = graphql`
+  fragment MetaFragment on PrismicMeta {
+    data {
+      title
+      description {
+        html
+        text
+      }
+      addresses {
+        html
+        text
+      }
+      email {
+        url
+      }
+      links {
+        linktype
+        link {
+          url
+        }
+      }
+      development
+      acciolink {
+        url
+      }
+    }
+  }
+`

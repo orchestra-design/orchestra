@@ -19,10 +19,15 @@ export const ButtonText = css`
 
 export const Description = css`
   ${tw([
-    'font-source', 'font-semibold',
+    'font-source',
     'text', 'text-description',
     'tracking-normal'
   ])};
+`
+
+export const DescriptionSemibold = css`
+  ${Description};
+  ${tw(['font-semibold'])};
 `
 
 export const Heading = css`

@@ -1,6 +1,7 @@
 /* global tw */
 import styled, { css } from 'react-emotion'
 
+import { BaseTransition } from './Transitions'
 import { ButtonText } from './Typography'
 
 export const Button = css`
@@ -15,6 +16,16 @@ export const Button = css`
   transition-property: background, color, shadow, heigth, width, font-size, margin-right;
   transition-duration: .2s, .2s, .2s, 0s, 0s, 0s, 0s;
   transition-timing-function: ease-in-out;
+`
+
+export const RoundButton = styled('span')`
+  ${tw([
+    'bg-center', 'bg-no-repeat',
+    'cursor-pointer', 'flex-no-shrink', 
+    'h-q36', 'w-q36'
+  ])};
+  ${BaseTransition};
+  border-radius: 50%;
 `
 
 export const SquareButton = styled('span')`

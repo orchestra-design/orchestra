@@ -4,12 +4,15 @@ import { graphql } from 'gatsby'
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
-const HowTemplate = ({ data: { how, seo, allSite, links }}) => {
+const HowTemplate = ({data: { 
+  how, seo, allSite, links, meta
+}}) => {
   const title = path(['data', 'title', 'text'], how)
   return (
     <TemplateWrapper
       {...{allSite}}
       {...{links}}
+      {...{meta}}
       {...{seo}}
       {...{title}}
     >
@@ -74,6 +77,9 @@ export const query = graphql`
           path
         }
       }
+    }
+    meta: prismicMeta(lang: {eq: $lang}) {
+      ...MetaFragment
     }
   }
 `
