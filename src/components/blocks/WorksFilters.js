@@ -27,16 +27,16 @@ const Container = styled('div')`
 
 const FiltersRow = styled('div')`
   ${tw([
-    'flex', 'flex-row',
+    'flex', 'flex-row', 'flex-wrap',
     'items-center', 'justify-between',
-    'mb-q36', 'mt-q72'
+    'mb-q24', 'mt-q72'
   ])};
 `
 
 const AllWorksButton = styled('span')`
   ${Button};
   ${tw([
-    'h-q36', 'mr-q24', 
+    'h-q36', 'mr-q24', 'mb-q12',
     'px-q12', 'flex-no-shrink'
   ])};
   ${({ worksFilter }) => worksFilter === null 
@@ -63,7 +63,7 @@ const FilterOpener = styled('span')`
   ${Button};
   ${tw([
     'h-q36', 'px-q12',
-    'truncate'
+    'truncate', 'mb-q12',
   ])};
   ${({ worksFilter, worksFiltersOpen }) => 
     worksFilter === null && !worksFiltersOpen &&
@@ -78,7 +78,7 @@ const OpenerIcon = styled(SquareButton)`
   ${({ worksFilter, worksFiltersOpen }) => 
     worksFilter === null && !worksFiltersOpen &&
       tw([
-        'bg-white', 'text-black',
+        'bg-white', 'text-black', 'mb-q12',
         'hover:bg-black', 'hover:text-white',
       ])};
   transform: rotateZ(${({ worksFiltersOpen }) => worksFiltersOpen ? '180deg' : '0deg'});

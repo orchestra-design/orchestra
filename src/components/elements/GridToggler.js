@@ -16,7 +16,7 @@ const GridButton = styled(SquareButton)`
   ${tw([
     'hidden', 'md:flex', 
     'bg-center', 'bg-no-repeat',
-    'cursor-pointer', 'ml-auto'
+    'cursor-pointer', 'mb-q12', 'ml-auto'
   ])};
   ${BaseTransition};
   background-image: url(${({worksGrid}) => worksGrid ? IconList : IconGrid});  
