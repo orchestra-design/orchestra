@@ -6,7 +6,9 @@ import {
   Breadcrumbs, BodySemibold, Container, Heading2, Image 
 } from '../elements'
 
-import { unless, isNil, pathOr } from '../../helpers'
+import {
+  isNil, length, lt, pathOr, unless
+} from '../../helpers'
 
 const FullScreenSection = styled('div')`
   ${tw([
@@ -21,6 +23,7 @@ const FullScreenSection = styled('div')`
 
 const Heading =  styled('h1')`
   ${Heading2};
+  ${({ statementLenght }) => statementLenght && tw(['max-w-md'])};
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
 `
 
@@ -36,6 +39,8 @@ export const ImageStatement = ({ data }) => {
   const { 
     image, title, statement 
   } = data
+  const statementLenght = lt(length(statement.text), 40)
+  
   return (
     <FullScreenSection>
       {unless(isNil, () =>
@@ -47,7 +52,7 @@ export const ImageStatement = ({ data }) => {
         <Breadcrumbs 
           className={css`text-shadow: 0 0 .75rem rgba(0,0,0,0.24);`} 
         >{ title }</Breadcrumbs>
-        <Heading>{  statement.text }</Heading>
+        <Heading {...{statementLenght}}>{  statement.text }</Heading>
         {unless(isNil, (description) =>
           <Description>{ description }</Description>
         )(pathOr(null, ['description'], data))}

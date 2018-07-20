@@ -1,13 +1,18 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { css } from 'react-emotion'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
+import { JumboSlider } from '../components/blocks'
 
 const HowTemplate = ({data: { 
   how, seo, allSite, links, meta
 }}) => {
-  const title = path(['data', 'title', 'text'], how)
+  const data = path(['data'], how)
+  const { theme } = data
+  const title = path(['title', 'text'], data)
+  const image = path(['jumbo', 0, 'jumboimage'], data)
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -16,7 +21,11 @@ const HowTemplate = ({data: {
       {...{seo}}
       {...{title}}
     >
-      <div >{how.data.title.text}</div>
+      <div        
+        {...{theme}}
+        image={JSON.stringify(image)}
+      ><JumboSlider {...{data}} /></div>
+      <div className={css`height: 100vh;`} theme="white" />
     </TemplateWrapper>
   )
 }
@@ -24,17 +33,25 @@ const HowTemplate = ({data: {
 export default HowTemplate
 
 export const query = graphql`
-  query HowTemplateQuery($lang: String!) {
+  query HowTemplateQuery($lang: String!, $color: String!) {
     how: prismicHow(lang: {eq: $lang}) {
       data {
         title {
           text
         }
+        theme
         jumbo {
+          jumbotitle {
+            text
+          }
           jumboimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 1920) {
+                sizes(maxWidth: 1920, quality: 80, traceSVG: {
+                  color: $color
+                  turnPolicy: TURNPOLICY_MINORITY
+                  blackOnWhite: false
+                }) {
                   ...GatsbyImageSharpSizes_tracedSVG
                 }
               }

@@ -70,8 +70,8 @@ const enhance = compose(
         ifElse(
           ({ top, height }) => and(lt(top, 801), gt((top + height), 800)),
           () => and(
-            not(equals(newImage, props.backImage)), 
-            notIsNil(newImage)
+            notIsNil(newImage),
+            not(equals(newImage, props.backImage))
           ) && props.setImage(newImage),
           F
         )(childOffset)
