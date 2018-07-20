@@ -46,7 +46,7 @@ const WorkTemplate = ({ data: {
         {...{title}}
       >
         <div 
-          className={css`${tw('h-screen bg-transparent')}; height: 100vh;`} 
+          className={css`${tw('h-screen bg-transparent')};`} 
           theme="image" 
           image={JSON.stringify(image)}
         >

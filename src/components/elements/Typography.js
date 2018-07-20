@@ -9,6 +9,14 @@ export const Body = css`
   ])};
 `
 
+export const BodySemibold = css`
+  ${tw([
+    'font-source', 'font-semibold',
+    'leading-body', 'text-body',
+    'tracking-normal'
+  ])};
+`
+
 export const ButtonText = css`
   ${tw([
     'font-source', 'font-semibold',

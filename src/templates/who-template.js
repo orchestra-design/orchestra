@@ -3,11 +3,14 @@ import { graphql } from 'gatsby'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
+import { ImageStatement } from '../components/blocks'
 
 const WhoTemplate = ({data: { 
   who, seo, allSite, links, meta
 }}) => {
-  const title = path(['data', 'title'], who)
+  const data = path(['data'], who)
+  const image = path(['image'], data)
+  const title = path(['title'], data)
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -16,7 +19,12 @@ const WhoTemplate = ({data: {
       {...{seo}}
       {...{title}}
     >
-      <div theme="white" >{who.data.title}</div>
+      <div        
+        theme="image"
+        image={JSON.stringify(image)}
+      >
+        <ImageStatement {...{data}} />
+      </div>
     </TemplateWrapper>
   )
 }
@@ -24,10 +32,26 @@ const WhoTemplate = ({data: {
 export default WhoTemplate
 
 export const query = graphql`
-  query WhoTemplateQuery($lang: String!) {
+  query WhoTemplateQuery($lang: String!, $color: String!) {
     who: prismicWho(lang: {eq: $lang}) {
       data {        
         title
+        statement {
+          text
+        }
+        image {
+          localFile {
+            childImageSharp {
+              sizes(maxWidth: 1920, quality: 80, traceSVG: {
+                color: $color
+                turnPolicy: TURNPOLICY_MINORITY
+                blackOnWhite: false
+              }) {
+                ...GatsbyImageSharpSizes_tracedSVG
+              }
+            }
+          }
+        }
       }
     }
     seo: prismicWho(lang: {eq: $lang}) {

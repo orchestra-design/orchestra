@@ -12,7 +12,7 @@ import {
 import {
   and, camelCase, equals, F, gt,
   head, ifElse, isNil, lt, not, 
-  offset, pathOr
+  offset, pathOr, notIsNil
 } from '../../helpers'
 
 const ScrollWrapper = styled('div')`
@@ -20,6 +20,7 @@ const ScrollWrapper = styled('div')`
     'fixed', 'pin', 
     'overflow-y-scroll'
   ])};
+  overflow-x: hidden;
 `
 
 const enhance = compose(
@@ -63,15 +64,15 @@ const enhance = compose(
 
         /* THEME CHANGING WHEN SCROLLING */
         const childOffset = offset(child)
-        const newImage = pathOr(null, 
-          ['attributes', 'image', 'value'], 
-          child.attributes.image.value
-        )
+        const newImage = pathOr(null, ['attributes', 'image', 'value'], child)
         const newTheme = camelCase(child.attributes.theme.value)
         // Image
         ifElse(
           ({ top, height }) => and(lt(top, 801), gt((top + height), 800)),
-          () => not(equals(newImage, props.backImage)) && props.setImage(newImage),
+          () => and(
+            not(equals(newImage, props.backImage)), 
+            notIsNil(newImage)
+          ) && props.setImage(newImage),
           F
         )(childOffset)
         // Theme
@@ -103,7 +104,7 @@ const enhance = compose(
         document.getElementById('scroll-container').childNodes     
       )
       this.props.changeTheme(
-        pathOr('white', ['attributes', 'theme', 'value'], head(scrollChildren))
+        camelCase(pathOr('white', ['attributes', 'theme', 'value'], head(scrollChildren)))
       )
       this.props.setImage(
         pathOr(null, ['attributes', 'image', 'value'], head(scrollChildren))

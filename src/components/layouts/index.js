@@ -1,16 +1,27 @@
+/* global tw */
 import React, { Fragment } from 'react'
 import { ThemeProvider } from 'emotion-theming'
+import { css, injectGlobal } from 'emotion'
+
 import { connect } from 'react-redux'
 import { graphql } from  'gatsby'
 
-import { unless, isNil } from '../../helpers'
-
 import { Footer, Header } from '../blocks'
+
 import { 
-  Back, ContactButton, Image,
+  Back, ContactButton, Image, Main,
   ScrollContainer, SEO, UpButton
 } from '../elements'
+
+import { unless, isNil } from '../../helpers'
+
 import { theme as EmotionTheme } from '../theme'
+
+injectGlobal`
+  body {
+    ${tw(['fixed', 'overflow-hidden', 'pin', 'm-0'])};
+  }
+`
 
 const Contact = ContactButton.withComponent('a')
 
@@ -20,10 +31,11 @@ const TemplateWrapper = ({
 }) => {
   const { lang } = seo
   const image = JSON.parse(backImage)
+  console.log(storedTheme);
   
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]} >
-      <Fragment>
+      <Main>
         <SEO {...{seo}} />
         <Header 
           {...{allSite}} 
@@ -33,7 +45,9 @@ const TemplateWrapper = ({
           {...{title}}
         />
         {unless(isNil, () =>
-          <Image {...{image}} />
+          <div
+            className={css`${tw('hidden screen:block')};`}
+          ><Image {...{image}} /></div>
         )(image)}
         <Back {...{color}} />
         <ScrollContainer>
@@ -49,7 +63,7 @@ const TemplateWrapper = ({
           href={meta.data.email.url}
           target="_blank" rel="noopener noreferrer"
         />
-      </Fragment>
+      </Main>
     </ThemeProvider>
   )  
 }

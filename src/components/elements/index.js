@@ -12,6 +12,7 @@ export {
   Container, ContainerFluid 
 } from './Containers'
 
+export { Breadcrumbs } from './Breadcrumbs'
 export { ContactButton } from './ContactButton'
 export { GridToggler } from './GridToggler'
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
@@ -20,6 +21,7 @@ export { Image } from './Image'
 export { LinkImage } from './LinkImage'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
+export { Main } from './Main'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { ScrollContainer } from './ScrollContainer'
@@ -32,7 +34,7 @@ export {
 } from './Transitions'
 
 export { 
-  Body, ButtonText, Description,
+  Body, BodySemibold, ButtonText, Description,
   DescriptionSemibold, Heading, Heading1,
   Heading2, Heading3, Heading4,
   Heading5, Heading6, Lead, List
