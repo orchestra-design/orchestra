@@ -26,7 +26,10 @@ const Heading =  styled('h1')`
 
 const Description = styled('div')`
   ${BodySemibold};
-  ${tw(['mt-q24', 'screen:mt-q36'])};
+  ${tw([
+    'ml-auto', 'mt-q24', 'screen:mt-q36',
+    'w-3/4', 'screen:w-2/5'
+  ])};
 `
 
 export const ImageStatement = ({ data }) => {

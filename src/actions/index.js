@@ -35,8 +35,9 @@ export const collapseMenu = payload =>
 export const pageTransition = () =>
   dispatch => {
     dispatch(collapseMenuAction(false))
-    dispatch(toggleMenuAction(false))
+    dispatch(setImageAction(null))
     dispatch(scrollMenuAction(false))
+    dispatch(toggleMenuAction(false))
   }
 
 export const srollMenu = payload =>

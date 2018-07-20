@@ -31,7 +31,6 @@ const TemplateWrapper = ({
 }) => {
   const { lang } = seo
   const image = JSON.parse(backImage)
-  console.log(storedTheme);
   
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]} >
