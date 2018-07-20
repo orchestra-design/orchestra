@@ -21,6 +21,10 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
+    SET_IMAGE: (state, action) => assoc(
+      'backImage', action.payload,
+      state
+    ),
     SET_WORK_FILTER: (state, action) => assoc(
       'worksFilter', action.payload,
       state

@@ -4,13 +4,14 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const pageMaker = type => data => {
-    data.edges.forEach(({ node: { uid, lang } }) => {
+    data.edges.forEach(({ node: { uid, lang, data } }) => {
       createPage({
         path: `${lang.replace('-us', '')}${type === 'work' ? '/projects/' : '/'}${uid.replace(/.{3}$/i, '')}`,
         component: path.resolve(`./src/templates/${type}-template.js`),
         context: {
           slug: uid,
-          lang: lang
+          lang: lang,
+          color: data && data.color ? data.color : '#000000'
         }
       })
     })
@@ -55,6 +56,9 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             uid
             lang
+            data {
+              color
+            }
           }
         }
       }

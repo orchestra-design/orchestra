@@ -39,14 +39,17 @@ const WorkTemplate = ({ data: {
     <Fragment>
       <TemplateWrapper 
         {...{allSite}}
-        {...{color}}
-        {...{image}}
+        {...{color}}        
         links={appendedLinks}
         {...{meta}}
         {...{seo}}
         {...{title}}
       >
-        <div className={css`${tw('h-screen bg-transparent')}; height: 100vh;`} theme="image" >
+        <div 
+          className={css`${tw('h-screen bg-transparent')}; height: 100vh;`} 
+          theme="image" 
+          image={JSON.stringify(image)}
+        >
           <h1>{ title }</h1>
           <div>{ work.data.description }</div>
         </div>
@@ -75,7 +78,7 @@ const WorkTemplate = ({ data: {
 export default WorkTemplate
 
 export const query = graphql`
-  query WorkTemplateQuery($slug: String!, $lang: String!) {
+  query WorkTemplateQuery($slug: String!, $lang: String!, $color: String!) {
     work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
       data {
         title {
@@ -85,8 +88,12 @@ export const query = graphql`
         image {
            localFile {
             childImageSharp {
-              sizes(maxWidth: 1920) {
-                ...GatsbyImageSharpSizes_withWebp
+              sizes(maxWidth: 1920, traceSVG: {
+                color: $color
+                turnPolicy: TURNPOLICY_MINORITY
+                blackOnWhite: false
+              }) {
+                ...GatsbyImageSharpSizes_tracedSVG
               }
             }
           }

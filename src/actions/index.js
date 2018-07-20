@@ -4,13 +4,14 @@ import { delay } from '../helpers'
 
 import { 
   COLLAPSE_MENU, MENU_TRANSITION, 
-  SCROLL_MENU, SET_WORK_FILTER,
+  SCROLL_MENU, SET_IMAGE, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
   TOGGLE_WORK_FILTER
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
 const scrollMenuAction = createAction(SCROLL_MENU)
+const setImageAction = createAction(SET_IMAGE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
@@ -41,6 +42,11 @@ export const pageTransition = () =>
 export const srollMenu = payload =>
   dispatch => { 
     delay(400, () => dispatch(scrollMenuAction(payload)))
+  }
+
+export const setImage = payload =>
+  dispatch => { 
+    dispatch(setImageAction(payload))
   }
 
 export const setWorkFilter = payload =>

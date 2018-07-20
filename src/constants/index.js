@@ -1,6 +1,7 @@
 export const COLLAPSE_MENU = 'COLLAPSE_MENU'
 export const MENU_TRANSITION = 'MENU_TRANSITION'
 export const SCROLL_MENU = 'SCROLL_MENU'
+export const SET_IMAGE = 'SET_IMAGE'
 export const SET_WORK_FILTER = 'SET_WORK_FILTER'
 export const THEME = 'THEME'
 export const TOGGLE_GRID = 'TOGGLE_GRID'
