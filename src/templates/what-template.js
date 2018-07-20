@@ -9,8 +9,7 @@ const WhatTemplate = ({data: {
   what, seo, allSite, links, meta
 }}) => {
   const data = path(['data'], what)
-  const image = path(['image'], data)
-  const title = path(['title'], data)
+  const { image, theme, title } = data
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -20,7 +19,7 @@ const WhatTemplate = ({data: {
       {...{title}}
     >
       <div        
-        theme="image-inverse"
+        {...{theme}}
         image={JSON.stringify(image)}
       >
         <ImageStatement {...{data}} />
@@ -40,6 +39,7 @@ export const query = graphql`
           text
         }
         description
+        theme
         image {
           localFile {
             childImageSharp {
