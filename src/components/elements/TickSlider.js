@@ -11,18 +11,22 @@ import { JustImage } from './JustImage'
 
 const Container = styled('div')`
   ${tw([
-    'flex', 'flex-col', 'justify-end', 'screen:h-screen',
+    'flex', 'flex-col', 'justify-end',
     'mx-auto', 'max-w-desktop', 'relative'
   ])};
   @media(max-width: 599px) {
     height: 100vw;
   }
+  @media(min-width: 600px) {
+    height: calc(100vh - 9rem);
+  }
 `
 const Heading =  styled('h1')`
   ${Heading1};
   ${tw([
-    'max-w-xs', 'screen:max-w-sm', 'relative',
-    'pb-q48', 'pl-q24', 'screen:mb-q144' 
+    'max-w-xs', 'screen:max-w-sm',
+    'pb-q48', 'pl-q24', 'screen:pb-0',
+    'relative'
   ])};
   color: ${({theme}) => theme.logoFill};
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};

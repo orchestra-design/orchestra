@@ -8,9 +8,20 @@ import TemplateWrapper from '../components/layouts'
 import { WorksGrid, WorksFilters } from '../components/blocks'
 import { Container, Heading1 } from '../components/elements'
 
+const FirstScreen = styled(Container)`
+  ${tw([
+    'flex', 'flex-col', 'justify-end'
+  ])};
+  @media(max-width: 599px) {
+    height: 50vw;
+  }
+  @media(min-width: 600px) {
+    height: 50vh;
+  }
+`
+
 const Title = styled('h1')`
   ${Heading1};
-  ${tw(['mt-q200'])};
 `
 
 const WorksTemplate = ({data: { 
@@ -28,11 +39,11 @@ const WorksTemplate = ({data: {
       {...{title}}
     >
       <div theme="white" >
-        <Container>
+        <FirstScreen>
           <Title>
           { title }
           </Title>        
-        </Container>
+        </FirstScreen>
       </div>
       <div theme="white" >
         <WorksFilters {...{allworks}} />
