@@ -50,6 +50,9 @@ export const query = graphql`
               }
             }
           }
+          worktitle {
+            text
+          }
           caption
           theme
         }
