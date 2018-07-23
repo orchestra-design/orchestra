@@ -34,6 +34,7 @@ const WorksTemplate = ({data: {
     <TemplateWrapper
       {...{seo}}
       {...{allSite}}
+      hiddenDown={true}
       {...{links}}
       {...{meta}}
       {...{title}}

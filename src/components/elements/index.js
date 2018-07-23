@@ -15,6 +15,7 @@ export {
 
 export { Breadcrumbs } from './Breadcrumbs'
 export { ContactButton } from './ContactButton'
+export { DownButton } from './DownButton'
 export { GridToggler } from './GridToggler'
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
 export { HeaderLogo } from './HeaderLogo'

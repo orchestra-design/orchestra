@@ -59,7 +59,7 @@ const enhance = compose(
     state: {},
     componentDidMount() {
       const intervalId = setInterval(() => {
-        this.props.countJumbo(
+        not(this.props.hiddenMenu) && this.props.countJumbo(
           equals(this.props.jumboCount, length(this.props.image) - 1) 
             ? 0 
             : this.props.jumboCount + 1

@@ -18,6 +18,7 @@ const HowTemplate = ({data: {
       {...{allSite}}
       {...{image}}
       {...{links}}
+      hiddenDown={true}
       {...{meta}}
       {...{seo}}
       {...{title}}

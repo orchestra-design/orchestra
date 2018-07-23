@@ -9,7 +9,7 @@ import { graphql } from  'gatsby'
 import { Footer, Header } from '../blocks'
 
 import { 
-  Back, ContactButton, Image, Main,
+  Back, ContactButton, DownButton, Image, Main,
   ScrollContainer, SEO, UpButton
 } from '../elements'
 
@@ -26,7 +26,7 @@ injectGlobal`
 const Contact = ContactButton.withComponent('a')
 
 const TemplateWrapper = ({ 
-  seo, allSite, links, meta, color, 
+  seo, allSite, hiddenDown, links, meta, color, 
   image, title, children, storedTheme 
 }) => {
   const { lang } = seo
@@ -56,6 +56,7 @@ const TemplateWrapper = ({
             </div>
           </Fragment>
         </ScrollContainer>
+        <DownButton {...{hiddenDown}}/>
         <UpButton />
         <Contact 
           href={meta.data.email.url}
