@@ -22,7 +22,7 @@ const Heading =  styled('h1')`
   ${Heading1};
   ${tw([
     'max-w-xs', 'screen:max-w-sm', 'relative',
-    'pb-q48', 'pl-q24', 'screen:p-0', 'screen:mb-q144' 
+    'pb-q48', 'pl-q24', 'screen:mb-q144' 
   ])};
   color: ${({theme}) => theme.logoFill};
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
@@ -40,9 +40,9 @@ const Caption = styled('div')`
 const enhance = compose(
   connect(
     ({ 
-      hiddenMenu, jumboCount, storedTheme 
+      hiddenMenu, isMenu, jumboCount, storedTheme 
     }) => ({ 
-      hiddenMenu, jumboCount, storedTheme 
+      hiddenMenu, isMenu, jumboCount, storedTheme 
     }),
     { changeTheme, countJumbo }
   ),
@@ -64,14 +64,16 @@ const enhance = compose(
   })
 )
 
-export const TickSlider = enhance(({ changeTheme, image, hiddenMenu, jumboCount, storedTheme }) => {
+export const TickSlider = enhance(({ changeTheme, image, isMenu, hiddenMenu, jumboCount, storedTheme }) => {
   // Theme
   const newTheme = camelCase(image[jumboCount].theme)
-  not(hiddenMenu) && not(equals(newTheme, storedTheme)) && changeTheme(newTheme)
+  not(isMenu) && not(hiddenMenu) && not(equals(newTheme, storedTheme)) && changeTheme(newTheme)
   
   return (
   <Container>
-    <JustImage className={css`${tw('screen:hidden')}`} image={image[jumboCount].image} />
+    <div className={css`${tw('absolute pin screen:hidden')}`} >
+      <JustImage image={image[jumboCount].image} />
+    </div>
     <Heading>{ image[jumboCount].worktitle.text }</Heading>
     {not(hiddenMenu) &&
       <Caption>{ image[jumboCount].caption }</Caption>  
