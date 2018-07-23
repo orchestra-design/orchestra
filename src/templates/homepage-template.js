@@ -1,15 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Spring } from 'react-spring'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { WorksFilters, WorksGrid } from '../components/blocks'
+import { TickSlider } from '../components/elements'
 
 const IndexTemplate = ({data: { 
   page, allworks, works, seo, allSite, links, meta
 }}) => {
-  const image = path(['data', 'slider', 0, 'image'], page)
+  const image = path(['data', 'slider'], page)
   const worksLinks = path(['data', 'links'], works)
   return (
     <TemplateWrapper 
@@ -21,12 +21,10 @@ const IndexTemplate = ({data: {
       {...{seo}}
       title={seo.data.seotitle}
     >
-      {/* <Homepage data={page.data} /> */}
-      <div theme="white" style={{height: '100vh'}} >
-        <Spring from={{ color: 'black' }} to={{ color: 'fuchsia' }} >
-        {({...styles}) => <h1 style={styles}>Poop!</h1>}
-        </Spring>
+      <div theme="image" >
+        <TickSlider {...{image}} />
       </div>
+      <div theme="white" style={{height: '100vh'}} ></div>
       <div theme="white" >
         <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />
@@ -46,13 +44,14 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 1920) {
-                  ...GatsbyImageSharpSizes_withWebp
+                sizes(maxWidth: 1920, quality: 80) {
+                  ...GatsbyImageSharpSizes_noBase64
                 }
               }
             }
           }
           caption
+          theme
         }
       }
     }

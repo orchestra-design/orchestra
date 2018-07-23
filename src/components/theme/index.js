@@ -33,6 +33,13 @@ const imageInverse = {
   logoShadow: false,
 }
 
+const imageWhite = {
+  backgroundColor: 'transparent',
+  color: '#ffffff',
+  logoFill: '#000000',
+  logoShadow: false,
+}
+
 const white = {
   backgroundColor: '#ffffff',
   color: '#000000',
@@ -42,5 +49,5 @@ const white = {
 
 export const theme = {
   black, colored, coloredInverse, 
-  image, imageInverse, white, 
+  image, imageInverse, imageWhite, white, 
 }

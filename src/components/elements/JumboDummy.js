@@ -18,11 +18,7 @@ const Dummy = styled('div')`
 
 const enhance = compose(
   connect(
-    ({ 
-      backImage, jumboCount 
-    }) => ({ 
-      backImage, jumboCount 
-    }),
+    ({ jumboCount }) => ({ jumboCount }),
     { countJumbo }
   ),
   pure,

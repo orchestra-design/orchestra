@@ -29,6 +29,7 @@ export { NavLink } from './NavLink'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 export { SocialButton } from './SocialButton'
+export { TickSlider } from './TickSlider'
 export { UpButton } from './UpButton'
 
 export {
