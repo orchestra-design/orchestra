@@ -9,7 +9,7 @@ import { ifElse, lengthLte } from '../../helpers'
 import { Logo } from './Logo'
 
 const LogoWrapper = styled('div')`
-  ${tw(['screen:ml-1/12'])};
+  ${tw(['ml-q12'])};
   height: 69px;
   width: 186px;
   width: ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition && 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
