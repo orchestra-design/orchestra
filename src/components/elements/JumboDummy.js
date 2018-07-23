@@ -4,11 +4,11 @@ import styled from 'react-emotion'
 import { compose, lifecycle, pure } from 'recompose'
 import { connect } from 'react-redux'
 
-import { countJumbo, setImage } from '../../actions'
+import { countJumbo } from '../../actions'
 
 import {
   and, equals, gt, lt, length,not, 
-  notIsNil, offset, safeMap, uuid
+  offset, safeMap, uuid
 } from '../../helpers'
 
 const Dummy = styled('div')`
@@ -18,8 +18,12 @@ const Dummy = styled('div')`
 
 const enhance = compose(
   connect(
-    ({ backImage, jumboCount }) => ({ backImage, jumboCount }),
-    { countJumbo, setImage }
+    ({ 
+      backImage, jumboCount 
+    }) => ({ 
+      backImage, jumboCount 
+    }),
+    { countJumbo }
   ),
   pure,
   lifecycle({
@@ -34,14 +38,6 @@ const enhance = compose(
           this.props.countJumbo(null)
         return null
       })
-
-      // setImage
-      const newImage = notIsNil(this.props.jumboCount) &&
-        JSON.stringify(this.props.jumbo[this.props.jumboCount].jumboimage)
-      and(
-        notIsNil(this.props.jumboCount),
-        not(equals(newImage, this.props.backImage))
-      ) && this.props.setImage(newImage)
     },
     componentDidMount() {
       document.getElementById('scroll-container')

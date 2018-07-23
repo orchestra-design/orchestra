@@ -44,6 +44,7 @@ export const pageTransition = () =>
     dispatch(setImageAction(null))
     dispatch(scrollMenuAction(false))
     dispatch(toggleMenuAction(false))
+    dispatch(countJumboAction(0))
   }
 
 export const srollMenu = payload =>

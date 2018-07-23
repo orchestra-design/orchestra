@@ -41,14 +41,14 @@ const WorkTemplate = ({ data: {
         {...{allSite}}
         {...{color}}        
         links={appendedLinks}
+        {...{image}}
         {...{meta}}
         {...{seo}}
         {...{title}}
       >
         <div 
           className={css`${tw('h-screen bg-transparent')};`} 
-          theme="image" 
-          image={JSON.stringify(image)}
+          theme="image"
         >
           <h1>{ title }</h1>
           <div>{ work.data.description }</div>

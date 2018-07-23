@@ -6,7 +6,7 @@ import { Transition, animated } from 'react-spring'
 
 import { 
   Breadcrumbs, Container, Heading2, 
-  Heading3, Image, JumboDummy
+  Heading3, JustImage, JumboDummy
 } from '../elements'
 
 import {
@@ -69,7 +69,7 @@ const TransitionHeading = ({ data, jumboCount }) => (
 )
 
 export const JumboSlider = connect(
-    ({ backImage, jumboCount }) => ({ backImage, jumboCount })
+    ({ jumboCount }) => ({ jumboCount })
   )(({ data, jumboCount }) => {
   const { jumbo } = data
   return (
@@ -77,7 +77,7 @@ export const JumboSlider = connect(
       <FullScreenSection>
         {jumbo.map(({ jumboimage, jumbotitle }) =>
           <JumboMobile key={uuid()} >
-            <Image key={uuid()} image={jumboimage} />
+            <JustImage key={uuid()} image={jumboimage} />
             <Heading key={uuid()} >{ jumbotitle.text }</Heading>
           </JumboMobile>
         )}

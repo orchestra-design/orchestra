@@ -14,13 +14,13 @@ const WhatTemplate = ({data: {
     <TemplateWrapper
       {...{allSite}}
       {...{links}}
+      {...{image}}
       {...{meta}}
       {...{seo}}
       {...{title}}
     >
       <div        
         {...{theme}}
-        image={JSON.stringify(image)}
       >
         <ImageStatement {...{data}} />
       </div>

@@ -27,10 +27,9 @@ const Contact = ContactButton.withComponent('a')
 
 const TemplateWrapper = ({ 
   seo, allSite, links, meta, color, 
-  backImage, title, children, storedTheme 
+  image, title, children, storedTheme 
 }) => {
   const { lang } = seo
-  const image = JSON.parse(backImage)
   
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]} >
@@ -68,7 +67,11 @@ const TemplateWrapper = ({
 }
 
 export default connect(
-  ({ backImage, storedTheme }) => ({ backImage, storedTheme })
+  ({ 
+    backImage, storedTheme 
+  }) => ({ 
+    backImage, storedTheme 
+  })
 )(TemplateWrapper)
 
 

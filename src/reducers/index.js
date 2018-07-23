@@ -27,7 +27,7 @@ const reducer = handleActions(
     ),
     SET_IMAGE: (state, action) => assoc(
       'backImage', action.payload,
-      state
+      state,
     ),
     SET_WORK_FILTER: (state, action) => assoc(
       'worksFilter', action.payload,
