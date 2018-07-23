@@ -6,8 +6,11 @@ import { connect } from 'react-redux'
 
 import { changeTheme, countJumbo } from '../../actions'
 import { camelCase, equals, length, not } from '../../helpers'
-import { ButtonText, Heading1 } from './Typography'
+
+import { SimpleRow } from './Grids'
 import { JustImage } from './JustImage'
+import { Pager } from './Pager'
+import { ButtonText, Heading1 } from './Typography'
 
 const Container = styled('div')`
   ${tw([
@@ -33,10 +36,12 @@ const Heading =  styled('h1')`
 `
 
 const Caption = styled('div')`
-  ${ButtonText}
+  ${ButtonText};
+  ${SimpleRow}
   ${tw([
-    'screen:fixed', 'pin-b', 'pin-l',
-    'p-q24', 'z-10'
+    'screen:fixed', 'items-center',
+    'pin-b', 'pin-l', 'p-q24', 
+    'z-10'
   ])};
   color: ${({theme}) => theme.color};
 `
@@ -68,7 +73,10 @@ const enhance = compose(
   })
 )
 
-export const TickSlider = enhance(({ changeTheme, image, isMenu, hiddenMenu, jumboCount, storedTheme }) => {
+export const TickSlider = enhance(({ 
+  changeTheme, image, isMenu, 
+  hiddenMenu, jumboCount, storedTheme 
+}) => {
   // Theme
   const newTheme = camelCase(image[jumboCount].theme)
   not(isMenu) && not(hiddenMenu) && not(equals(newTheme, storedTheme)) && changeTheme(newTheme)
@@ -80,7 +88,10 @@ export const TickSlider = enhance(({ changeTheme, image, isMenu, hiddenMenu, jum
     </div>
     <Heading>{ image[jumboCount].worktitle.text }</Heading>
     {not(hiddenMenu) &&
-      <Caption>{ image[jumboCount].caption }</Caption>  
+      <Caption>
+        <Pager length={length(image)} />
+        { image[jumboCount].caption }
+      </Caption>
     } 
   </Container>
 )})

@@ -1,11 +1,12 @@
 export { Back } from './Back'
 
 export {
-  Button, RoundButton, SquareButton
+  Button, RoundButton, 
+  LittleRoundButton, SquareButton
 } from './Buttons'
 
 export { 
-  ColumnThree, Row 
+  ColumnThree, Row, SimpleRow
 } from './Grids'
 
 export { 

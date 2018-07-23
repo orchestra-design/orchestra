@@ -14,3 +14,9 @@ export const Row = css`
     'md:-mx-q12'
   ])};
 `
+
+export const SimpleRow = css`
+  ${tw([
+    'flex', 'flex-row'
+  ])};
+`

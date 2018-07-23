@@ -27,6 +27,17 @@ export const RoundButton = styled('span')`
   border-radius: 50%;
 `
 
+export const LittleRoundButton = styled('span')`
+  ${tw([
+    'bg-center', 'bg-no-repeat',
+    'flex-no-shrink', 'h-q24', 'w-q24',
+    'shadow-none', 'hover:shadow-elevate1',
+    'active:shadow-elevate0', 'focus:shadow-elevate0'
+  ])};
+  ${BaseTransition};
+  border-radius: 50%;
+`
+
 export const SquareButton = styled('span')`
   ${Button};
   ${tw([
