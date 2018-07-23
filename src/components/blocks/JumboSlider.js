@@ -1,19 +1,16 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
-
-import { setImage } from '../../actions'
+import { Transition, animated } from 'react-spring'
 
 import { 
   Breadcrumbs, Container, Heading2, 
-  Heading3, Image 
+  Heading3, Image, JumboDummy
 } from '../elements'
 
 import {
-  and, equals, gt, lt, length, path, not,
-  notIsNil, offset, safeMap, uuid
+  notIsNil, uuid
 } from '../../helpers'
 
 const FullScreenSection = styled('div')`
@@ -24,7 +21,7 @@ const FullScreenSection = styled('div')`
   ])};
   color: ${({ theme }) => theme.color};
   @media(min-width: 600px) {
-    height: calc(100vh / 6);
+    height: calc(100vh / 4);
   }
 `
 
@@ -55,74 +52,47 @@ const Heading =  styled('h1')`
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
 `
 
-const Dummy = styled('div')`
-  ${tw(['hidden', 'screen:block'])}; 
-  height: calc(100vh / 3);
-`
-
-const enhance = compose(
-  connect(
-    ({ backImage }) => ({ backImage }),
-    { setImage }
-  ),
-  lifecycle({
-    state: { current: 0 },
-    updateState() {
-      const jumboCounter = document.getElementById('jumbo-counter')
-      const jumboCount = Array.from(jumboCounter.children)
-      jumboCount.map((child, i) => {
-        const { top, height } = offset(child)
-        and(lt(top < 200), gt((top + height), 200)) && this.setState({ current: i })
-        and(equals(i, length(jumboCount) - 2), lt((top + height), 0)) && 
-          this.setState({ current: null })
-        // setImage
-        const newImage = JSON.stringify(this.props.data.jumbo[this.state.current].jumboimage)
-        and(
-          notIsNil(newImage),
-          not(equals(newImage, this.props.backImage))
-        ) && this.props.setImage(newImage)
-        return null
-      })
-    },
-    componentDidMount() {
-      document.getElementById('scroll-container')
-        .addEventListener('scroll', this.updateState.bind(this))
-    },  
-    componentWillUnmount() {
-      document.getElementById('scroll-container')
-          .removeEventListener('scroll', this.updateState.bind(this))
-    },
-  })
+const transitionGroup = data => data.jumbo.map(({ jumbotitle }) => 
+  style => 
+    <animated.div style={{...style, willChange: 'transform, opacity'}} >
+      <Heading>{ jumbotitle.text }</Heading>
+    </animated.div>
 )
 
-export const JumboSlider = enhance(({ data, current }) => {
-  const jumbotitle = notIsNil(current) && path(['jumbo', current, 'jumbotitle'], data)
+const TransitionHeading = ({ data, jumboCount }) => (
+  <Transition
+    native
+    from={{ opacity: .0, transform: 'translateY(100%)' }}
+    enter={{ opacity: 1, transform: 'translateY(0%)' }} 
+    leave={{ opacity: .0, transform: 'translateY(-50%)' }}
+  >{ transitionGroup(data)[jumboCount] }</Transition> 
+)
 
+export const JumboSlider = connect(
+    ({ backImage, jumboCount }) => ({ backImage, jumboCount })
+  )(({ data, jumboCount }) => {
+  const { jumbo } = data
   return (
     <Fragment>
       <FullScreenSection>
-        {data.jumbo.map(({ jumboimage, jumbotitle }) =>
+        {jumbo.map(({ jumboimage, jumbotitle }) =>
           <JumboMobile key={uuid()} >
             <Image key={uuid()} image={jumboimage} />
             <Heading key={uuid()} >{ jumbotitle.text }</Heading>
           </JumboMobile>
         )}
-        {notIsNil(current) && 
+        {notIsNil(jumboCount) && 
           <Fixed>
             <Container className={css`${tw('relative mb-q72 screen:mb-q144',)};`} >
               <Breadcrumbs 
                 className={css`text-shadow: 0 0 .75rem rgba(0,0,0,0.24);`} 
               >{ data.title.text }</Breadcrumbs>
-              <Heading >{ jumbotitle.text }</Heading>
+              <TransitionHeading {...{data}} {...{jumboCount}} />             
             </Container>
           </Fixed>
         }
       </FullScreenSection>
-      <div id="jumbo-counter">
-      {safeMap(() => 
-        <Dummy key={uuid()} />
-      , data.jumbo)}
-      </div>
+      <JumboDummy {...{jumbo}} />
     </Fragment>
   )
 })

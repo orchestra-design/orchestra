@@ -9,6 +9,10 @@ const reducer = handleActions(
       'collapsedMenu', action.payload,
       state
     ),
+    COUNT_JUMBO: (state, action) => assoc(
+      'jumboCount', action.payload,
+      state
+    ),
     MENU_TRANSITION: (state, action) => assoc(
       'collapseTransition', action.payload,
       state

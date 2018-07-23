@@ -13,9 +13,9 @@ import debounce from 'lodash/fp/debounce'
 import delay from 'lodash/fp/delay'
 import { 
   and, any, assoc, compose, concat, contains, 
-  mergeDeepWith, equals, 
-  F, filter, find, gt, head, identity, ifElse, isNil, 
-  length, lt, lte, lensPath, map, merge, not, omit, 
+  drop, equals, F, filter, find, gt, head, identity, 
+  ifElse, isNil, length, lt, lte, lensPath, 
+  map, merge, mergeDeepWith, not, omit, 
   path, pathOr, pick, pipe, propEq, reduce,
   replace, splitEvery, uniq, view 
 } from 'ramda'
@@ -27,9 +27,9 @@ export {
   offset,
   camelCase, debounce, delay,
   and, any, assoc, compose, concat, contains, 
-  mergeDeepWith, equals, 
-  F, filter, find, gt, head, identity, ifElse, isNil, 
-  length, lt, lte,  lensPath, map, merge, not, omit, 
+  drop, equals, F, filter, find, gt, head, 
+  identity, ifElse, isNil, length, lt, lte, 
+  lensPath, map, merge, mergeDeepWith, not, omit, 
   path, pathOr, pick, pipe, propEq, reduce, replace, 
   splitEvery, uniq, view,
   uuid

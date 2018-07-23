@@ -4,6 +4,7 @@ export const initState = {
   collapseTransition: false,
   hiddenMenu: false,
   isMenu: false,
+  jumboCount: 0,
   previousTheme: 'white',
   storedTheme: 'white',
   worksFilter: null,

@@ -3,13 +3,14 @@ import { createAction } from 'redux-actions'
 import { delay } from '../helpers'
 
 import { 
-  COLLAPSE_MENU, MENU_TRANSITION, 
+  COLLAPSE_MENU, COUNT_JUMBO, MENU_TRANSITION, 
   SCROLL_MENU, SET_IMAGE, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
   TOGGLE_WORK_FILTER
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
+const countJumboAction = createAction(COUNT_JUMBO)
 const scrollMenuAction = createAction(SCROLL_MENU)
 const setImageAction = createAction(SET_IMAGE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
@@ -30,6 +31,11 @@ export const collapseMenu = payload =>
     dispatch(startTransition())
     dispatch(collapseMenuAction(payload))
     delay(400, () => dispatch(stopTransition()))
+  }
+
+export const countJumbo = payload =>
+  dispatch => {
+    dispatch(countJumboAction(payload))
   }
 
 export const pageTransition = () =>
