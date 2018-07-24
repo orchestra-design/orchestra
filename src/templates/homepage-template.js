@@ -1,10 +1,17 @@
+/* global tw */
 import React from 'react'
 import { graphql } from 'gatsby'
-
+import styled from 'react-emotion'
+ 
 import { safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { TickSlider, WorksFilters, WorksGrid } from '../components/blocks'
-import { Columns, Lead } from '../components/elements'
+import { Columns, Container, Heading2, Lead } from '../components/elements'
+
+const Title = styled('h2')`
+  ${Heading2};
+  ${tw(['md:mt-q72'])};
+`
 
 const IndexTemplate = ({data: { 
   page, allworks, works, seo, allSite, links, meta
@@ -41,10 +48,14 @@ const IndexTemplate = ({data: {
         : null
       ))(body)}
       <div theme="white" >
+        <Container>
+          <Title>
+          { seo.lang.includes('ru') ? 'Проекты' : 'Works' }
+          </Title>
+        </Container>
         <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />
       </div>
-      <div theme="image" style={{height: '100vh'}} >{ page.data.seotitle }</div>
     </TemplateWrapper>
   )
 }

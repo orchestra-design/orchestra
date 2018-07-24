@@ -40,7 +40,7 @@ export const DownButton = compose(
   withHandlers({
     toNext: props => () => {
       const scrollContainer = document.getElementById('scroll-container')
-      scrollContainer.scrollTop = offset(scrollContainer).height * .75
+      scrollContainer.scrollTop = offset(scrollContainer).height
       const scrollChildren = Array.from(scrollContainer)
       
       delay(500, () => { 
