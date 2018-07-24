@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 import styled from 'react-emotion'
 
-import { toggleMenu } from '../../actions'
+import { pageTransition } from '../../actions'
 import { ifElse, lengthLte } from '../../helpers'
 import { Logo } from './Logo'
 
@@ -20,14 +20,14 @@ const LogoWrapper = styled('div')`
 
 export const HeaderLogo = connect(
   ({ 
-    collapsedMenu, collapseTransition, isMenu 
+    collapsedMenu, collapseTransition 
   }) => ({ 
-    collapsedMenu, collapseTransition, isMenu 
+    collapsedMenu, collapseTransition 
   }),
-  { toggleMenu }
+  { pageTransition }
 )(({ 
   lang, path, collapsedMenu, collapseTransition, 
-  isMenu, toggleMenu 
+  pageTransition, 
 }) => (
   <Fragment>
   {ifElse(
@@ -38,7 +38,7 @@ export const HeaderLogo = connect(
     ><Logo /></LogoWrapper>,
     () => <Link 
       to={`/${lang.replace('-us', '')}`}      
-      onClick={() => isMenu && toggleMenu()}
+      onClick={() => pageTransition()}
     ><LogoWrapper
       {...{collapsedMenu}}
       {...{collapseTransition}}
