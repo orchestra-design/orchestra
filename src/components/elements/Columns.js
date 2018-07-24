@@ -6,12 +6,22 @@ import Img from 'gatsby-image'
 
 import { Container } from './Containers'
 import { ColumnThree, Row } from './Grids'
-import { uuid } from '../../helpers'
+import { and, isNil, not, unless, uuid } from '../../helpers'
 import { Body, Heading3 } from './Typography'
+
+const Back = styled('div')`
+  ${tw([
+    'absolute', 'hidden', 'md:block', 
+    'pin-t', 'w-full'
+  ])}; 
+  height: 64vh;
+`
 
 const RowWrapper = styled('div')`
   ${Row};
-  ${tw(['md:pt-q200', 'relative'])};
+  ${tw(['py-q72', 'relative'])};
+  ${({ hasntImage }) => and(not(hasntImage), 
+    tw(['md:pt-q200']))};
 `
 
 const Col = styled('div')`
@@ -35,11 +45,13 @@ const Text = styled('div')`
 
 export const Columns = ({ primary, items }) => (
   <Fragment>
-    <div
-      className={css`${tw('absolute hidden md:block pin-t w-full')}; height: 64vh;`}
-    ><JustImage image={primary.colbackimage} /></div>
+    {unless(isNil,() => 
+      <Back>
+        <JustImage image={primary.colbackimage} />
+      </Back>
+    )(primary.colbackimage)}
     <Container>
-      <RowWrapper>
+      <RowWrapper hasntImage={isNil(primary.colbackimage)} >
       {items.map(item => (
         <Col key={uuid()}>
           <div key={uuid()}
