@@ -5,12 +5,14 @@ import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
 
 import { changeTheme, countJumbo } from '../../actions'
-import { camelCase, equals, length, not } from '../../helpers'
 
-import { SimpleRow } from './Grids'
-import { JustImage } from './JustImage'
-import { Pager } from './Pager'
-import { ButtonText, Heading1 } from './Typography'
+import { 
+  camelCase, equals, length, not 
+} from '../../helpers'
+
+import { 
+  ButtonText, Heading1, JustImage, Pager, SimpleRow 
+} from '../elements'
 
 const Container = styled('div')`
   ${tw([

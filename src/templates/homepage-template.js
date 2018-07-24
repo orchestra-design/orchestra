@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { path, uuid } from '../helpers'
+import { safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { WorksFilters, WorksGrid } from '../components/blocks'
-import { Columns, Lead, TickSlider } from '../components/elements'
+import { TickSlider, WorksFilters, WorksGrid } from '../components/blocks'
+import { Columns, Lead } from '../components/elements'
 
 const IndexTemplate = ({data: { 
   page, allworks, works, seo, allSite, links, meta
@@ -26,20 +26,20 @@ const IndexTemplate = ({data: {
       <div theme="image" >
         <TickSlider {...{image}} />
       </div>
-      {body.map(section => (
+      {safeMap(section => (
         section.__typename === 'PrismicHomepageBodyLead' 
-        ? <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative', height: '100vh'}} >
+        ? <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
             <Lead text={section.primary.leadtext.text} />
           </div>
         : section.__typename === 'PrismicHomepageBodyColumns'
-        ? <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative', height: '100vh'}} >
+        ? <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
             <Columns 
               items={section.items}
               primary={section.primary}
             />
           </div>
         : null
-      ))}
+      ))(body)}
       <div theme="white" >
         <WorksFilters {...{allworks}} />
         <WorksGrid {...{allworks}} {...{worksLinks}} />

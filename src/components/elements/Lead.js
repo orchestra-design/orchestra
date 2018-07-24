@@ -9,7 +9,7 @@ import { LeadText } from './Typography'
 const LeadWrapper = styled('div')`
   ${LeadText};
   ${tw([
-    'screen:ml-1/12', 'py-q72'
+    'screen:ml-1/12', 'py-q112'
   ])};
 `
 

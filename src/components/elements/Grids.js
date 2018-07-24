@@ -6,6 +6,7 @@ export const ColumnThree = css`
     'md:px-q12', 'mb-q24', 'md:mb-0',
     'w-full', 'md:w-1/3'
   ])};
+  min-width: calc((1 / 3 * 100%) - 1.5rem);
 `
 
 export const Row = css`

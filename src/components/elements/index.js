@@ -30,10 +30,10 @@ export { Logo } from './Logo'
 export { Main } from './Main'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
+export { Pager } from './Pager'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 export { SocialButton } from './SocialButton'
-export { TickSlider } from './TickSlider'
 export { UpButton } from './UpButton'
 
 export {
