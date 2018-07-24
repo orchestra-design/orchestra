@@ -1,7 +1,10 @@
 import { isArray } from 'crocks/predicates'
-import flip from 'crocks/combinators/flip'
+import constant from 'crocks/combinators/constant'
 import curry from 'crocks/helpers/curry'
+import flip from 'crocks/combinators/flip'
+import ifElse from 'crocks/logic/ifElse'
 import { of } from 'crocks/Maybe'
+import once from 'crocks/helpers/once'
 import option from 'crocks/pointfree/option'
 import safe from 'crocks/Maybe/safe'
 import unless from 'crocks/logic/unless'
@@ -14,7 +17,7 @@ import delay from 'lodash/fp/delay'
 import { 
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, identity, 
-  ifElse, isNil, length, lt, lte, lensPath, 
+  isNil, length, lt, lte, lensPath, 
   map, merge, mergeDeepWith, not, omit, 
   path, pathOr, pick, pipe, propEq, reduce,
   replace, splitEvery, uniq, view 
@@ -22,13 +25,14 @@ import {
 import * as uuid from 'uuid/v1'
 
 export {
-  isArray, curry, propPath, flip, of, option, 
-  safe, unless, when,
+  isArray, constant, curry, ifElse, flip, 
+  propPath, of, option, once, safe, 
+  unless, when,
   offset,
   camelCase, debounce, delay,
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, 
-  identity, ifElse, isNil, length, lt, lte, 
+  identity, isNil, length, lt, lte, 
   lensPath, map, merge, mergeDeepWith, not, omit, 
   path, pathOr, pick, pipe, propEq, reduce, replace, 
   splitEvery, uniq, view,

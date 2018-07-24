@@ -3,10 +3,12 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'react-emotion'
  
+import { 
+  Columns, Lead, TickSlider, WorksFilters, WorksGrid 
+} from '../components/blocks'
+import { Container, Heading2 } from '../components/elements'
 import { safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { TickSlider, WorksFilters, WorksGrid } from '../components/blocks'
-import { Columns, Container, Heading2, Lead } from '../components/elements'
 
 const Title = styled('h2')`
   ${Heading2};

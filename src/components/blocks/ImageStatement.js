@@ -12,7 +12,7 @@ import {
 
 const FullScreenSection = styled('div')`
   ${tw([
-    'flex', 'flex-col', 'justify-end',
+    'flex', 'flex-col', 'justify-end', 'md:mb-q144',
     'screen:h-screen', 'relative', 'w-screen'
   ])};
   @media(max-width: 599px) {

@@ -1,13 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { path } from '../helpers'
+import { safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { ImageStatement } from '../components/blocks'
+import { 
+  ImageCaption, ImageStatement, Lead 
+} from '../components/blocks'
 
 const WhoTemplate = ({data: { 
   who, seo, allSite, links, meta
 }}) => {
+  const body = path(['data', 'body'], who)
   const data = path(['data'], who)
   const { image, theme, title } = data
   return (
@@ -24,6 +27,20 @@ const WhoTemplate = ({data: {
       >
         <ImageStatement {...{data}} />
       </div>
+      {safeMap(section => (
+        section.__typename === 'PrismicWhoBodyLead' 
+        ? <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
+            <Lead text={section.primary.leadtext.text} />
+          </div>
+        : section.__typename === 'PrismicWhoBodyImageCaption'
+        ? <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
+            <ImageCaption 
+              items={section.items}
+              primary={section.primary}
+            />
+          </div>
+        : null
+      ))(body)}
     </TemplateWrapper>
   )
 }
@@ -48,6 +65,31 @@ export const query = graphql`
                 blackOnWhite: false
               }) {
                 ...GatsbyImageSharpSizes_tracedSVG
+              }
+            }
+          }
+        }
+        body {
+          __typename
+          ... on PrismicWhoBodyLead {
+            primary {
+              leadtheme
+              leadtext {
+                text
+              }
+            }
+          }
+          ... on PrismicWhoBodyImageCaption {
+            primary {
+              sicgrid
+              sictheme
+              sicheader {
+                html
+              }
+            }
+            items {
+              sictext {
+                html
               }
             }
           }

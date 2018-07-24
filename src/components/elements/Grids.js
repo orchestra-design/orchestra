@@ -1,6 +1,14 @@
 /* global tw */
 import { css } from 'react-emotion'
 
+export const ColumnEight = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-2/3'
+  ])};
+  min-width: calc((2 / 3 * 100%) - 1.5rem);
+`
+
 export const ColumnThree = css`
   ${tw([
     'md:px-q12', 'mb-q24', 'md:mb-0',

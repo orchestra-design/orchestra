@@ -41,13 +41,13 @@ export const DownButton = compose(
     toNext: props => () => {
       const scrollContainer = document.getElementById('scroll-container')
       scrollContainer.scrollTop = offset(scrollContainer).height
-      const scrollChildren = Array.from(scrollContainer)
+      const scrollChildren = Array.from(scrollContainer.children)
       
       delay(500, () => { 
         props.changeTheme(
           pathOr('white', ['attributes', 'theme', 'value'], scrollChildren[1])
         )        
-       })
+      })
     }
   })
 )(({ hiddenDown, hiddenMenu, toNext }) => (

@@ -1,3 +1,6 @@
+var PrismicDOM = require('prismic-dom')
+var Elements = PrismicDOM.RichText.Elements
+
 module.exports = {
   plugins: [
     'gatsby-plugin-emotion',
@@ -21,6 +24,15 @@ module.exports = {
             ? `/${doc.lang.replace('-us', '')}/projects/${doc.uid.replace(/.{3}$/i, '')}`
             : `/${doc.lang.replace('-us', '')}/${doc.uid.replace(/.{3}$/i, '')}`
         ),
+        htmlSerializer: ({ node, key, value }) => (
+          (type, element, content, children) => {
+            switch(type) {
+              case Elements.heading5: return `<p class="lead">${children.join('')}</p>`;
+              default: 
+                return null;
+            }
+          }
+        )
       },
     },
     {

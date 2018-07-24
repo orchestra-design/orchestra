@@ -1,13 +1,14 @@
 /* global tw */
 import React, { Fragment } from 'react'
-import { JustImage } from './JustImage'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 
-import { Container } from './Containers'
-import { ColumnThree, Row } from './Grids'
+import { 
+  Body, ColumnThree, Container, 
+  Heading3, JustImage, Row 
+} from '../elements'
+
 import { and, isNil, not, safeMap, unless, uuid } from '../../helpers'
-import { Body, Heading3 } from './Typography'
 
 const Back = styled('div')`
   ${tw([
@@ -41,6 +42,7 @@ const Text = styled('div')`
     ${Heading3};
     ${tw(['mb-q24', 'md:mb-q32'])};
   }
+  color: ${({ theme }) => theme.color};
 `
 
 export const Columns = ({ primary, items }) => (

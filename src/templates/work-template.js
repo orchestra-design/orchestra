@@ -1,22 +1,14 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
-import styled, { css } from 'react-emotion'
-import Img from 'gatsby-image'
+import { css } from 'react-emotion'
 
 import {
-  isNil, not, path, concat, mergeDeepWith
+  path, concat, mergeDeepWith
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
-import { Row } from '../components/elements'
 
-const Section = styled('section')`
-  ${tw('min-h-screen items-center justify-center')}
-  ${Row}; 
-  color: ${props => props.theme.color};
-  transition: all .6s ease-in-out .2s;
-`
 
 const WorkTemplate = ({ data: { 
   work, seo, allSite, links, meta 

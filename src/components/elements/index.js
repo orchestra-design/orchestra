@@ -6,7 +6,8 @@ export {
 } from './Buttons'
 
 export { 
-  ColumnThree, Row, SimpleRow
+  ColumnEight, ColumnThree,
+  Row, SimpleRow
 } from './Grids'
 
 export { 
@@ -14,7 +15,6 @@ export {
 } from './Containers'
 
 export { Breadcrumbs } from './Breadcrumbs'
-export { Columns } from './Columns'
 export { ContactButton } from './ContactButton'
 export { DownButton } from './DownButton'
 export { GridToggler } from './GridToggler'
@@ -23,7 +23,6 @@ export { HeaderLogo } from './HeaderLogo'
 export { Image } from './Image'
 export { JumboDummy } from './JumboDummy'
 export { JustImage } from './JustImage'
-export { Lead } from './Lead'
 export { LinkImage } from './LinkImage'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
