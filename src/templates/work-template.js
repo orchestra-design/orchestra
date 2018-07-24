@@ -54,22 +54,7 @@ const WorkTemplate = ({ data: {
           <div>{ work.data.description }</div>
         </div>
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black" />
-        {not(isNil(work.data.body)) && work.data.body.map(({primary}, i) =>
-          <div key={i+6000} theme={primary.sictheme} >
-            <Section key={i+5000} >
-              <Img key={i+4000} 
-                className={css`${tw('flex')};`}
-                resolutions={primary.sicimage.localFile.childImageSharp.resolutions} 
-                alt={primary.siccaption}
-              />
-              <div key={i+3000} className={css`${tw('flex flex-col w-1/3')};`}>
-                <div key={i+1000} dangerouslySetInnerHTML={{ __html: primary.sicheader.html }} />
-                <div key={i+2000} dangerouslySetInnerHTML={{ __html: primary.sictext.html }} />
-              </div>
-            </Section>
-          </div>
-        )}
+        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black" />        
       </TemplateWrapper>
     </Fragment>
   )

@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 
 import { Container } from './Containers'
 import { ColumnThree, Row } from './Grids'
-import { and, isNil, not, unless, uuid } from '../../helpers'
+import { and, isNil, not, safeMap, unless, uuid } from '../../helpers'
 import { Body, Heading3 } from './Typography'
 
 const Back = styled('div')`
@@ -52,18 +52,22 @@ export const Columns = ({ primary, items }) => (
     )(primary.colbackimage)}
     <Container>
       <RowWrapper hasntImage={isNil(primary.colbackimage)} >
-      {items.map(item => (
+      {safeMap(item => (
         <Col key={uuid()}>
           <div key={uuid()}
             className={css`${tw('max-w-xs w-full')}`}
-          ><Img key={uuid()} 
+          >{unless(isNil,() =>
+            <Img key={uuid()} 
               sizes={item.colimage.localFile.childImageSharp.sizes}
-            /></div>
-          <Text key={uuid()} 
-            dangerouslySetInnerHTML={{ __html: item.coltext.html }}
-          />
+            />
+          )(item.colimage)}</div>
+          {unless(isNil,() =>
+            <Text key={uuid()} 
+              dangerouslySetInnerHTML={{ __html: item.coltext.html }}
+            />
+          )(item.coltext)}
         </Col>
-      ))}
+      ))(items)}
       </RowWrapper>
     </Container>
   </Fragment>
