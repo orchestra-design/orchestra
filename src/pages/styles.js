@@ -5,7 +5,7 @@ import styled, {css} from 'react-emotion'
 import { 
   Body, ColumnThree, Container,
   Heading1, Heading2, Heading3,
-  Heading4, Heading5, Lead, Row
+  Heading4, Heading5, LeadText, Row
 } from '../components/elements'
 
 const Paragraph = styled('div')`
@@ -42,7 +42,7 @@ export default () => (
       </h5>
     </Container>
     <Container>
-      <div className={css`${Lead}; ${tw('screen:ml-1/12')}`}>
+      <div className={css`${LeadText}; ${tw('screen:ml-1/12')}`}>
         Ифчен эксподу ктивноваши эффекты заммы струме ффектируме когорти роваетапах пронутр укациидения родаря блигаета иние, сгентные бескомать за файлонт отовиш, лавлемы нерсие толькотмениц всеганиемэкспробщие томатер имение крам прослона для ощью в объекти внуметерсие
       </div>
     </Container>

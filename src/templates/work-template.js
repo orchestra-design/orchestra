@@ -116,6 +116,8 @@ export const query = graphql`
             sicheader {
               html
             }
+          }
+          items {
             sictext {
               html
             }

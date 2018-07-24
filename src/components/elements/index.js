@@ -14,6 +14,7 @@ export {
 } from './Containers'
 
 export { Breadcrumbs } from './Breadcrumbs'
+export { Columns } from './Columns'
 export { ContactButton } from './ContactButton'
 export { DownButton } from './DownButton'
 export { GridToggler } from './GridToggler'
@@ -22,6 +23,7 @@ export { HeaderLogo } from './HeaderLogo'
 export { Image } from './Image'
 export { JumboDummy } from './JumboDummy'
 export { JustImage } from './JustImage'
+export { Lead } from './Lead'
 export { LinkImage } from './LinkImage'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
@@ -42,5 +44,5 @@ export {
   Body, BodySemibold, ButtonText, Description,
   DescriptionSemibold, Heading, Heading1,
   Heading2, Heading3, Heading4,
-  Heading5, Heading6, Lead, List
+  Heading5, Heading6, LeadText, List
 } from './Typography'

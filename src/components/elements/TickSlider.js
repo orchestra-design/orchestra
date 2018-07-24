@@ -1,5 +1,5 @@
 /* global tw */
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
@@ -14,8 +14,9 @@ import { ButtonText, Heading1 } from './Typography'
 
 const Container = styled('div')`
   ${tw([
-    'flex', 'flex-col', 'justify-end',
-    'mx-auto', 'max-w-desktop', 'relative'
+    'flex', 'flex-col', 'justify-end', 
+    'md:mb-q144', 'mx-auto', 
+    'max-w-desktop', 'relative'
   ])};
   @media(max-width: 599px) {
     height: 100vw;
@@ -86,12 +87,14 @@ export const TickSlider = enhance(({
     <div className={css`${tw('absolute pin screen:hidden')}`} >
       <JustImage image={image[jumboCount].image} />
     </div>
-    <Heading>{ image[jumboCount].worktitle.text }</Heading>
     {not(hiddenMenu) &&
-      <Caption>
-        <Pager length={length(image)} />
-        { image[jumboCount].caption }
-      </Caption>
+      <Fragment>
+        <Heading>{ image[jumboCount].worktitle.text }</Heading>
+        <Caption>
+          <Pager length={length(image)} />
+          { image[jumboCount].caption }
+        </Caption>
+      </Fragment>
     } 
   </Container>
 )})

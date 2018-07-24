@@ -87,7 +87,7 @@ export const Heading6 = css`
   ])};
 `
 
-export const Lead = css`
+export const LeadText = css`
   ${tw([
     'font-plex', 'leading-none',
     'tracking-tight',
