@@ -5,17 +5,19 @@ export {
   LittleRoundButton, SquareButton
 } from './Buttons'
 
+export { Breadcrumbs } from './Breadcrumbs'
+
 export { 
   ColumnEight, ColumnThree,
   Row, SimpleRow
 } from './Grids'
 
+export { ContactButton } from './ContactButton'
+
 export { 
   Container, ContainerFluid 
 } from './Containers'
 
-export { Breadcrumbs } from './Breadcrumbs'
-export { ContactButton } from './ContactButton'
 export { DownButton } from './DownButton'
 export { GridToggler } from './GridToggler'
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
@@ -30,10 +32,10 @@ export { Main } from './Main'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { Pager } from './Pager'
+export { Headers, RichText } from './RichText'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 export { SocialButton } from './SocialButton'
-export { UpButton } from './UpButton'
 
 export {
   BaseTransition, ImageLinkTransition
@@ -45,3 +47,5 @@ export {
   Heading2, Heading3, Heading4,
   Heading5, Heading6, LeadText, List
 } from './Typography'
+
+export { UpButton } from './UpButton'

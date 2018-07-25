@@ -9,8 +9,8 @@ import {
 } from '../elements'
 
 import { 
-  and, isNil, not, safeMap, 
-  unless, uuid 
+  and, equals , isNil, length, not, safeMap, 
+  unless, uuid
 } from '../../helpers'
 
 const Back = styled('div')`
@@ -24,11 +24,13 @@ const Back = styled('div')`
 const RowWrapper = styled('div')`
   ${Row};
   ${tw([
-    'flex-wrap',
+    'flex-wrap', 'items-baseline',
     'py-q72', 'relative'
   ])};
   ${({ hasntImage }) => and(not(hasntImage), 
     tw(['md:pt-q200']))};
+  ${({ length }) => and(equals(length, 2), 
+    tw(['justify-center']))};
 `
 
 const Col = styled('div')`
@@ -59,7 +61,7 @@ export const Columns = ({ primary, items }) => (
       </Back>
     )(primary.colbackimage)}
     <Container>
-      <RowWrapper hasntImage={isNil(primary.colbackimage)} >
+      <RowWrapper hasntImage={isNil(primary.colbackimage)} length={length(items)} >
       {safeMap(item => (
         <Col key={uuid()}>
           <div key={uuid()}
@@ -68,7 +70,7 @@ export const Columns = ({ primary, items }) => (
             <Img key={uuid()} 
               sizes={item.colimage.localFile.childImageSharp.sizes}
             />
-          )(item.colimage)}</div>
+          )(item.colimage && item.colimage.localFile)}</div>
           {unless(isNil,() =>
             <Text key={uuid()} 
               dangerouslySetInnerHTML={{ __html: item.coltext.html }}

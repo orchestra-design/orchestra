@@ -4,8 +4,8 @@ import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 
 import { 
-  Body, ColumnEight, ColumnThree, Container,
-  Heading2, Heading3, Heading4, LeadText, Row
+  ColumnEight, ColumnThree, Container,
+  Headers, RichText, Row
 } from '../elements'
 
 import { 
@@ -25,13 +25,8 @@ const RowWrapper = styled('div')`
 
 
 const LeftCol = styled('div')`
+  ${Headers};
   ${tw(['md:text-right'])};
-  & h2 {
-    ${Heading2};
-  }
-  & h3 {
-    ${Heading3};
-  }
   ${({ grid }) => ifElse(equals('left'), 
     constant(ColumnThree), 
     constant(ColumnEight)
@@ -50,19 +45,7 @@ const RightCol = styled('div')`
 `
 
 const Text = styled('div')`
-  ${Body};
-  & h3 {
-    ${Heading3};
-    ${tw(['mb-q24', 'md:mb-q32'])};
-  }
-  & h4 {
-    ${Heading4};
-    ${tw(['mb-q16', 'md:mb-q24'])};
-  }
-  & .lead {
-    ${LeadText};
-    ${tw(['m-0'])}
-  }
+  ${RichText};
 `
 
 export const ImageCaption = ({ primary, items }) => (
