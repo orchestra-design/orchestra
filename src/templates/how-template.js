@@ -1,18 +1,18 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { css } from 'react-emotion'
 
 import { map, path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { JumboSlider } from '../components/blocks'
+import { JumboSlider, Points } from '../components/blocks'
 
 const HowTemplate = ({data: { 
   how, seo, allSite, links, meta
 }}) => {
   const data = path(['data'], how)
   const { theme } = data
-  const title = path(['title', 'text'], data)
   const image = map(({ jumboimage }) => ({ image: jumboimage }), path(['jumbo'], data))
+  const points = path(['points'], data)
+  const title = path(['title', 'text'], data)
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -26,7 +26,9 @@ const HowTemplate = ({data: {
       <div        
         {...{theme}}
       ><JumboSlider {...{data}} /></div>
-      <div className={css`height: 100vh;`} theme="white" />
+      <div theme="white">
+        <Points {...{points}} />
+      </div>
     </TemplateWrapper>
   )
 }
@@ -54,7 +56,24 @@ export const query = graphql`
               }
             }
           }
-        }    
+        }
+        points {
+          pointsimage {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 480, quality: 80) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          pointsheading {
+            text
+          }
+          pointstext {
+            html
+          }
+        }
       }
     }
     seo: prismicHow(lang: {eq: $lang}) {

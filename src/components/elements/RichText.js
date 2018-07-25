@@ -4,7 +4,7 @@ import { css } from 'react-emotion'
 import { 
   Body, 
   Heading2, Heading3, Heading4,
-  LeadText
+  LeadText, List
 } from './Typography'
 
 export const Headers = css`
@@ -32,5 +32,21 @@ export const RichText = css`
   & .lead {
     ${LeadText};
     ${tw(['m-0'])}
+  }
+  & ul {
+    ${List};
+  }
+  & li {
+    ${tw([
+      'mb-q12', 'pl-q32', 'relative'
+    ])};
+  }
+  & li::after {
+    content: '';
+    ${tw([
+      'absolute', 'bg-black', 'block', 
+      'h-q8', 'pin-l', 'pin-t', 'w-q8'
+    ])};
+    top: 0.625rem;
   }
 `

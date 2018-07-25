@@ -4,8 +4,8 @@ import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 
 import { 
-  Body, ColumnThree, Container, 
-  Heading3, JustImage, Row 
+  ColumnThree, Container, 
+  JustImage, RichText, Row 
 } from '../elements'
 
 import { 
@@ -42,14 +42,11 @@ const Col = styled('div')`
 `
 
 const Text = styled('div')`
-  ${Body};
+  ${RichText};
   ${tw([
-    'max-w-xs', 'mb-q48', 'mt-q36', 'pl-1/6'
+    'max-w-xs', 'mb-q48', 'mt-q36', 
+    'pl-1/6', 'w-full'
   ])};
-  & h3 {
-    ${Heading3};
-    ${tw(['mb-q24', 'md:mb-q32'])};
-  }
   color: ${({ theme }) => theme.color};
 `
 

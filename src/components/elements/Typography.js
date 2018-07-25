@@ -99,6 +99,6 @@ export const List = css`
   ${tw([
     'font-source', 'font-normal',
     'leading-normal', 'text-list',
-    'tracking-normal'
+    'tracking-normal', 'list-reset'
   ])};
 `

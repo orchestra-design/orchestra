@@ -6,7 +6,7 @@ import { Transition, animated } from 'react-spring'
 
 import { 
   Breadcrumbs, Container, Heading2, 
-  Heading3, JustImage, JumboDummy
+  Heading3, JustImage, JumboDownButton, JumboDummy
 } from '../elements'
 
 import {
@@ -21,7 +21,7 @@ const FullScreenSection = styled('div')`
   ])};
   color: ${({ theme }) => theme.color};
   @media(min-width: 600px) {
-    height: calc(100vh / 4);
+    height: calc(100vh / 6);
   }
 `
 
@@ -89,6 +89,7 @@ export const JumboSlider = connect(
               >{ data.title.text }</Breadcrumbs>
               <TransitionHeading {...{data}} {...{jumboCount}} />             
             </Container>
+            <JumboDownButton />
           </Fixed>
         }
       </FullScreenSection>

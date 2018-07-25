@@ -7,9 +7,13 @@ import { connect } from 'react-redux'
 import { countJumbo } from '../../actions'
 
 import {
-  and, equals, gt, lt, length,not, 
-  offset, safeMap, uuid
+  and, equals, gt, isNil, lt, length,
+  not, offset, safeMap, uuid
 } from '../../helpers'
+
+const DummyWrapper = styled('div')`
+  margin-bottom: ${({ jumboCount }) => isNil(jumboCount) ? '3rem' : '100vh'};
+`
 
 const Dummy = styled('div')`
   ${tw(['hidden', 'screen:block'])}; 
@@ -46,10 +50,13 @@ const enhance = compose(
   })
 )
 
-export const JumboDummy = enhance(({ jumbo }) => 
-  <div id="jumbo-counter">
+export const JumboDummy = enhance(({ jumbo, jumboCount }) => 
+  <DummyWrapper 
+    id="jumbo-counter"
+    {...{jumboCount}}
+  >
   {safeMap(() => 
     <Dummy key={uuid()} />
   , jumbo)}
-  </div>
+  </DummyWrapper>
 )
