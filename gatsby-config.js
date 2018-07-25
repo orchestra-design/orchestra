@@ -28,6 +28,7 @@ module.exports = {
           (type, element, content, children) => {
             switch(type) {
               case Elements.heading5: return `<p class="lead">${children.join('')}</p>`;
+              case Elements.heading6: return `<span class="link">${children.join('')}</span>`;
               default: 
                 return null;
             }

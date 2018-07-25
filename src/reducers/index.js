@@ -29,6 +29,10 @@ const reducer = handleActions(
       'backImage', action.payload,
       state,
     ),
+    SET_RIGHT_IMAGE: (state, action) => assoc(
+      'rightImage', action.payload,
+      state,
+    ),
     SET_WORK_FILTER: (state, action) => assoc(
       'worksFilter', action.payload,
       state

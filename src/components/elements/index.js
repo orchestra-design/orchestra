@@ -8,8 +8,8 @@ export {
 export { Breadcrumbs } from './Breadcrumbs'
 
 export { 
-  ColumnEight, ColumnThree,
-  Row, SimpleRow
+  ColumnEight, ColumnThree, ColumnThreeFive,
+  ColumnTwoFive, Row, SimpleRow
 } from './Grids'
 
 export { ContactButton } from './ContactButton'
@@ -34,6 +34,7 @@ export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { Pager } from './Pager'
 export { Headers, RichText } from './RichText'
+export { RightImage } from './RightImage'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 export { SocialButton } from './SocialButton'
@@ -43,8 +44,9 @@ export {
 } from './Transitions'
 
 export { 
-  Body, BodySemibold, ButtonText, Description,
-  DescriptionSemibold, Heading, Heading1,
+  Body, BodySemibold, ButtonSmallText, 
+  ButtonText, Description, DescriptionSemibold, 
+  Heading, Heading0, Heading1,
   Heading2, Heading3, Heading4,
   Heading5, Heading6, LeadText, List
 } from './Typography'

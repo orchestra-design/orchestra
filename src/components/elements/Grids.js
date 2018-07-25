@@ -23,6 +23,28 @@ export const ColumnThree = css`
   }
 `
 
+export const ColumnThreeFive = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-3/5'
+  ])};
+  min-width: calc((3 / 5 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((3 / 5 * 100%) - 1.5rem);
+  }
+`
+
+export const ColumnTwoFive = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-2/5'
+  ])};
+  min-width: calc((2 / 5 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((2 / 5 * 100%) - 1.5rem);
+  }
+`
+
 export const Row = css`
   ${tw([
     'flex', 'flex-col', 'md:flex-row',

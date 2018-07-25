@@ -4,7 +4,7 @@ import { delay } from '../helpers'
 
 import { 
   COLLAPSE_MENU, COUNT_JUMBO, MENU_TRANSITION, 
-  SCROLL_MENU, SET_IMAGE, SET_WORK_FILTER,
+  SCROLL_MENU, SET_IMAGE, SET_RIGHT_IMAGE, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
   TOGGLE_WORK_FILTER
 } from '../constants'
@@ -13,6 +13,7 @@ const collapseMenuAction = createAction(COLLAPSE_MENU)
 const countJumboAction = createAction(COUNT_JUMBO)
 const scrollMenuAction = createAction(SCROLL_MENU)
 const setImageAction = createAction(SET_IMAGE)
+const setRightImageAction = createAction(SET_RIGHT_IMAGE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
@@ -55,6 +56,11 @@ export const srollMenu = payload =>
 export const setImage = payload =>
   dispatch => { 
     dispatch(setImageAction(payload))
+  }
+
+export const setRightImage = payload =>
+  dispatch => { 
+    dispatch(setRightImageAction(payload))
   }
 
 export const setWorkFilter = payload =>

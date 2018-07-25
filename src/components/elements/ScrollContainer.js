@@ -6,13 +6,13 @@ import { connect } from 'react-redux'
 
 import { 
   changeTheme, collapseMenu,
-  setImage, srollMenu 
+  setImage, setRightImage, srollMenu 
 } from '../../actions'
 
 import {
   and, camelCase, equals, F, gt,
   head, ifElse, isNil, lt, not, 
-  offset, pathOr, notIsNil
+  notIsNil, offset, pathOr
 } from '../../helpers'
 
 const ScrollWrapper = styled('div')`
@@ -27,14 +27,14 @@ const enhance = compose(
   connect(
     ({ 
       backImage, collapsedMenu,
-      hiddenMenu, storedTheme 
+      hiddenMenu, rightImage, storedTheme 
     }) => ({ 
       backImage, collapsedMenu,
-      hiddenMenu, storedTheme 
+      hiddenMenu, rightImage, storedTheme 
     }),
     { 
       changeTheme, collapseMenu, 
-      setImage, srollMenu 
+      setImage, setRightImage, srollMenu 
     }
   ),
   withHandlers({
@@ -65,6 +65,7 @@ const enhance = compose(
         /* THEME CHANGING WHEN SCROLLING */
         const childOffset = offset(child)
         const newImage = pathOr(null, ['attributes', 'image', 'value'], child)
+        const newRightImage = pathOr(null, ['attributes', 'right-image', 'value'], child)
         const newTheme = camelCase(child.attributes.theme.value)
         // Image
         ifElse(
@@ -73,6 +74,24 @@ const enhance = compose(
             notIsNil(newImage),
             not(equals(newImage, props.backImage))
           ) && props.setImage(newImage),
+          F
+        )(childOffset)
+        // RightImage Appearing     
+        ifElse(
+          ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
+          () => and(
+            notIsNil(newRightImage),
+            not(equals(newRightImage, props.rightImage))
+          ) && props.setRightImage(newRightImage),
+          F
+        )(childOffset)
+        // RightImage Desappearing     
+        ifElse(          
+          ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
+          () => and(
+            isNil(newRightImage),
+            notIsNil(props.rightImage)
+          ) && props.setRightImage(null),
           F
         )(childOffset)
         // Theme

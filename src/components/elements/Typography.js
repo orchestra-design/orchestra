@@ -17,6 +17,14 @@ export const BodySemibold = css`
   ])};
 `
 
+export const ButtonSmallText = css`
+  ${tw([
+    'font-source', 'font-semibold',
+    'text-xs', 'tracking-button', 
+  ])};
+  font-variant-caps: all-small-caps;
+`
+
 export const ButtonText = css`
   ${tw([
     'font-source', 'font-semibold',
@@ -43,6 +51,12 @@ export const Heading = css`
       'font-plex', 'leading-heading',
       'm-0', 'tracking-tight'
     ])};
+`
+
+export const Heading0 = css`
+  ${Heading};
+  ${tw(['text-heading0', 'font-bold'])};
+  line-height: .7125;
 `
 
 export const Heading1 = css`

@@ -2,7 +2,7 @@
 import { css } from 'react-emotion'
 
 import { 
-  Body, 
+  Body, ButtonText, 
   Heading2, Heading3, Heading4,
   LeadText, List
 } from './Typography'
@@ -21,6 +21,10 @@ export const Headers = css`
 
 export const RichText = css`
   ${Body};
+  & h2 {
+    ${Heading2};
+    ${tw(['mb-q32', 'md:mb-q36'])};
+  }
   & h3 {
     ${Heading3};
     ${tw(['mb-q24', 'md:mb-q32'])};
@@ -31,10 +35,14 @@ export const RichText = css`
   }
   & .lead {
     ${LeadText};
-    ${tw(['m-0'])}
+    ${tw(['m-0'])};
+  }
+  & .link {
+    ${ButtonText};
   }
   & ul {
     ${List};
+    ${tw(['my-q48'])};
   }
   & li {
     ${tw([

@@ -1,5 +1,6 @@
 export const initState = {
   backImage: null,
+  rightImage: null,
   collapsedMenu: false,
   collapseTransition: false,
   hiddenMenu: false,

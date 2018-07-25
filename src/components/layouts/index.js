@@ -10,7 +10,7 @@ import { Footer, Header } from '../blocks'
 
 import { 
   Back, ContactButton, DownButton, Image, Main,
-  ScrollContainer, SEO, UpButton
+  ScrollContainer, RightImage, SEO, UpButton
 } from '../elements'
 
 import { unless, isNil } from '../../helpers'
@@ -27,7 +27,7 @@ const Contact = ContactButton.withComponent('a')
 
 const TemplateWrapper = ({ 
   seo, allSite, hiddenDown, links, meta, color, 
-  image, title, children, storedTheme 
+  image, rightImage, title, children, storedTheme 
 }) => {
   const { lang } = seo
   
@@ -48,6 +48,11 @@ const TemplateWrapper = ({
           ><Image {...{image}} /></div>
         )(image)}
         <Back {...{color}} />
+        {unless(isNil, () =>
+          <div
+            className={css`${tw('absolute screen:block hidden pin')};`}
+          ><RightImage {...{rightImage}} /></div>
+        )(rightImage)}
         <ScrollContainer>
           <Fragment>
             { children }            
@@ -68,11 +73,7 @@ const TemplateWrapper = ({
 }
 
 export default connect(
-  ({ 
-    backImage, storedTheme 
-  }) => ({ 
-    backImage, storedTheme 
-  })
+  ({ rightImage, storedTheme }) => ({ rightImage, storedTheme })
 )(TemplateWrapper)
 
 

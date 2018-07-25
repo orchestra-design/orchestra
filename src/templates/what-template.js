@@ -1,15 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { path } from '../helpers'
+import { path, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { ImageStatement } from '../components/blocks'
+import { ImageCaptionWithDigits, ImageStatement } from '../components/blocks'
 
 const WhatTemplate = ({data: {
   what, seo, allSite, links, meta
 }}) => {
   const data = path(['data'], what)
-  const { image, theme, title } = data
+  const { body, image, theme, title } = data
+  
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -19,11 +20,21 @@ const WhatTemplate = ({data: {
       {...{seo}}
       {...{title}}
     >
-      <div        
-        {...{theme}}
-      >
-        <ImageStatement {...{data}} />
-      </div>
+      <div 
+        image={JSON.stringify(image)}
+        {...{theme}} 
+      ><ImageStatement {...{data}} /></div>
+      {body.map(({ primary, items }, i) =>
+        <div key={uuid()}
+          right-image={JSON.stringify(primary.sicimage)}
+          theme={primary.sictheme}
+        ><ImageCaptionWithDigits key={uuid()}
+           {...{i}}
+           {...{items}}
+           lang={seo.lang}
+           {...{primary}}
+          /></div>
+      )}
     </TemplateWrapper>
   )
 }
@@ -31,7 +42,7 @@ const WhatTemplate = ({data: {
 export default WhatTemplate
 
 export const query = graphql`
-  query WhatTemplateQuery($lang: String!, $color: String!) {
+  query WhatTemplateQuery($lang: String!) {
     what: prismicWhat(lang: {eq: $lang}) {
       data {
         title
@@ -43,13 +54,32 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              sizes(maxWidth: 1920, quality: 80, traceSVG: {
-                color: $color
-                turnPolicy: TURNPOLICY_MINORITY
-                blackOnWhite: false
-              }) {
-                ...GatsbyImageSharpSizes_tracedSVG
+              sizes(maxWidth: 1920, quality: 80) {
+                ...GatsbyImageSharpSizes
               }
+            }
+          }
+        }
+        body {
+          primary {
+            sicgrid
+            sictheme
+            sicimage {
+              localFile {
+                childImageSharp {
+                  sizes(maxWidth: 1920, quality: 80) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+            }
+          }
+          items {
+            sictext {
+              html
+            }
+            sictextlink {
+              url
             }
           }
         }
