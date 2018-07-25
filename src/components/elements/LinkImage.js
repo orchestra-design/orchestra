@@ -3,8 +3,10 @@ import React from 'react'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import styled, { css } from 'react-emotion'
+import { connect } from 'react-redux'
 
-import { imageSizes } from '../../helpers'
+import { pageTransition } from '../../actions'
+import { constant, imageSizes } from '../../helpers'
 
 import { 
   BaseTransition, ImageLinkTransition 
@@ -136,13 +138,16 @@ const DescriptionText = styled('span')`
   line-height: 1.125rem;
 `
 
-export const LinkImage = ({
+export const LinkImage = connect(
+  constant, { pageTransition }
+)(({
   color, description, link, image, 
-  hoverimage, title, worksGrid
+  hoverimage, pageTransition, title, worksGrid
 }) => (
   <LinkedImage
     {...{color}}
     grid={worksGrid.toString()}
+    onClick={() => pageTransition()}
     to={link.url}
   >
     <ImageWrapper {...{worksGrid}} >
@@ -169,4 +174,4 @@ export const LinkImage = ({
       </Row>
     </TitleWrapper>
   </LinkedImage>
-)
+))
