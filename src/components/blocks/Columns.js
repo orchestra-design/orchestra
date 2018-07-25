@@ -8,7 +8,10 @@ import {
   Heading3, JustImage, Row 
 } from '../elements'
 
-import { and, isNil, not, safeMap, unless, uuid } from '../../helpers'
+import { 
+  and, isNil, not, safeMap, 
+  unless, uuid 
+} from '../../helpers'
 
 const Back = styled('div')`
   ${tw([
@@ -20,7 +23,10 @@ const Back = styled('div')`
 
 const RowWrapper = styled('div')`
   ${Row};
-  ${tw(['py-q72', 'relative'])};
+  ${tw([
+    'flex-wrap',
+    'py-q72', 'relative'
+  ])};
   ${({ hasntImage }) => and(not(hasntImage), 
     tw(['md:pt-q200']))};
 `

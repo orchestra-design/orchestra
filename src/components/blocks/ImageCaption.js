@@ -5,26 +5,30 @@ import Img from 'gatsby-image'
 
 import { 
   Body, ColumnEight, ColumnThree, Container,
-  Heading3, LeadText, Row
+  Heading2, Heading3, Heading4, LeadText, Row
 } from '../elements'
 
 import { 
-  constant, equals, ifElse, isNil, 
+  and, constant, equals, ifElse, isNil, 
   safeMap, unless, uuid 
 } from '../../helpers'
 
 const RowWrapper = styled('div')`
   ${Row};
   ${tw([
-    'items-baseline',
+    'items-center',
     'py-q72', 'relative'
   ])};
+  ${({ hasntImage }) => and(hasntImage, tw(['items-baseline']))};
   color: ${({ theme }) => theme.color};
 `
 
 
 const LeftCol = styled('div')`
   ${tw(['md:text-right'])};
+  & h2 {
+    ${Heading2};
+  }
   & h3 {
     ${Heading3};
   }
@@ -51,6 +55,10 @@ const Text = styled('div')`
     ${Heading3};
     ${tw(['mb-q24', 'md:mb-q32'])};
   }
+  & h4 {
+    ${Heading4};
+    ${tw(['mb-q16', 'md:mb-q24'])};
+  }
   & .lead {
     ${LeadText};
     ${tw(['m-0'])}
@@ -59,20 +67,20 @@ const Text = styled('div')`
 
 export const ImageCaption = ({ primary, items }) => (
   <Container>
-    <RowWrapper>
+    <RowWrapper hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}>
       <LeftCol grid={primary.sicgrid} >
       {unless(isNil,() =>
-        <div key={uuid()} 
+        <div 
           dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
         />
       )(primary.sicheader)}
-      {unless(isNil,() =>
+      {unless(isNil, () =>
         <div
           className={css`${tw('max-w-xs w-full')}`}
         ><Img 
           sizes={primary.sicimage.localFile.childImageSharp.sizes}
         /></div>
-      )(primary.sicimage)}
+      )(primary.sicimage && primary.sicimage.localFile)}
       </LeftCol>
       <RightCol grid={primary.sicgrid} >
       {safeMap(item => (

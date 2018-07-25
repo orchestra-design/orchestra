@@ -1,5 +1,5 @@
 /* global tw */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import styled from 'react-emotion'
  
@@ -7,7 +7,7 @@ import {
   Columns, Lead, TickSlider, WorksFilters, WorksGrid 
 } from '../components/blocks'
 import { Container, Heading2 } from '../components/elements'
-import { safeMap, path, uuid  } from '../helpers'
+import { equals, safeMap, path, uuid   } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
 const Title = styled('h2')`
@@ -36,18 +36,23 @@ const IndexTemplate = ({data: {
         <TickSlider {...{image}} />
       </div>
       {safeMap(section => (
-        section.__typename === 'PrismicHomepageBodyLead' 
-        ? <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
-            <Lead text={section.primary.leadtext.text} />
-          </div>
-        : section.__typename === 'PrismicHomepageBodyColumns'
-        ? <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
-            <Columns 
+        <Fragment key={uuid()} >
+        {equals('PrismicHomepageBodyColumns', section.__typename) &&
+          <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
+            <Columns key={uuid()}
               items={section.items}
               primary={section.primary}
             />
           </div>
-        : null
+        }
+        {equals('PrismicHomepageBodyLead', section.__typename) &&
+          <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
+            <Lead key={uuid()} 
+              primary={section.primary} 
+            />
+          </div>
+        }
+        </Fragment>
       ))(body)}
       <div theme="white" >
         <Container>
@@ -86,14 +91,6 @@ export const query = graphql`
         }
         body {
           __typename
-          ... on PrismicHomepageBodyLead {
-            primary {
-              leadtheme
-              leadtext {
-                text
-              }
-            }
-          }
           ... on PrismicHomepageBodyColumns {
             primary {
               coltheme
@@ -119,6 +116,14 @@ export const query = graphql`
               }
               coltext {
                 html
+              }
+            }
+          }
+          ... on PrismicHomepageBodyLead {
+            primary {
+              leadtheme
+              leadtext {
+                text
               }
             }
           }

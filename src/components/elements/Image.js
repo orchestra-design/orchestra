@@ -24,9 +24,10 @@ const transitionGroup = data => data.map(({ image }) =>
 )
 
 export const Image = connect(
-  ({ jumboCount }) => ({ jumboCount })
-)(({ image, jumboCount }) => {
+  ({ backImage, jumboCount }) => ({ backImage, jumboCount })
+)(({ backImage, image, jumboCount }) => {
   const data = isArray(image) ? [image[jumboCount]] : [{...{image}}]
+  const parsedImage = JSON.parse(backImage)
   
   return (
     <Fragment>
@@ -47,6 +48,13 @@ export const Image = connect(
           >{ transitionGroup(data) }</Transition> 
         </Fragment>
       )(jumboCount)}
+      {parsedImage && unless(isNil, () =>
+        <Img 
+          sizes={parsedImage.localFile.childImageSharp.sizes} 
+          className={css`${tw('pin')};`} 
+          style={{position: 'absolute'}} 
+        />
+      )(parsedImage.localFile)}
     </Fragment>
   )
 })

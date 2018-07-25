@@ -6,6 +6,7 @@ export const ColumnEight = css`
     'md:px-q12', 'mb-q24', 'md:mb-0',
     'w-full', 'md:w-2/3'
   ])};
+  max-width: calc((2 / 3 * 100%) - 1.5rem);
   min-width: calc((2 / 3 * 100%) - 1.5rem);
 `
 
@@ -14,6 +15,7 @@ export const ColumnThree = css`
     'md:px-q12', 'mb-q24', 'md:mb-0',
     'w-full', 'md:w-1/3'
   ])};
+  max-width: calc((1 / 3 * 100%) - 1.5rem);
   min-width: calc((1 / 3 * 100%) - 1.5rem);
 `
 

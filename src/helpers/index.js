@@ -18,7 +18,7 @@ import {
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, identity, 
   isNil, length, lt, lte, lensPath, 
-  map, merge, mergeDeepWith, not, omit, 
+  map, merge, mergeDeepWith, not, omit, or,
   path, pathOr, pick, pipe, propEq, reduce,
   replace, splitEvery, uniq, view 
 } from 'ramda'
@@ -33,7 +33,7 @@ export {
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, 
   identity, isNil, length, lt, lte, 
-  lensPath, map, merge, mergeDeepWith, not, omit, 
+  lensPath, map, merge, mergeDeepWith, not, omit, or,
   path, pathOr, pick, pipe, propEq, reduce, replace, 
   splitEvery, uniq, view,
   uuid

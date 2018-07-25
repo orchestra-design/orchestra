@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import { safeMap, path, uuid  } from '../helpers'
+import { equals, safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { 
-  ImageCaption, ImageStatement, Lead 
+  Columns, ImageCaption, ImageStatement, Lead 
 } from '../components/blocks'
 
 const WhoTemplate = ({data: { 
@@ -28,18 +28,35 @@ const WhoTemplate = ({data: {
         <ImageStatement {...{data}} />
       </div>
       {safeMap(section => (
-        section.__typename === 'PrismicWhoBodyLead' 
-        ? <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
-            <Lead text={section.primary.leadtext.text} />
-          </div>
-        : section.__typename === 'PrismicWhoBodyImageCaption'
-        ? <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
-            <ImageCaption 
+        <Fragment key={uuid()} >
+        {equals('PrismicWhoBodyColumns', section.__typename) &&
+          <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
+            <Columns key={uuid()}
               items={section.items}
               primary={section.primary}
             />
           </div>
-        : null
+        }
+        {equals('PrismicWhoBodyLead', section.__typename) &&
+          <div key={uuid()} 
+            image={JSON.stringify(section.primary.leadimage)} 
+            style={{position: 'relative'}}
+            theme={section.primary.leadtheme} 
+          >
+            <Lead key={uuid()} 
+              primary={section.primary} 
+            />
+          </div>
+        }
+        {equals('PrismicWhoBodyImageCaption', section.__typename) &&
+          <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
+            <ImageCaption key={uuid()}
+              items={section.items}
+              primary={section.primary}
+            />
+          </div>
+        }
+        </Fragment>
       ))(body)}
     </TemplateWrapper>
   )
@@ -71,9 +88,37 @@ export const query = graphql`
         }
         body {
           __typename
+          ... on PrismicWhoBodyColumns {
+            primary {
+              coltheme              
+            }
+            items {
+              colimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 480, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
+              }
+              coltext {
+                html
+              }
+            }
+          }
           ... on PrismicWhoBodyLead {
             primary {
               leadtheme
+              leadimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 1920, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
+              }
               leadtext {
                 text
               }
@@ -85,6 +130,15 @@ export const query = graphql`
               sictheme
               sicheader {
                 html
+              }
+              sicimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 1920, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
               }
             }
             items {

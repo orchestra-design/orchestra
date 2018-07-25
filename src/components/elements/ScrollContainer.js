@@ -101,7 +101,7 @@ const enhance = compose(
     state: { theme: 'white' },
     componentDidMount() {
       const scrollChildren = Array.from(
-        document.getElementById('scroll-container').childNodes     
+        document.getElementById('scroll-container').children     
       )
       this.props.changeTheme(
         camelCase(pathOr('white', ['attributes', 'theme', 'value'], head(scrollChildren)))
