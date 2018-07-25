@@ -81,6 +81,15 @@ export const query = graphql`
             sictextlink {
               url
             }
+            sictextimage {
+              localFile {
+                childImageSharp {
+                  sizes(maxWidth: 240, quality: 80) {
+                    ...GatsbyImageSharpSizes_noBase64
+                  }
+                }
+              }
+            }
           }
         }
       }

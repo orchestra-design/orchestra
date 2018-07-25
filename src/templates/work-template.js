@@ -55,7 +55,7 @@ const WorkTemplate = ({ data: {
 export default WorkTemplate
 
 export const query = graphql`
-  query WorkTemplateQuery($slug: String!, $lang: String!, $color: String!) {
+  query WorkTemplateQuery($slug: String!, $lang: String!) {
     work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
       data {
         title {
@@ -63,14 +63,10 @@ export const query = graphql`
         }
         description
         image {
-           localFile {
+          localFile {
             childImageSharp {
-              sizes(maxWidth: 1920, traceSVG: {
-                color: $color
-                turnPolicy: TURNPOLICY_MINORITY
-                blackOnWhite: false
-              }) {
-                ...GatsbyImageSharpSizes_tracedSVG
+              sizes(maxWidth: 1920, quality: 80) {
+                ...GatsbyImageSharpSizes
               }
             }
           }
@@ -83,8 +79,8 @@ export const query = graphql`
             sicimage {
               localFile {
                 childImageSharp {
-                  resolutions(width: 400, height: 300, quality: 80) {
-                    ...GatsbyImageSharpResolutions_tracedSVG
+                  sizes(maxWidth: 480, quality: 80) {
+                    ...GatsbyImageSharpSizes_noBase64
                   }
                 }
               }

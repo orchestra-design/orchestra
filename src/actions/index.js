@@ -42,10 +42,11 @@ export const countJumbo = payload =>
 export const pageTransition = () =>
   dispatch => {
     dispatch(collapseMenuAction(false))
-    dispatch(setImageAction(null))
-    dispatch(scrollMenuAction(false))
-    dispatch(toggleMenuAction(false))
     dispatch(countJumboAction(0))
+    dispatch(scrollMenuAction(false))
+    dispatch(setImageAction(null))
+    dispatch(setRightImageAction(null))
+    dispatch(toggleMenuAction(false))
   }
 
 export const srollMenu = payload =>

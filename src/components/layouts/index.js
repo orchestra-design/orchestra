@@ -50,7 +50,7 @@ const TemplateWrapper = ({
         <Back {...{color}} />
         {unless(isNil, () =>
           <div
-            className={css`${tw('absolute screen:block hidden pin')};`}
+            className={css`${tw('absolute md:block hidden pin')};`}
           ><RightImage {...{rightImage}} /></div>
         )(rightImage)}
         <ScrollContainer>

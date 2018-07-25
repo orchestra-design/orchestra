@@ -73,7 +73,7 @@ const WhoTemplate = ({data: {
 export default WhoTemplate
 
 export const query = graphql`
-  query WhoTemplateQuery($lang: String!, $color: String!) {
+  query WhoTemplateQuery($lang: String!) {
     who: prismicWho(lang: {eq: $lang}) {
       data {        
         title
@@ -84,12 +84,8 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              sizes(maxWidth: 1920, quality: 80, traceSVG: {
-                color: $color
-                turnPolicy: TURNPOLICY_MINORITY
-                blackOnWhite: false
-              }) {
-                ...GatsbyImageSharpSizes_tracedSVG
+              sizes(maxWidth: 1920, quality: 80) {
+                ...GatsbyImageSharpSizes
               }
             }
           }
@@ -122,7 +118,7 @@ export const query = graphql`
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                      ...GatsbyImageSharpSizes
                     }
                   }
                 }
@@ -141,7 +137,7 @@ export const query = graphql`
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                      ...GatsbyImageSharpSizes
                     }
                   }
                 }
@@ -159,7 +155,7 @@ export const query = graphql`
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                      ...GatsbyImageSharpSizes
                     }
                   }
                 }

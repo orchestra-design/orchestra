@@ -3,6 +3,9 @@ import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
+import { connect } from 'react-redux'
+
+import { pageTransition } from '../../actions'
 
 import { 
   BaseTransition, ButtonSmallText, ButtonText, 
@@ -24,7 +27,6 @@ const RowWrapper = styled('div')`
   ${({ hasntImage }) => and(hasntImage, tw(['items-baseline']))};
   color: ${({ theme }) => theme.color};
 `
-
 
 const LeftCol = styled('div')`
   ${Headers};
@@ -52,13 +54,22 @@ const Text = styled('div')`
   }
 `
 
-const LinkText = styled('div')`
+const LinkImage = css`
+  ${tw([
+    'absolute', 'hidden', 'screen:block',
+    'opacity-0', 'shadow-elevate1'
+  ])};
+  bottom: 3rem;
+  right: 7.5vw;
+  width: 15rem;
+  transition: opacity .4s ease-in-out;
+`
+
+const LinkText = styled('span')`
   ${ButtonSmallText};
   ${tw([
     'flex', 'flex-row', 'items-baseline',
-    'mb-q16', 'md:mb-q24', 'px-q12', 'py-q6',
-    'hover:bg-black', 'hover:text-white',
-    'shadow-none', 'hover:shadow-elevate1'
+    'px-q12', 'py-q6'
   ])};
   ${BaseTransition};
   color: ${({ theme }) => theme.color};
@@ -69,7 +80,26 @@ const LinkText = styled('div')`
   }
 `
 
-export const ImageCaptionWithDigits = ({ i, items, lang, primary }) => (
+const LinkStyles = css`
+  ${tw([
+    'flex', 'items-start',
+    'no-underline', 'mb-q16', 
+    'md:mb-q24', 'relative', 'screen:w-full'
+  ])};
+  &:hover .${LinkImage} {
+    ${tw(['opacity-100'])};
+  }
+  &:hover .link-text {
+    ${tw([
+      'bg-black', 'text-white',
+      'shadow-none', 'shadow-elevate1'
+    ])};
+  }
+`
+
+export const ImageCaptionWithDigits = connect( 
+  constant, { pageTransition }
+)(({ i, items, lang, pageTransition, primary }) => (
   <Container>
     <RowWrapper hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}>
       <LeftCol grid={primary.sicgrid} >
@@ -80,7 +110,7 @@ export const ImageCaptionWithDigits = ({ i, items, lang, primary }) => (
           sizes={primary.sicimage.localFile.childImageSharp.sizes}
         /></div>
       )(primary.sicimage && primary.sicimage.localFile)}
-      {unless(isNil,() =>
+      {unless(isNil, () =>
         <div className={css`
           ${Heading0}; 
           ${tw('mb-q24')}
@@ -89,14 +119,7 @@ export const ImageCaptionWithDigits = ({ i, items, lang, primary }) => (
       </LeftCol>
       <RightCol grid={primary.sicgrid} >
       {safeMap(item => (
-        <Fragment key={uuid()} >
-        {unless(isNil,() =>
-          <div key={uuid()}
-            className={css`${tw('max-w-xs w-full')}`}
-          ><Img key={uuid()} 
-            sizes={item.sictextimage.localFile.childImageSharp.sizes}
-          /></div>
-        )(item.sictextimage)}
+        <Fragment key={uuid()} >        
         {isNil(item.sictextlink) && unless(isNil,() =>
           <Text key={uuid()} 
             dangerouslySetInnerHTML={{ __html: item.sictext.html }}
@@ -112,15 +135,26 @@ export const ImageCaptionWithDigits = ({ i, items, lang, primary }) => (
         <Fragment key={uuid()} >
         {unless(isNil,() =>
           <Link key={uuid()}
-            className={css`${tw('no-underline')}`}
+            className={LinkStyles}
+            onClick={() => pageTransition()}
             to={item.sictextlink.url}
-          ><LinkText key={uuid()} 
-            dangerouslySetInnerHTML={{ __html: item.sictext.html }}
-          /></Link>
+          >
+            <LinkText key={uuid()}
+              className="link-text"
+              dangerouslySetInnerHTML={{ __html: item.sictext.html }}
+            />
+            {unless(isNil,() =>
+              <div key={uuid()}
+                className={LinkImage}
+              ><Img key={uuid()} 
+                  sizes={item.sictextimage.localFile.childImageSharp.sizes}
+                /></div>
+            )(item.sictextimage)}
+          </Link>
         )(item.sictextlink)}
         </Fragment>
       ))(items)}
       </RightCol>
     </RowWrapper>
   </Container>
-)
+))

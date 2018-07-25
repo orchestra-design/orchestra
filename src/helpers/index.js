@@ -10,10 +10,14 @@ import safe from 'crocks/Maybe/safe'
 import unless from 'crocks/logic/unless'
 import when from 'crocks/logic/when'
 import propPath from 'crocks/Maybe/propPath'
+import unit from 'crocks/helpers/unit'
+
 import offset from 'dom-helpers/query/offset'
+
 import camelCase from 'lodash/fp/camelCase'
 import debounce from 'lodash/fp/debounce'
 import delay from 'lodash/fp/delay'
+
 import { 
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, identity, 
@@ -26,7 +30,7 @@ import * as uuid from 'uuid/v1'
 
 export {
   isArray, constant, curry, ifElse, flip, 
-  propPath, of, option, once, safe, 
+  propPath, of, option, once, safe, unit,
   unless, when,
   offset,
   camelCase, debounce, delay,
