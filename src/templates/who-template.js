@@ -4,7 +4,8 @@ import { graphql } from 'gatsby'
 import { equals, safeMap, path, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { 
-  Columns, ImageCaption, ImageStatement, Lead 
+  Columns, Image, ImageCaption, 
+  ImageStatement, Lead 
 } from '../components/blocks'
 
 const WhoTemplate = ({data: { 
@@ -45,6 +46,13 @@ const WhoTemplate = ({data: {
           >
             <Lead key={uuid()} 
               primary={section.primary} 
+            />
+          </div>
+        }
+        {equals('PrismicWhoBodyImage', section.__typename) &&
+          <div key={uuid()} theme={section.primary.imgtheme} style={{position: 'relative'}} >
+            <Image key={uuid()}
+              items={section.items}
             />
           </div>
         }
@@ -121,6 +129,22 @@ export const query = graphql`
               }
               leadtext {
                 text
+              }
+            }
+          }
+          ... on PrismicWhoBodyImage {
+            primary {
+              imgtheme
+            }
+            items {          
+              imgimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 1920, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
               }
             }
           }
