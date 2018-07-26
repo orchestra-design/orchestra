@@ -3,8 +3,15 @@ import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import { css } from 'react-emotion'
 
+
+import { 
+  ImageCaption, 
+  WorkStatement,
+} from '../components/blocks'
+
 import {
-  path, concat, mergeDeepWith
+  concat, equals, mergeDeepWith, 
+  path, safeMap, uuid 
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
@@ -13,9 +20,8 @@ import TemplateWrapper from '../components/layouts'
 const WorkTemplate = ({ data: { 
   work, seo, allSite, links, meta 
 }}) => {
-  const title = path(['data', 'title', 'text'], work)
-  const color = path(['data', 'color'], work)
-  const image = path(['data', 'image'], work)
+  const data = path(['data'], work)
+  const { body, color, image, theme, statement } = data
   const appendedLinks = mergeDeepWith(concat, links, 
     {data: { 
       headerlinks: [{
@@ -27,6 +33,7 @@ const WorkTemplate = ({ data: {
       }
     }
   )
+
   return (
     <Fragment>
       <TemplateWrapper 
@@ -36,15 +43,23 @@ const WorkTemplate = ({ data: {
         {...{image}}
         {...{meta}}
         {...{seo}}
-        {...{title}}
+        title={statement.text}
       >
-        <div 
-          className={css`${tw('h-screen bg-transparent')};`} 
-          theme="image"
-        >
-          <h1>{ title }</h1>
-          <div>{ work.data.description }</div>
+        <div {...{theme}} >
+          <WorkStatement {...{data}} />
         </div>
+        {safeMap(section => (
+          <Fragment key={uuid()} >
+          {equals('PrismicWorkBodyImageCaption', section.__typename) &&
+            <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
+              <ImageCaption key={uuid()}
+                items={section.items}
+                primary={section.primary}
+              />
+            </div>
+          }
+          </Fragment>
+        ))(body)}
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
         <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black" />        
       </TemplateWrapper>
@@ -58,10 +73,10 @@ export const query = graphql`
   query WorkTemplateQuery($slug: String!, $lang: String!) {
     work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
       data {
-        title {
+        title
+        statement {
           text
         }
-        description
         image {
           localFile {
             childImageSharp {
@@ -72,27 +87,28 @@ export const query = graphql`
           }
         }
         color
+        theme
+        descriptiontext {
+          html
+        }
         body {
-          slice_type
-          primary {
-            sictheme
-            sicimage {
-              localFile {
-                childImageSharp {
-                  sizes(maxWidth: 480, quality: 80) {
-                    ...GatsbyImageSharpSizes_noBase64
-                  }
-                }
+          __typename
+          ... on PrismicWorkBodyImageCaption {
+            primary {
+              sicgrid
+              sictheme
+              sicimage {
+                url
+              }
+              siccaption
+              sicheader {
+                html
               }
             }
-            siccaption
-            sicheader {
-              html
-            }
-          }
-          items {
-            sictext {
-              html
+            items {
+              sictext {
+                html
+              }
             }
           }
         }

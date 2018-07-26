@@ -11,9 +11,8 @@ import {
 const WhoTemplate = ({data: { 
   who, seo, allSite, links, meta
 }}) => {
-  const body = path(['data', 'body'], who)
   const data = path(['data'], who)
-  const { image, theme, title } = data
+  const { body, image, theme, title } = data
   return (
     <TemplateWrapper
       {...{allSite}}
@@ -23,9 +22,7 @@ const WhoTemplate = ({data: {
       {...{seo}}
       {...{title}}
     >
-      <div        
-        {...{theme}}
-      >
+      <div {...{theme}} >
         <ImageStatement {...{data}} />
       </div>
       {safeMap(section => (

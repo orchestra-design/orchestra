@@ -102,10 +102,10 @@ export const query = graphql`
             status
             timeline
             client
-            title {
+            title
+            statement {
               text
             }
-            description
             color
           }
         }

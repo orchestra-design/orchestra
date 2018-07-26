@@ -141,7 +141,7 @@ const DescriptionText = styled('span')`
 export const LinkImage = connect(
   constant, { pageTransition }
 )(({
-  color, description, link, image, 
+  color, statement, link, image, 
   hoverimage, pageTransition, title, worksGrid
 }) => (
   <LinkedImage
@@ -168,9 +168,9 @@ export const LinkImage = connect(
           className="title-hover"
           {...{color}}
           {...{worksGrid}}
-        >{ title.text }</Title>
+        >{ statement.text }</Title>
         <DescriptionText {...{worksGrid}}
-        >{ description }</DescriptionText>
+        >{ title }</DescriptionText>
       </Row>
     </TitleWrapper>
   </LinkedImage>

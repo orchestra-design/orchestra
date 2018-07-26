@@ -61,7 +61,7 @@ export const WorksGrid = connect(
 )(({ allworks, worksFilter, worksGrid, worksLinks }) => {
   const linkUid = path(['link', 'document', 0, 'uid']) 
   const getWorkData = uid => compose(
-    pick(['title', 'description', 'color']),
+    pick(['title', 'statement', 'color']),
     path(['data']),
     find(propEq('uid', uid)),
     map(path(['node'])),
