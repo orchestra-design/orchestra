@@ -38,7 +38,7 @@ export const HeaderLogo = connect(
     ><Logo /></LogoWrapper>,
     () => <Link 
       to={`/${lang.replace('-us', '')}`}      
-      onClick={() => pageTransition()}
+      onClick={pageTransition}
     ><LogoWrapper
       {...{collapsedMenu}}
       {...{collapseTransition}}

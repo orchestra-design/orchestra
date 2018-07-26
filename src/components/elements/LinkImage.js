@@ -147,7 +147,7 @@ export const LinkImage = connect(
   <LinkedImage
     {...{color}}
     grid={worksGrid.toString()}
-    onClick={() => pageTransition()}
+    onClick={pageTransition}
     to={link.url}
   >
     <ImageWrapper {...{worksGrid}} >

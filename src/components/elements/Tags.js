@@ -1,12 +1,19 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { connect } from 'react-redux'
+
+import { pageTransition } from '../../actions'
 
 import { 
   concat, startCase, ifElse, includes, curry,
-  pick, keysIn, compose, map, values, assoc, objOf, safeMap, uuid
+  pick, keysIn, compose, map, values, assoc, 
+  objOf, safeMap, uuid, constant
 } from '../../helpers'
 
-export const Tags = ({ data, lang, tags }) => {
+export const Tags = connect(
+  constant,
+  { pageTransition }
+)(({ data, lang, pageTransition, tags }) => {
   const translations = { 
     client: 'клиент', 
     location: 'расположение', 
@@ -53,10 +60,11 @@ export const Tags = ({ data, lang, tags }) => {
     {safeMap(tag => 
       <div key={uuid()}>
         <Link key={uuid()}
+          onClick={pageTransition}
           to={`/${lang}/projects?filter=${tag}`}
         >{ tag }</Link>
       </div>
     )(tags)}
     </div>
   )
-}
+})

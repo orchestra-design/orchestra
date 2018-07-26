@@ -50,7 +50,7 @@ export const NavLink = connect(({
       <Link
         key={uuid()} 
         to={link.url}
-        onClick={() => pageTransition()}
+        onClick={pageTransition}
         className={LinkStyle}       
       >
         <BlackButton 
