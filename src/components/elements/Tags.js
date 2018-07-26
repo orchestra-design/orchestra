@@ -1,6 +1,8 @@
+/* global tw */
 import React from 'react'
 import Link from 'gatsby-link'
 import { connect } from 'react-redux'
+import styled, { css } from 'react-emotion'
 
 import { pageTransition } from '../../actions'
 
@@ -9,6 +11,45 @@ import {
   pick, keysIn, compose, map, values, assoc, 
   objOf, safeMap, uuid, constant
 } from '../../helpers'
+
+import { Row, ColumnThreeFive, ColumnTwoFive } from './Grids'
+import { ButtonSmallText, Description, DescriptionSemibold } from './Typography'
+import { BaseTransition } from './Transitions'
+
+const TagsRow = styled('div')`
+  ${Row};
+  ${Description};
+  ${tw(['mt-q72'])};
+`
+
+const Line = styled('div')`
+  ${tw([
+    'flex', 'flex-row',
+    'md:-mx-q12', 'mb-q4',
+  ])};
+`
+
+const Left = styled('div')`
+  ${ColumnThreeFive};
+  ${tw(['mb-0'])};
+`
+
+const Right = styled('div')`
+  ${ColumnTwoFive};
+  ${tw(['mb-0'])};
+`
+
+const LinkStyles = css`
+  ${ButtonSmallText};
+  ${tw([
+    'inline-block', 'mb-q4', 'mr-q4', 
+    'no-underline', 'px-q8', 'py-q4', 
+    'text-black', 'screen:text-white', 
+    'hover:bg-black', 'hover:text-white',
+    'shadow-none', 'hover:shadow-elevate1'
+  ])};
+  ${BaseTransition};
+`
 
 export const Tags = connect(
   constant,
@@ -50,21 +91,30 @@ export const Tags = connect(
   )
   
   return (
-    <div>
-    {safeMap(({ tagtitle, tagdescription}) => 
-      <div key={uuid()}>
-        <span key={uuid()}>{ tagtitle }</span>
-        <span key={uuid()}>{ tagdescription }</span>
-      </div>
-    )(allTags)}
-    {safeMap(tag => 
-      <div key={uuid()}>
+    <TagsRow>
+      <Left
+        className={css`${tw('mb-q36')}`}
+      >
+      {safeMap(({ tagtitle, tagdescription}) => 
+        <Line key={uuid()}>
+          <Right key={uuid()}
+            className={css`${tw('screen:text-white')}`}
+          >{ tagtitle }</Right>
+          <Left key={uuid()}
+            className={DescriptionSemibold}
+          >{ tagdescription }</Left>
+        </Line>
+      )(allTags)}
+      </Left>
+      <Right>
+      {safeMap(tag => 
         <Link key={uuid()}
+          className={LinkStyles}
           onClick={pageTransition}
           to={`/${lang}/projects?filter=${tag}`}
         >{ tag }</Link>
-      </div>
-    )(tags)}
-    </div>
+      )(tags)}    
+      </Right>
+    </TagsRow>
   )
 })

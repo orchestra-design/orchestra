@@ -69,11 +69,10 @@ const LinkText = styled('span')`
   ${ButtonSmallText};
   ${tw([
     'flex', 'flex-row', 'items-baseline',
-    'px-q12', 'py-q6'
+    'px-q12'
   ])};
   ${BaseTransition};
   color: ${({ theme }) => theme.color};
-  font-variant-caps: all-small-caps;
   & .link {
     ${ButtonText};
     ${tw(['mr-q4'])};

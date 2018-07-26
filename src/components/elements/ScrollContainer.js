@@ -69,7 +69,7 @@ const enhance = compose(
         const newTheme = camelCase(child.attributes.theme.value)
         // Image
         ifElse(
-          ({ top, height }) => and(lt(top, 801), gt((top + height), 800)),
+          ({ top, height }) => and(lt(top, 801), gt((top + height), -400)),
           () => and(
             notIsNil(newImage),
             not(equals(newImage, props.backImage))
