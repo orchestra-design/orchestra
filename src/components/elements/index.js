@@ -38,6 +38,7 @@ export { RightImage } from './RightImage'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'
 export { SocialButton } from './SocialButton'
+export { Tags } from './Tags'
 
 export {
   BaseTransition, ImageLinkTransition

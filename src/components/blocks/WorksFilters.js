@@ -1,13 +1,13 @@
 /* global tw */
 import React from 'react'
 import styled from 'react-emotion'
-import { withHandlers } from 'recompose'
+import { withHandlers, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
 
 import { setWorkFilter, toggleWorkFilter } from '../../actions'
 import { 
-  compose, concat, path, 
-  map, reduce, uniq, uuid
+  compose, concat, isNil, path, 
+  map, reduce, uniq, unless, uuid
 } from '../../helpers'
 
 import { 
@@ -133,6 +133,13 @@ const enhance = compose(
     },
     toggleFilters: props => () => {
       props.toggleWorkFilter()
+    }
+  }),
+  lifecycle({
+    componentDidMount() {
+      const regexp = /[^?filter=](.+)/g
+      const filter = unless(isNil, decodeURI)(window.location.search.match(regexp))
+      this.props.setWorkFilter(filter)
     }
   })
 )

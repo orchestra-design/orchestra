@@ -1,13 +1,15 @@
 /* global tw */
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
+import { connect } from 'react-redux'
 
 import { 
-  Breadcrumbs, BodySemibold, Container, Heading1, Image 
+  BaseTransition, Breadcrumbs, BodySemibold, 
+  Container, Heading1, Image, Tags
 } from '../elements'
 
 import {
-  isNil, pathOr, unless
+  equals, isNil, unless
 } from '../../helpers'
 
 const FullScreenSection = styled('div')`
@@ -21,9 +23,16 @@ const FullScreenSection = styled('div')`
   color: ${({ theme }) => theme.color};
 `
 
+const ColoredContainer = styled(Container)`
+  ${tw(['screen:opacity-0'])};
+  ${({ storedTheme }) => equals(storedTheme, 'colored') && tw(['screen:opacity-100'])};
+  ${BaseTransition};
+`
+
 const Heading =  styled('h1')`
   ${Heading1};
   ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
+  color: ${({ theme }) => theme.logoFill};
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
 `
 
@@ -35,27 +44,46 @@ const Description = styled('div')`
   ])};
 `
 
-export const WorkStatement = ({ data }) => {
+export const WorkStatement = connect(
+    ({ storedTheme }) => ({ storedTheme })
+  )(({ data, lang, storedTheme, tags }) => {
   const { 
-    image, title, statement
+    descriptiontext, image, statement,
+    theme, title,
   } = data
   
   return (
-    <FullScreenSection>
-      {unless(isNil, () =>
-          <div
-            className={css`${tw('block screen:hidden')};`}
-          ><Image {...{image}} /></div>
-        )(image)}
-      <Container className={css`${tw('relative mb-q36 screen:mb-q144',)};`} >
-        <Heading>{  statement.text }</Heading>
-        <Breadcrumbs 
-          className={css`${tw('text-black text-body whitespace-normal')}`} 
-        >{ title }</Breadcrumbs>
-        {unless(isNil, (description) =>
-          <Description>{ description }</Description>
-        )(pathOr(null, ['description'], data))}
-      </Container>
-    </FullScreenSection>
+    <Fragment>
+      <div {...{theme}} >
+        <FullScreenSection>
+          {unless(isNil, () =>
+              <div
+                className={css`${tw('block screen:hidden')}`}
+              ><Image {...{image}} /></div>
+            )(image)}
+          <Container className={css`${tw('mb-q36 screen:mb-q144 relative',)}`} >
+            <Heading>{  statement.text }</Heading>
+            <Breadcrumbs 
+              className={css`${tw('text-black text-body whitespace-normal')}`} 
+            >{ title }</Breadcrumbs>
+          </Container>
+        </FullScreenSection>
+      </div>
+      <div theme="colored" className={css`${tw('screen:h-screen')}`} >
+        <ColoredContainer
+          className={css`${tw('relative')}`}
+          {...{storedTheme}}
+        >
+          <Heading>{  statement.text }</Heading>
+          <Breadcrumbs 
+            className={css`${tw('text-black text-body whitespace-normal')}`} 
+          >{ title }</Breadcrumbs>
+          <Tags {...{data}} {...{lang}} {...{tags}} />
+          <Description
+            dangerouslySetInnerHTML={{ __html: descriptiontext.html }}
+          />
+        </ColoredContainer>
+      </div>
+    </Fragment>
   )
-}
+})

@@ -21,7 +21,8 @@ const WorkTemplate = ({ data: {
   work, seo, allSite, links, meta 
 }}) => {
   const data = path(['data'], work)
-  const { body, color, image, theme, statement } = data
+  const tags = path(['tags'], work)
+  const { body, color, image, statement } = data
   const appendedLinks = mergeDeepWith(concat, links, 
     {data: { 
       headerlinks: [{
@@ -45,11 +46,15 @@ const WorkTemplate = ({ data: {
         {...{seo}}
         title={statement.text}
       >
-        <div {...{theme}} >
-          <WorkStatement 
-            data={pick(['title', 'statement', 'image'], data)}
-          />
-        </div>
+        <WorkStatement 
+          data={pick([
+            'client', 'customtags', 'descriptiontext', 
+            'image', 'location', 'statement', 'status', 
+            'theme', 'timeline', 'title', 'type'
+          ], data)}
+          lang={seo.lang}
+          {...{tags}}
+        />
         {safeMap(section => (
           <Fragment key={uuid()} >
           {equals('PrismicWorkBodyImageCaption', section.__typename) &&
@@ -74,6 +79,7 @@ export default WorkTemplate
 export const query = graphql`
   query WorkTemplateQuery($slug: String!, $lang: String!) {
     work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
+      tags
       data {
         title
         statement {
@@ -93,6 +99,15 @@ export const query = graphql`
         descriptiontext {
           html
         }
+        location
+        type
+        status
+        timeline
+        client
+        customtags {
+          tagtitle
+          tagdescription
+        }    
         body {
           __typename
           ... on PrismicWorkBodyImageCaption {

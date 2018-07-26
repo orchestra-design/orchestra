@@ -17,14 +17,16 @@ import offset from 'dom-helpers/query/offset'
 import camelCase from 'lodash/fp/camelCase'
 import debounce from 'lodash/fp/debounce'
 import delay from 'lodash/fp/delay'
+import includes from 'lodash/fp/includes'
+import startCase from 'lodash/fp/startCase'
 
 import { 
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, identity, 
-  isNil, length, lt, lte, lensPath, 
-  map, merge, mergeDeepWith, not, omit, or,
+  isEmpty, isNil, keysIn, length, lt, lte, lensPath, 
+  map, merge, mergeDeepWith, not, objOf, omit, or,
   path, pathOr, pick, pipe, propEq, reduce,
-  replace, splitEvery, uniq, view 
+  replace, splitEvery, tail, uniq, values, view 
 } from 'ramda'
 import * as uuid from 'uuid/v1'
 
@@ -33,13 +35,14 @@ export {
   propPath, of, option, once, safe, unit,
   unless, when,
   offset,
-  camelCase, debounce, delay,
+  camelCase, debounce, delay, includes, startCase,
   and, any, assoc, compose, concat, contains, 
   drop, equals, F, filter, find, gt, head, 
-  identity, isNil, length, lt, lte, 
-  lensPath, map, merge, mergeDeepWith, not, omit, or,
-  path, pathOr, pick, pipe, propEq, reduce, replace, 
-  splitEvery, uniq, view,
+  identity, isEmpty, isNil, keysIn, length, lt, lte, 
+  lensPath, map, merge, mergeDeepWith, not, 
+  objOf, omit, or, path, pathOr, pick, pipe, 
+  propEq, reduce, replace, splitEvery, tail, 
+  uniq, values, view,
   uuid
 }
 
@@ -55,4 +58,4 @@ export const notIsNil = x => not(isNil(x))
 export const safeMap = curry(
   (fn, xs) => 
     when(notIsNil, map(fn))(xs)
-  )
+)
