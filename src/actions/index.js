@@ -33,13 +33,13 @@ export const collapseMenu = payload =>
     dispatch(collapseMenuAction(payload))
     delay(400, () => dispatch(stopTransition()))
   }
-
-export const countJumbo = payload =>
+  
+  export const countJumbo = payload =>
   dispatch => {
     dispatch(countJumboAction(payload))
   }
-
-export const pageTransition = () =>
+  
+  export const pageTransition = () =>
   dispatch => {
     dispatch(collapseMenuAction(false))
     dispatch(countJumboAction(0))
@@ -48,10 +48,10 @@ export const pageTransition = () =>
     dispatch(setRightImageAction(null))
     dispatch(toggleMenuAction(false))
   }
-
-export const srollMenu = payload =>
-  dispatch => { 
-    delay(400, () => dispatch(scrollMenuAction(payload)))
+  
+  export const srollMenu = payload =>
+  dispatch => {
+    dispatch(scrollMenuAction(payload))
   }
 
 export const setImage = payload =>

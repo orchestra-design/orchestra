@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import { equals, safeMap, path, uuid  } from '../helpers'
+import { equals, safeMap, path, pick, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { 
   Columns, Image, ImageCaption, 
@@ -23,7 +23,9 @@ const WhoTemplate = ({data: {
       {...{title}}
     >
       <div {...{theme}} >
-        <ImageStatement {...{data}} />
+        <ImageStatement 
+          data={pick(['title', 'statement', 'image'], data)}
+        />
       </div>
       {safeMap(section => (
         <Fragment key={uuid()} >

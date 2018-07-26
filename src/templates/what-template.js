@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { path, uuid } from '../helpers'
+import { path, pick, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { ImageCaptionWithDigits, ImageStatement } from '../components/blocks'
 
@@ -23,7 +23,9 @@ const WhatTemplate = ({data: {
       <div 
         image={JSON.stringify(image)}
         {...{theme}} 
-      ><ImageStatement {...{data}} /></div>
+      ><ImageStatement 
+        data={pick(['title', 'statement', 'image', 'description'], data)}
+      /></div>
       {body.map(({ primary, items }, i) =>
         <div key={uuid()}
           right-image={JSON.stringify(primary.sicimage)}

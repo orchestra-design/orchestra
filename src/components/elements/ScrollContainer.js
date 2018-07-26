@@ -103,14 +103,14 @@ const enhance = compose(
         // Menu
         equals(i, 0) && ifElse(
           ({ top }) => lt(top, -400),
-          () => not(equals(props.hiddenMenu, true)) && props.srollMenu(true),
-          () => not(equals(props.hiddenMenu, false)) && props.srollMenu(false)
+          () => !props.hiddenMenu && props.srollMenu(true),
+          () => props.hiddenMenu && props.srollMenu(false)
         )(childOffset)
         // Collapsed Menu
         equals(i, 1) && ifElse(
           ({ top }) => lt(top, -200),
-          () => not(equals(props.collapsedMenu, true)) && props.collapseMenu(true),
-          () => not(equals(props.collapsedMenu, false)) && props.collapseMenu(false)
+          () => !props.collapsedMenu && props.collapseMenu(true),
+          () => props.collapsedMenu && props.collapseMenu(false)
         )(childOffset)        
         return F
       }) 

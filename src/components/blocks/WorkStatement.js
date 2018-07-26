@@ -23,7 +23,7 @@ const FullScreenSection = styled('div')`
 
 const Heading =  styled('h1')`
   ${Heading1};
-  ${tw(['max-w-sm', 'mb-q24', 'md:mb-q48'])};
+  ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
   text-shadow: ${({ theme }) => theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
 `
 

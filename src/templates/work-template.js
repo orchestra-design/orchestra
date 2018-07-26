@@ -11,7 +11,7 @@ import {
 
 import {
   concat, equals, mergeDeepWith, 
-  path, safeMap, uuid 
+  path, pick, safeMap, uuid 
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
@@ -46,7 +46,9 @@ const WorkTemplate = ({ data: {
         title={statement.text}
       >
         <div {...{theme}} >
-          <WorkStatement {...{data}} />
+          <WorkStatement 
+            data={pick(['title', 'statement', 'image'], data)}
+          />
         </div>
         {safeMap(section => (
           <Fragment key={uuid()} >
