@@ -52,6 +52,7 @@ const WorkTemplate = ({ data: {
             'image', 'location', 'statement', 'status', 
             'theme', 'timeline', 'title', 'type'
           ], data)}
+          image={JSON.stringify(image)}
           lang={seo.lang}
           {...{tags}}
         />

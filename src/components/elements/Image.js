@@ -39,7 +39,13 @@ export const Image = connect(
     <Fragment>
       {unless(isNil, () =>
         <div className={css`
-          ${tw('absolute pin')}; filter: blur(${(backSlider || collapseTransition) && '12px'}); transform: scale(1.1);
+          ${tw('absolute pin')}; 
+          filter: blur(${(backSlider || collapseTransition) && '12px'}); 
+          transform: scale(1.1);
+          &::after {
+            content: ''
+            ${tw('abslute bg-black block opacity-25 pin')}
+          }
         `}>
           <Img 
             sizes={data[0].image.localFile.childImageSharp.sizes} 

@@ -76,7 +76,10 @@ export const WorkStatement = connect(
   
   return (
     <Fragment>
-      <div {...{theme}} >
+      <div        
+        image={JSON.stringify(image)}
+        {...{theme}} 
+      >
         <FullScreenSection>
           {unless(isNil, () =>
               <div
