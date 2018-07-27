@@ -3,11 +3,21 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import reducer from '../reducers'
 
-const createStore = () => reduxCreateStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk)
+export default () => {
+  const store = reduxCreateStore(
+    reducer,
+    composeWithDevTools(
+      applyMiddleware(thunk)
+    )
   )
-)
 
-export default createStore
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers/index');
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store
+}
