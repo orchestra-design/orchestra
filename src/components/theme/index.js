@@ -7,7 +7,7 @@ const black = {
 
 const colored = {
   backgroundColor: false,
-  color: '#ffffff',
+  color: '#000000',
   logoFill: '#ffffff',
   logoShadow: false,
 }

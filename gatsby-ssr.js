@@ -14,14 +14,13 @@ export const replaceRenderer = ({
   const store = createStore()
 
   const ConnectedBody = () => (
-    <Provider store={store}>
-      {bodyComponent}
-    </Provider>
+    <Provider store={store}>{bodyComponent}</Provider>
   )
 
   /* emotion */
   const { html, ids, css } = extractCritical(renderToString(<ConnectedBody/>))
 
+  /* eslint-disable react/no-danger */
   const criticalStyle = <style dangerouslySetInnerHTML={{ __html: css }} />
   const criticalIds = (
     <script

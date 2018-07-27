@@ -3,7 +3,6 @@ import React, { Fragment } from 'react'
 import { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
-import { connect } from 'react-redux'
 
 import { isArray, isNil, unless, uuid } from '../../helpers'
 
@@ -23,15 +22,8 @@ const transitionGroup = data => data.map(({ image }) =>
     </animated.div>
 )
 
-export const Image = connect(
-  ({ 
-    backImage, jumboCount 
-  }) => ({ 
-    backImage, jumboCount 
-  })
-)(({ backImage, count, image, jumboCount }) => {
-  const data = isArray(image) ? [image[count || jumboCount]] : [{...{image}}]
-  const parsedImage = JSON.parse(backImage)
+export const ImageForSlider = ({ count, image }) => {
+  const data = isArray(image) ? [image[count]] : [{...{image}}]
   
   return (
     <Fragment>
@@ -51,14 +43,7 @@ export const Image = connect(
             leave={{ opacity: .0 }}
           >{ transitionGroup(data) }</Transition> 
         </Fragment>
-      )(count || jumboCount)}
-      {parsedImage && unless(isNil, () =>
-        <Img 
-          sizes={parsedImage.localFile.childImageSharp.sizes} 
-          className={css`${tw('pin')};`} 
-          style={{position: 'absolute'}} 
-        />
-      )(parsedImage.localFile)}
+      )(data)}
     </Fragment>
   )
-})
+}

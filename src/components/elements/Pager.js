@@ -4,6 +4,7 @@ import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { countJumbo } from '../../actions'
+import { Current } from './Current'
 import { SimpleRow } from './Grids'
 import { ButtonText } from './Typography'
 import { LittleRoundButton } from './Buttons'
@@ -54,7 +55,8 @@ export const Pager = connect(
   return (
     <PagerRow>
       <Previous onClick={() => countJumbo(decrement)} />
-      { jumboCount + 1 }&ensp;/&ensp;{ length }
+      <Current>{ jumboCount + 1 }</Current>
+      { length }
       <Next onClick={() => countJumbo(increment)} />
     </PagerRow>
   )

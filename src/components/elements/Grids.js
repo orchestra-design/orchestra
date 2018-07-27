@@ -12,6 +12,17 @@ export const ColumnEight = css`
   }
 `
 
+export const ColumnFiveSix = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-5/6'
+  ])};
+  min-width: calc((5 / 6 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((5 / 6 * 100%) - 1.5rem);
+  }
+`
+
 export const ColumnThree = css`
   ${tw([
     'md:px-q12', 'mb-q24', 'md:mb-0',
@@ -31,6 +42,17 @@ export const ColumnThreeFive = css`
   min-width: calc((3 / 5 * 100%) - 1.5rem);
   @media(min-width: 768px) {
     max-width: calc((3 / 5 * 100%) - 1.5rem);
+  }
+`
+
+export const ColumnThreeFour = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-3/4'
+  ])};
+  min-width: calc((3 / 4 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((3 / 4 * 100%) - 1.5rem);
   }
 `
 

@@ -8,7 +8,8 @@ export {
 export { Breadcrumbs } from './Breadcrumbs'
 
 export { 
-  ColumnEight, ColumnThree, ColumnThreeFive,
+  ColumnEight, ColumnFiveSix, ColumnThree, 
+  ColumnThreeFive, ColumnThreeFour, 
   ColumnTwoFive, Row, SimpleRow
 } from './Grids'
 
@@ -18,14 +19,17 @@ export {
   Container, ContainerFluid 
 } from './Containers'
 
+export { Current } from './Current'
 export { DownButton } from './DownButton'
 export { GridToggler } from './GridToggler'
 export { HeaderBreadcrumbs } from './HeaderBreadcrumbs'
 export { HeaderLogo } from './HeaderLogo'
 export { Image } from './Image'
+export { ImageForSlider } from './ImageForSlider'
 export { JumboDownButton } from './JumboDownButton'
 export { JumboDummy } from './JumboDummy'
 export { JustImage } from './JustImage'
+export { JustPager } from './JustPager'
 export { LinkImage } from './LinkImage'
 export { LangSwitcher } from './LangSwitcher'
 export { Logo } from './Logo'
@@ -33,6 +37,7 @@ export { Main } from './Main'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { Pager } from './Pager'
+export { NextButton, PreviousButton } from './PreviousNextButtons'
 export { Headers, RichText } from './RichText'
 export { RightImage } from './RightImage'
 export { ScrollContainer } from './ScrollContainer'

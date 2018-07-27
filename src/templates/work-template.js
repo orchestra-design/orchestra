@@ -5,13 +5,13 @@ import { css } from 'react-emotion'
 
 
 import { 
-  ImageCaption, 
+  ImageSlider, ImageCaption, 
   WorkStatement,
 } from '../components/blocks'
 
 import {
   concat, equals, mergeDeepWith, 
-  path, pick, safeMap, uuid 
+  path, pick, safeMap, uuid, and
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
@@ -57,6 +57,14 @@ const WorkTemplate = ({ data: {
         />
         {safeMap(section => (
           <Fragment key={uuid()} >
+          {and(equals('PrismicWorkBodyImage', section.__typename),
+            <div key={uuid()} theme={section.primary.imgtheme} style={{position: 'relative'}} >
+              <ImageSlider key={uuid()}
+                items={section.items}
+                primary={section.primary}
+              />
+            </div>
+          )}
           {equals('PrismicWorkBodyImageCaption', section.__typename) &&
             <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
               <ImageCaption key={uuid()}
@@ -110,6 +118,25 @@ export const query = graphql`
         }    
         body {
           __typename
+          ... on PrismicWorkBodyImage {
+            primary {
+              imgtheme
+              imgtext {
+                html
+              }
+            }
+            items {          
+              imgimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 1920, quality: 80) {
+                      ...GatsbyImageSharpSizes
+                    }
+                  }
+                }
+              }
+            }
+          }
           ... on PrismicWorkBodyImageCaption {
             primary {
               sicgrid

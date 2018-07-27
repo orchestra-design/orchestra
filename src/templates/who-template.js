@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { equals, safeMap, path, pick, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { 
-  Columns, Image, ImageCaption, 
+  Columns, ImageSlider, ImageCaption, 
   ImageStatement, Lead 
 } from '../components/blocks'
 
@@ -50,7 +50,7 @@ const WhoTemplate = ({data: {
         }
         {equals('PrismicWhoBodyImage', section.__typename) &&
           <div key={uuid()} theme={section.primary.imgtheme} style={{position: 'relative'}} >
-            <Image key={uuid()}
+            <ImageSlider key={uuid()}
               items={section.items}
             />
           </div>
