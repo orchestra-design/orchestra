@@ -18,7 +18,7 @@ const BlackButton = styled('span')`
     'border-solid', 'md:border-none'
   ])};
   ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition &&
-    tw(['screen:h-q48', 'md:mr-q36', 'screen:text-lg' ])
+    tw(['screen:h-q48', 'md:mr-q36', 'desktop:px-q24', 'screen:text-lg' ])
   };
   ${({ isMenu }) => isMenu &&
     tw(['screen:h-q48', 'screen:text-lg', 'm-0'])

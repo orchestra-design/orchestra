@@ -58,12 +58,11 @@ const WorkTemplate = ({ data: {
         {safeMap(section => (
           <Fragment key={uuid()} >
           {and(equals('PrismicWorkBodyImage', section.__typename),
-            <div key={uuid()} theme={section.primary.imgtheme} style={{position: 'relative'}} >
-              <ImageSlider key={uuid()}
-                items={section.items}
-                primary={section.primary}
-              />
-            </div>
+            <ImageSlider key={uuid()}
+              items={section.items}
+              primary={section.primary}
+              theme={section.primary.imgtheme}
+            />
           )}
           {equals('PrismicWorkBodyImageCaption', section.__typename) &&
             <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >

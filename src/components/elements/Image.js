@@ -25,18 +25,22 @@ const transitionGroup = data => data.map(({ image }) =>
 
 export const Image = connect(
   ({ 
-    backImage, jumboCount 
+    backImage, backSlider, 
+    collapseTransition, jumboCount 
   }) => ({ 
-    backImage, jumboCount 
+    backImage, backSlider, 
+    collapseTransition, jumboCount 
   })
-)(({ backImage, count, image, jumboCount }) => {
-  const data = isArray(image) ? [image[count || jumboCount]] : [{...{image}}]
+)(({ backImage, backSlider, collapseTransition, image, jumboCount }) => {
   const parsedImage = JSON.parse(backImage)
+  const data = isArray(image) ? [image[jumboCount]] : [{ image: parsedImage || image }]
   
   return (
     <Fragment>
       {unless(isNil, () =>
-        <Fragment>
+        <div className={css`
+          ${tw('absolute pin')}; filter: blur(${(backSlider || collapseTransition) && '12px'}); transform: scale(1.1);
+        `}>
           <Img 
             sizes={data[0].image.localFile.childImageSharp.sizes} 
             className={css`${tw('pin')};`} 
@@ -50,15 +54,8 @@ export const Image = connect(
             enter={{ opacity: 1 }} 
             leave={{ opacity: .0 }}
           >{ transitionGroup(data) }</Transition> 
-        </Fragment>
-      )(count || jumboCount)}
-      {parsedImage && unless(isNil, () =>
-        <Img 
-          sizes={parsedImage.localFile.childImageSharp.sizes} 
-          className={css`${tw('pin')};`} 
-          style={{position: 'absolute'}} 
-        />
-      )(parsedImage.localFile)}
+        </div >
+      )(jumboCount)}
     </Fragment>
   )
 })

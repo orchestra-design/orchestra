@@ -27,6 +27,7 @@ const Template = styled('span')`
 `
 
 export const NextButton = styled(Template)`
+  ${({ backSlider }) => backSlider && tw(['bg-white'])}
   @media(min-width: 601px) {
     background-image: url(${IconNextBlack});
   }

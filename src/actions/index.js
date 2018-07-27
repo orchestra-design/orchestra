@@ -4,7 +4,8 @@ import { delay } from '../helpers'
 
 import { 
   COLLAPSE_MENU, COUNT_JUMBO, MENU_TRANSITION, 
-  SCROLL_MENU, SET_IMAGE, SET_RIGHT_IMAGE, SET_WORK_FILTER,
+  SCROLL_MENU, SET_BACK_SLIDER, SET_IMAGE, 
+  SET_RIGHT_IMAGE, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
   TOGGLE_WORK_FILTER
 } from '../constants'
@@ -12,6 +13,7 @@ import {
 const collapseMenuAction = createAction(COLLAPSE_MENU)
 const countJumboAction = createAction(COUNT_JUMBO)
 const scrollMenuAction = createAction(SCROLL_MENU)
+const setBackSliderAction = createAction(SET_BACK_SLIDER)
 const setImageAction = createAction(SET_IMAGE)
 const setRightImageAction = createAction(SET_RIGHT_IMAGE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
@@ -52,6 +54,13 @@ export const collapseMenu = payload =>
   export const srollMenu = payload =>
   dispatch => {
     dispatch(scrollMenuAction(payload))
+  }
+  
+  export const setBackSlider = payload =>
+  dispatch => { 
+    dispatch(startTransition())
+    dispatch(setBackSliderAction(payload))
+    delay(600, () => dispatch(stopTransition()))
   }
 
 export const setImage = payload =>

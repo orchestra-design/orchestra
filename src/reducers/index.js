@@ -25,6 +25,10 @@ const reducer = handleActions(
       'storedTheme', action.payload,
       state
     ),
+    SET_BACK_SLIDER: (state, action) => assoc(
+      'backSlider', action.payload,
+      state,
+    ),
     SET_IMAGE: (state, action) => assoc(
       'backImage', action.payload,
       state,
