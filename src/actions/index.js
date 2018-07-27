@@ -46,6 +46,7 @@ export const collapseMenu = payload =>
     dispatch(collapseMenuAction(false))
     dispatch(countJumboAction(0))
     dispatch(scrollMenuAction(false))
+    dispatch(setBackSliderAction(false))
     dispatch(setImageAction(null))
     dispatch(setRightImageAction(null))
     dispatch(toggleMenuAction(false))

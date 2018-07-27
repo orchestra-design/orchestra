@@ -129,7 +129,7 @@ export const ImageSlider = compose(
     <div
       className={css`${tw('screen:h-screen my-q48 screen:my-q112 desktop:my-q200 relative')}`}
       image={includes('image', theme) ? JSON.stringify(image[count].image) : null}
-      slider="true"
+      slider={includes('image', theme) ? 'true' : 'false'}
       {...{theme}}
     >
       {and(gt(itemsLength, 1),

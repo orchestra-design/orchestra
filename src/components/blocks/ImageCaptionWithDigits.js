@@ -57,9 +57,10 @@ const Text = styled('div')`
 const LinkImage = css`
   ${tw([
     'absolute', 'hidden', 'screen:block',
-    'opacity-0', 'shadow-elevate1'
+    'opacity-0', 'overflow-hidden', 'shadow-elevate1'
   ])};
   bottom: 3rem;
+  height: 0;
   right: 7.5vw;
   width: 15rem;
   transition: opacity .4s ease-in-out;
@@ -86,7 +87,7 @@ const LinkStyles = css`
     'md:mb-q24', 'relative', 'screen:w-full'
   ])};
   &:hover .${LinkImage} {
-    ${tw(['opacity-100'])};
+    ${tw(['h-auto', 'opacity-100'])};
   }
   &:hover .link-text {
     ${tw([

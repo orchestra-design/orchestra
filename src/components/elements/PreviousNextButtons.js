@@ -29,7 +29,7 @@ const Template = styled('span')`
 `
 
 export const NextButton = styled(Template)`
-  ${({ storedTheme }) => includes('image', storedTheme) && tw(['bg-white'])};
+  ${({ storedTheme }) => includes('image', storedTheme) && tw(['md:bg-white'])};
   @media(min-width: 601px) {
     background-image: url(${IconNextBlack});
   }

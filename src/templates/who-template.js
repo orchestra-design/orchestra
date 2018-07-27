@@ -49,11 +49,11 @@ const WhoTemplate = ({data: {
           </div>
         }
         {equals('PrismicWhoBodyImage', section.__typename) &&
-          <div key={uuid()} theme={section.primary.imgtheme} style={{position: 'relative'}} >
-            <ImageSlider key={uuid()}
-              items={section.items}
-            />
-          </div>
+          <ImageSlider key={uuid()}
+            items={section.items}
+            primary={section.primary}
+            theme={section.primary.imgtheme}
+          />
         }
         {equals('PrismicWhoBodyImageCaption', section.__typename) &&
           <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >

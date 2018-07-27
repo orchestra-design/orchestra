@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 import { connect } from 'react-redux'
 
-import { isArray, isNil, unless, uuid } from '../../helpers'
+import { constant, F, isArray, isNil, pathOr, unless, uuid } from '../../helpers'
 
 const Wrapper = styled('div')`
   ${tw(['absolute', 'pin'])}; 
@@ -47,7 +47,10 @@ export const Image = connect(
   })
 )(({ backImage, backSlider, collapseTransition, image, jumboCount }) => {
   const parsedImage = JSON.parse(backImage)
-  const data = isArray(image) ? [image[jumboCount]] : [{ image: parsedImage || image }]
+  const safeImage = unless(isNil, 
+    pathOr(false, ['localFile'], parsedImage) ? constant(parsedImage) : F 
+  )(parsedImage)
+  const data = isArray(image) ? [image[jumboCount]] : [{ image: safeImage || image }]
   
   return (
     <Fragment>
