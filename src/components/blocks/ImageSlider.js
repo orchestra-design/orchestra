@@ -5,7 +5,7 @@ import { withStateHandlers } from 'recompose'
 
 import { 
   ColumnFiveSix, Container, ImageForSlider, 
-  JustPager, NextButton, PreviousButton
+  JustPager, NextButton, PreviousButton, RichTextSmall
 } from '../elements'
 
 import { 
@@ -47,11 +47,41 @@ const Slide = styled('div')`
 
 const NavContainer = styled('div')`
   ${tw([
-    'absolute', 'flex', 'h-full', 
+    'absolute', 'flex', 'h-full',
     'justify-between', 'items-center', 
-    'pin', 'px-1/12'
+    'pin', 'px-q36', 'md:px-1/12'
   ])};
   transform: translateY(-.75rem);
+`
+
+const TextWrapper = styled('div')`
+  ${tw([
+    'md:absolute', 'mt-q36',
+    'pin-t', 'pin-l', 'w-full',
+  ])};
+  color: ${({ theme }) => theme.logoFill};
+  @media(min-width: 768px) {
+    margin-top: calc(64vw * 1 / 2);
+  }
+  @media(min-width: 1200px) {
+    margin-top: calc(1200px * 1 / 2 * .64);
+  }
+`
+
+const Text = styled('div')`
+  ${RichTextSmall};
+  ${tw(['ml-auto'])};
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-1/2', 'desktop:w-1/3'
+  ])};
+  min-width: calc((1 / 3 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((1 / 2 * 100%) - 1.5rem);
+  }
+  @media(min-width: 1200px) {
+    max-width: calc((1 / 3 * 100%) - 1.5rem);
+  }
 `
 
 const previousCount = (length, count) => ifElse(
@@ -88,19 +118,18 @@ export const ImageSlider = withStateHandlers(
           <Container
             className={css`${tw('relative')}`}
           >
-            <Slide className={After}>
-              <ImageForSlider 
+            <Slide 
+              className={After}
+            ><ImageForSlider 
                 {...{image}}
                 count={next}
-              />
-            </Slide>
+              /></Slide>
           </Container>
         </BackImage>
       )}    
       <Container
         className={css`${tw('relative')}`}
-      >
-        {unless(isNil, () =>
+      >{unless(isNil, () =>
           <Slide>
             <ImageForSlider 
               {...{count}}
@@ -109,15 +138,27 @@ export const ImageSlider = withStateHandlers(
           </Slide>
         )(items && items[count].imgimage.localFile)}
         {and(gt(itemsLength, 1),
-          <NavContainer>
+          <JustPager count={count} length={itemsLength} />
+        )}</Container>
+      {unless(isNil, () =>
+        <TextWrapper>
+          <Container>
+            <Text
+              dangerouslySetInnerHTML={{ __html: primary.imgtext.html }}
+            />
+          </Container>
+        </TextWrapper>
+      )(primary.imgtext)}
+      {and(gt(itemsLength, 1),
+        <NavContainer>
+          <Container
+            className={css`${tw('flex justify-between items-center',)}`}
+          >
             <PreviousButton onClick={() => counter(previous)} />
             <NextButton onClick={() => counter(next)} />
-          </NavContainer>
-        )}
-        {and(gt(itemsLength, 1),
-          <JustPager count={count} length={itemsLength} />
-        )}
-      </Container>
+          </Container>
+        </NavContainer>
+      )}
     </div>
   )
 })

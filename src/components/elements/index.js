@@ -8,8 +8,8 @@ export {
 export { Breadcrumbs } from './Breadcrumbs'
 
 export { 
-  ColumnEight, ColumnFiveSix, ColumnThree, 
-  ColumnThreeFive, ColumnThreeFour, 
+  ColumnEight, ColumnFiveSix, ColumnFour, 
+  ColumnThree, ColumnThreeFive, ColumnThreeFour, 
   ColumnTwoFive, Row, SimpleRow
 } from './Grids'
 
@@ -37,8 +37,15 @@ export { Main } from './Main'
 export { MenuToggler } from './MenuToggler'
 export { NavLink } from './NavLink'
 export { Pager } from './Pager'
-export { NextButton, PreviousButton } from './PreviousNextButtons'
-export { Headers, RichText } from './RichText'
+
+export { 
+  NextButton, PreviousButton 
+} from './PreviousNextButtons'
+
+export { 
+  Headers, RichText, RichTextSmall 
+} from './RichText'
+
 export { RightImage } from './RightImage'
 export { ScrollContainer } from './ScrollContainer'
 export { SEO } from './SEO'

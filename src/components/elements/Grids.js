@@ -23,6 +23,17 @@ export const ColumnFiveSix = css`
   }
 `
 
+export const ColumnFour = css`
+  ${tw([
+    'md:px-q12', 'mb-q24', 'md:mb-0',
+    'w-full', 'md:w-1/4'
+  ])};
+  min-width: calc((1 / 4 * 100%) - 1.5rem);
+  @media(min-width: 768px) {
+    max-width: calc((1 / 4 * 100%) - 1.5rem);
+  }
+`
+
 export const ColumnThree = css`
   ${tw([
     'md:px-q12', 'mb-q24', 'md:mb-0',
