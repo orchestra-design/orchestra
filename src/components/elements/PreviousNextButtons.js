@@ -1,6 +1,8 @@
 /* global tw */
 import styled from 'react-emotion'
 
+import { includes } from '../../helpers'
+
 import { Button } from './Buttons'
 import { BaseTransition } from './Transitions'
 
@@ -27,7 +29,7 @@ const Template = styled('span')`
 `
 
 export const NextButton = styled(Template)`
-  ${({ backSlider }) => backSlider && tw(['bg-white'])}
+  ${({ storedTheme }) => includes('image', storedTheme) && tw(['bg-white'])};
   @media(min-width: 601px) {
     background-image: url(${IconNextBlack});
   }

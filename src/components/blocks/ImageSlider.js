@@ -107,7 +107,7 @@ const nextCount = (length, count) => ifElse(
 
 export const ImageSlider = compose(
   connect(
-    ({ backSlider }) => ({ backSlider }),
+    ({ storedTheme }) => ({ storedTheme }),
     { setImage }
   ),
   withStateHandlers(
@@ -118,7 +118,7 @@ export const ImageSlider = compose(
       })
     }
   )
-)(({ backSlider, count, counter, items, primary, setImage, theme }) => {
+)(({ storedTheme, count, counter, items, primary, setImage, theme }) => {
   const itemsLength = length(items)
   const image = items.map(({ imgimage }) => ({ image: imgimage }))
   const previous = previousCount(itemsLength, count)
@@ -180,7 +180,7 @@ export const ImageSlider = compose(
               }}
             />
             <NextButton
-              {...{backSlider}}
+              {...{storedTheme}}
               onClick={() => {
                 counter(next)
                 setImage(toBackImage(next))
