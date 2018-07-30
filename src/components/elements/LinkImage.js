@@ -6,7 +6,7 @@ import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
-import { constant, imageSizes } from '../../helpers'
+import { imageSizes } from '../../helpers'
 
 import { 
   BaseTransition, ImageLinkTransition 
@@ -139,9 +139,10 @@ const DescriptionText = styled('span')`
 `
 
 export const LinkImage = connect(
-  constant, { pageTransition }
+  ({ worksGrid }) => ({ worksGrid }), 
+  { pageTransition }
 )(({
-  color, statement, link, image, 
+  color, statement, link, image, children,
   hoverimage, pageTransition, title, worksGrid
 }) => (
   <LinkedImage
@@ -173,5 +174,6 @@ export const LinkImage = connect(
         >{ title }</DescriptionText>
       </Row>
     </TitleWrapper>
+    { children }
   </LinkedImage>
 ))

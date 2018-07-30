@@ -39,7 +39,7 @@ export { NavLink } from './NavLink'
 export { Pager } from './Pager'
 
 export { 
-  NextButton, PreviousButton 
+  NextButton, PreviousButton, PrevNextTemplate 
 } from './PreviousNextButtons'
 
 export { 

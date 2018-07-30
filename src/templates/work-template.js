@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 
 import { 
-  ImageSlider, WorkImageCaption, 
+  Context, ImageSlider, WorkImageCaption, 
   WorkStatement,
 } from '../components/blocks'
 
@@ -16,11 +16,11 @@ import TemplateWrapper from '../components/layouts'
 
 
 const WorkTemplate = ({ data: { 
-  work, seo, allSite, links, meta 
+  work, allworks, seo, allSite, links, meta 
 }}) => {
   const data = path(['data'], work)
   const tags = path(['tags'], work)
-  const { body, color, image, statement } = data
+  const { body, color, context, image, statement } = data
   const appendedLinks = mergeDeepWith(concat, links, 
     {data: { 
       headerlinks: [{
@@ -71,6 +71,10 @@ const WorkTemplate = ({ data: {
           }
           </Fragment>)(section.primary)
         ))(body)}
+        <Context
+          {...{allworks}}
+          {...{context}}
+        />
       </TemplateWrapper>
     </Fragment>
   )
@@ -109,7 +113,33 @@ export const query = graphql`
         customtags {
           tagtitle
           tagdescription
-        }    
+        }
+        context {
+          image {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          hoverimage {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpSizes_noBase64
+                }
+              }
+            }
+          }
+          link {
+            url
+            document {
+              uid
+            }
+          }
+        }
         body {
           __typename
           ... on PrismicWorkBodyImage {
@@ -163,6 +193,20 @@ export const query = graphql`
                 }
               }
             }
+          }
+        }
+      }
+    }
+    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
+      edges {
+        node {
+          uid
+          data {
+            title
+            statement {
+              text
+            }
+            color
           }
         }
       }

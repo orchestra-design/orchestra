@@ -107,7 +107,11 @@ const nextCount = (length, count) => ifElse(
 
 export const ImageSlider = compose(
   connect(
-    ({ storedTheme }) => ({ storedTheme }),
+    ({ 
+      storedTheme 
+    }) => ({ 
+      storedTheme 
+    }),
     { setImage }
   ),
   withStateHandlers(
@@ -118,7 +122,10 @@ export const ImageSlider = compose(
       })
     }
   )
-)(({ storedTheme, count, counter, items, primary, setImage, theme }) => {
+)(({ 
+  count, counter, items, 
+  primary, setImage, storedTheme, theme 
+}) => {
   const itemsLength = length(items)
   const image = items.map(({ imgimage }) => ({ image: imgimage }))
   const previous = previousCount(itemsLength, count)
@@ -127,11 +134,15 @@ export const ImageSlider = compose(
   
   return (
     <div
-      className={css`${tw('min-h-screen my-q112 desktop:my-q200 relative')}`}
+      className={css`
+        ${tw('my-q112 desktop:my-q200 relative')};
+        ${gt(itemsLength, 1) && tw('flex flex-col h-screen justify-center')};
+      `}
       image={includes('image', theme) ? JSON.stringify(image[count].image) : null}
       slider={includes('image', theme) ? 'true' : 'false'}
       {...{theme}}
     >
+      <div className={css`${tw('relative')}`}>
       {and(gt(itemsLength, 1),
         <BackImage>
           <Container
@@ -194,6 +205,7 @@ export const ImageSlider = compose(
           </Container>
         </NavContainer>
       )}
+      </div>
     </div>
   )
 })

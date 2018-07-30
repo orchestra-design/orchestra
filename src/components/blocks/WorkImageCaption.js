@@ -2,9 +2,6 @@
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
-import { connect } from 'react-redux'
-
-import { pageTransition } from '../../actions'
 
 import {
   ColumnThreeFive, ColumnTwoFive, Container, 
@@ -61,9 +58,7 @@ const Text = styled('div')`
   }
 `
 
-export const WorkImageCaption = connect( 
-  constant, { pageTransition }
-)(({ color, items, pageTransition, primary }) => (
+export const WorkImageCaption = ({ color, items, primary }) => (
   <div 
     right-image={JSON.stringify(primary.sicimage)}
     sicgrid={primary.sicgrid}
@@ -109,4 +104,4 @@ export const WorkImageCaption = connect(
       </RowWrapper>
     </Container>
   </div>
-))
+)

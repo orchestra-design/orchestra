@@ -9,7 +9,7 @@ import { BaseTransition } from './Transitions'
 import IconNext from '../../assets/icon-next.svg'
 import IconNextBlack from '../../assets/icon-next-black.svg'
 
-const Template = styled('span')`
+export const PrevNextTemplate = styled('span')`
   ${Button};
   ${tw([
     'flex', 'cursor-pointer', 'bg-center', 
@@ -28,13 +28,13 @@ const Template = styled('span')`
   }
 `
 
-export const NextButton = styled(Template)`
+export const NextButton = styled(PrevNextTemplate)`
   ${({ storedTheme }) => includes('image', storedTheme) && tw(['md:bg-white'])};
   @media(min-width: 601px) {
     background-image: url(${IconNextBlack});
   }
 `
 
-export const PreviousButton = styled(Template)`
+export const PreviousButton = styled(PrevNextTemplate)`
   transform: rotateZ(180deg);
 `
