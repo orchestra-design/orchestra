@@ -35,7 +35,7 @@ const After = css`
 `
 
 const Slide = styled('div')`
-  ${({ hasText, length }) => hasText || length ? ColumnFiveSix : tw(['w-full'])};
+  ${({ hasText, length }) => !hasText || length ? ColumnFiveSix : tw(['w-full'])};
   ${tw([
     'relative'
   ])};
@@ -123,7 +123,7 @@ export const ImageSlider = compose(
   const image = items.map(({ imgimage }) => ({ image: imgimage }))
   const previous = previousCount(itemsLength, count)
   const next = nextCount(itemsLength, count)
-  const toBackImage = where => JSON.stringify(image[where].image)  
+  const toBackImage = where => JSON.stringify(image[where].image)
   
   return (
     <div
@@ -139,7 +139,7 @@ export const ImageSlider = compose(
           >
             <Slide 
               className={After}
-              hasText={isNil(primary.imgtext)}
+              hasText={isNil(primary.imgtext.html)}
               length={gt(itemsLength, 1)}
             ><ImageForSlider 
                 {...{image}}
@@ -152,7 +152,7 @@ export const ImageSlider = compose(
         className={css`${tw('relative')}`}
       >{unless(isNil, () =>
           <Slide
-            hasText={isNil(primary.imgtext)}
+            hasText={isNil(primary.imgtext.html)}
             length={gt(itemsLength, 1)}
           >
             <ImageForSlider 

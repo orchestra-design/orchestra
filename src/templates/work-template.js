@@ -9,7 +9,7 @@ import {
 
 import {
   concat, equals, mergeDeepWith, 
-  path, pick, safeMap, uuid, and
+  path, pick, safeMap, uuid, and, unless, isNil
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
@@ -54,7 +54,7 @@ const WorkTemplate = ({ data: {
           {...{tags}}
         />
         {safeMap(section => (
-          <Fragment key={uuid()} >
+          unless(isNil, () => <Fragment key={uuid()} >
           {and(equals('PrismicWorkBodyImage', section.__typename),
             <ImageSlider key={uuid()}
               items={section.items}
@@ -69,7 +69,7 @@ const WorkTemplate = ({ data: {
               primary={section.primary}
             />
           }
-          </Fragment>
+          </Fragment>)(section.primary)
         ))(body)}
       </TemplateWrapper>
     </Fragment>

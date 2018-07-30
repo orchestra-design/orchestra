@@ -19,8 +19,8 @@ const transitionGroup = data => data.map(({ image }) =>
   style => 
     <animated.div className={css`${Slide}`} style={{...style}} >
       <Img 
-        sizes={image.localFile.childImageSharp.sizes} 
         className={css`${tw('pin')};`} 
+        sizes={image.localFile.childImageSharp.sizes} 
         style={{position: 'absolute'}} 
       />
     </animated.div>
@@ -38,10 +38,10 @@ export const RightImage = ({ rightImage, sicgrid }) => {
       {safeImage &&
         <div className={css`
           ${equals('left', sicgrid) ? ColumnTwoFive : ColumnThreeFive}; 
-          ${tw('md:-mx-q12 relative')};
+          ${tw('md:p-0 relative')};
         `} >
-          <Img 
-            sizes={data[0].image.localFile.childImageSharp.sizes} 
+          <Img
+            sizes={data[0].image.localFile.childImageSharp.sizes}
           />
           <Transition
             native

@@ -98,7 +98,7 @@ export const WorkImageCaption = connect(
           )(item.sictext)}
           {item.sictextimage && item.sictextimage.localFile && 
             <div
-              className={css`${tw('mt-q24 w-full')}`}
+              className={css`${tw('max-w-xs mt-q24 w-full')}`}
             ><Img key={uuid()}
                 sizes={item.sictextimage.localFile.childImageSharp.sizes}
               /></div>

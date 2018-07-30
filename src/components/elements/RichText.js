@@ -40,6 +40,9 @@ export const RichText = css`
   & .link {
     ${ButtonText};
   }
+  & strong {
+    ${tw(['font-semibold'])};
+  }
   & ul {
     ${List};
     ${tw(['my-q48'])};
