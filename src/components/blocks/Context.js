@@ -8,7 +8,7 @@ import {
   pick, path, propEq, uuid, unless, isNil,
 } from '../../helpers'
 import { 
-  Container, LinkImage, PrevNextTemplate
+  Container, PrevNextLinkImage, PrevNextTemplate
 } from '../elements'
 
 const GridRow = styled('div')`
@@ -80,7 +80,7 @@ export const Context = ({ allworks, context }) => {
         <GridRow key={uuid()}>
         {unless(isNil, () => context.map((link, i) => (
           <LinkWrapper key={uuid()}>
-            <LinkImage key={uuid()}     
+            <PrevNextLinkImage key={uuid()}     
               {...merge(link, getWorkData(linkUid(link))) }            
             >
               <NavContainer previous={i === 0} >
@@ -89,7 +89,7 @@ export const Context = ({ allworks, context }) => {
               : <NextButton />
               }
               </NavContainer>
-            </LinkImage>
+            </PrevNextLinkImage>
           </LinkWrapper>
         )))(context)}
         </GridRow>
