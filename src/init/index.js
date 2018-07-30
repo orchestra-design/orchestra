@@ -8,6 +8,7 @@ export const initState = {
   isMenu: false,
   jumboCount: 0,
   previousTheme: 'white',
+  sicgrid: 'left',
   storedTheme: 'white',
   worksFilter: null,
   worksFiltersOpen: false,

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { 
   changeTheme, collapseMenu, setBackSlider,
-  setImage, setRightImage, srollMenu 
+  setImage, setRightImage, setSicGrid, srollMenu 
 } from '../../actions'
 
 import {
@@ -27,14 +27,14 @@ const enhance = compose(
   connect(
     ({ 
       backImage, backSlider, collapsedMenu,
-      hiddenMenu, rightImage, storedTheme 
+      hiddenMenu, rightImage, sicgrid,storedTheme 
     }) => ({ 
       backImage, backSlider, collapsedMenu,
-      hiddenMenu, rightImage, storedTheme 
+      hiddenMenu, rightImage, sicgrid,storedTheme 
     }),
     { 
       changeTheme, collapseMenu, setBackSlider,
-      setImage, setRightImage, srollMenu 
+      setImage, setRightImage, setSicGrid, srollMenu 
     }
   ),
   withHandlers({
@@ -66,6 +66,7 @@ const enhance = compose(
         const childOffset = offset(child)
         const newImage = pathOr(null, ['attributes', 'image', 'value'], child)
         const newRightImage = pathOr(null, ['attributes', 'right-image', 'value'], child)
+        const newSicGrid = pathOr(null, ['attributes', 'sicgrid', 'value'], child)
         const isSlider = equals('true', path(['attributes', 'slider', 'value'], child))
         const newTheme = camelCase(child.attributes.theme.value)
         
@@ -81,10 +82,16 @@ const enhance = compose(
           // RightImage Appearing     
           ifElse(
             ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
-            () => and(
-              notIsNil(newRightImage),
-              not(equals(newRightImage, props.rightImage))
-            ) && props.setRightImage(newRightImage),
+            () => {
+              and(
+                notIsNil(newRightImage),
+                not(equals(newRightImage, props.rightImage))
+              ) && props.setRightImage(newRightImage)
+              and(
+                notIsNil(newSicGrid),
+                not(equals(newSicGrid, props.sicgrid))
+              ) && props.setSicGrid(newSicGrid)
+            },
             F
           )(childOffset)
           // RightImage Desappearing     
@@ -92,8 +99,8 @@ const enhance = compose(
             ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
             () => and(
               isNil(newRightImage),
-            notIsNil(props.rightImage)
-          ) && props.setRightImage(null),
+              notIsNil(props.rightImage)
+            ) && props.setRightImage(null),
           F
         )(childOffset)
         // Theme

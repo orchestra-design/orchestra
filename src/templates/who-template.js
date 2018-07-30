@@ -153,8 +153,8 @@ export const query = graphql`
               sicimage {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpSizes
+                    sizes(maxWidth: 720, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
                     }
                   }
                 }

@@ -5,7 +5,7 @@ import { css } from 'react-emotion'
 
 
 import { 
-  ImageSlider, ImageCaption, 
+  ImageSlider, WorkImageCaption, 
   WorkStatement,
 } from '../components/blocks'
 
@@ -65,17 +65,14 @@ const WorkTemplate = ({ data: {
             />
           )}
           {equals('PrismicWorkBodyImageCaption', section.__typename) &&
-            <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
-              <ImageCaption key={uuid()}
-                items={section.items}
-                primary={section.primary}
-              />
-            </div>
+            <WorkImageCaption key={uuid()}
+              {...{color}} 
+              items={section.items}
+              primary={section.primary}
+            />
           }
           </Fragment>
         ))(body)}
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="white" />
-        <div className={css`${tw('bg-transparent')}; height: 100vh;`} theme="black" />        
       </TemplateWrapper>
     </Fragment>
   )
@@ -141,7 +138,13 @@ export const query = graphql`
               sicgrid
               sictheme
               sicimage {
-                url
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 720, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
               }
               siccaption
               sicheader {

@@ -127,7 +127,7 @@ export const ImageSlider = compose(
   
   return (
     <div
-      className={css`${tw('screen:h-screen my-q112 screen:my-q112 desktop:my-q200 relative')}`}
+      className={css`${tw('min-h-screen my-q112 desktop:my-q200 relative')}`}
       image={includes('image', theme) ? JSON.stringify(image[count].image) : null}
       slider={includes('image', theme) ? 'true' : 'false'}
       {...{theme}}

@@ -29,6 +29,7 @@ const WhatTemplate = ({data: {
       {body.map(({ primary, items }, i) =>
         <div key={uuid()}
           right-image={JSON.stringify(primary.sicimage)}
+          sicgrid={primary.sicgrid}
           theme={primary.sictheme}
         ><ImageCaptionWithDigits key={uuid()}
            {...{i}}
@@ -69,8 +70,8 @@ export const query = graphql`
             sicimage {
               localFile {
                 childImageSharp {
-                  sizes(maxWidth: 1920, quality: 80) {
-                    ...GatsbyImageSharpSizes
+                  sizes(maxWidth: 720, quality: 80) {
+                    ...GatsbyImageSharpSizes_noBase64
                   }
                 }
               }

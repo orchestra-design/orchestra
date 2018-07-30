@@ -5,8 +5,10 @@ import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 
 import { Container } from './Containers'
-import { ColumnTwoFive } from './Grids'
-import { isNil, unless, uuid } from '../../helpers'
+import { ColumnTwoFive, ColumnThreeFive } from './Grids'
+import { 
+  constant, F, isNil, pathOr, unless, uuid, equals
+} from '../../helpers'
 
 const Slide = css`
   ${tw('absolute pin')};  
@@ -24,21 +26,22 @@ const transitionGroup = data => data.map(({ image }) =>
     </animated.div>
 )
 
-export const RightImage = ({ rightImage }) => {
-  const data =  [{image: unless(isNil, JSON.parse)(rightImage)}]
+export const RightImage = ({ rightImage, sicgrid }) => {
+  const parsedImage = JSON.parse(rightImage)
+  const safeImage = unless(isNil, 
+    pathOr(false, ['localFile'], parsedImage) ? constant(parsedImage) : F 
+  )(parsedImage)
+  const data =  [{image: safeImage}]
   
   return (
     <Container className={css`${tw('flex h-full items-center')}`}>
-      {unless(isNil, () =>
+      {safeImage &&
         <div className={css`
-          ${ColumnTwoFive}; 
+          ${equals('left', sicgrid) ? ColumnTwoFive : ColumnThreeFive}; 
           ${tw('md:-mx-q12 relative')};
-          height: calc((2 / 5 * 100vw) - 1.5rem);
         `} >
           <Img 
             sizes={data[0].image.localFile.childImageSharp.sizes} 
-            className={css`${tw('pin')};`} 
-            style={{position: 'absolute'}} 
           />
           <Transition
             native
@@ -49,7 +52,7 @@ export const RightImage = ({ rightImage }) => {
             leave={{ opacity: .0 }}
           >{ transitionGroup(data) }</Transition> 
         </div>
-      )(RightImage)}
+      }
     </Container>
   )
 }

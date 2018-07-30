@@ -37,6 +37,10 @@ const reducer = handleActions(
       'rightImage', action.payload,
       state,
     ),
+    SET_SIC_GRIDE: (state, action) => assoc(
+      'sicgrid', action.payload,
+      state,
+    ),
     SET_WORK_FILTER: (state, action) => assoc(
       'worksFilter', action.payload,
       state

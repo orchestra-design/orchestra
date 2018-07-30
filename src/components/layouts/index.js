@@ -27,7 +27,7 @@ const Contact = ContactButton.withComponent('a')
 
 const TemplateWrapper = ({ 
   seo, allSite, hiddenDown, links, meta, color, 
-  image, rightImage, title, children, storedTheme 
+  image, rightImage, sicgrid, title, children, storedTheme 
 }) => {
   const { lang } = seo
   
@@ -51,7 +51,7 @@ const TemplateWrapper = ({
         {unless(isNil, () =>
           <div
             className={css`${tw('absolute md:block hidden pin')};`}
-          ><RightImage {...{rightImage}} /></div>
+          ><RightImage {...{rightImage}} {...{sicgrid}} /></div>
         )(rightImage)}
         <ScrollContainer>
           <Fragment>
@@ -73,7 +73,7 @@ const TemplateWrapper = ({
 }
 
 export default connect(
-  ({ rightImage, storedTheme }) => ({ rightImage, storedTheme })
+  ({ rightImage, sicgrid, storedTheme }) => ({ rightImage, sicgrid, storedTheme })
 )(TemplateWrapper)
 
 
