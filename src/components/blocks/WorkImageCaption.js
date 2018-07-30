@@ -29,6 +29,9 @@ const LeftCol = styled('div')`
     constant(ColumnTwoFive), 
     constant(ColumnThreeFive)
   )(grid)};
+  @media(max-width: 768px) {
+    order: ${({ hasntHeader }) => hasntHeader ? 1 : 0};
+  }
 `
 
 const Header = styled('div')`
@@ -59,24 +62,25 @@ const Text = styled('div')`
 `
 
 export const WorkImageCaption = ({ color, items, primary }) => (
-  <div 
-    right-image={JSON.stringify(primary.sicimage)}
-    sicgrid={primary.sicgrid}
+  <div
     style={{position: 'relative'}}
     theme={primary.sictheme} 
   >
     <Container>
       <RowWrapper hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}>
-        <LeftCol grid={primary.sicgrid} >
+        <LeftCol 
+          grid={primary.sicgrid} 
+          hasntHeader={isNil(primary.sicheader.html)} 
+        >
         {unless(isNil,() =>
           <Header
             {...{color}}
             dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
           />
-        )(primary.sicheader)}
+        )(primary.sicheader.html)}
         {unless(isNil, () =>
           <div
-            className={css`${tw('md:hidden mb-q24 w-full')}`}
+            className={css`${tw('w-full')}`}
           ><Img 
             sizes={primary.sicimage.localFile.childImageSharp.sizes}
           /></div>
