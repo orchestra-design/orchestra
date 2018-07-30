@@ -35,7 +35,7 @@ const After = css`
 `
 
 const Slide = styled('div')`
-  ${ColumnFiveSix};
+  ${({ hasText, length }) => hasText || length ? ColumnFiveSix : tw(['w-full'])};
   ${tw([
     'relative'
   ])};
@@ -127,7 +127,7 @@ export const ImageSlider = compose(
   
   return (
     <div
-      className={css`${tw('screen:h-screen my-q48 screen:my-q112 desktop:my-q200 relative')}`}
+      className={css`${tw('screen:h-screen my-q112 screen:my-q112 desktop:my-q200 relative')}`}
       image={includes('image', theme) ? JSON.stringify(image[count].image) : null}
       slider={includes('image', theme) ? 'true' : 'false'}
       {...{theme}}
@@ -139,6 +139,8 @@ export const ImageSlider = compose(
           >
             <Slide 
               className={After}
+              hasText={isNil(primary.imgtext)}
+              length={gt(itemsLength, 1)}
             ><ImageForSlider 
                 {...{image}}
                 count={next}
@@ -149,7 +151,10 @@ export const ImageSlider = compose(
       <Container
         className={css`${tw('relative')}`}
       >{unless(isNil, () =>
-          <Slide>
+          <Slide
+            hasText={isNil(primary.imgtext)}
+            length={gt(itemsLength, 1)}
+          >
             <ImageForSlider 
               {...{count}}
               {...{image}}

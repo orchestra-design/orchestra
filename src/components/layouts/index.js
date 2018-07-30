@@ -44,7 +44,7 @@ const TemplateWrapper = ({
         />
         {unless(isNil, () =>
           <div
-            className={css`${tw('hidden screen:block')};`}
+            className={css`${tw('hidden block')};`}
           ><Image {...{image}} /></div>
         )(image)}
         <Back {...{color}} />

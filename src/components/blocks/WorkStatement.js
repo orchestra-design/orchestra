@@ -32,7 +32,7 @@ const StatementContainer = styled(Container)`
 `
 
 const ColoredContainer = styled(Container)`
-  ${tw(['screen:opacity-0', 'pb-q72', 'md:pb-q200'])};
+  ${tw(['screen:opacity-0', 'md:pb-q200'])};
   ${({ storedTheme }) => equals(storedTheme, 'colored') && tw(['screen:opacity-100'])};
   ${BaseTransition};
 `
