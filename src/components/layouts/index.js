@@ -16,6 +16,7 @@ import {
 import { unless, isNil } from '../../helpers'
 
 import { theme as EmotionTheme } from '../theme'
+import styled from '../../../node_modules/react-emotion';
 
 injectGlobal`
   body {
@@ -25,8 +26,14 @@ injectGlobal`
 
 const Contact = ContactButton.withComponent('a')
 
+const ImageWrapper = styled('div')`
+  ${tw(['hidden'])};
+  ${({ backSlider }) => backSlider && tw(['block'])};
+  ${tw(['screen:block'])};
+`
+
 const TemplateWrapper = ({ 
-  seo, allSite, hiddenDown, links, meta, color, 
+  seo, allSite, hiddenDown, links, meta, color, backSlider,
   image, rightImage, sicgrid, title, children, storedTheme 
 }) => {
   const { lang } = seo
@@ -43,9 +50,8 @@ const TemplateWrapper = ({
           {...{title}}
         />
         {unless(isNil, () =>
-          <div
-            className={css`${tw('hidden block')};`}
-          ><Image {...{image}} /></div>
+          <ImageWrapper {...{backSlider}}
+          ><Image {...{image}} /></ImageWrapper>
         )(image)}
         <Back {...{color}} />
         {unless(isNil, () =>
@@ -73,7 +79,11 @@ const TemplateWrapper = ({
 }
 
 export default connect(
-  ({ rightImage, sicgrid, storedTheme }) => ({ rightImage, sicgrid, storedTheme })
+  ({
+     backSlider, rightImage, sicgrid, storedTheme 
+  }) => ({
+     backSlider, rightImage, sicgrid, storedTheme 
+  })
 )(TemplateWrapper)
 
 

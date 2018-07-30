@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { constant, F, isArray, isNil, pathOr, unless, uuid } from '../../helpers'
 
 const Wrapper = styled('div')`
-  ${tw(['absolute', 'pin'])}; 
+  ${tw(['absolute', 'pin'])};
   filter: blur(${({ backSlider, collapseTransition }) => (backSlider || collapseTransition) && '12px'}); 
   transform: scale(1.1);
   &::after {

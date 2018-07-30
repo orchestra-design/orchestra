@@ -1,7 +1,5 @@
-/* global tw */
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
-import { css } from 'react-emotion'
 
 
 import { 
@@ -154,6 +152,15 @@ export const query = graphql`
             items {
               sictext {
                 html
+              }
+              sictextimage {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 480, quality: 80) {
+                      ...GatsbyImageSharpSizes_noBase64
+                    }
+                  }
+                }
               }
             }
           }

@@ -2,13 +2,11 @@
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
-import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
 
-import { 
-  BaseTransition, ButtonSmallText, ButtonText, 
+import {
   ColumnThreeFive, ColumnTwoFive, Container, 
   Headers, RichText, Row
 } from '../elements'
@@ -35,6 +33,7 @@ const LeftCol = styled('div')`
     constant(ColumnThreeFive)
   )(grid)};
 `
+
 const Header = styled('div')`
   ${Headers};
   ${tw(['mb-q36'])};
@@ -56,33 +55,9 @@ const Text = styled('div')`
   & h2 {
     ${tw(['max-w-xs'])};
   }
-`
-
-const LinkText = styled('span')`
-  ${ButtonSmallText};
-  ${tw([
-    'flex', 'flex-row', 'items-baseline',
-    'px-q12'
-  ])};
-  ${BaseTransition};
-  color: ${({ theme }) => theme.color};
-  & .link {
-    ${ButtonText};
-    ${tw(['mr-q4'])};
-  }
-`
-
-const LinkStyles = css`
-  ${tw([
-    'flex', 'items-start',
-    'no-underline', 'mb-q16', 
-    'md:mb-q24', 'relative', 'screen:w-full'
-  ])};
-  &:hover .link-text {
-    ${tw([
-      'bg-black', 'text-white',
-      'shadow-none', 'shadow-elevate1'
-    ])};
+  & h3 {
+    ${tw(['max-w-xs'])};
+    color: ${({ color, theme }) => theme.backgroundColor ? color : theme.logoFill};    
   }
 `
 
@@ -117,30 +92,17 @@ export const WorkImageCaption = connect(
           <Fragment key={uuid()} >        
           {isNil(item.sictextlink) && unless(isNil,() =>
             <Text key={uuid()} 
+              {...{color}}
               dangerouslySetInnerHTML={{ __html: item.sictext.html }}
             />
           )(item.sictext)}
-          </Fragment>
-        ))(items)}
-        {safeMap(item => (
-          <Fragment key={uuid()} >
-          {unless(isNil,() =>
-            <Link key={uuid()}
-              className={LinkStyles}
-              onClick={() => pageTransition()}
-              to={item.sictextlink.url}
-            >
-              <LinkText key={uuid()}
-                className="link-text"
-                dangerouslySetInnerHTML={{ __html: item.sictext.html }}
-              />
-              {unless(isNil,() =>
-                <div key={uuid()} ><Img key={uuid()} 
-                    sizes={item.sictextimage.localFile.childImageSharp.sizes}
-                  /></div>
-              )(item.sictextimage)}
-            </Link>
-          )(item.sictextlink)}
+          {item.sictextimage && item.sictextimage.localFile && 
+            <div
+              className={css`${tw('mt-q24 w-full')}`}
+            ><Img key={uuid()}
+                sizes={item.sictextimage.localFile.childImageSharp.sizes}
+              /></div>
+          }
           </Fragment>
         ))(items)}
         </RightCol>
