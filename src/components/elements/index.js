@@ -42,6 +42,8 @@ export {
   NextButton, PreviousButton, PrevNextTemplate 
 } from './PreviousNextButtons'
 
+export { PrevNextLinkImage } from './PrevNextLinkImage'
+
 export { 
   Headers, RichText, RichTextSmall 
 } from './RichText'
