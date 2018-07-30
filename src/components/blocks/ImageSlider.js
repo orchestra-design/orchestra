@@ -150,7 +150,7 @@ export const ImageSlider = compose(
           >
             <Slide 
               className={After}
-              hasText={isNil(primary.imgtext.html)}
+              hasText={isNil(primary.imgtext && primary.imgtext.html)}
               length={gt(itemsLength, 1)}
             ><ImageForSlider 
                 {...{image}}
@@ -163,7 +163,7 @@ export const ImageSlider = compose(
         className={css`${tw('relative')}`}
       >{unless(isNil, () =>
           <Slide
-            hasText={isNil(primary.imgtext.html)}
+            hasText={isNil(primary.imgtext && primary.imgtext.html)}
             length={gt(itemsLength, 1)}
           >
             <ImageForSlider 

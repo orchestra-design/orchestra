@@ -70,14 +70,14 @@ export const WorkImageCaption = ({ color, items, primary }) => (
       <RowWrapper hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}>
         <LeftCol 
           grid={primary.sicgrid} 
-          hasntHeader={isNil(primary.sicheader.html)} 
+          hasntHeader={isNil(primary.sicheader && primary.sicheader.html)} 
         >
         {unless(isNil,() =>
           <Header
             {...{color}}
             dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
           />
-        )(primary.sicheader.html)}
+        )(primary.sicheader && primary.sicheader.html)}
         {unless(isNil, () =>
           <div
             className={css`${tw('w-full')}`}
