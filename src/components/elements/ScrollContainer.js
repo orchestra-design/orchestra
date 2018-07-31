@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react'
 import styled from 'react-emotion'
-import { compose, lifecycle, withHandlers } from 'recompose'
+import { compose, lifecycle, pure, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { 
@@ -37,6 +37,7 @@ const enhance = compose(
       setBackSlider, setImage, setRightImage, setSicGrid 
     }
   ),
+  pure,
   withHandlers({
     scroll: props => event => {
       const scrollChildren = Array.from(event.target.children)

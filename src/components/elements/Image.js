@@ -4,6 +4,7 @@ import styled, { css } from 'react-emotion'
 import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 import { connect } from 'react-redux'
+import { compose, pure } from 'recompose'
 
 import { constant, F, isArray, isNil, pathOr, unless, uuid } from '../../helpers'
 
@@ -37,14 +38,17 @@ const transitionGroup = data => data.map(({ image }) =>
     </animated.div>
 )
 
-export const Image = connect(
-  ({ 
-    backImage, backSlider, 
-    collapseTransition, jumboCount 
-  }) => ({ 
-    backImage, backSlider, 
-    collapseTransition, jumboCount 
-  })
+export const Image = compose(
+  connect(
+    ({ 
+      backImage, backSlider, 
+      collapseTransition, jumboCount 
+    }) => ({ 
+      backImage, backSlider, 
+      collapseTransition, jumboCount 
+    })
+  ),
+  pure
 )(({ backImage, backSlider, collapseTransition, image, jumboCount }) => {
   const parsedImage = JSON.parse(backImage)
   const safeImage = unless(isNil, 
