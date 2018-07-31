@@ -1,5 +1,6 @@
 export const COLLAPSE_MENU = 'COLLAPSE_MENU'
 export const COUNT_JUMBO = 'COUNT_JUMBO'
+export const HAS_BACK_IMAGE = 'HAS_BACK_IMAGE'
 export const MENU_TRANSITION = 'MENU_TRANSITION'
 export const SCROLL_MENU = 'SCROLL_MENU'
 export const SET_BACK_SLIDER = 'SET_BACK_SLIDER'

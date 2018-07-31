@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react'
 import styled, { css } from 'react-emotion'
-import { compose, lifecycle } from 'recompose'
+import { compose, lifecycle, pure } from 'recompose'
 import { connect } from 'react-redux'
 
 import {
@@ -50,6 +50,7 @@ const withLifecicle = compose(
     collapsedMenu, collapseTransition, 
     hiddenMenu, isMenu  
   })),
+  pure,
   lifecycle({
     state: { path: '/' },
     componentDidMount() {

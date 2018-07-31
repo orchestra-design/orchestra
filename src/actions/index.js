@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions'
 import { delay } from '../helpers'
 
 import { 
-  COLLAPSE_MENU, COUNT_JUMBO, MENU_TRANSITION, 
+  COLLAPSE_MENU, COUNT_JUMBO, HAS_BACK_IMAGE, MENU_TRANSITION, 
   SCROLL_MENU, SET_BACK_SLIDER, SET_IMAGE, 
   SET_RIGHT_IMAGE, SET_SIC_GRIDE, SET_WORK_FILTER,
   THEME, TOGGLE_GRID, TOGGLE_MENU,
@@ -12,6 +12,7 @@ import {
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
 const countJumboAction = createAction(COUNT_JUMBO)
+const hasBackImageAction = createAction(HAS_BACK_IMAGE)
 const scrollMenuAction = createAction(SCROLL_MENU)
 const setBackSliderAction = createAction(SET_BACK_SLIDER)
 const setImageAction = createAction(SET_IMAGE)
@@ -37,12 +38,17 @@ export const collapseMenu = payload =>
     delay(400, () => dispatch(stopTransition()))
   }
   
-  export const countJumbo = payload =>
+export const countJumbo = payload =>
   dispatch => {
     dispatch(countJumboAction(payload))
   }
   
-  export const pageTransition = () =>
+export const hasBackImage = payload =>
+  dispatch => { 
+    dispatch(hasBackImageAction(payload))
+  }
+
+export const pageTransition = () =>
   dispatch => {
     dispatch(collapseMenuAction(false))
     dispatch(countJumboAction(0))
@@ -53,12 +59,12 @@ export const collapseMenu = payload =>
     dispatch(toggleMenuAction(false))
   }
   
-  export const srollMenu = payload =>
+export const srollMenu = payload =>
   dispatch => {
     dispatch(scrollMenuAction(payload))
   }
   
-  export const setBackSlider = payload =>
+export const setBackSlider = payload =>
   dispatch => { 
     dispatch(startTransition())
     dispatch(setBackSliderAction(payload))

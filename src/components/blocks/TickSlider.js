@@ -1,7 +1,7 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import { compose, lifecycle } from 'recompose'
+import { compose, lifecycle, pure } from 'recompose'
 import { connect } from 'react-redux'
 
 import { changeTheme, countJumbo } from '../../actions'
@@ -57,6 +57,7 @@ const enhance = compose(
     }),
     { changeTheme, countJumbo }
   ),
+  pure,
   lifecycle({
     state: {},
     componentDidMount() {

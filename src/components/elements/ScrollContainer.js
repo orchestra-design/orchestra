@@ -5,8 +5,8 @@ import { compose, lifecycle, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { 
-  changeTheme, collapseMenu, setBackSlider,
-  setImage, setRightImage, setSicGrid, srollMenu 
+  changeTheme, collapseMenu, hasBackImage, srollMenu, setBackSlider,
+  setImage, setRightImage, setSicGrid 
 } from '../../actions'
 
 import {
@@ -26,15 +26,15 @@ const ScrollWrapper = styled('div')`
 const enhance = compose(
   connect(
     ({ 
-      backImage, backSlider, collapsedMenu,
+      backImage, backSlider, collapsedMenu, hasBackImage,
       hiddenMenu, rightImage, sicgrid,storedTheme 
     }) => ({ 
-      backImage, backSlider, collapsedMenu,
+      backImage, backSlider, collapsedMenu, hasBackImage,
       hiddenMenu, rightImage, sicgrid,storedTheme 
     }),
     { 
-      changeTheme, collapseMenu, setBackSlider,
-      setImage, setRightImage, setSicGrid, srollMenu 
+      changeTheme, collapseMenu, hasBackImage, srollMenu, 
+      setBackSlider, setImage, setRightImage, setSicGrid 
     }
   ),
   withHandlers({
@@ -64,6 +64,7 @@ const enhance = compose(
 
         /* THEME CHANGING WHEN SCROLLING */
         const childOffset = offset(child)
+        const hasImage = pathOr(null, ['attributes', 'backImage', 'value'], child)
         const newImage = pathOr(null, ['attributes', 'image', 'value'], child)
         const newRightImage = pathOr(null, ['attributes', 'right-image', 'value'], child)
         const newSicGrid = pathOr(null, ['attributes', 'sicgrid', 'value'], child)
@@ -105,12 +106,14 @@ const enhance = compose(
         )(childOffset)
         // Theme
         ifElse(
-          ({ top, height }) => and(lt(top, 301), gt((top + height), 300)),
+          ({ top, height }) => and(lt(top, 401), gt((top + height), 400)),
           () => {
             not(equals(newTheme, props.storedTheme)) && 
             props.changeTheme(newTheme)
             not(equals(isSlider, props.backSlider)) && 
               props.setBackSlider(isSlider)
+            not(equals(hasImage, props.hasBackImage)) && 
+              props.hasBackImage(hasImage)
           },
           F
         )(childOffset)

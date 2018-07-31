@@ -23,7 +23,6 @@ const RowWrapper = styled('div')`
   color: ${({ theme }) => theme.color};
 `
 
-
 const LeftCol = styled('div')`
   ${Headers};
   ${tw(['md:text-right'])};

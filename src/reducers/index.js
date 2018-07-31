@@ -13,6 +13,10 @@ const reducer = handleActions(
       'jumboCount', action.payload,
       state
     ),
+    HAS_BACK_IMAGE: (state, action) => assoc(
+      'hasBackImage', action.payload,
+      state,
+    ),
     MENU_TRANSITION: (state, action) => assoc(
       'collapseTransition', action.payload,
       state

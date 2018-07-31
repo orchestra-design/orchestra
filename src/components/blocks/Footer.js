@@ -11,7 +11,7 @@ import { safeMap, uuid } from '../../helpers'
 const FooterContainer = styled('div')`
   ${tw(['flex', 'pt-q200', 'w-full'])};
   color: ${props => props.theme.color};
-  min-height: calc(100vh - 250px);
+  min-height: calc(100vh - 375px);
 `
 
 const Row = styled('div')`

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import { equals, safeMap, path, pick, uuid  } from '../helpers'
+import { equals, includes, path, pick, safeMap, uuid  } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { 
   Columns, ImageSlider, ImageCaption, 
@@ -39,7 +39,8 @@ const WhoTemplate = ({data: {
         }
         {equals('PrismicWhoBodyLead', section.__typename) &&
           <div key={uuid()} 
-            image={JSON.stringify(section.primary.leadimage)} 
+            image={JSON.stringify(section.primary.leadimage)}
+            backImage={includes('image', section.primary.leadtheme) ? 'true' : 'false'} 
             style={{position: 'relative'}}
             theme={section.primary.leadtheme} 
           >

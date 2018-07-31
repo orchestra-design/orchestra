@@ -32,9 +32,9 @@ const enhance = compose(
       const jumboCounterChildren = Array.from(jumboCounter.children)
       jumboCounterChildren.map((child, i) => {
         const { top, height } = offset(child)
-        and(lt(top, 200), gt((top + height), 200)) && 
+        and(lt(top, 400), gt((top + height), 400)) && 
           not(equals(this.props.jumboCount, i)) && this.props.countJumbo(i)
-        and(equals(i, length(jumboCounterChildren) - 2), lt((top + height), -200)) && 
+        and(equals(i, length(jumboCounterChildren) - 2), lt((top + height), -400)) && 
           this.props.countJumbo(null)
         return null
       })

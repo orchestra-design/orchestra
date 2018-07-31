@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react'
 import styled, { css } from 'react-emotion'
-import { compose, withStateHandlers } from 'recompose'
+import { compose, pure, withStateHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { setImage } from '../../actions'
@@ -114,6 +114,7 @@ export const ImageSlider = compose(
     }),
     { setImage }
   ),
+  pure,
   withStateHandlers(
     ({ init = 0 }) => ({ count: init }),
     {

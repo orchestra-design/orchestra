@@ -17,7 +17,7 @@ export const ContactButton = styled(RoundButton)`
     'screen:h-q48', 'screen:w-q48',
     'shadow-none', 'hover:shadow-elevate1',
   ])};
-  ${({ isMenu }) => isMenu && tw(['mx-q12', 'my-q36', 'screen:my-q24'])};
+  ${({ isMenu }) => isMenu && tw(['m-q12'])};
   ${BaseTransition};
   background-color: ${({ theme }) => theme.color};
   background-image: url(${({ theme }) => theme.color === '#ffffff' ? IconContactStrokeBlack : IconContactStroke});

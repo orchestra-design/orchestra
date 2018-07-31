@@ -28,12 +28,12 @@ const Contact = ContactButton.withComponent('a')
 
 const ImageWrapper = styled('div')`
   ${tw(['hidden'])};
-  ${({ backSlider }) => backSlider && tw(['block'])};
+  ${({ appear }) => appear && tw(['block'])};
   ${tw(['screen:block'])};
 `
 
 const TemplateWrapper = ({ 
-  seo, allSite, hiddenDown, links, meta, color, backSlider,
+  seo, allSite, hiddenDown, links, meta, color, backSlider, hasBackImage,
   image, rightImage, sicgrid, title, children, storedTheme 
 }) => {
   const { lang } = seo
@@ -50,7 +50,7 @@ const TemplateWrapper = ({
           {...{title}}
         />
         {unless(isNil, () =>
-          <ImageWrapper {...{backSlider}}
+          <ImageWrapper appear={backSlider || hasBackImage}
           ><Image {...{image}} /></ImageWrapper>
         )(image)}
         <Back {...{color}} />
@@ -80,9 +80,9 @@ const TemplateWrapper = ({
 
 export default connect(
   ({
-     backSlider, rightImage, sicgrid, storedTheme 
+     backSlider, hasBackImage, rightImage, sicgrid, storedTheme 
   }) => ({
-     backSlider, rightImage, sicgrid, storedTheme 
+     backSlider, hasBackImage, rightImage, sicgrid, storedTheme 
   })
 )(TemplateWrapper)
 
