@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import defaultImage from '../../assets/default.jpg'
+
 const getSchemaOrgJSONLD = ({
   url, seotitle, getImage, description
 }) => [
@@ -35,7 +37,7 @@ export const SEO = ({ seo: { uid, lang, data: {
   const siteUrl = 'https://www.orchestra-design.com/'
   const fbAppID = ''
   const url = uid !== null ? `${siteUrl}${lang.replace('-us', '')}/${uid.replace(/.{3}$/i, '')}` : siteUrl
-  const getImage = seoimage.localFile.childImageSharp.resolutions.src
+  const getImage = seoimage && seoimage.localFile ? seoimage.localFile.childImageSharp.resolutions.src : defaultImage
   const schemaOrgJSONLD = getSchemaOrgJSONLD({    
     url, seotitle, getImage, seodescription
   })  
