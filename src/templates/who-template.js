@@ -1,81 +1,92 @@
-import React, { Fragment } from 'react'
-import { graphql } from 'gatsby'
+import React, { Fragment } from "react";
+import { graphql } from "gatsby";
 
-import { equals, includes, path, pick, safeMap, uuid  } from '../helpers'
-import TemplateWrapper from '../components/layouts'
-import { 
-  Columns, ImageSlider, ImageCaption, 
-  ImageStatement, Lead 
-} from '../components/blocks'
+import { equals, includes, path, pick, safeMap, uuid } from "../helpers";
+import TemplateWrapper from "../components/layouts";
+import {
+  Columns,
+  ImageSlider,
+  ImageCaption,
+  ImageStatement,
+  Lead
+} from "../components/blocks";
 
-const WhoTemplate = ({data: { 
-  who, seo, allSite, links, meta
-}}) => {
-  const data = path(['data'], who)
-  const { body, image, theme, title } = data
+const WhoTemplate = ({ data: { who, seo, allSite, links, meta } }) => {
+  const data = path(["data"], who);
+  const { body, image, theme, title } = data;
   return (
     <TemplateWrapper
-      {...{allSite}}
-      {...{links}}
-      {...{image}}
-      {...{meta}}
-      {...{seo}}
-      {...{title}}
+      {...{ allSite }}
+      {...{ links }}
+      {...{ image }}
+      {...{ meta }}
+      {...{ seo }}
+      {...{ title }}
     >
-      <div {...{theme}} >
-        <ImageStatement 
-          data={pick(['title', 'statement', 'image'], data)}
-        />
+      <div {...{ theme }}>
+        <ImageStatement data={pick(["title", "statement", "image"], data)} />
       </div>
       {safeMap(section => (
-        <Fragment key={uuid()} >
-        {equals('PrismicWhoBodyColumns', section.__typename) &&
-          <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
-            <Columns key={uuid()}
+        <Fragment key={uuid()}>
+          {equals("PrismicWhoBodyColumns", section.__typename) && (
+            <div
+              key={uuid()}
+              theme={section.primary.coltheme}
+              style={{ position: "relative" }}
+            >
+              <Columns
+                key={uuid()}
+                items={section.items}
+                primary={section.primary}
+              />
+            </div>
+          )}
+          {equals("PrismicWhoBodyLead", section.__typename) && (
+            <div
+              key={uuid()}
+              image={JSON.stringify(section.primary.leadimage)}
+              backimage={
+                includes("image", section.primary.leadtheme) ? "true" : "false"
+              }
+              style={{ position: "relative" }}
+              theme={section.primary.leadtheme}
+            >
+              <Lead key={uuid()} primary={section.primary} />
+            </div>
+          )}
+          {equals("PrismicWhoBodyImage", section.__typename) && (
+            <ImageSlider
+              key={uuid()}
               items={section.items}
               primary={section.primary}
+              theme={section.primary.imgtheme}
             />
-          </div>
-        }
-        {equals('PrismicWhoBodyLead', section.__typename) &&
-          <div key={uuid()} 
-            image={JSON.stringify(section.primary.leadimage)}
-            backImage={includes('image', section.primary.leadtheme) ? 'true' : 'false'} 
-            style={{position: 'relative'}}
-            theme={section.primary.leadtheme} 
-          >
-            <Lead key={uuid()} 
-              primary={section.primary} 
-            />
-          </div>
-        }
-        {equals('PrismicWhoBodyImage', section.__typename) &&
-          <ImageSlider key={uuid()}
-            items={section.items}
-            primary={section.primary}
-            theme={section.primary.imgtheme}
-          />
-        }
-        {equals('PrismicWhoBodyImageCaption', section.__typename) &&
-          <div key={uuid()} theme={section.primary.sictheme} style={{position: 'relative'}} >
-            <ImageCaption key={uuid()}
-              items={section.items}
-              primary={section.primary}
-            />
-          </div>
-        }
+          )}
+          {equals("PrismicWhoBodyImageCaption", section.__typename) && (
+            <div
+              key={uuid()}
+              theme={section.primary.sictheme}
+              style={{ position: "relative" }}
+            >
+              <ImageCaption
+                key={uuid()}
+                items={section.items}
+                primary={section.primary}
+              />
+            </div>
+          )}
         </Fragment>
       ))(body)}
     </TemplateWrapper>
-  )
-}
+  );
+};
 
-export default WhoTemplate
+export default WhoTemplate;
 
 export const query = graphql`
   query WhoTemplateQuery($lang: String!) {
-    who: prismicWho(lang: {eq: $lang}) {
-      data {        
+    who: prismicWho(lang: { eq: $lang }) {
+      data {
         title
         statement {
           text
@@ -94,7 +105,7 @@ export const query = graphql`
           __typename
           ... on PrismicWhoBodyColumns {
             primary {
-              coltheme              
+              coltheme
             }
             items {
               colimage {
@@ -132,7 +143,7 @@ export const query = graphql`
             primary {
               imgtheme
             }
-            items {          
+            items {
               imgimage {
                 localFile {
                   childImageSharp {
@@ -170,7 +181,7 @@ export const query = graphql`
         }
       }
     }
-    seo: prismicWho(lang: {eq: $lang}) {
+    seo: prismicWho(lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -188,7 +199,7 @@ export const query = graphql`
         }
       }
     }
-    links: prismicWho(lang: {eq: $lang}) {
+    links: prismicWho(lang: { eq: $lang }) {
       data {
         headerlinks {
           linktitle
@@ -205,8 +216,8 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }
-`
+`;
