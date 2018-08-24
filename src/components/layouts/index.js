@@ -2,21 +2,27 @@
 import React, { Fragment } from 'react'
 import { ThemeProvider } from 'emotion-theming'
 import { css, injectGlobal } from 'emotion'
-
+import styled from 'react-emotion'
 import { connect } from 'react-redux'
-import { graphql } from  'gatsby'
+import { graphql } from 'gatsby'
 
 import { Footer, Header } from '../blocks'
 
-import { 
-  Back, ContactButton, DownButton, Image, Main,
-  ScrollContainer, RightImage, SEO, UpButton
+import {
+  Back,
+  ContactButton,
+  DownButton,
+  Image,
+  Main,
+  ScrollContainer,
+  RightImage,
+  SEO,
+  UpButton,
 } from '../elements'
 
 import { unless, isNil } from '../../helpers'
 
 import { theme as EmotionTheme } from '../theme'
-import styled from '../../../node_modules/react-emotion';
 
 injectGlobal`
   body {
@@ -32,60 +38,79 @@ const ImageWrapper = styled('div')`
   ${tw(['screen:block'])};
 `
 
-const TemplateWrapper = ({ 
-  seo, allSite, hiddenDown, links, meta, color, backSlider, hasBackImage,
-  image, rightImage, sicgrid, title, children, storedTheme 
+const TemplateWrapper = ({
+  seo,
+  allSite,
+  hiddenDown,
+  links,
+  meta,
+  color,
+  backSlider,
+  hasBackImage,
+  image,
+  rightImage,
+  sicgrid,
+  title,
+  children,
+  storedTheme,
 }) => {
   const { lang } = seo
-  
+
   return (
-    <ThemeProvider theme={EmotionTheme[storedTheme]} >
+    <ThemeProvider theme={EmotionTheme[storedTheme]}>
       <Main>
-        <SEO {...{seo}} />
-        <Header 
-          {...{allSite}} 
-          {...{lang}} 
-          {...{links}}
-          {...{meta}}
-          {...{title}}
+        <SEO {...{ seo }} />
+        <Header
+          {...{ allSite }}
+          {...{ lang }}
+          {...{ links }}
+          {...{ meta }}
+          {...{ title }}
         />
-        {unless(isNil, () =>
-          <ImageWrapper appear={backSlider || hasBackImage}
-          ><Image {...{image}} /></ImageWrapper>
-        )(image)}
-        <Back {...{color}} />
-        {unless(isNil, () =>
+        {unless(isNil, () => (
+          <ImageWrapper appear={backSlider || hasBackImage}>
+            <Image {...{ image }} />
+          </ImageWrapper>
+        ))(image)}
+        <Back {...{ color }} />
+        {unless(isNil, () => (
           <div
-            className={css`${tw('absolute md:block hidden pin')};`}
-          ><RightImage {...{rightImage}} {...{sicgrid}} /></div>
-        )(rightImage)}
+            className={css`
+              ${tw('absolute md:block hidden pin')};
+            `}
+          >
+            <RightImage {...{ rightImage }} {...{ sicgrid }} />
+          </div>
+        ))(rightImage)}
         <ScrollContainer>
           <Fragment>
-            { children }            
+            {children}
             <div theme="black">
-              <Footer {...{meta}} />
+              <Footer {...{ meta }} />
             </div>
           </Fragment>
         </ScrollContainer>
-        <DownButton {...{hiddenDown}}/>
+        <DownButton {...{ hiddenDown }} />
         <UpButton />
-        <Contact 
+        <Contact
           href={meta.data.email.url}
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
         />
       </Main>
     </ThemeProvider>
-  )  
+  )
 }
 
 export default connect(
-  ({
-     backSlider, hasBackImage, rightImage, sicgrid, storedTheme 
-  }) => ({
-     backSlider, hasBackImage, rightImage, sicgrid, storedTheme 
+  ({ backSlider, hasBackImage, rightImage, sicgrid, storedTheme }) => ({
+    backSlider,
+    hasBackImage,
+    rightImage,
+    sicgrid,
+    storedTheme,
   })
 )(TemplateWrapper)
-
 
 export const query = graphql`
   fragment MetaFragment on PrismicMeta {
