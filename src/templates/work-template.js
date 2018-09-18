@@ -96,7 +96,8 @@ const WorkTemplate = ({
             </Fragment>
           ))(section.primary)
         )(body)}
-        {context.link && <Context {...{ allworks }} {...{ context }} />}
+        {context.length > 0 &&
+          context.link && <Context {...{ allworks }} {...{ context }} />}
       </TemplateWrapper>
     </Fragment>
   )
