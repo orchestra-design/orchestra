@@ -1,80 +1,102 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-
-import { 
-  Context, ImageSlider, WorkImageCaption, 
+import {
+  Context,
+  ImageSlider,
+  WorkImageCaption,
   WorkStatement,
 } from '../components/blocks'
 
 import {
-  concat, equals, mergeDeepWith, 
-  path, pick, safeMap, uuid, and, unless, isNil
+  concat,
+  equals,
+  mergeDeepWith,
+  path,
+  pick,
+  safeMap,
+  uuid,
+  and,
+  unless,
+  isNil,
 } from '../helpers'
 
 import TemplateWrapper from '../components/layouts'
 
-
-const WorkTemplate = ({ data: { 
-  work, allworks, seo, allSite, links, meta 
-}}) => {
+const WorkTemplate = ({
+  data: { work, allworks, seo, allSite, links, meta },
+}) => {
   const data = path(['data'], work)
   const tags = path(['tags'], work)
   const { body, color, context, image, statement } = data
-  const appendedLinks = mergeDeepWith(concat, links, 
-    {data: { 
-      headerlinks: [{
+  const appendedLinks = mergeDeepWith(concat, links, {
+    data: {
+      headerlinks: [
+        {
           linktitle: seo.lang.includes('ru') ? 'Проекты' : 'Works',
           link: {
-            url: `/${seo.lang.replace('-us', '')}/projects`
-          }
-        }]
-      }
-    }
-  )
+            url: `/${seo.lang.replace('-us', '')}/projects`,
+          },
+        },
+      ],
+    },
+  })
 
   return (
     <Fragment>
-      <TemplateWrapper 
-        {...{allSite}}
-        {...{color}}        
+      <TemplateWrapper
+        {...{ allSite }}
+        {...{ color }}
         links={appendedLinks}
-        {...{image}}
-        {...{meta}}
-        {...{seo}}
+        {...{ image }}
+        {...{ meta }}
+        {...{ seo }}
         title={statement.text}
       >
-        <WorkStatement 
-          data={pick([
-            'client', 'customtags', 'descriptiontext', 
-            'image', 'location', 'statement', 'status', 
-            'theme', 'timeline', 'title', 'type'
-          ], data)}
-          lang={seo.lang}
-          {...{tags}}
-        />
-        {safeMap(section => (
-          unless(isNil, () => <Fragment key={uuid()} >
-          {and(equals('PrismicWorkBodyImage', section.__typename),
-            <ImageSlider key={uuid()}
-              items={section.items}
-              primary={section.primary}
-              theme={section.primary.imgtheme}
-            />
+        <WorkStatement
+          data={pick(
+            [
+              'client',
+              'customtags',
+              'descriptiontext',
+              'image',
+              'location',
+              'statement',
+              'status',
+              'theme',
+              'timeline',
+              'title',
+              'type',
+            ],
+            data
           )}
-          {equals('PrismicWorkBodyImageCaption', section.__typename) &&
-            <WorkImageCaption key={uuid()}
-              {...{color}} 
-              items={section.items}
-              primary={section.primary}
-            />
-          }
-          </Fragment>)(section.primary)
-        ))(body)}
-        <Context
-          {...{allworks}}
-          {...{context}}
+          lang={seo.lang}
+          {...{ tags }}
         />
+        {safeMap(section =>
+          unless(isNil, () => (
+            <Fragment key={uuid()}>
+              {and(
+                equals('PrismicWorkBodyImage', section.__typename),
+                <ImageSlider
+                  key={uuid()}
+                  items={section.items}
+                  primary={section.primary}
+                  theme={section.primary.imgtheme}
+                />
+              )}
+              {equals('PrismicWorkBodyImageCaption', section.__typename) && (
+                <WorkImageCaption
+                  key={uuid()}
+                  {...{ color }}
+                  items={section.items}
+                  primary={section.primary}
+                />
+              )}
+            </Fragment>
+          ))(section.primary)
+        )(body)}
+        {context.link && <Context {...{ allworks }} {...{ context }} />}
       </TemplateWrapper>
     </Fragment>
   )
@@ -84,7 +106,7 @@ export default WorkTemplate
 
 export const query = graphql`
   query WorkTemplateQuery($slug: String!, $lang: String!) {
-    work: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
+    work: prismicWork(uid: { eq: $slug }, lang: { eq: $lang }) {
       tags
       data {
         title
@@ -149,7 +171,7 @@ export const query = graphql`
                 html
               }
             }
-            items {          
+            items {
               imgimage {
                 localFile {
                   childImageSharp {
@@ -197,7 +219,7 @@ export const query = graphql`
         }
       }
     }
-    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
+    allworks: allPrismicWork(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           uid
@@ -211,7 +233,7 @@ export const query = graphql`
         }
       }
     }
-    seo: prismicWork(uid: {eq: $slug}, lang: {eq: $lang}) {
+    seo: prismicWork(uid: { eq: $slug }, lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -229,7 +251,7 @@ export const query = graphql`
         }
       }
     }
-    links: prismicWorks(lang: {eq: $lang}) {
+    links: prismicWorks(lang: { eq: $lang }) {
       data {
         headerlinks {
           linktitle
@@ -246,7 +268,7 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }
