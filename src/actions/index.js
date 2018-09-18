@@ -2,17 +2,26 @@ import { createAction } from 'redux-actions'
 
 import { delay } from '../helpers'
 
-import { 
-  COLLAPSE_MENU, COUNT_JUMBO, HAS_BACK_IMAGE, MENU_TRANSITION, 
-  SCROLL_MENU, SET_BACK_SLIDER, SET_IMAGE, 
-  SET_RIGHT_IMAGE, SET_SIC_GRIDE, SET_WORK_FILTER,
-  THEME, TOGGLE_GRID, TOGGLE_MENU,
-  TOGGLE_WORK_FILTER
+import {
+  COLLAPSE_MENU,
+  COUNT_JUMBO,
+  HAS_BACK_IMAGE,
+  MENU_TRANSITION,
+  SCROLL_MENU,
+  SET_BACK_SLIDER,
+  SET_IMAGE,
+  SET_RIGHT_IMAGE,
+  SET_SIC_GRIDE,
+  SET_WORK_FILTER,
+  THEME,
+  TOGGLE_GRID,
+  TOGGLE_MENU,
+  TOGGLE_WORK_FILTER,
 } from '../constants'
 
 const collapseMenuAction = createAction(COLLAPSE_MENU)
 const countJumboAction = createAction(COUNT_JUMBO)
-const hasBackImageAction = createAction(HAS_BACK_IMAGE)
+const itHasBackImageAction = createAction(HAS_BACK_IMAGE)
 const scrollMenuAction = createAction(SCROLL_MENU)
 const setBackSliderAction = createAction(SET_BACK_SLIDER)
 const setImageAction = createAction(SET_IMAGE)
@@ -26,82 +35,68 @@ const toggleWorkFilterAction = createAction(TOGGLE_WORK_FILTER)
 export const startTransition = () => ({ type: MENU_TRANSITION, payload: true })
 export const stopTransition = () => ({ type: MENU_TRANSITION, payload: false })
 
-export const changeTheme = payload =>
-  dispatch => { 
-    dispatch(createAction(THEME)(payload))
-  }
+export const changeTheme = payload => dispatch => {
+  dispatch(createAction(THEME)(payload))
+}
 
-export const collapseMenu = payload =>
-  dispatch => {
-    dispatch(startTransition())
-    dispatch(collapseMenuAction(payload))
-    delay(400, () => dispatch(stopTransition()))
-  }
-  
-export const countJumbo = payload =>
-  dispatch => {
-    dispatch(countJumboAction(payload))
-  }
-  
-export const hasBackImage = payload =>
-  dispatch => { 
-    dispatch(hasBackImageAction(payload))
-  }
+export const collapseMenu = payload => dispatch => {
+  dispatch(startTransition())
+  dispatch(collapseMenuAction(payload))
+  delay(400, () => dispatch(stopTransition()))
+}
 
-export const pageTransition = () =>
-  dispatch => {
-    dispatch(collapseMenuAction(false))
-    dispatch(countJumboAction(0))
-    dispatch(scrollMenuAction(false))
-    dispatch(setBackSliderAction(false))
-    dispatch(setImageAction(null))
-    dispatch(setRightImageAction(null))
-    dispatch(toggleMenuAction(false))
-  }
-  
-export const srollMenu = payload =>
-  dispatch => {
-    dispatch(scrollMenuAction(payload))
-  }
-  
-export const setBackSlider = payload =>
-  dispatch => { 
-    dispatch(startTransition())
-    dispatch(setBackSliderAction(payload))
-    delay(600, () => dispatch(stopTransition()))
-  }
+export const countJumbo = payload => dispatch => {
+  dispatch(countJumboAction(payload))
+}
 
-export const setImage = payload =>
-  dispatch => { 
-    dispatch(setImageAction(payload))
-  }
+export const itHasBackImage = payload => dispatch => {
+  dispatch(itHasBackImageAction(payload))
+}
 
-export const setRightImage = payload =>
-  dispatch => { 
-    dispatch(setRightImageAction(payload))
-  }
+export const pageTransition = () => dispatch => {
+  dispatch(collapseMenuAction(false))
+  dispatch(countJumboAction(0))
+  dispatch(scrollMenuAction(false))
+  dispatch(setBackSliderAction(false))
+  dispatch(setImageAction(null))
+  dispatch(setRightImageAction(null))
+  dispatch(toggleMenuAction(false))
+}
 
-export const setSicGrid = payload =>
-  dispatch => {
-    dispatch(setSicGridAction(payload))
-  }
+export const srollMenu = payload => dispatch => {
+  dispatch(scrollMenuAction(payload))
+}
 
-export const setWorkFilter = payload =>
-  dispatch => { 
-    dispatch(setWorkFilterAction(payload))
-  }
+export const setBackSlider = payload => dispatch => {
+  dispatch(startTransition())
+  dispatch(setBackSliderAction(payload))
+  delay(600, () => dispatch(stopTransition()))
+}
 
-export const toggleGrid = () =>
-  dispatch => { 
-    dispatch(toggleGrideAction())
-  }
+export const setImage = payload => dispatch => {
+  dispatch(setImageAction(payload))
+}
 
-export const toggleMenu = () =>
-  dispatch => { 
-    dispatch(toggleMenuAction())
-  }
+export const setRightImage = payload => dispatch => {
+  dispatch(setRightImageAction(payload))
+}
 
-export const toggleWorkFilter = () =>
-  dispatch => { 
-    dispatch(toggleWorkFilterAction())
-  }
+export const setSicGrid = payload => dispatch => {
+  dispatch(setSicGridAction(payload))
+}
+
+export const setWorkFilter = payload => dispatch => {
+  dispatch(setWorkFilterAction(payload))
+}
+
+export const toggleGrid = () => dispatch => {
+  dispatch(toggleGrideAction())
+}
+
+export const toggleMenu = () => dispatch => {
+  dispatch(toggleMenuAction())
+}
+
+export const toggleWorkFilter = () => dispatch => {
+  dispatch(toggleWorkFilterAction())
+}

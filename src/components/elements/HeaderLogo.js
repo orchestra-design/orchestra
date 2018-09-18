@@ -5,44 +5,36 @@ import { connect } from 'react-redux'
 import styled from 'react-emotion'
 
 import { pageTransition } from '../../actions'
-import { ifElse, lengthLte } from '../../helpers'
+import { ifElse, lengthLte, constant } from '../../helpers'
 import { Logo } from './Logo'
 
 const LogoWrapper = styled('div')`
   ${tw(['ml-q12'])};
   height: 69px;
   width: 186px;
-  width: ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition && 'calc(186px + 135 * ((100vw - 320px) / 1280))'};
-  height: ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition && 'calc(69px + 43 * ((100vw - 320px) / 1280))'};
   min-height: 69px;
   min-width: 186px;
 `
 
 export const HeaderLogo = connect(
-  ({ 
-    collapsedMenu, collapseTransition 
-  }) => ({ 
-    collapsedMenu, collapseTransition 
-  }),
+  constant,
   { pageTransition }
-)(({ 
-  lang, path, collapsedMenu, collapseTransition, 
-  pageTransition, 
-}) => (
+)(({ lang, path, pageTransition }) => (
   <Fragment>
-  {ifElse(
-    path => lengthLte(3, path),
-    () => <LogoWrapper
-      {...{collapsedMenu}}
-      {...{collapseTransition}}
-    ><Logo /></LogoWrapper>,
-    () => <Link 
-      to={`/${lang.replace('-us', '')}`}      
-      onClick={pageTransition}
-    ><LogoWrapper
-      {...{collapsedMenu}}
-      {...{collapseTransition}}
-    ><Logo /></LogoWrapper></Link>
-  )(path)}
+    {ifElse(
+      path => lengthLte(3, path),
+      () => (
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
+      ),
+      () => (
+        <Link to={`/${lang.replace('-us', '')}`} onClick={pageTransition}>
+          <LogoWrapper>
+            <Logo />
+          </LogoWrapper>
+        </Link>
+      )
+    )(path)}
   </Fragment>
 ))

@@ -1,19 +1,19 @@
 /* global tw */
-import React from "react";
-import styled from "react-emotion";
-import { compose, lifecycle, pure, withHandlers } from "recompose";
-import { connect } from "react-redux";
+import React from 'react'
+import styled from 'react-emotion'
+import { compose, lifecycle, pure, withHandlers } from 'recompose'
+import { connect } from 'react-redux'
 
 import {
   changeTheme,
   collapseMenu,
-  hasBackImage,
+  itHasBackImage,
   srollMenu,
   setBackSlider,
   setImage,
   setRightImage,
-  setSicGrid
-} from "../../actions";
+  setSicGrid,
+} from '../../actions'
 
 import {
   and,
@@ -29,100 +29,92 @@ import {
   notIsNil,
   offset,
   pathOr,
-  path
-} from "../../helpers";
+  path,
+} from '../../helpers'
 
-const ScrollWrapper = styled("div")`
-  ${tw(["fixed", "pin", "overflow-y-scroll"])};
+const ScrollWrapper = styled('div')`
+  ${tw(['fixed', 'pin', 'overflow-y-scroll'])};
   overflow-x: hidden;
-`;
+`
 
 const enhance = compose(
   connect(
     ({
       backImage,
       backSlider,
-      collapsedMenu,
       hasBackImage,
-      hiddenMenu,
       rightImage,
       sicgrid,
-      storedTheme
+      storedTheme,
     }) => ({
       backImage,
       backSlider,
-      collapsedMenu,
       hasBackImage,
-      hiddenMenu,
       rightImage,
       sicgrid,
-      storedTheme
+      storedTheme,
     }),
     {
       changeTheme,
       collapseMenu,
-      hasBackImage,
+      itHasBackImage,
       srollMenu,
       setBackSlider,
       setImage,
       setRightImage,
-      setSicGrid
+      setSicGrid,
     }
   ),
   pure,
   withHandlers({
     scroll: props => event => {
-      const scrollChildren = Array.from(event.target.children);
+      const scrollChildren = Array.from(event.target.children)
       not(isNil(scrollChildren)) &&
         scrollChildren.map((child, i) => {
           /* CHILD DESAPPEARING */
           const childrenDesappearing = child => {
-            const grandchildren = Array.from(child.children);
+            const grandchildren = Array.from(child.children)
             grandchildren.map(child => {
               if (child.children.length === 0) {
-                const { top, height } = offset(child);
+                const { top, height } = offset(child)
                 child.style.opacity =
                   top + height > 0 && top + height < 100
                     ? (top + height) / 100
                     : top + height < height
                       ? (top + height) / height
-                      : "";
+                      : ''
               } else {
-                childrenDesappearing(child);
+                childrenDesappearing(child)
               }
-              return F;
-            });
-            return F;
-          };
-          childrenDesappearing(child);
+              return F
+            })
+            return F
+          }
+          childrenDesappearing(child)
 
           /* THEME CHANGING WHEN SCROLLING */
-          const childOffset = offset(child);
+          const childOffset = offset(child)
           const hasImage = pathOr(
             null,
-            ["attributes", "backimage", "value"],
+            ['attributes', 'backimage', 'value'],
             child
-          );
-          const newImage = pathOr(
-            null,
-            ["attributes", "image", "value"],
-            child
-          );
+          )
+          const newImage = pathOr(null, ['attributes', 'image', 'value'], child)
           const newRightImage = pathOr(
             null,
-            ["attributes", "right-image", "value"],
+            ['attributes', 'right-image', 'value'],
             child
-          );
+          )
           const newSicGrid = pathOr(
             null,
-            ["attributes", "sicgrid", "value"],
+            ['attributes', 'sicgrid', 'value'],
             child
-          );
+          )
           const isSlider = equals(
-            "true",
-            path(["attributes", "slider", "value"], child)
-          );
-          const newTheme = camelCase(child.attributes.theme.value);
+            'true',
+            path(['attributes', 'slider', 'value'], child)
+          )
+          const newTheme = camelCase(child.attributes.theme.value)
 
           // Image
           ifElse(
@@ -131,7 +123,7 @@ const enhance = compose(
               and(notIsNil(newImage), not(equals(newImage, props.backImage))) &&
               props.setImage(newImage),
             F
-          )(childOffset);
+          )(childOffset)
           // RightImage Appearing
           ifElse(
             ({ top, height }) => and(lt(top, 301), gt(top + height, 300)),
@@ -139,14 +131,14 @@ const enhance = compose(
               and(
                 notIsNil(newRightImage),
                 not(equals(newRightImage, props.rightImage))
-              ) && props.setRightImage(newRightImage);
+              ) && props.setRightImage(newRightImage)
               and(
                 notIsNil(newSicGrid),
                 not(equals(newSicGrid, props.sicgrid))
-              ) && props.setSicGrid(newSicGrid);
+              ) && props.setSicGrid(newSicGrid)
             },
             F
-          )(childOffset);
+          )(childOffset)
           // RightImage Desappearing
           ifElse(
             ({ top, height }) => and(lt(top, 301), gt(top + height, 300)),
@@ -154,62 +146,48 @@ const enhance = compose(
               and(isNil(newRightImage), notIsNil(props.rightImage)) &&
               props.setRightImage(null),
             F
-          )(childOffset);
+          )(childOffset)
           // Theme
           ifElse(
             ({ top, height }) => and(lt(top, 401), gt(top + height, 400)),
             () => {
               not(equals(newTheme, props.storedTheme)) &&
-                props.changeTheme(newTheme);
+                props.changeTheme(newTheme)
               not(equals(isSlider, props.backSlider)) &&
-                props.setBackSlider(isSlider);
+                props.setBackSlider(isSlider)
               not(equals(hasImage, props.hasBackImage)) &&
-                props.hasBackImage(hasImage);
+                props.itHasBackImage(hasImage)
             },
             F
-          )(childOffset);
-          // Menu
-          equals(i, 0) &&
-            ifElse(
-              ({ top }) => lt(top, -400),
-              () => !props.hiddenMenu && props.srollMenu(true),
-              () => props.hiddenMenu && props.srollMenu(false)
-            )(childOffset);
-          // Collapsed Menu
-          equals(i, 1) &&
-            ifElse(
-              ({ top }) => lt(top, -200),
-              () => !props.collapsedMenu && props.collapseMenu(true),
-              () => props.collapsedMenu && props.collapseMenu(false)
-            )(childOffset);
-          return F;
-        });
-    }
+          )(childOffset)
+          return F
+        })
+    },
   }),
   lifecycle({
-    state: { theme: "white" },
+    state: { theme: 'white' },
     componentDidMount() {
       const scrollChildren = Array.from(
-        document.getElementById("scroll-container").children
-      );
+        document.getElementById('scroll-container').children
+      )
       this.props.changeTheme(
         camelCase(
           pathOr(
-            "white",
-            ["attributes", "theme", "value"],
+            'white',
+            ['attributes', 'theme', 'value'],
             head(scrollChildren)
           )
         )
-      );
+      )
       this.props.setImage(
-        pathOr(null, ["attributes", "image", "value"], head(scrollChildren))
-      );
-    }
+        pathOr(null, ['attributes', 'image', 'value'], head(scrollChildren))
+      )
+    },
   })
-);
+)
 
 export const ScrollContainer = enhance(({ children, scroll }) => (
   <ScrollWrapper id="scroll-container" onScroll={scroll}>
     {children}
   </ScrollWrapper>
-));
+))

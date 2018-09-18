@@ -5,27 +5,25 @@ import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
-import { and, isNil, not, uuid } from '../../helpers'
+import { and, constant, isNil, not, uuid } from '../../helpers'
 
 import { Button } from './Buttons'
 
 const BlackButton = styled('span')`
   ${Button};
   ${tw([
-    'h-q36', 'mb-q36', 'md:mb-0',
-    'mr-0', 'px-q12',
-    'border-white', 'border',
-    'border-solid', 'md:border-none'
+    'h-q36',
+    'mb-q36',
+    'md:mb-0',
+    'mr-0',
+    'px-q12',
+    'screen:h-q36',
+    'screen:text-sm',
+    'border-white',
+    'border',
+    'border-solid',
+    'md:border-none',
   ])};
-  ${({ collapsedMenu, collapseTransition }) => !collapsedMenu && !collapseTransition &&
-    tw(['screen:h-q48', 'md:mr-q36', 'desktop:px-q24', 'screen:text-lg' ])
-  };
-  ${({ isMenu }) => isMenu &&
-    tw(['screen:h-q48', 'screen:text-lg', 'm-0'])
-  };
-  ${({ collapsedMenu, isMenu }) => collapsedMenu && !isMenu &&
-    tw(['screen:h-q36', 'screen:text-sm'])
-  };
 `
 
 const LinkStyle = css`
@@ -35,33 +33,20 @@ const LinkStyle = css`
   }
 `
 
-export const NavLink = connect(({ 
-  collapsedMenu, collapseTransition, isMenu 
-}) => ({ 
-  collapsedMenu, collapseTransition, isMenu 
-}),
+export const NavLink = connect(
+  constant,
   { pageTransition }
-)(({ 
-  linktitle, link, collapsedMenu,
-  collapseTransition, isMenu, pageTransition 
-}) => (
+)(({ linktitle, link, pageTransition }) => (
   <Fragment>
-    {and(not(isNil(linktitle)), not(isNil(link))) && 
+    {and(not(isNil(linktitle)), not(isNil(link))) && (
       <Link
-        key={uuid()} 
+        key={uuid()}
         to={link.url}
         onClick={pageTransition}
-        className={LinkStyle}       
+        className={LinkStyle}
       >
-        <BlackButton 
-          key={uuid()} 
-          {...{collapsedMenu}} 
-          {...{collapseTransition}} 
-          {...{isMenu}} 
-        >
-        { linktitle }
-        </BlackButton>
+        <BlackButton key={uuid()}>{linktitle}</BlackButton>
       </Link>
-    }
+    )}
   </Fragment>
 ))

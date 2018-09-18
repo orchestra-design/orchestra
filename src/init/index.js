@@ -4,7 +4,7 @@ export const initState = {
   rightImage: null,
   collapsedMenu: false,
   collapseTransition: false,
-  hasBackImage: false,
+  hasBackImage: null,
   hiddenMenu: false,
   isMenu: false,
   jumboCount: 0,
