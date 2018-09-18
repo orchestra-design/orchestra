@@ -41,7 +41,7 @@ const ImageWrapper = styled('div')`
 const TemplateWrapper = ({
   seo,
   allSite,
-  hiddenDown,
+  notDown,
   links,
   meta,
   color,
@@ -91,7 +91,7 @@ const TemplateWrapper = ({
             </div>
           </Fragment>
         </ScrollContainer>
-        <DownButton {...{ hiddenDown }} />
+        <DownButton {...{ notDown }} />
         <UpButton />
         <Contact
           href={meta.data.email.url}

@@ -18,15 +18,11 @@ import {
 
 const Wrapper = styled('div')`
   ${tw(['absolute', 'pin'])};
-  filter: blur(
-    ${({ backSlider, collapseTransition }) =>
-      (backSlider || collapseTransition) && '12px'}
-  );
+  filter: blur(${({ backSlider }) => backSlider && '12px'});
   transform: scale(1.1);
   &::after {
     ${tw(['absolute', 'bg-black', 'hidden', 'opacity-25', 'pin'])};
-    ${({ backSlider, collapseTransition }) =>
-      (backSlider || collapseTransition) && tw(['block'])};
+    ${({ backSlider }) => backSlider && tw(['block'])};
     content: '';
   }
 `
@@ -55,14 +51,13 @@ const transitionGroup = data =>
   ))
 
 export const Image = compose(
-  connect(({ backImage, backSlider, collapseTransition, jumboCount }) => ({
+  connect(({ backImage, backSlider, jumboCount }) => ({
     backImage,
     backSlider,
-    collapseTransition,
     jumboCount,
   })),
   pure
-)(({ backImage, backSlider, collapseTransition, image, jumboCount }) => {
+)(({ backImage, backSlider, image, jumboCount }) => {
   const parsedImage = JSON.parse(backImage)
   const safeImage = unless(
     isNil,
@@ -71,13 +66,13 @@ export const Image = compose(
   const data = isArray(image)
     ? [image[jumboCount]]
     : [{ image: safeImage || image }]
-  const hasImage = xs => xs.map(({ image }) => isNil(image.localFile))
-
+  const hasImage = xs =>
+    xs.some(x => x && x.image && x.image.localFile !== null)
   return (
     <Fragment>
       {hasImage(data) &&
         !isNil(jumboCount) && (
-          <Wrapper {...{ backSlider }} {...{ collapseTransition }}>
+          <Wrapper {...{ backSlider }}>
             <Img
               sizes={data[0].image.localFile.childImageSharp.sizes}
               className={css`

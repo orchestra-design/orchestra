@@ -6,13 +6,12 @@ import { connect } from 'react-redux'
 
 import {
   changeTheme,
-  collapseMenu,
   itHasBackImage,
-  srollMenu,
   setBackSlider,
   setImage,
   setRightImage,
   setSicGrid,
+  hideDown,
 } from '../../actions'
 
 import {
@@ -56,9 +55,8 @@ const enhance = compose(
     }),
     {
       changeTheme,
-      collapseMenu,
+      hideDown,
       itHasBackImage,
-      srollMenu,
       setBackSlider,
       setImage,
       setRightImage,
@@ -162,6 +160,8 @@ const enhance = compose(
           )(childOffset)
           return F
         })
+      // HiddenDown
+      offset(scrollChildren[0]).top > -40 && props.hideDown(false)
     },
   }),
   lifecycle({

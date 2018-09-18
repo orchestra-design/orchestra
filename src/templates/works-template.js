@@ -9,13 +9,11 @@ import { WorksGrid, WorksFilters } from '../components/blocks'
 import { Container, Heading1 } from '../components/elements'
 
 const FirstScreen = styled(Container)`
-  ${tw([
-    'flex', 'flex-col', 'justify-end'
-  ])};
-  @media(max-width: 599px) {
+  ${tw(['flex', 'flex-col', 'justify-end'])};
+  @media (max-width: 599px) {
     height: 50vw;
   }
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     height: 50vh;
   }
 `
@@ -24,31 +22,29 @@ const Title = styled('h1')`
   ${Heading1};
 `
 
-const WorksTemplate = ({data: { 
-  workspage, allworks, seo, allSite, links, meta 
-}}) => {
+const WorksTemplate = ({
+  data: { workspage, allworks, seo, allSite, links, meta },
+}) => {
   const title = path(['data', 'title', 'text'], workspage)
   const worksLinks = path(['data', 'links'], workspage)
 
   return (
     <TemplateWrapper
-      {...{seo}}
-      {...{allSite}}
-      hiddenDown={true}
-      {...{links}}
-      {...{meta}}
-      {...{title}}
+      {...{ seo }}
+      {...{ allSite }}
+      notDown={true}
+      {...{ links }}
+      {...{ meta }}
+      {...{ title }}
     >
-      <div theme="white" >
+      <div theme="white">
         <FirstScreen>
-          <Title>
-          { title }
-          </Title>        
+          <Title>{title}</Title>
         </FirstScreen>
       </div>
-      <div theme="white" >
-        <WorksFilters {...{allworks}} />
-        <WorksGrid {...{allworks}} {...{worksLinks}} />
+      <div theme="white">
+        <WorksFilters {...{ allworks }} />
+        <WorksGrid {...{ allworks }} {...{ worksLinks }} />
       </div>
     </TemplateWrapper>
   )
@@ -58,7 +54,7 @@ export default WorksTemplate
 
 export const query = graphql`
   query WorksTemplateQuery($lang: String!) {
-    workspage: prismicWorks(lang: {eq: $lang}) {
+    workspage: prismicWorks(lang: { eq: $lang }) {
       data {
         title {
           text
@@ -91,7 +87,7 @@ export const query = graphql`
         }
       }
     }
-    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
+    allworks: allPrismicWork(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           uid
@@ -111,7 +107,7 @@ export const query = graphql`
         }
       }
     }
-    seo: prismicWorks(lang: {eq: $lang}) {
+    seo: prismicWorks(lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -129,7 +125,7 @@ export const query = graphql`
         }
       }
     }
-    links: prismicWorks(lang: {eq: $lang}) {
+    links: prismicWorks(lang: { eq: $lang }) {
       data {
         headerlinks {
           linktitle
@@ -146,7 +142,7 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }
