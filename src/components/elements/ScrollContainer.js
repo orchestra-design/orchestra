@@ -42,6 +42,7 @@ const enhance = compose(
       backImage,
       backSlider,
       hasBackImage,
+      hiddenDown,
       rightImage,
       sicgrid,
       storedTheme,
@@ -49,6 +50,7 @@ const enhance = compose(
       backImage,
       backSlider,
       hasBackImage,
+      hiddenDown,
       rightImage,
       sicgrid,
       storedTheme,
@@ -161,7 +163,12 @@ const enhance = compose(
           return F
         })
       // HiddenDown
-      offset(scrollChildren[0]).top > -40 && props.hideDown(false)
+      offset(scrollChildren[0]).top > -40 &&
+        props.hiddenDown !== false &&
+        props.hideDown(false)
+      offset(scrollChildren[0]).top + offset(scrollChildren[0]).height < 400 &&
+        props.hiddenDown !== true &&
+        props.hideDown(true)
     },
   }),
   lifecycle({

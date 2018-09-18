@@ -28,9 +28,6 @@ const BlackButton = styled('span')`
 
 const LinkStyle = css`
   ${tw('no-underline p-q12')};
-  &:nth-child(4) {
-    ${tw(['md:hidden', 'lg:block'])};
-  }
 `
 
 export const NavLink = connect(

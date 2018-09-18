@@ -12,15 +12,21 @@ import IconNextBlack from '../../assets/icon-next-black.svg'
 export const PrevNextTemplate = styled('span')`
   ${Button};
   ${tw([
-    'flex', 'cursor-pointer', 'bg-center', 
-    'bg-transparent', 'hover:bg-black',
-    'bg-no-repeat', 'h-q36', 'w-q72',
-    'shadow-none', 'hover:shadow-elevate1',
+    'flex',
+    'cursor-pointer',
+    'bg-center',
+    'bg-transparent',
+    'hover:bg-black',
+    'bg-no-repeat',
+    'h-q36',
+    'w-q72',
+    'shadow-none',
+    'hover:shadow-elevate1',
   ])};
   ${BaseTransition};
   background-image: url(${IconNext});
   background-size: 36px 20px;
-  @media(min-width: 601px) {
+  @media (min-width: 601px) {
     background-size: 40x 24px;
   }
   &:hover {
@@ -29,9 +35,9 @@ export const PrevNextTemplate = styled('span')`
 `
 
 export const NextButton = styled(PrevNextTemplate)`
-  ${({ storedTheme }) => includes('image', storedTheme) && tw(['md:bg-white'])};
-  @media(min-width: 601px) {
-    background-image: url(${IconNextBlack});
+  @media (min-width: 601px) {
+    background-image: url(${({ storedTheme }) =>
+      includes('image', storedTheme) ? IconNext : IconNextBlack});
   }
 `
 

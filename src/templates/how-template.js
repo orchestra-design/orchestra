@@ -5,29 +5,30 @@ import { map, path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { JumboSlider, Points } from '../components/blocks'
 
-const HowTemplate = ({data: { 
-  how, seo, allSite, links, meta
-}}) => {
+const HowTemplate = ({ data: { how, seo, allSite, links, meta } }) => {
   const data = path(['data'], how)
   const { theme } = data
-  const image = map(({ jumboimage }) => ({ image: jumboimage }), path(['jumbo'], data))
+  const image = map(
+    ({ jumboimage }) => ({ image: jumboimage }),
+    path(['jumbo'], data)
+  )
   const points = path(['points'], data)
   const title = path(['title', 'text'], data)
   return (
     <TemplateWrapper
-      {...{allSite}}
-      {...{image}}
-      {...{links}}
-      hiddenDown={true}
-      {...{meta}}
-      {...{seo}}
-      {...{title}}
+      {...{ allSite }}
+      {...{ image }}
+      {...{ links }}
+      notDown={true}
+      {...{ meta }}
+      {...{ seo }}
+      {...{ title }}
     >
-      <div        
-        {...{theme}}
-      ><JumboSlider {...{data}} /></div>
+      <div {...{ theme }}>
+        <JumboSlider {...{ data }} />
+      </div>
       <div theme="white">
-        <Points {...{points}} />
+        <Points {...{ points }} />
       </div>
     </TemplateWrapper>
   )
@@ -37,7 +38,7 @@ export default HowTemplate
 
 export const query = graphql`
   query HowTemplateQuery($lang: String!) {
-    how: prismicHow(lang: {eq: $lang}) {
+    how: prismicHow(lang: { eq: $lang }) {
       data {
         title {
           text
@@ -76,7 +77,7 @@ export const query = graphql`
         }
       }
     }
-    seo: prismicHow(lang: {eq: $lang}) {
+    seo: prismicHow(lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -94,7 +95,7 @@ export const query = graphql`
         }
       }
     }
-    links: prismicHow(lang: {eq: $lang}) {
+    links: prismicHow(lang: { eq: $lang }) {
       data {
         headerlinks {
           linktitle
@@ -111,7 +112,7 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }
