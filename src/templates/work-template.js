@@ -15,21 +15,20 @@ import {
 import { ScrollChild } from '../components/elements'
 import {
   concat,
+  constant,
   includes,
-  isEmpty,
   mergeDeepWith,
   path,
-  pick,
-  not,
   safeMap,
   uuid,
+  unless,
+  isNil,
 } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
 const WorkTemplate = ({
   data: { work, allworks, seo, allSite, links, meta },
   location,
-  sliderCounter,
 }) => {
   const data = path(['data'], work)
   const tags = path(['tags'], work)
@@ -60,80 +59,52 @@ const WorkTemplate = ({
         title={statement.text}
       >
         <ScrollChild image={image} {...{ theme }}>
-          <WorkStatement
-            data={pick(
-              [
-                'client',
-                'customtags',
-                'descriptiontext',
-                'location',
-                'statement',
-                'status',
-                'timeline',
-                'title',
-                'type',
-              ],
-              data
-            )}
-          />
+          <WorkStatement {...{ data }} />
         </ScrollChild>
         <ScrollChild theme={'colored'}>
-          <WorkSecondScreen
-            data={pick(
-              [
-                'client',
-                'customtags',
-                'descriptiontext',
-                'location',
-                'statement',
-                'status',
-                'timeline',
-                'title',
-                'type',
-              ],
-              data
-            )}
-            lang={seo.lang}
-            {...{ tags }}
-          />
+          <WorkSecondScreen {...{ data }} lang={seo.lang} {...{ tags }} />
         </ScrollChild>
-        {safeMap(section => {
-          switch (section.__typename) {
-            case 'PrismicWorkBodyImage':
-              return (
-                <ScrollChild
-                  key={uuid()}
-                  items={section.items}
-                  theme={section.primary.imgtheme}
-                  slider={includes('image', section.primary.imgtheme)}
-                  sliderId={section.prismicId}
-                >
-                  <ImageSlider
+        {body ? (
+          body.map(section => {
+            switch (section.__typename) {
+              case 'PrismicWorkBodyImage':
+                return (
+                  <ScrollChild
                     key={uuid()}
                     items={section.items}
-                    primary={section.primary}
+                    theme={section.primary.imgtheme}
+                    slider={includes('image', section.primary.imgtheme)}
                     sliderId={section.prismicId}
-                  />
-                </ScrollChild>
-              )
-            case 'PrismicWorkBodyImageCaption':
-              return (
-                <ScrollChild key={uuid()} theme={section.primary.sictheme}>
-                  <WorkImageCaption
-                    key={uuid()}
-                    {...{ color }}
-                    items={section.items}
-                    primary={section.primary}
-                  />
-                </ScrollChild>
-              )
-            default:
-              return <Fragment key={uuid()} />
-          }
-        })(body)}
+                  >
+                    <ImageSlider
+                      key={uuid()}
+                      items={section.items}
+                      primary={section.primary}
+                      sliderId={section.prismicId}
+                    />
+                  </ScrollChild>
+                )
+              case 'PrismicWorkBodyImageCaption':
+                return (
+                  <ScrollChild key={uuid()} theme={section.primary.sictheme}>
+                    <WorkImageCaption
+                      key={uuid()}
+                      {...{ color }}
+                      items={section.items}
+                      primary={section.primary}
+                    />
+                  </ScrollChild>
+                )
+              default:
+                return <Fragment key={uuid()} />
+            }
+          })
+        ) : (
+          <ScrollChild theme={'black'} />
+        )}
         <ScrollChild theme={'black'}>
-          {not(isEmpty(context)) && (
-            <Context {...{ allworks }} {...{ context }} />
+          {unless(isNil, () => <Context {...{ allworks }} {...{ context }} />)(
+            context[0] && context[0].link
           )}
         </ScrollChild>
         <ScrollChild theme={'black'}>
@@ -146,13 +117,13 @@ const WorkTemplate = ({
 
 export default compose(
   connect(
-    pick(['sliderCounter']),
+    constant,
     { sliderCount }
   ),
   lifecycle({
     componentDidMount() {
-      this.props.data.work.data.body.map(section =>
-        this.props.sliderCount({ [section.prismicId]: 0 })
+      safeMap(section => this.props.sliderCount({ [section.prismicId]: 0 }))(
+        this.props.data.work.data.body
       )
     },
   })

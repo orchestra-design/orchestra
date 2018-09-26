@@ -1,10 +1,17 @@
 /* global tw */
 import { css } from 'react-emotion'
 
-import { 
-  Body, ButtonText, ButtonSmallText,
-  Heading2, Heading3, Heading4, 
-  Heading5, Heading6, LeadText, List
+import {
+  Body,
+  ButtonText,
+  ButtonSmallText,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  LeadText,
+  List,
 } from './Typography'
 
 export const Headers = css`
@@ -33,6 +40,9 @@ export const RichText = css`
     ${Heading4};
     ${tw(['mb-q16', 'md:mb-q24'])};
   }
+  & p {
+    ${tw(['mt-0', 'mb-q24'])};
+  }
   & .lead {
     ${LeadText};
     ${tw(['m-0'])};
@@ -40,25 +50,26 @@ export const RichText = css`
   & .link {
     ${ButtonText};
   }
+  & a {
+    ${tw(['no-underline'])};
+    color: inherit;
+  }
   & strong {
     ${tw(['font-semibold'])};
   }
+  & em {
+    ${tw(['roman', 'tracking-wide'])};
+  }
   & ul {
     ${List};
-    ${tw(['my-q48'])};
   }
   & li {
-    ${tw([
-      'mb-q12', 'pl-q32', 'relative'
-    ])};
+    ${tw(['mb-q12', 'pl-q24', 'relative'])};
   }
   & li::after {
     content: '';
-    ${tw([
-      'absolute', 'bg-black', 'block', 
-      'h-q8', 'pin-l', 'pin-t', 'w-q8'
-    ])};
-    top: 0.625rem;
+    ${tw(['absolute', 'bg-black', 'block', 'h-q8', 'pin-l', 'pin-t', 'w-q8'])};
+    top: 0.45rem;
   }
 `
 
@@ -83,21 +94,23 @@ export const RichTextSmall = css`
   & .link {
     ${ButtonSmallText};
   }
+  & a {
+    ${tw(['no-underline'])};
+    color: inherit;
+  }
+  & em {
+    ${tw(['roman', 'tracking-wide'])};
+  }
   & ul {
     ${List};
     ${tw(['my-q48'])};
   }
   & li {
-    ${tw([
-      'mb-q12', 'pl-q32', 'relative'
-    ])};
+    ${tw(['mb-q12', 'pl-q32', 'relative'])};
   }
   & li::after {
     content: '';
-    ${tw([
-      'absolute', 'bg-black', 'block', 
-      'h-q8', 'pin-l', 'pin-t', 'w-q8'
-    ])};
+    ${tw(['absolute', 'bg-black', 'block', 'h-q8', 'pin-l', 'pin-t', 'w-q8'])};
     top: 0.625rem;
   }
 `

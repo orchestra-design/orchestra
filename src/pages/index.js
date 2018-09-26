@@ -1,14 +1,16 @@
 import React from 'react'
-import { replace } from 'gatsby-link'
+import { navigate } from 'gatsby'
 import { lifecycle } from 'recompose'
 
 const withLifecicle = lifecycle({
   state: { lang: 'ru' },
   componentDidMount() {
-    const language = window.navigator.userLanguage || window.navigator.language
+    /* const language = window.navigator.userLanguage || window.navigator.language
     language.includes('en') && replace('/en')
-    language.includes('ru') && replace('/ru')
-  }
+    language.includes('ru') && */
+
+    navigate('/ru')
+  },
 })
 
 const Index = withLifecicle(() => <div />)

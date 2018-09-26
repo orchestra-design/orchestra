@@ -1,5 +1,5 @@
 /* global tw */
-import React, { Component, createRef, Children } from 'react'
+import React, { cloneElement, Component, createRef, Children } from 'react'
 import ReactDOM from 'react-dom'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
@@ -173,8 +173,9 @@ class ScrollContainer extends Component {
   }
 
   componentDidMount() {
-    window !== undefined &&
+    if (typeof window !== `undefined`) {
       window.addEventListener('scroll', this.scrollHandler.bind(this))
+    }
 
     this.setState({
       allChildren: Children.toArray(this.scrollRef.current.props.children),
@@ -189,15 +190,16 @@ class ScrollContainer extends Component {
   }
 
   componentWillUnmount() {
-    window !== undefined &&
+    if (typeof window !== `undefined`) {
       window.removeEventListener('scroll', this.scrollHandler.bind(this))
+    }
   }
 
   render() {
     return (
       <ScrollWrapper id="scroll-container" ref={this.scrollRef}>
-        {React.Children.map(this.props.children, (element, i) => {
-          return React.cloneElement(element, { ref: i })
+        {Children.map(this.props.children, (element, i) => {
+          return element ? cloneElement(element, { ref: i }) : F
         })}
       </ScrollWrapper>
     )

@@ -23,6 +23,8 @@ import {
 import { unless, isNil } from '../../helpers'
 
 import { theme as EmotionTheme } from '../theme'
+import '../../fonts/montserrat/stylesheet.css'
+import '../../fonts/source-sans/stylesheet.css'
 
 injectGlobal`
   body {

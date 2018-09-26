@@ -89,7 +89,7 @@ export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
         </ColoredRow>
         <ColoredRow>
           <Left>
-            <Tags {...{ tags }} />
+            <Tags {...{ lang }} {...{ tags }} />
           </Left>
           <Right />
         </ColoredRow>

@@ -4,7 +4,7 @@ import styled from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { map, pathOr, uuid, pick } from '../../helpers'
-import { ContactButton, LangSwitcher, NavLink } from '../elements'
+import { ContactButton, NavLink } from '../elements'
 
 const Navigaton = styled('nav')`
   ${tw([
@@ -41,7 +41,7 @@ export const HeaderNavigation = connect(pick(['isMenu']))(props => {
             {...link}
           />
         ))(headerlinks)}
-      <LangSwitcher {...props} />
+      {/* <LangSwitcher {...props} /> */}
       {isMenu && (
         <Contact
           href={meta.data.email.url}

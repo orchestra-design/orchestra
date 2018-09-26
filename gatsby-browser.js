@@ -1,21 +1,8 @@
 /* globals window */
-
-import React from 'react'
 import { hydrate } from 'emotion'
-import { Provider } from 'react-redux'
 
-import createStore from './src/store'
-const store = createStore()
-
-export const wrapRootComponent = ({ Root }) => {
-  const ConnectedRootComponent = () => (
-    <Provider store={store}>
-      <Root />
-    </Provider>
-  )
-
-  return ConnectedRootComponent
-}
+import wrapWithProvider from './wrap-with-provider'
+export const wrapRootElement = wrapWithProvider
 
 export const onClientEntry = () => {
   if (

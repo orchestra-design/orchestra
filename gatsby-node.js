@@ -5,20 +5,23 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pageMaker = type => data => {
     data.edges.forEach(({ node: { uid, lang, data } }) => {
-      createPage({
-        path: `${lang.replace('-us', '')}${type === 'work' ? '/projects/' : '/'}${uid.replace(/.{3}$/i, '')}`,
-        component: path.resolve(`./src/templates/${type}-template.js`),
-        context: {
-          slug: uid,
-          lang: lang,
-          color: data && data.color ? data.color : '#000000'
-        }
-      })
+      lang === 'ru' &&
+        createPage({
+          path: `${lang.replace('-us', '')}${
+            type === 'work' ? '/projects/' : '/'
+          }${uid.replace(/.{3}$/i, '')}`,
+          component: path.resolve(`./src/templates/${type}-template.js`),
+          context: {
+            slug: uid,
+            lang: lang,
+            color: data && data.color ? data.color : '#000000',
+          },
+        })
     })
   }
 
   const pages = await graphql(`
-    {      
+    {
       homepage: allPrismicHomepage {
         edges {
           node {

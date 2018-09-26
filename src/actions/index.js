@@ -55,6 +55,7 @@ export const itHasBackImage = payload => dispatch => {
 
 export const pageTransition = () => dispatch => {
   dispatch(countJumboAction(0))
+  dispatch(footerAction(false))
   dispatch(hideDownAction(false))
   dispatch(setBackSliderAction(false))
   dispatch(setImageAction(null))

@@ -47,25 +47,27 @@ export const Tags = connect(
   { pageTransition }
 )(({ lang, pageTransition, tags }) => {
   return (
-    <TagsRow>
-      <span
-        className={css`
-          ${Description};
-          ${tw(['mb-q4', 'mr-q4', 'px-q8', 'py-q4'])};
-        `}
-      >
-        {includes('en', lang) ? 'What:' : 'Услуги:'}
-      </span>
-      {safeMap(tag => (
-        <Link
-          key={uuid()}
-          className={LinkStyles}
-          onClick={pageTransition}
-          to={`/${lang}/projects?filter=${tag}`}
+    tags.length > 0 && (
+      <TagsRow>
+        <span
+          className={css`
+            ${Description};
+            ${tw(['mb-q4', 'mr-q4', 'px-q8', 'py-q4'])};
+          `}
         >
-          {tag}
-        </Link>
-      ))(tags)}
-    </TagsRow>
+          {includes('en', lang) ? 'What:' : 'Услуги:'}
+        </span>
+        {safeMap(tag => (
+          <Link
+            key={uuid()}
+            className={LinkStyles}
+            onClick={pageTransition}
+            to={`/${lang}/projects?filter=${tag}`}
+          >
+            {tag}
+          </Link>
+        ))(tags)}
+      </TagsRow>
+    )
   )
 })
