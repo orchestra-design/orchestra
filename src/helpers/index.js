@@ -17,7 +17,7 @@ import offset from 'dom-helpers/query/offset'
 import camelCase from 'lodash/fp/camelCase'
 import debounce from 'lodash/fp/debounce'
 import delay from 'lodash/fp/delay'
-import includes from 'lodash/fp/includes'
+//import includes from 'lodash/fp/includes'
 import startCase from 'lodash/fp/startCase'
 
 import {
@@ -64,6 +64,10 @@ import {
   view,
 } from 'ramda'
 import * as uuid from 'uuid/v1'
+
+const includes = curry(
+  (pat, str) => (str && typeof str === 'string' ? str.includes(pat) : false)
+)
 
 export {
   isArray,
