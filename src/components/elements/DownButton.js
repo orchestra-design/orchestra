@@ -4,8 +4,7 @@ import styled from 'react-emotion'
 import { connect } from 'react-redux'
 import { compose, withHandlers } from 'recompose'
 
-import { changeTheme, hideDown } from '../../actions'
-import { offset, pathOr, delay, pick } from '../../helpers'
+import { pick } from '../../helpers'
 
 import { RoundButton } from './Buttons'
 import { BaseTransition } from './Transitions'
@@ -15,9 +14,9 @@ import IconUpBlack from '../../assets/icon-up-black.svg'
 
 const Button = styled(RoundButton)`
   ${tw([
-    'absolute',
+    'fixed',
     'hidden',
-    'md:mb-q36',
+    'md:mb-q24',
     'mx-auto',
     'pin-b',
     'pin-l',
@@ -26,6 +25,7 @@ const Button = styled(RoundButton)`
     'md:w-q48',
     'shadow-none',
     'hover:shadow-elevate1',
+    'z-40',
   ])};
   ${BaseTransition};
   ${({ hiddenDown, notDown }) => !hiddenDown && !notDown && tw('md:block')};
@@ -43,20 +43,12 @@ const Button = styled(RoundButton)`
 `
 
 export const DownButton = compose(
-  connect(
-    pick(['hiddenDown']),
-    { changeTheme, hideDown }
-  ),
+  connect(pick(['hiddenDown'])),
   withHandlers({
-    toNext: props => () => {
-      const scrollContainer = document.getElementById('scroll-container')
-      scrollContainer.scrollTop = offset(scrollContainer).height
-      const scrollChildren = Array.from(scrollContainer.children)
-      props.hideDown(true)
-      delay(500, () => {
-        props.changeTheme(
-          pathOr('white', ['attributes', 'theme', 'value'], scrollChildren[1])
-        )
+    toNext: () => () => {
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth',
       })
     },
   })

@@ -5,8 +5,8 @@ import styled from 'react-emotion'
 
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { WorksGrid, WorksFilters } from '../components/blocks'
-import { Container, Heading1 } from '../components/elements'
+import { Footer, WorksGrid, WorksFilters } from '../components/blocks'
+import { Container, Heading1, ScrollChild } from '../components/elements'
 
 const FirstScreen = styled(Container)`
   ${tw(['flex', 'flex-col', 'justify-end'])};
@@ -24,6 +24,7 @@ const Title = styled('h1')`
 
 const WorksTemplate = ({
   data: { workspage, allworks, seo, allSite, links, meta },
+  location,
 }) => {
   const title = path(['data', 'title', 'text'], workspage)
   const worksLinks = path(['data', 'links'], workspage)
@@ -34,18 +35,22 @@ const WorksTemplate = ({
       {...{ allSite }}
       notDown={true}
       {...{ links }}
+      {...{ location }}
       {...{ meta }}
       {...{ title }}
     >
-      <div theme="white">
+      <ScrollChild theme={'white'}>
         <FirstScreen>
           <Title>{title}</Title>
         </FirstScreen>
-      </div>
-      <div theme="white">
-        <WorksFilters {...{ allworks }} />
+      </ScrollChild>
+      <ScrollChild theme={'white'}>
+        <WorksFilters {...{ allworks }} lang={seo.lang} />
         <WorksGrid {...{ allworks }} {...{ worksLinks }} />
-      </div>
+      </ScrollChild>
+      <ScrollChild theme={'black'}>
+        <Footer {...{ meta }} />
+      </ScrollChild>
     </TemplateWrapper>
   )
 }

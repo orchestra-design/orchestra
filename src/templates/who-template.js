@@ -1,87 +1,100 @@
-import React, { Fragment } from "react";
-import { graphql } from "gatsby";
+import React, { Fragment } from 'react'
+import { graphql } from 'gatsby'
 
-import { equals, includes, path, pick, safeMap, uuid } from "../helpers";
-import TemplateWrapper from "../components/layouts";
+import { includes, path, pick, safeMap, uuid } from '../helpers'
+import TemplateWrapper from '../components/layouts'
 import {
   Columns,
+  Footer,
   ImageSlider,
   ImageCaption,
   ImageStatement,
-  Lead
-} from "../components/blocks";
+  Lead,
+} from '../components/blocks'
+import { ScrollChild } from '../components/elements'
 
-const WhoTemplate = ({ data: { who, seo, allSite, links, meta } }) => {
-  const data = path(["data"], who);
-  const { body, image, theme, title } = data;
+const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
+  const data = path(['data'], who)
+  const { body, image, theme, title } = data
   return (
     <TemplateWrapper
       {...{ allSite }}
-      {...{ links }}
+      {...{ location }}
       {...{ image }}
       {...{ meta }}
       {...{ seo }}
       {...{ title }}
     >
-      <div {...{ theme }}>
-        <ImageStatement data={pick(["title", "statement", "image"], data)} />
-      </div>
-      {safeMap(section => (
-        <Fragment key={uuid()}>
-          {equals("PrismicWhoBodyColumns", section.__typename) && (
-            <div
-              key={uuid()}
-              theme={section.primary.coltheme}
-              style={{ position: "relative" }}
-            >
-              <Columns
+      <ScrollChild {...{ theme }}>
+        <ImageStatement data={pick(['title', 'statement', 'image'], data)} />
+      </ScrollChild>
+      {safeMap(section => {
+        switch (section.__typename) {
+          case 'PrismicWhoBodyColumns':
+            return (
+              <ScrollChild
+                key={uuid()}
+                theme={section.primary.coltheme}
+                style={{ position: 'relative' }}
+              >
+                <Columns
+                  key={uuid()}
+                  items={section.items}
+                  primary={section.primary}
+                />
+              </ScrollChild>
+            )
+          case 'PrismicWhoBodyLead':
+            return (
+              <ScrollChild
+                key={uuid()}
+                image={section.primary.leadimage}
+                backimage={
+                  includes('image', section.primary.leadtheme)
+                    ? 'true'
+                    : 'false'
+                }
+                style={{ position: 'relative' }}
+                theme={section.primary.leadtheme}
+              >
+                <Lead key={uuid()} primary={section.primary} />
+              </ScrollChild>
+            )
+          case 'PrismicWhoBodyImage':
+            return (
+              <ImageSlider
                 key={uuid()}
                 items={section.items}
                 primary={section.primary}
+                theme={section.primary.imgtheme}
               />
-            </div>
-          )}
-          {equals("PrismicWhoBodyLead", section.__typename) && (
-            <div
-              key={uuid()}
-              image={JSON.stringify(section.primary.leadimage)}
-              backimage={
-                includes("image", section.primary.leadtheme) ? "true" : "false"
-              }
-              style={{ position: "relative" }}
-              theme={section.primary.leadtheme}
-            >
-              <Lead key={uuid()} primary={section.primary} />
-            </div>
-          )}
-          {equals("PrismicWhoBodyImage", section.__typename) && (
-            <ImageSlider
-              key={uuid()}
-              items={section.items}
-              primary={section.primary}
-              theme={section.primary.imgtheme}
-            />
-          )}
-          {equals("PrismicWhoBodyImageCaption", section.__typename) && (
-            <div
-              key={uuid()}
-              theme={section.primary.sictheme}
-              style={{ position: "relative" }}
-            >
-              <ImageCaption
+            )
+          case 'PrismicWhoBodyImageCaption':
+            return (
+              <ScrollChild
                 key={uuid()}
-                items={section.items}
-                primary={section.primary}
-              />
-            </div>
-          )}
-        </Fragment>
-      ))(body)}
+                theme={section.primary.sictheme}
+                style={{ position: 'relative' }}
+              >
+                <ImageCaption
+                  key={uuid()}
+                  items={section.items}
+                  primary={section.primary}
+                />
+              </ScrollChild>
+            )
+          default:
+            return <Fragment key={uuid()} />
+        }
+      })(body)}
+      <ScrollChild theme={'black'}>
+        <Footer {...{ meta }} />
+      </ScrollChild>
     </TemplateWrapper>
-  );
-};
+  )
+}
 
-export default WhoTemplate;
+export default WhoTemplate
 
 export const query = graphql`
   query WhoTemplateQuery($lang: String!) {
@@ -116,6 +129,9 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+              colheading {
+                html
               }
               coltext {
                 html
@@ -199,16 +215,6 @@ export const query = graphql`
         }
       }
     }
-    links: prismicWho(lang: { eq: $lang }) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
-          }
-        }
-      }
-    }
     allSite: allSitePage {
       edges {
         node {
@@ -220,4 +226,4 @@ export const query = graphql`
       ...MetaFragment
     }
   }
-`;
+`

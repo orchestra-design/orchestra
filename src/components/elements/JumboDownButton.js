@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { compose, withHandlers } from 'recompose'
 
 import { countJumbo } from '../../actions'
-import { gt, isNil, length, offset, unless } from '../../helpers'
+import { gt, isNil, length, unless } from '../../helpers'
 
 import { RoundButton } from './Buttons'
 import { BaseTransition } from './Transitions'
@@ -49,15 +49,13 @@ export const JumboDownButton = compose(
   ),
   withHandlers({
     toNext: props => () => {
-      const scrollContainer = document.getElementById('scroll-container')
       const jumboCounter = document.getElementById('jumbo-counter')
       const jumboCounterChildren = Array.from(jumboCounter.children)
       const pred = gt(length(jumboCounterChildren) - 1, props.jumboCount)
-
-      scrollContainer.scrollTop = pred
-        ? (offset(scrollContainer).height / 2) * (props.jumboCount + 1)
-        : offset(scrollContainer).height * 1.75
-
+      window.scrollBy(
+        0,
+        pred ? window.innerHeight / 2 : window.innerHeight * 0.75
+      )
       props.countJumbo(pred ? props.jumboCount + 1 : null)
     },
   })

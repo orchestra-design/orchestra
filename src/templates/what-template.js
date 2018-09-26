@@ -3,41 +3,54 @@ import { graphql } from 'gatsby'
 
 import { path, pick, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { ImageCaptionWithDigits, ImageStatement } from '../components/blocks'
+import {
+  Footer,
+  ImageCaptionWithDigits,
+  ImageStatement,
+} from '../components/blocks'
+import { ScrollChild } from '../components/elements'
 
-const WhatTemplate = ({data: {
-  what, seo, allSite, links, meta
-}}) => {
+const WhatTemplate = ({
+  data: { what, seo, allSite, links, meta },
+  location,
+}) => {
   const data = path(['data'], what)
   const { body, image, theme, title } = data
-  
+
   return (
     <TemplateWrapper
-      {...{allSite}}
-      {...{links}}
-      {...{image}}
-      {...{meta}}
-      {...{seo}}
-      {...{title}}
+      {...{ allSite }}
+      {...{ links }}
+      {...{ location }}
+      {...{ image }}
+      {...{ meta }}
+      {...{ seo }}
+      {...{ title }}
     >
-      <div 
-        image={JSON.stringify(image)}
-        {...{theme}} 
-      ><ImageStatement 
-        data={pick(['title', 'statement', 'image', 'description'], data)}
-      /></div>
-      {body.map(({ primary, items }, i) =>
-        <div key={uuid()}
+      <ScrollChild image={JSON.stringify(image)} {...{ theme }}>
+        <ImageStatement
+          data={pick(['title', 'statement', 'image', 'description'], data)}
+        />
+      </ScrollChild>
+      {body.map(({ primary, items }, i) => (
+        <ScrollChild
+          key={uuid()}
           right-image={JSON.stringify(primary.sicimage)}
           sicgrid={primary.sicgrid}
           theme={primary.sictheme}
-        ><ImageCaptionWithDigits key={uuid()}
-           {...{i}}
-           {...{items}}
-           lang={seo.lang}
-           {...{primary}}
-          /></div>
-      )}
+        >
+          <ImageCaptionWithDigits
+            key={uuid()}
+            {...{ i }}
+            {...{ items }}
+            lang={seo.lang}
+            {...{ primary }}
+          />
+        </ScrollChild>
+      ))}
+      <ScrollChild theme={'black'}>
+        <Footer {...{ meta }} />
+      </ScrollChild>
     </TemplateWrapper>
   )
 }
@@ -46,7 +59,7 @@ export default WhatTemplate
 
 export const query = graphql`
   query WhatTemplateQuery($lang: String!) {
-    what: prismicWhat(lang: {eq: $lang}) {
+    what: prismicWhat(lang: { eq: $lang }) {
       data {
         title
         statement {
@@ -97,7 +110,7 @@ export const query = graphql`
         }
       }
     }
-    seo: prismicWhat(lang: {eq: $lang}) {
+    seo: prismicWhat(lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -115,7 +128,7 @@ export const query = graphql`
         }
       }
     }
-    links: prismicWhat(lang: {eq: $lang}) {
+    links: prismicWhat(lang: { eq: $lang }) {
       data {
         headerlinks {
           linktitle
@@ -132,7 +145,7 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }

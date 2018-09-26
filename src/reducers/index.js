@@ -13,23 +13,22 @@ const reducer = handleActions(
     SET_BACK_SLIDER: (state, action) =>
       assoc('backSlider', action.payload, state),
     SET_IMAGE: (state, action) => assoc('backImage', action.payload, state),
+    SET_MEDIA: (state, action) => assoc('isMobile', action.payload, state),
     SET_RIGHT_IMAGE: (state, action) =>
       assoc('rightImage', action.payload, state),
     SET_SIC_GRIDE: (state, action) => assoc('sicgrid', action.payload, state),
     SET_WORK_FILTER: (state, action) =>
       assoc('worksFilter', action.payload, state),
+    SLIDER_COUNT: (state, action) =>
+      assoc('sliderCounter', merge(state.sliderCounter, action.payload), state),
+    THIS_FOOTER: (state, action) => assoc('isFooter', action.payload, state),
     TOGGLE_GRID: state => assoc('worksGrid', !state.worksGrid, state),
     TOGGLE_MENU: (state, action) =>
-      merge(state, {
-        isMenu: action.payload !== undefined ? action.payload : !state.isMenu,
-        previousTheme: state.storedTheme,
-        storedTheme:
-          action.payload !== undefined
-            ? 'white'
-            : !state.isMenu
-              ? 'black'
-              : state.previousTheme,
-      }),
+      assoc(
+        'isMenu',
+        action.payload !== undefined ? action.payload : !state.isMenu,
+        state
+      ),
     TOGGLE_WORK_FILTER: state =>
       assoc('worksFiltersOpen', !state.worksFiltersOpen, state),
   },

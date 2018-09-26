@@ -36,8 +36,8 @@ export const PrevNextTemplate = styled('span')`
 
 export const NextButton = styled(PrevNextTemplate)`
   @media (min-width: 601px) {
-    background-image: url(${({ storedTheme }) =>
-      includes('image', storedTheme) ? IconNext : IconNextBlack});
+    background-image: 
+      url(${({ storedTheme }) => includes('image', storedTheme) ? IconNext : IconNextBlack});
   }
 `
 

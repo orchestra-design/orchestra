@@ -2,5 +2,5 @@
 import styled from 'react-emotion'
 
 export const Main = styled('div')`
-  ${tw(['w-screen'])};
+  ${tw(['max-w-screen', 'overflow-x-hidden'])};
 `

@@ -2,12 +2,17 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import styled from 'react-emotion'
- 
-import { 
-  Columns, Lead, TickSlider, WorksFilters, WorksGrid 
+
+import {
+  Columns,
+  Footer,
+  Lead,
+  TickSlider,
+  WorksFilters,
+  WorksGrid,
 } from '../components/blocks'
-import { Container, Heading2 } from '../components/elements'
-import { equals, safeMap, path, uuid   } from '../helpers'
+import { Container, Heading2, ScrollChild } from '../components/elements'
+import { safeMap, path, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 
 const Title = styled('h2')`
@@ -15,54 +20,67 @@ const Title = styled('h2')`
   ${tw(['md:mt-q72'])};
 `
 
-const IndexTemplate = ({data: { 
-  page, allworks, works, seo, allSite, links, meta
-}}) => {
+const IndexTemplate = ({
+  data: { page, allworks, works, seo, allSite, meta },
+  location,
+}) => {
   const body = path(['data', 'body'], page)
   const image = path(['data', 'slider'], page)
   const worksLinks = path(['data', 'links'], works)
-  
+
   return (
-    <TemplateWrapper 
-      {...{allSite}}
-      color='white'
-      {...{image}}
-      {...{links}}
-      {...{meta}}
-      {...{seo}}
+    <TemplateWrapper
+      {...{ allSite }}
+      color="white"
+      {...{ image }}
+      {...{ location }}
+      {...{ meta }}
+      {...{ seo }}
       title={seo.data.seotitle}
     >
-      <div theme="image" >
-        <TickSlider {...{image}} />
-      </div>
-      {safeMap(section => (
-        <Fragment key={uuid()} >
-        {equals('PrismicHomepageBodyColumns', section.__typename) &&
-          <div key={uuid()} theme={section.primary.coltheme} style={{position: 'relative'}} >
-            <Columns key={uuid()}
-              items={section.items}
-              primary={section.primary}
-            />
-          </div>
+      <ScrollChild theme={'image'}>
+        <TickSlider {...{ image }} {...{ meta }} />
+      </ScrollChild>
+      {safeMap(section => {
+        switch (section.__typename) {
+          case 'PrismicHomepageBodyColumns':
+            return (
+              <ScrollChild
+                key={uuid()}
+                theme={section.primary.coltheme}
+                style={{ position: 'relative' }}
+              >
+                <Columns
+                  key={uuid()}
+                  items={section.items}
+                  primary={section.primary}
+                />
+              </ScrollChild>
+            )
+          case 'PrismicHomepageBodyLead':
+            return (
+              <ScrollChild
+                key={uuid()}
+                theme={section.primary.leadtheme}
+                style={{ position: 'relative' }}
+              >
+                <Lead key={uuid()} primary={section.primary} />
+              </ScrollChild>
+            )
+          default:
+            return <Fragment key={uuid()} />
         }
-        {equals('PrismicHomepageBodyLead', section.__typename) &&
-          <div key={uuid()} theme={section.primary.leadtheme} style={{position: 'relative'}} >
-            <Lead key={uuid()} 
-              primary={section.primary} 
-            />
-          </div>
-        }
-        </Fragment>
-      ))(body)}
-      <div theme="white" >
+      })(body)}
+      <ScrollChild theme={'white'}>
         <Container>
-          <Title>
-          { seo.lang.includes('ru') ? 'Проекты' : 'Works' }
-          </Title>
+          <Title>{seo.lang.includes('ru') ? 'Проекты' : 'Works'}</Title>
         </Container>
-        <WorksFilters {...{allworks}} />
-        <WorksGrid {...{allworks}} {...{worksLinks}} />
-      </div>
+        <WorksFilters {...{ allworks }} />
+        <WorksGrid {...{ allworks }} {...{ worksLinks }} />
+      </ScrollChild>
+      <ScrollChild theme={'black'}>
+        <Footer {...{ meta }} />
+      </ScrollChild>
     </TemplateWrapper>
   )
 }
@@ -71,7 +89,7 @@ export default IndexTemplate
 
 export const query = graphql`
   query IndexTemplateQuery($lang: String!) {
-    page: prismicHomepage(lang: {eq: $lang}) {
+    page: prismicHomepage(lang: { eq: $lang }) {
       data {
         slider {
           image {
@@ -88,6 +106,9 @@ export const query = graphql`
           }
           caption
           theme
+          link {
+            url
+          }
         }
         body {
           __typename
@@ -114,6 +135,9 @@ export const query = graphql`
                   }
                 }
               }
+              colheading {
+                html
+              }
               coltext {
                 html
               }
@@ -130,7 +154,7 @@ export const query = graphql`
         }
       }
     }
-    allworks: allPrismicWork(filter: {lang: {eq: $lang}}) {
+    allworks: allPrismicWork(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           uid
@@ -150,8 +174,8 @@ export const query = graphql`
         }
       }
     }
-    works: prismicWorks(lang: {eq: $lang}) {
-      data {        
+    works: prismicWorks(lang: { eq: $lang }) {
+      data {
         links {
           image {
             localFile {
@@ -177,10 +201,10 @@ export const query = graphql`
               uid
             }
           }
-        }        
+        }
       }
     }
-    seo: prismicHomepage(lang: {eq: $lang}) {
+    seo: prismicHomepage(lang: { eq: $lang }) {
       uid
       lang
       data {
@@ -198,16 +222,6 @@ export const query = graphql`
         }
       }
     }
-    links: prismicHomepage(lang: {eq: $lang}) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
-          }
-        }
-      }
-    }
     allSite: allSitePage {
       edges {
         node {
@@ -215,7 +229,7 @@ export const query = graphql`
         }
       }
     }
-    meta: prismicMeta(lang: {eq: $lang}) {
+    meta: prismicMeta(lang: { eq: $lang }) {
       ...MetaFragment
     }
   }

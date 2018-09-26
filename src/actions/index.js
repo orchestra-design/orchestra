@@ -6,10 +6,13 @@ import {
   HIDE_DOWN,
   SET_BACK_SLIDER,
   SET_IMAGE,
+  SET_MEDIA,
   SET_RIGHT_IMAGE,
   SET_SIC_GRIDE,
   SET_WORK_FILTER,
+  SLIDER_COUNT,
   THEME,
+  THIS_FOOTER,
   TOGGLE_GRID,
   TOGGLE_MENU,
   TOGGLE_WORK_FILTER,
@@ -20,9 +23,12 @@ const hideDownAction = createAction(HIDE_DOWN)
 const itHasBackImageAction = createAction(HAS_BACK_IMAGE)
 const setBackSliderAction = createAction(SET_BACK_SLIDER)
 const setImageAction = createAction(SET_IMAGE)
+const setMediaAction = createAction(SET_MEDIA)
 const setRightImageAction = createAction(SET_RIGHT_IMAGE)
 const setSicGridAction = createAction(SET_SIC_GRIDE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
+const sliderCountAction = createAction(SLIDER_COUNT)
+const footerAction = createAction(THIS_FOOTER)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
 const toggleWorkFilterAction = createAction(TOGGLE_WORK_FILTER)
@@ -33,6 +39,10 @@ export const changeTheme = payload => dispatch => {
 
 export const countJumbo = payload => dispatch => {
   dispatch(countJumboAction(payload))
+}
+
+export const thisFooter = payload => dispatch => {
+  dispatch(footerAction(payload))
 }
 
 export const hideDown = payload => dispatch => {
@@ -60,6 +70,10 @@ export const setImage = payload => dispatch => {
   dispatch(setImageAction(payload))
 }
 
+export const setMedia = payload => dispatch => {
+  dispatch(setMediaAction(payload))
+}
+
 export const setRightImage = payload => dispatch => {
   dispatch(setRightImageAction(payload))
 }
@@ -70,6 +84,10 @@ export const setSicGrid = payload => dispatch => {
 
 export const setWorkFilter = payload => dispatch => {
   dispatch(setWorkFilterAction(payload))
+}
+
+export const sliderCount = payload => dispatch => {
+  dispatch(sliderCountAction(payload))
 }
 
 export const toggleGrid = () => dispatch => {

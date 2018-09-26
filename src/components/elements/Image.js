@@ -20,6 +20,7 @@ const Wrapper = styled('div')`
   ${tw(['absolute', 'pin'])};
   filter: blur(${({ backSlider }) => backSlider && '12px'});
   transform: scale(1.1);
+  transition: filter ${({ backSlider }) => (backSlider ? 0 : 600)}ms ease-in-out;
   &::after {
     ${tw(['absolute', 'bg-black', 'hidden', 'opacity-25', 'pin'])};
     ${({ backSlider }) => backSlider && tw(['block'])};
@@ -58,11 +59,10 @@ export const Image = compose(
   })),
   pure
 )(({ backImage, backSlider, image, jumboCount }) => {
-  const parsedImage = JSON.parse(backImage)
   const safeImage = unless(
     isNil,
-    pathOr(false, ['localFile'], parsedImage) ? constant(parsedImage) : F
-  )(parsedImage)
+    pathOr(false, ['localFile'], backImage) ? constant(backImage) : F
+  )(backImage)
   const data = isArray(image)
     ? [image[jumboCount]]
     : [{ image: safeImage || image }]

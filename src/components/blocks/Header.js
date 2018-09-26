@@ -4,53 +4,47 @@ import styled, { css } from 'react-emotion'
 import { compose, lifecycle, pure } from 'recompose'
 import { connect } from 'react-redux'
 
-import {
-  ContainerFluid,
-  HeaderBreadcrumbs,
-  HeaderLogo,
-  MenuToggler,
-} from '../elements'
+import { ContainerFluid, HeaderLogo, MenuToggler } from '../elements'
 import { HeaderNavigation } from './HeaderNavigation'
 import { toRGBA } from '../../helpers'
 
-const Fader = styled('div')`
-  ${tw(['absolute', 'h-q64', 'pin-l', 'pin-r', 'pin-t'])};
-  z-index: -1;
-  transition: all 0.6s ease-in-out;
-  background-color: ${({ color, theme }) =>
-    theme.backgroundColor
-      ? toRGBA(1)(theme.backgroundColor)
-      : toRGBA(1)(color)};
-  box-shadow: 0 0 1.5rem 1rem
-    ${({ color, theme }) =>
-      theme.backgroundColor
-        ? toRGBA(1)(theme.backgroundColor)
-        : toRGBA(1)(color)};
-`
-
-const HeaderContainerDynamicStyle = ({ isMenu }) => css`
+const HeaderContainerDynamicStyle = ({ color, isMenu, theme }) => css`
   @media (max-width: 768px) {
-    ${isMenu && tw(['pin-b', 'flex-col', 'justify-stretch', 'items-stretch'])};
+    ${isMenu &&
+      tw([
+        'bg-black',
+        'flex-col',
+        'justify-stretch',
+        'items-stretch',
+        'max-h-screen',
+      ])};
   }
+  background-color: ${theme.backgroundColor
+    ? toRGBA(1)(theme.backgroundColor)
+    : color
+      ? toRGBA(1)(color)
+      : 'trasparent'};
 `
 
 const HeaderContainer = styled(ContainerFluid)`
   ${tw([
-    'absolute',
-    'pin-t',
-    'pin-l',
+    'fixed',
     'flex',
     'flex-row',
     'flex-wrap',
     'screen:flex-no-wrap',
     'items-center',
     'justify-between',
+    'md:pb-0',
     'overflow-hidden',
-    'pb-q24',
+    'w-auto',
     'z-50',
   ])};
+  top: 0;
+  left: 0;
+  right: 0;
   ${HeaderContainerDynamicStyle};
-  width: calc(100% - 14px);
+  transition: all 600ms ease-in-out;
 `
 
 const MobileHeader = styled('div')`
@@ -85,14 +79,12 @@ const withLifecicle = compose(
 )
 
 export const Header = withLifecicle(props => {
-  const { color, isMenu, title } = props
+  const { color, isMenu } = props
 
   return (
-    <HeaderContainer {...{ isMenu }}>
-      <Fader {...{ color }} />
+    <HeaderContainer {...{ color }} {...{ isMenu }}>
       <MobileHeader {...{ isMenu }}>
         <HeaderLogo {...props} />
-        <HeaderBreadcrumbs {...{ isMenu }} {...{ title }} />
         <MenuToggler />
       </MobileHeader>
       <HeaderNavigation {...props} />

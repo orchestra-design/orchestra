@@ -1,12 +1,12 @@
 /* global tw */
-import React, { Fragment } from 'react'
+import React from 'react'
 import { ThemeProvider } from 'emotion-theming'
 import { css, injectGlobal } from 'emotion'
 import styled from 'react-emotion'
 import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 
-import { Footer, Header } from '../blocks'
+import { Header } from '../blocks'
 
 import {
   Back,
@@ -26,14 +26,14 @@ import { theme as EmotionTheme } from '../theme'
 
 injectGlobal`
   body {
-    ${tw(['fixed', 'overflow-hidden', 'pin', 'm-0'])};
+    ${tw(['relative', 'm-0'])};
   }
 `
 
 const Contact = ContactButton.withComponent('a')
 
 const ImageWrapper = styled('div')`
-  ${tw(['hidden'])};
+  ${tw(['hidden', 'fixed', 'pin'])};
   ${({ appear }) => appear && tw(['block'])};
   ${tw(['screen:block'])};
 `
@@ -42,7 +42,7 @@ const TemplateWrapper = ({
   seo,
   allSite,
   notDown,
-  links,
+  location,
   meta,
   color,
   backSlider,
@@ -64,7 +64,7 @@ const TemplateWrapper = ({
           {...{ allSite }}
           {...{ color }}
           {...{ lang }}
-          {...{ links }}
+          {...{ location }}
           {...{ meta }}
           {...{ title }}
         />
@@ -83,14 +83,7 @@ const TemplateWrapper = ({
             <RightImage {...{ rightImage }} {...{ sicgrid }} />
           </div>
         ))(rightImage)}
-        <ScrollContainer>
-          <Fragment>
-            {children}
-            <div theme="black">
-              <Footer {...{ meta }} />
-            </div>
-          </Fragment>
-        </ScrollContainer>
+        <ScrollContainer>{children}</ScrollContainer>
         <DownButton {...{ notDown }} />
         <UpButton />
         <Contact
@@ -137,6 +130,12 @@ export const query = graphql`
       development
       acciolink {
         url
+      }
+      headerlinks {
+        linktitle
+        link {
+          url
+        }
       }
     }
   }

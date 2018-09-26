@@ -1,34 +1,39 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
+import { connect } from 'react-redux'
+import { compose, lifecycle } from 'recompose'
 
+import { sliderCount } from '../actions'
 import {
   Context,
+  Footer,
   ImageSlider,
   WorkImageCaption,
   WorkStatement,
+  WorkSecondScreen,
 } from '../components/blocks'
-
+import { ScrollChild } from '../components/elements'
 import {
   concat,
-  equals,
+  includes,
+  isEmpty,
   mergeDeepWith,
   path,
   pick,
+  not,
   safeMap,
   uuid,
-  and,
-  unless,
-  isNil,
 } from '../helpers'
-
 import TemplateWrapper from '../components/layouts'
 
 const WorkTemplate = ({
   data: { work, allworks, seo, allSite, links, meta },
+  location,
+  sliderCounter,
 }) => {
   const data = path(['data'], work)
   const tags = path(['tags'], work)
-  const { body, color, context, image, statement } = data
+  const { body, color, context, image, statement, theme } = data
   const appendedLinks = mergeDeepWith(concat, links, {
     data: {
       headerlinks: [
@@ -49,61 +54,109 @@ const WorkTemplate = ({
         {...{ color }}
         links={appendedLinks}
         {...{ image }}
+        {...{ location }}
         {...{ meta }}
         {...{ seo }}
         title={statement.text}
       >
-        <WorkStatement
-          data={pick(
-            [
-              'client',
-              'customtags',
-              'descriptiontext',
-              'image',
-              'location',
-              'statement',
-              'status',
-              'theme',
-              'timeline',
-              'title',
-              'type',
-            ],
-            data
-          )}
-          lang={seo.lang}
-          {...{ tags }}
-        />
-        {safeMap(section =>
-          unless(isNil, () => (
-            <Fragment key={uuid()}>
-              {and(
-                equals('PrismicWorkBodyImage', section.__typename),
-                <ImageSlider
+        <ScrollChild image={image} {...{ theme }}>
+          <WorkStatement
+            data={pick(
+              [
+                'client',
+                'customtags',
+                'descriptiontext',
+                'location',
+                'statement',
+                'status',
+                'timeline',
+                'title',
+                'type',
+              ],
+              data
+            )}
+          />
+        </ScrollChild>
+        <ScrollChild theme={'colored'}>
+          <WorkSecondScreen
+            data={pick(
+              [
+                'client',
+                'customtags',
+                'descriptiontext',
+                'location',
+                'statement',
+                'status',
+                'timeline',
+                'title',
+                'type',
+              ],
+              data
+            )}
+            lang={seo.lang}
+            {...{ tags }}
+          />
+        </ScrollChild>
+        {safeMap(section => {
+          switch (section.__typename) {
+            case 'PrismicWorkBodyImage':
+              return (
+                <ScrollChild
                   key={uuid()}
                   items={section.items}
-                  primary={section.primary}
                   theme={section.primary.imgtheme}
-                />
-              )}
-              {equals('PrismicWorkBodyImageCaption', section.__typename) && (
-                <WorkImageCaption
-                  key={uuid()}
-                  {...{ color }}
-                  items={section.items}
-                  primary={section.primary}
-                />
-              )}
-            </Fragment>
-          ))(section.primary)
-        )(body)}
-        {context.length > 0 &&
-          context.link && <Context {...{ allworks }} {...{ context }} />}
+                  slider={includes('image', section.primary.imgtheme)}
+                  sliderId={section.prismicId}
+                >
+                  <ImageSlider
+                    key={uuid()}
+                    items={section.items}
+                    primary={section.primary}
+                    sliderId={section.prismicId}
+                  />
+                </ScrollChild>
+              )
+            case 'PrismicWorkBodyImageCaption':
+              return (
+                <ScrollChild key={uuid()} theme={section.primary.sictheme}>
+                  <WorkImageCaption
+                    key={uuid()}
+                    {...{ color }}
+                    items={section.items}
+                    primary={section.primary}
+                  />
+                </ScrollChild>
+              )
+            default:
+              return <Fragment key={uuid()} />
+          }
+        })(body)}
+        <ScrollChild theme={'black'}>
+          {not(isEmpty(context)) && (
+            <Context {...{ allworks }} {...{ context }} />
+          )}
+        </ScrollChild>
+        <ScrollChild theme={'black'}>
+          <Footer {...{ meta }} />
+        </ScrollChild>
       </TemplateWrapper>
     </Fragment>
   )
 }
 
-export default WorkTemplate
+export default compose(
+  connect(
+    pick(['sliderCounter']),
+    { sliderCount }
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.data.work.data.body.map(section =>
+        this.props.sliderCount({ [section.prismicId]: 0 })
+      )
+    },
+  })
+)(WorkTemplate)
 
 export const query = graphql`
   query WorkTemplateQuery($slug: String!, $lang: String!) {
@@ -166,6 +219,7 @@ export const query = graphql`
         body {
           __typename
           ... on PrismicWorkBodyImage {
+            prismicId
             primary {
               imgtheme
               imgtext {

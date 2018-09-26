@@ -3,9 +3,13 @@ import { graphql } from 'gatsby'
 
 import { map, path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
-import { JumboSlider, Points } from '../components/blocks'
+import { Footer, JumboSlider, Points } from '../components/blocks'
+import { ScrollChild } from '../components/elements'
 
-const HowTemplate = ({ data: { how, seo, allSite, links, meta } }) => {
+const HowTemplate = ({
+  data: { how, seo, allSite, links, meta },
+  location,
+}) => {
   const data = path(['data'], how)
   const { theme } = data
   const image = map(
@@ -19,17 +23,21 @@ const HowTemplate = ({ data: { how, seo, allSite, links, meta } }) => {
       {...{ allSite }}
       {...{ image }}
       {...{ links }}
+      {...{ location }}
       notDown={true}
       {...{ meta }}
       {...{ seo }}
       {...{ title }}
     >
-      <div {...{ theme }}>
+      <ScrollChild {...{ theme }}>
         <JumboSlider {...{ data }} />
-      </div>
-      <div theme="white">
+      </ScrollChild>
+      <ScrollChild theme={'white'}>
         <Points {...{ points }} />
-      </div>
+      </ScrollChild>
+      <ScrollChild theme={'black'}>
+        <Footer {...{ meta }} />
+      </ScrollChild>
     </TemplateWrapper>
   )
 }

@@ -24,7 +24,7 @@ View the full documentation at https://tailwindcss.com.
 |
 */
 
-var defaultConfig = require('tailwindcss/defaultConfig')();
+var defaultConfig = require('tailwindcss/defaultConfig')()
 
 /*
 |-------------------------------------------------------------------------------
@@ -127,8 +127,8 @@ var colors = {
   pink: '#f66d9b',
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
-  'pink-lightest': '#ffebef'
-};
+  'pink-lightest': '#ffebef',
+}
 
 module.exports = {
   /*
@@ -205,7 +205,7 @@ module.exports = {
       'Fira Sans',
       'Droid Sans',
       'Helvetica Neue',
-      'sans-serif'
+      'sans-serif',
     ],
     serif: [
       'Constantia',
@@ -217,7 +217,7 @@ module.exports = {
       'Bitstream Vera Serif',
       'Liberation Serif',
       'Georgia',
-      'serif'
+      'serif',
     ],
     mono: [
       'Menlo',
@@ -225,17 +225,11 @@ module.exports = {
       'Consolas',
       'Liberation Mono',
       'Courier New',
-      'monospace'
+      'monospace',
     ],
     // Orchestra
-    source: [
-      'Source Sans Pro', 
-      'sans-serif'
-    ],
-    plex: [
-      'IBM Plex Sans', 
-      'sans-serif'
-    ]
+    source: ['Source Sans Pro', 'sans-serif'],
+    plex: ['IBM Plex Sans', 'sans-serif'],
   },
 
   /*
@@ -269,16 +263,16 @@ module.exports = {
     '5xl': '3rem', // 48px
     // Orchestra
     xxs: '.625rem', // 10px
-    body: 'calc(16px + 5 * ((100vw - 320px) / 1280))',
-    'description': 'calc(10px + 4 * ((100vw - 320px) / 1280))',
-    'heading0': 'calc(104px + 72 * ((100vw - 320px) / 1280))',
-    'heading1': 'calc(48px + 72 * ((100vw - 320px) / 1280))',
-    'heading2': 'calc(44px + 34 * ((100vw - 320px) / 1280))',
-    'heading3': 'calc(34px + 18 * ((100vw - 320px) / 1280))',
-    'heading4': 'calc(30px + 18 * ((100vw - 320px) / 1280))',
-    'heading5': 'calc(24px + 12 * ((100vw - 320px) / 1280))',
-    'heading6': 'calc(21px + 3 * ((100vw - 320px) / 1280))',
-    'list': 'calc(14px + 4 * ((100vw - 320px) / 1280))',
+    body: 'calc(14px + 4 * ((100vw - 320px) / 1280))',
+    description: 'calc(10px + 4 * ((100vw - 320px) / 1280))',
+    heading0: 'calc(72px + 72 * ((100vw - 320px) / 1280))',
+    heading1: 'calc(48px + 48 * ((100vw - 320px) / 1280))',
+    heading2: 'calc(34px + 34 * ((100vw - 320px) / 1280))',
+    heading3: 'calc(30px + 18 * ((100vw - 320px) / 1280))',
+    heading4: 'calc(24px + 18 * ((100vw - 320px) / 1280))',
+    heading5: 'calc(24px + 12 * ((100vw - 320px) / 1280))',
+    heading6: 'calc(21px + 3 * ((100vw - 320px) / 1280))',
+    list: 'calc(12px + 4 * ((100vw - 320px) / 1280))',
   },
 
   /*
@@ -304,7 +298,7 @@ module.exports = {
     semibold: 600,
     bold: 700,
     extrabold: 800,
-    black: 900
+    black: 900,
   },
 
   /*
@@ -397,7 +391,7 @@ module.exports = {
     '0': '0',
     '2': '2px',
     '4': '4px',
-    '8': '8px'
+    '8': '8px',
   },
 
   /*
@@ -440,7 +434,7 @@ module.exports = {
     sm: '.125rem',
     default: '.25rem',
     lg: '.5rem',
-    full: '9999px'
+    full: '9999px',
   },
 
   /*
@@ -493,26 +487,26 @@ module.exports = {
     full: '100%',
     screen: '100vw',
     // Orchestra
-    'q4': '0.25rem',
-    'q8': '0.5rem',
-    'q12': '0.75rem',
-    'q16': '1rem',
-    'q20': '1.25rem',
-    'q24': '1.5rem',
-    'q32': '2rem',
-    'q36': '2.25rem',
-    'q40': '2.5rem',
-    'q48': '3rem',
-    'q52': '3.25rem',
-    'q60': '3.75rem',
-    'q64': '4rem',
-    'q72': '4.5rem',
-    'q80': '5rem',
-    'q96': '6rem',
-    'q112': '7rem',
-    'q120': '7.5rem',
-    'q144': '9rem',
-    'q200': '12.5rem',
+    q4: '0.25rem',
+    q8: '0.5rem',
+    q12: '0.75rem',
+    q16: '1rem',
+    q20: '1.25rem',
+    q24: '1.5rem',
+    q32: '2rem',
+    q36: '2.25rem',
+    q40: '2.5rem',
+    q48: '3rem',
+    q52: '3.25rem',
+    q60: '3.75rem',
+    q64: '4rem',
+    q72: '4.5rem',
+    q80: '5rem',
+    q96: '6rem',
+    q112: '7rem',
+    q120: '7.5rem',
+    q144: '9rem',
+    q200: '12.5rem',
     '1/47': '2.12366%',
     '1/12': '8.33333%',
   },
@@ -552,26 +546,26 @@ module.exports = {
     screen: '100vh',
     // Orchestra
     '1/2': '50%',
-    'q4': '0.25rem',
-    'q8': '0.5rem',
-    'q12': '0.75rem',
-    'q16': '1rem',
-    'q20': '1.25rem',
-    'q24': '1.5rem',
-    'q32': '2rem',
-    'q36': '2.25rem',
-    'q40': '2.5rem',
-    'q48': '3rem',
-    'q52': '3.25rem',
-    'q60': '3.75rem',
-    'q64': '4rem',
-    'q72': '4.5rem',
-    'q80': '5rem',
-    'q96': '6rem',
-    'q112': '7rem',
-    'q120': '7.5rem',
-    'q144': '9rem',
-    'q200': '12.5rem',
+    q4: '0.25rem',
+    q8: '0.5rem',
+    q12: '0.75rem',
+    q16: '1rem',
+    q20: '1.25rem',
+    q24: '1.5rem',
+    q32: '2rem',
+    q36: '2.25rem',
+    q40: '2.5rem',
+    q48: '3rem',
+    q52: '3.25rem',
+    q60: '3.75rem',
+    q64: '4rem',
+    q72: '4.5rem',
+    q80: '5rem',
+    q96: '6rem',
+    q112: '7rem',
+    q120: '7.5rem',
+    q144: '9rem',
+    q200: '12.5rem',
   },
 
   /*
@@ -610,7 +604,7 @@ module.exports = {
   minHeight: {
     '0': '0',
     full: '100%',
-    screen: '100vh'
+    screen: '100vh',
   },
 
   /*
@@ -640,7 +634,7 @@ module.exports = {
     '5xl': '100rem',
     full: '100%',
     // Orchestra
-    desktop: '1200px'
+    desktop: '1200px',
   },
 
   /*
@@ -659,7 +653,7 @@ module.exports = {
 
   maxHeight: {
     full: '100%',
-    screen: '100vh'
+    screen: '100vh',
   },
 
   /*
@@ -687,29 +681,29 @@ module.exports = {
     '6': '1.5rem',
     '8': '2rem',
     // Orchestra
-    'q4': '0.25rem',
-    'q8': '0.5rem',
-    'q12': '0.75rem',
-    'q16': '1rem',
-    'q20': '1.25rem',
-    'q24': '1.5rem',
-    'q32': '2rem',
-    'q36': '2.25rem',
-    'q40': '2.5rem',
-    'q48': '3rem',
-    'q52': '3.25rem',
-    'q60': '3.75rem',
-    'q64': '4rem',
-    'q72': '4.5rem',
-    'q80': '5rem',
-    'q96': '6rem',
-    'q112': '7rem',
-    'q120': '7.5rem',
-    'q144': '9rem',
-    'q200': '12.5rem',
+    q4: '0.25rem',
+    q8: '0.5rem',
+    q12: '0.75rem',
+    q16: '1rem',
+    q20: '1.25rem',
+    q24: '1.5rem',
+    q32: '2rem',
+    q36: '2.25rem',
+    q40: '2.5rem',
+    q48: '3rem',
+    q52: '3.25rem',
+    q60: '3.75rem',
+    q64: '4rem',
+    q72: '4.5rem',
+    q80: '5rem',
+    q96: '6rem',
+    q112: '7rem',
+    q120: '7.5rem',
+    q144: '9rem',
+    q200: '12.5rem',
     '1/47': '1.06353%',
     '1/12': '4.16666%',
-    '1/6': '8.33333%'
+    '1/6': '8.33333%',
   },
 
   /*
@@ -737,30 +731,30 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
-    // Orchestra    
-    'q4': '0.25rem',
-    'q8': '0.5rem',
-    'q12': '0.75rem',
-    'q16': '1rem',
-    'q20': '1.25rem',
-    'q24': '1.5rem',
-    'q32': '2rem',
-    'q36': '2.25rem',
-    'q40': '2.5rem',
-    'q48': '3rem',
-    'q52': '3.25rem',
-    'q60': '3.75rem',
-    'q64': '4rem',
-    'q72': '4.5rem',
-    'q80': '5rem',
-    'q96': '6rem',
-    'q112': '7rem',
-    'q120': '7.5rem',
-    'q144': '9rem',
-    'q200': '12.5rem',
+    // Orchestra
+    q4: '0.25rem',
+    q8: '0.5rem',
+    q12: '0.75rem',
+    q16: '1rem',
+    q20: '1.25rem',
+    q24: '1.5rem',
+    q32: '2rem',
+    q36: '2.25rem',
+    q40: '2.5rem',
+    q48: '3rem',
+    q52: '3.25rem',
+    q60: '3.75rem',
+    q64: '4rem',
+    q72: '4.5rem',
+    q80: '5rem',
+    q96: '6rem',
+    q112: '7rem',
+    q120: '7.5rem',
+    q144: '9rem',
+    q200: '12.5rem',
     '1/47': '1.06353%',
     '1/12': '4.16666%',
-    '1/6': '8.33333%'
+    '1/6': '8.33333%',
   },
 
   /*
@@ -788,10 +782,10 @@ module.exports = {
     '6': '1.5rem',
     '8': '2rem',
     // Orchestra
-    'q12': '0.75rem',
+    q12: '0.75rem',
     '1/47': '1.06353%',
     '1/12': '4.16666%',
-    '1/6': '8.33333%'
+    '1/6': '8.33333%',
   },
 
   /*
@@ -818,8 +812,8 @@ module.exports = {
     none: 'none',
     // Orchestra
     text: '0 0px 24px 0 rgba(0,0,0,0.24)',
-    'elevate1': '0 1px 5px 0 rgba(0,0,0,0.24)',
-    'elevate0': '0 0px 3px 0 rgba(0,0,0,0.24)',
+    elevate1: '0 1px 5px 0 rgba(0,0,0,0.24)',
+    elevate0: '0 0px 3px 0 rgba(0,0,0,0.24)',
   },
 
   /*
@@ -865,7 +859,7 @@ module.exports = {
     '25': '.25',
     '50': '.5',
     '75': '.75',
-    '100': '1'
+    '100': '1',
   },
 
   /*
@@ -880,11 +874,11 @@ module.exports = {
 
   options: {
     prefix: '',
-    important: false
+    important: false,
   },
 
   svgFill: {
-    'black': colors['black'],
-    'white': colors['white'],
-  }
-};
+    black: colors['black'],
+    white: colors['white'],
+  },
+}

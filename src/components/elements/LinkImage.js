@@ -87,12 +87,11 @@ const Row = styled('div')`
 
 const Title = styled('h3')`
   ${Heading6};
-  ${tw(['mr-1/6', 'w-1/2'])};
-  color: ${({ color }) => color};
+  ${tw(['mr-1/6', 'text-white', 'w-1/2'])};
   @media (min-width: 601px) {
     ${BaseTransition};
     ${({ worksGrid }) => !worksGrid && Heading2};
-    color: ${({ color, worksGrid }) => (worksGrid ? color : 'black')};
+    color: ${({ worksGrid }) => (worksGrid ? 'white' : 'black')};
   }
 `
 
@@ -140,7 +139,7 @@ export const LinkImage = connect(
       </ImageWrapper>
       <TitleWrapper className="link-hover" {...{ worksGrid }}>
         <Row {...{ worksGrid }}>
-          <Title className="title-hover" {...{ color }} {...{ worksGrid }}>
+          <Title className="title-hover" {...{ worksGrid }}>
             {statement.text}
           </Title>
           <DescriptionText {...{ worksGrid }}>{title}</DescriptionText>

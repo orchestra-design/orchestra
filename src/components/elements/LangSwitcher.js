@@ -32,6 +32,10 @@ const SwitcherButton = styled(SquareButton)`
     'screen:w-q36',
     'screen:text-sm',
     'mr-0',
+    'mb-q12',
+    'md:mb-0',
+    'hover:text-black',
+    'hover:bg-white',
   ])};
 `
 

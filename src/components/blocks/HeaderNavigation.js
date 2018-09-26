@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import { connect } from 'react-redux'
 
-import { map, pathOr, uuid } from '../../helpers'
+import { map, pathOr, uuid, pick } from '../../helpers'
 import { ContactButton, LangSwitcher, NavLink } from '../elements'
 
 const Navigaton = styled('nav')`
@@ -27,13 +27,20 @@ const Navigaton = styled('nav')`
 
 const Contact = ContactButton.withComponent('a')
 
-export const HeaderNavigation = connect(({ isMenu }) => ({ isMenu }))(props => {
-  const { isMenu, meta } = props
-  const headerlinks = pathOr(false, ['links', 'data', 'headerlinks'], props)
+export const HeaderNavigation = connect(pick(['isMenu']))(props => {
+  const { isMenu, location, meta } = props
+  const headerlinks = pathOr(false, ['meta', 'data', 'headerlinks'], props)
+
   return (
     <Navigaton {...{ isMenu }}>
       {headerlinks &&
-        map(link => <NavLink key={uuid()} {...link} />)(headerlinks)}
+        map(link => (
+          <NavLink
+            active={location.pathname.replace(/\/$/, '') === link.link.url}
+            key={uuid()}
+            {...link}
+          />
+        ))(headerlinks)}
       <LangSwitcher {...props} />
       {isMenu && (
         <Contact
