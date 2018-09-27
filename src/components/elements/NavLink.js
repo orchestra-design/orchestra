@@ -48,7 +48,7 @@ const NonButton = styled('span')`
 `
 
 const LinkStyle = css`
-  ${tw('no-underline p-q8')};
+  ${tw('no-underline p-q12')};
 `
 
 export const NavLink = connect(

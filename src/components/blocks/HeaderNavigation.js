@@ -20,7 +20,7 @@ const Navigaton = styled('nav')`
     'w-full',
     'md:w-auto',
     'p-0',
-    'pr-q12',
+    'pr-q8',
   ])};
   ${props => props.isMenu && tw(['flex', 'flex-1', 'flex-wrap', 'screen:p-0'])};
 `

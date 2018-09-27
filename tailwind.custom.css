@@ -5840,7 +5840,7 @@ button,
 }
 
 .text-body {
-  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
 }
 
 .text-description {
@@ -5876,7 +5876,7 @@ button,
 }
 
 .text-list {
-  font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
 }
 
 .italic {
@@ -11512,7 +11512,7 @@ button,
   }
 
   .sm\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:text-description {
@@ -11548,7 +11548,7 @@ button,
   }
 
   .sm\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:italic {
@@ -17185,7 +17185,7 @@ button,
   }
 
   .md\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:text-description {
@@ -17221,7 +17221,7 @@ button,
   }
 
   .md\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:italic {
@@ -22858,7 +22858,7 @@ button,
   }
 
   .lg\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:text-description {
@@ -22894,7 +22894,7 @@ button,
   }
 
   .lg\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:italic {
@@ -28531,7 +28531,7 @@ button,
   }
 
   .xl\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:text-description {
@@ -28567,7 +28567,7 @@ button,
   }
 
   .xl\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:italic {
@@ -34204,7 +34204,7 @@ button,
   }
 
   .screen\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:text-description {
@@ -34240,7 +34240,7 @@ button,
   }
 
   .screen\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:italic {
@@ -39877,7 +39877,7 @@ button,
   }
 
   .desktop\:text-body {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:text-description {
@@ -39913,7 +39913,7 @@ button,
   }
 
   .desktop\:text-list {
-    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:italic {
