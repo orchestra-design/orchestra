@@ -65,10 +65,6 @@ import {
 } from 'ramda'
 import * as uuid from 'uuid/v1'
 
-const includes = curry(
-  (pat, str) => (str && typeof str === 'string' ? str.includes(pat) : false)
-)
-
 export {
   isArray,
   constant,
@@ -87,7 +83,6 @@ export {
   camelCase,
   debounce,
   delay,
-  includes,
   startCase,
   and,
   any,
@@ -132,6 +127,10 @@ export {
   view,
   uuid,
 }
+
+export const includes = curry(
+  (pat, str) => (str && typeof str === 'string' ? str.includes(pat) : false)
+)
 
 export const lengthLte = curry((num, x) => lte(length(x), num))
 

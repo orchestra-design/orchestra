@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import { includes, path, pick, safeMap, uuid } from '../helpers'
+import { includes, path, pick, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import {
   Columns,
@@ -28,65 +28,75 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       <ScrollChild {...{ theme }}>
         <ImageStatement data={pick(['title', 'statement', 'image'], data)} />
       </ScrollChild>
-      {safeMap(section => {
-        switch (section.__typename) {
-          case 'PrismicWhoBodyColumns':
-            return (
-              <ScrollChild
-                key={uuid()}
-                theme={section.primary.coltheme}
-                style={{ position: 'relative' }}
-              >
-                <Columns
+      {body ? (
+        body.map(section => {
+          switch (section.__typename) {
+            case 'PrismicWhoBodyColumns':
+              return (
+                <ScrollChild
+                  key={uuid()}
+                  theme={section.primary.coltheme}
+                  style={{ position: 'relative' }}
+                >
+                  <Columns
+                    key={uuid()}
+                    items={section.items}
+                    primary={section.primary}
+                  />
+                </ScrollChild>
+              )
+            case 'PrismicWhoBodyLead':
+              return (
+                <ScrollChild
+                  key={uuid()}
+                  image={section.primary.leadimage}
+                  backimage={
+                    includes('image', section.primary.leadtheme)
+                      ? 'true'
+                      : 'false'
+                  }
+                  style={{ position: 'relative' }}
+                  theme={section.primary.leadtheme}
+                >
+                  <Lead key={uuid()} primary={section.primary} />
+                </ScrollChild>
+              )
+            case 'PrismicWhoBodyImage':
+              return (
+                <ScrollChild
                   key={uuid()}
                   items={section.items}
-                  primary={section.primary}
-                />
-              </ScrollChild>
-            )
-          case 'PrismicWhoBodyLead':
-            return (
-              <ScrollChild
-                key={uuid()}
-                image={section.primary.leadimage}
-                backimage={
-                  includes('image', section.primary.leadtheme)
-                    ? 'true'
-                    : 'false'
-                }
-                style={{ position: 'relative' }}
-                theme={section.primary.leadtheme}
-              >
-                <Lead key={uuid()} primary={section.primary} />
-              </ScrollChild>
-            )
-          case 'PrismicWhoBodyImage':
-            return (
-              <ImageSlider
-                key={uuid()}
-                items={section.items}
-                primary={section.primary}
-                theme={section.primary.imgtheme}
-              />
-            )
-          case 'PrismicWhoBodyImageCaption':
-            return (
-              <ScrollChild
-                key={uuid()}
-                theme={section.primary.sictheme}
-                style={{ position: 'relative' }}
-              >
-                <ImageCaption
+                  theme={section.primary.imgtheme}
+                  style={{ position: 'relative' }}
+                >
+                  <ImageSlider
+                    items={section.items}
+                    primary={section.primary}
+                    key={uuid()}
+                  />
+                </ScrollChild>
+              )
+            case 'PrismicWhoBodyImageCaption':
+              return (
+                <ScrollChild
                   key={uuid()}
-                  items={section.items}
-                  primary={section.primary}
-                />
-              </ScrollChild>
-            )
-          default:
-            return <Fragment key={uuid()} />
-        }
-      })(body)}
+                  theme={section.primary.sictheme}
+                  style={{ position: 'relative' }}
+                >
+                  <ImageCaption
+                    key={uuid()}
+                    items={section.items}
+                    primary={section.primary}
+                  />
+                </ScrollChild>
+              )
+            default:
+              return <Fragment key={uuid()} />
+          }
+        })
+      ) : (
+        <ScrollChild theme={'black'} />
+      )}
       <ScrollChild theme={'black'}>
         <Footer {...{ meta }} />
       </ScrollChild>

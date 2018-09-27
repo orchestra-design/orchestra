@@ -1,6 +1,11 @@
 /* global tw */
-import React, { cloneElement, Component, createRef, Children } from 'react'
-import ReactDOM from 'react-dom'
+import React, {
+  cloneElement,
+  Component,
+  Children,
+  createRef,
+  forwardRef,
+} from 'react'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
@@ -21,7 +26,6 @@ import {
   equals,
   F,
   gt,
-  head,
   ifElse,
   isNil,
   lt,
@@ -37,30 +41,33 @@ const ScrollWrapper = styled('div')`
   overflow-x: hidden;
 `
 
-export const ScrollChild = ({ children }) => (
+export const ScrollChild = forwardRef(({ children }, ref) => (
   <div
     className={css`
       ${tw(['relative'])};
     `}
+    ref={ref}
   >
     {children}
   </div>
-)
+))
 
 class ScrollContainer extends Component {
   constructor(props) {
     super(props)
-    this.scrollRef = createRef()
-    this.state = {
-      allChildren: [],
-    }
+    this.children = Children.map(this.props.children, () => createRef())
   }
 
   scrollHandler() {
-    this.state.allChildren.map((child, i) => {
+    this.children.map(({ current }, i) => {
+      const child = Children.map(
+        this.props.children,
+        (child, j) => (j === i ? child : null)
+      ).map(x => x && x)[0]
       const childOffset =
-        ReactDOM.findDOMNode(this.refs[i]) !== null &&
-        ReactDOM.findDOMNode(this.refs[i]).getBoundingClientRect()
+        current !== null &&
+        typeof current.getBoundingClientRect === `function` &&
+        current.getBoundingClientRect()
       const hasImage = pathOr(null, ['props', 'backimage'], child)
       const newImage = pathOr(
         pathOr(
@@ -79,7 +86,8 @@ class ScrollContainer extends Component {
       const newRightImage = pathOr(null, ['props', 'right-image'], child)
       const newSicGrid = pathOr(null, ['props', 'sicgrid'], child)
       const isSlider = path(['props', 'slider'], child)
-      const newTheme = camelCase(child.props.theme)
+      const newTheme = camelCase(pathOr('image', ['props', 'theme'], child))
+
       // Image
       ifElse(
         ({ top, height }) => and(lt(top, 401), gt(top + height, 400)),
@@ -140,7 +148,7 @@ class ScrollContainer extends Component {
         )(childOffset)
       }
       // Footer
-      if (i === this.state.allChildren.length - 1) {
+      if (i === this.children.length - 1) {
         ifElse(
           ({ top, height }) => and(lt(top, 401), gt(top + height, 400)),
           () => !this.props.isFooter && this.props.thisFooter(true),
@@ -167,7 +175,7 @@ class ScrollContainer extends Component {
           })
         return F
       }
-      childrenDesappearing(ReactDOM.findDOMNode(this.refs[i]))
+      childrenDesappearing(current)
       return F
     })
   }
@@ -177,16 +185,11 @@ class ScrollContainer extends Component {
       window.addEventListener('scroll', this.scrollHandler.bind(this))
     }
 
-    this.setState({
-      allChildren: Children.toArray(this.scrollRef.current.props.children),
-    })
-
     this.props.changeTheme(
-      camelCase(pathOr('white', ['props', 'theme'], this.refs[0]))
+      camelCase(pathOr('image', ['props', 'theme'], this.children[0]))
     )
-    this.props.setImage(
-      pathOr(null, ['props', 'image'], head(this.state.allChildren))
-    )
+
+    this.props.setImage(pathOr(null, ['props', 'image'], this.children[0]))
   }
 
   componentWillUnmount() {
@@ -197,10 +200,10 @@ class ScrollContainer extends Component {
 
   render() {
     return (
-      <ScrollWrapper id="scroll-container" ref={this.scrollRef}>
-        {Children.map(this.props.children, (element, i) => {
-          return element ? cloneElement(element, { ref: i }) : F
-        })}
+      <ScrollWrapper id="scroll-container">
+        {Children.map(this.props.children, (element, i) =>
+          cloneElement(element, { ref: this.children[i] })
+        )}
       </ScrollWrapper>
     )
   }
