@@ -9,7 +9,7 @@ import { ifElse, lengthLte, constant } from '../../helpers'
 import { Logo } from './Logo'
 
 const LogoWrapper = styled('div')`
-  ${tw(['ml-q12'])};
+  ${tw(['ml-q12', '-my-2'])};
   height: 69px;
   width: 186px;
   min-height: 69px;

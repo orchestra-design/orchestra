@@ -4,15 +4,11 @@ import styled, { css } from 'react-emotion'
 import { compose, lifecycle, pure } from 'recompose'
 import { connect } from 'react-redux'
 
-import {
-  ContainerFluid,
-  HeaderLogo,
-  MenuToggler,
-  BaseTransition,
-} from '../elements'
+import { ContainerFluid, HeaderLogo, MenuToggler } from '../elements'
 import { HeaderNavigation } from './HeaderNavigation'
+import { toRGBA } from '../../helpers'
 
-const HeaderContainerDynamicStyle = ({ isMenu, theme }) => css`
+const HeaderContainerDynamicStyle = ({ color, isMenu, theme }) => css`
   @media (max-width: 768px) {
     ${isMenu &&
       tw([
@@ -23,13 +19,11 @@ const HeaderContainerDynamicStyle = ({ isMenu, theme }) => css`
         'max-h-screen',
       ])};
   }
-  &::after {
-    ${BaseTransition};
-    ${tw(['absolute', 'mx-q16', 'my-q8', 'pin'])};
-    background-color: ${theme.headerColor};
-    content: '';
-    z-index: -1;
-  }
+  background-color: ${theme.backgroundColor
+    ? toRGBA(1)(theme.backgroundColor)
+    : color
+      ? toRGBA(1)(color)
+      : 'trasparent'};
 `
 
 const HeaderContainer = styled(ContainerFluid)`
@@ -85,10 +79,10 @@ const withLifecicle = compose(
 )
 
 export const Header = withLifecicle(props => {
-  const { isMenu } = props
+  const { color, isMenu } = props
 
   return (
-    <HeaderContainer {...{ isMenu }}>
+    <HeaderContainer {...{ color }} {...{ isMenu }}>
       <MobileHeader {...{ isMenu }}>
         <HeaderLogo {...props} />
         <MenuToggler />

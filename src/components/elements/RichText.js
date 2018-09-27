@@ -30,15 +30,21 @@ export const RichText = css`
   ${Body};
   & h2 {
     ${Heading2};
-    ${tw(['mb-q32', 'md:mb-q36'])};
+    &:last-of-type {
+      ${tw(['mb-q32', 'md:mb-q36'])};
+    }
   }
   & h3 {
     ${Heading3};
-    ${tw(['mb-q24', 'md:mb-q32'])};
+    &:last-of-type {
+      ${tw(['mb-q24', 'md:mb-q32'])};
+    }
   }
   & h4 {
     ${Heading4};
-    ${tw(['mb-q16', 'md:mb-q24'])};
+    &:last-of-type {
+      ${tw(['mb-q16', 'md:mb-q24'])};
+    }
   }
   & p {
     ${tw(['mt-0', 'mb-q24'])};
@@ -74,15 +80,21 @@ export const RichTextSmall = css`
   ${List};
   & h2 {
     ${Heading3};
-    ${tw(['mb-q32', 'md:mb-q36'])};
+    &:last-of-type {
+      ${tw(['mb-q32', 'md:mb-q36'])};
+    }
   }
   & h3 {
     ${Heading4};
-    ${tw(['mb-q24', 'md:mb-q32'])};
+    &:last-of-type {
+      ${tw(['mb-q24', 'md:mb-q32'])};
+    }
   }
   & h4 {
     ${Heading5};
-    ${tw(['mb-q16', 'md:mb-q24'])};
+    &:last-of-type {
+      ${tw(['mb-q16', 'md:mb-q24'])};
+    }
   }
   & .lead {
     ${Heading6};

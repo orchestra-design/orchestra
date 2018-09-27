@@ -21,7 +21,7 @@ const MenuButton = styled(SquareButton)`
     'border',
     'border-solid',
     'cursor-pointer',
-    'mr-q24',
+    'm-q12',
   ])};
   background-image: url(${({ isMenu }) => (isMenu ? IconClose : IconMenu)});
   border-color: ${({ isMenu, theme }) =>

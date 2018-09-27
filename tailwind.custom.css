@@ -2425,8 +2425,8 @@ button,
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
-.font-rubik {
-  font-family: Rubik, sans-serif;
+.font-opensans {
+  font-family: Open Sans, sans-serif;
 }
 
 .font-plex {
@@ -8109,8 +8109,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .sm\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .sm\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .sm\:font-plex {
@@ -13782,8 +13782,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .md\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .md\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .md\:font-plex {
@@ -19455,8 +19455,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .lg\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .lg\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .lg\:font-plex {
@@ -25128,8 +25128,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .xl\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .xl\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .xl\:font-plex {
@@ -30801,8 +30801,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .screen\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .screen\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .screen\:font-plex {
@@ -36474,8 +36474,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .desktop\:font-rubik {
-    font-family: Rubik, sans-serif;
+  .desktop\:font-opensans {
+    font-family: Open Sans, sans-serif;
   }
 
   .desktop\:font-plex {

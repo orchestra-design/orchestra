@@ -228,7 +228,7 @@ module.exports = {
       'monospace',
     ],
     // Orchestra
-    rubik: ['Rubik', 'sans-serif'],
+    opensans: ['Open Sans', 'sans-serif'],
     plex: ['IBM Plex Sans', 'sans-serif'],
   },
 

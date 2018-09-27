@@ -3,7 +3,7 @@ import { css } from 'react-emotion'
 
 export const Body = css`
   ${tw([
-    'font-rubik',
+    'font-opensans',
     'font-normal',
     'leading-body',
     'text-body',
@@ -13,8 +13,8 @@ export const Body = css`
 
 export const BodySemibold = css`
   ${tw([
-    'font-rubik',
-    'font-medium',
+    'font-opensans',
+    'font-semibold',
     'leading-body',
     'text-body',
     'tracking-normal',
@@ -22,22 +22,22 @@ export const BodySemibold = css`
 `
 
 export const ButtonSmallText = css`
-  ${tw(['font-rubik', 'font-normal', 'text-xs', 'tracking-button'])};
+  ${tw(['font-opensans', 'font-normal', 'text-xs', 'tracking-button'])};
   font-variant-caps: all-small-caps;
 `
 
 export const ButtonText = css`
-  ${tw(['font-rubik', 'font-medium', 'text-sm', 'tracking-button'])};
+  ${tw(['font-opensans', 'font-semibold', 'text-sm', 'tracking-button'])};
   font-variant-caps: all-small-caps;
 `
 
 export const Description = css`
-  ${tw(['font-rubik', 'text', 'text-description', 'tracking-normal'])};
+  ${tw(['font-opensans', 'text', 'text-description', 'tracking-normal'])};
 `
 
 export const DescriptionSemibold = css`
   ${Description};
-  ${tw(['font-medium'])};
+  ${tw(['font-semibold'])};
 `
 
 export const Heading = css`
@@ -92,7 +92,7 @@ export const LeadText = css`
 
 export const List = css`
   ${tw([
-    'font-rubik',
+    'font-opensans',
     'font-normal',
     'leading-normal',
     'text-list',
