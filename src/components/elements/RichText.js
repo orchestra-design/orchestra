@@ -57,9 +57,6 @@ export const RichText = css`
   & strong {
     ${tw(['font-semibold'])};
   }
-  & em {
-    ${tw(['roman', 'tracking-wide'])};
-  }
   & ul {
     ${List};
   }
@@ -95,11 +92,8 @@ export const RichTextSmall = css`
     ${ButtonSmallText};
   }
   & a {
-    ${tw(['no-underline'])};
+    ${tw(['underline'])};
     color: inherit;
-  }
-  & em {
-    ${tw(['roman', 'tracking-wide'])};
   }
   & ul {
     ${List};

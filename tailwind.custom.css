@@ -2425,8 +2425,8 @@ button,
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
-.font-source {
-  font-family: Source Sans Pro, sans-serif;
+.font-rubik {
+  font-family: Rubik, sans-serif;
 }
 
 .font-plex {
@@ -5840,7 +5840,7 @@ button,
 }
 
 .text-body {
-  font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
 }
 
 .text-description {
@@ -5876,7 +5876,7 @@ button,
 }
 
 .text-list {
-  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
 }
 
 .italic {
@@ -8109,8 +8109,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .sm\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .sm\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .sm\:font-plex {
@@ -11512,7 +11512,7 @@ button,
   }
 
   .sm\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:text-description {
@@ -11548,7 +11548,7 @@ button,
   }
 
   .sm\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:italic {
@@ -13782,8 +13782,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .md\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .md\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .md\:font-plex {
@@ -17185,7 +17185,7 @@ button,
   }
 
   .md\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:text-description {
@@ -17221,7 +17221,7 @@ button,
   }
 
   .md\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .md\:italic {
@@ -19455,8 +19455,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .lg\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .lg\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .lg\:font-plex {
@@ -22858,7 +22858,7 @@ button,
   }
 
   .lg\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:text-description {
@@ -22894,7 +22894,7 @@ button,
   }
 
   .lg\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:italic {
@@ -25128,8 +25128,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .xl\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .xl\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .xl\:font-plex {
@@ -28531,7 +28531,7 @@ button,
   }
 
   .xl\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:text-description {
@@ -28567,7 +28567,7 @@ button,
   }
 
   .xl\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .xl\:italic {
@@ -30801,8 +30801,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .screen\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .screen\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .screen\:font-plex {
@@ -34204,7 +34204,7 @@ button,
   }
 
   .screen\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:text-description {
@@ -34240,7 +34240,7 @@ button,
   }
 
   .screen\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .screen\:italic {
@@ -36474,8 +36474,8 @@ button,
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .desktop\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .desktop\:font-rubik {
+    font-family: Rubik, sans-serif;
   }
 
   .desktop\:font-plex {
@@ -39877,7 +39877,7 @@ button,
   }
 
   .desktop\:text-body {
-    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:text-description {
@@ -39913,7 +39913,7 @@ button,
   }
 
   .desktop\:text-list {
-    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+    font-size: calc(11px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:italic {

@@ -20,12 +20,12 @@ import {
 } from '../../helpers'
 
 const DummyWrapper = styled('div')`
+  ${tw(['hidden', 'screen:block'])};
   margin-bottom: ${({ jumboCount }) => (isNil(jumboCount) ? '3rem' : '100vh')};
 `
 
 const Dummy = styled('div')`
-  ${tw(['hidden', 'screen:block'])};
-  height: calc(100vh / 2);
+  height: calc(100vh / 3);
 `
 
 const enhance = compose(
@@ -41,12 +41,12 @@ const enhance = compose(
         const jumboCounterChildren = Array.from(jumboCounter.children)
         jumboCounterChildren.map((child, i) => {
           const { top, height } = child.getBoundingClientRect()
-          and(lt(top, 400), gt(top + height, 400)) &&
+          and(lt(top, 200), gt(top + height, 200)) &&
             not(equals(this.props.jumboCount, i)) &&
             this.props.countJumbo(i)
           and(
             equals(i, length(jumboCounterChildren) - 2),
-            lt(top + height, -400)
+            lt(top + height, -200)
           ) && this.props.countJumbo(null)
           return null
         })

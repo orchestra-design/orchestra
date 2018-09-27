@@ -5485,11 +5485,6 @@ gatsby-plugin-emotion@^2.0.0-rc.0:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-google-fonts@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-fonts/-/gatsby-plugin-google-fonts-0.0.4.tgz#dc1402a71f27c3ae6caee10777d10adadf74bd7c"
-  integrity sha512-B9Q+dznk6UX2Fe7QyCTptiuLT+ZLtdFBs1lg5kvaVDyIlesEA2rSQqtB7IkEQflH91JPE4eAEM699JCPy7CFGg==
-
 gatsby-plugin-lodash@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-lodash/-/gatsby-plugin-lodash-3.0.1.tgz#906c9d6f5666bb690680d475af8f9b8867628c8c"
@@ -12078,6 +12073,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typograf@^6.7.2:
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/typograf/-/typograf-6.7.2.tgz#13ec2caa3af0086b99ba1b82fdc6bfb2111ebe77"
+  integrity sha512-CJVCNlcVLfVEeGmgiEkUlkQ4FJkhKTPVvUsRdrwpW4w1mM0v43naQcijdKcEp0vLAQH9as5oCY0rkuKxrDeL1g==
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

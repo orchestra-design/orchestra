@@ -9,7 +9,13 @@ import { changeTheme, countJumbo } from '../../actions'
 
 import { camelCase, equals, length, not } from '../../helpers'
 
-import { ButtonText, Heading2, JustImage, Pager, SimpleRow } from '../elements'
+import {
+  ButtonSmallText,
+  Heading2,
+  JustImage,
+  Pager,
+  SimpleRow,
+} from '../elements'
 
 const Container = styled('div')`
   ${tw([
@@ -44,7 +50,7 @@ const Heading = styled('h1')`
 `
 
 const Caption = styled('div')`
-  ${ButtonText};
+  ${ButtonSmallText};
   ${SimpleRow} ${tw([
     'screen:fixed',
     'items-center',

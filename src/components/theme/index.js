@@ -1,55 +1,62 @@
 const black = {
   backgroundColor: '#000000',
-  headerColor: '#000000',
+  borderColor: '#ffffff',
   color: '#ffffff',
+  headerColor: '#000000',
   logoFill: '#ffffff',
   logoShadow: false,
 }
 
 const colored = {
   backgroundColor: false,
-  headerColor: '#000000',
+  borderColor: '#ffffff',
   color: '#000000',
+  headerColor: '#000000',
   logoFill: '#ffffff',
   logoShadow: false,
 }
 
 const coloredInverse = {
   backgroundColor: false,
-  headerColor: '#000000',
+  borderColor: '#ffffff',
   color: '#000000',
+  headerColor: '#000000',
   logoFill: '#ffffff',
   logoShadow: false,
 }
 
 const image = {
   backgroundColor: 'transparent',
-  headerColor: 'transparent',
+  borderColor: 'transparent',
   color: '#ffffff',
+  headerColor: 'transparent',
   logoFill: '#ffffff',
   logoShadow: true,
 }
 
 const imageInverse = {
   backgroundColor: 'transparent',
-  headerColor: 'transparent',
+  borderColor: 'transparent',
   color: '#000000',
+  headerColor: 'transparent',
   logoFill: '#000000',
   logoShadow: false,
 }
 
 const imageWhite = {
   backgroundColor: 'transparent',
-  headerColor: 'transparent',
+  borderColor: 'transparent',
   color: '#ffffff',
+  headerColor: 'transparent',
   logoFill: '#000000',
   logoShadow: false,
 }
 
 const white = {
   backgroundColor: '#ffffff',
-  headerColor: '#000000',
+  borderColor: '#ffffff',
   color: '#000000',
+  headerColor: '#000000',
   logoFill: '#ffffff',
   logoShadow: false,
 }

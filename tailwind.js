@@ -228,7 +228,7 @@ module.exports = {
       'monospace',
     ],
     // Orchestra
-    source: ['Source Sans Pro', 'sans-serif'],
+    rubik: ['Rubik', 'sans-serif'],
     plex: ['IBM Plex Sans', 'sans-serif'],
   },
 
@@ -263,7 +263,7 @@ module.exports = {
     '5xl': '3rem', // 48px
     // Orchestra
     xxs: '.625rem', // 10px
-    body: 'calc(14px + 4 * ((100vw - 320px) / 1280))',
+    body: 'calc(12px + 4 * ((100vw - 320px) / 1280))',
     description: 'calc(10px + 4 * ((100vw - 320px) / 1280))',
     heading0: 'calc(72px + 72 * ((100vw - 320px) / 1280))',
     heading1: 'calc(48px + 48 * ((100vw - 320px) / 1280))',
@@ -272,7 +272,7 @@ module.exports = {
     heading4: 'calc(24px + 18 * ((100vw - 320px) / 1280))',
     heading5: 'calc(24px + 12 * ((100vw - 320px) / 1280))',
     heading6: 'calc(21px + 3 * ((100vw - 320px) / 1280))',
-    list: 'calc(12px + 4 * ((100vw - 320px) / 1280))',
+    list: 'calc(11px + 4 * ((100vw - 320px) / 1280))',
   },
 
   /*

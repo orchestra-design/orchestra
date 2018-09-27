@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { countJumbo } from '../../actions'
 import { Current } from './Current'
 import { SimpleRow } from './Grids'
-import { ButtonText } from './Typography'
+import { ButtonSmallText } from './Typography'
 import { LittleRoundButton } from './Buttons'
 
 import IconUp from '../../assets/icon-up.svg'
@@ -14,25 +14,26 @@ import IconUpBlack from '../../assets/icon-up-black.svg'
 
 const PagerRow = styled('div')`
   ${SimpleRow};
-  ${ButtonText};
-  ${tw([
-    'hidden', 'screen:flex',
-    'items-center', 'whitespace-no-wrap'
-  ])};
+  ${ButtonSmallText};
+  ${tw(['hidden', 'screen:flex', 'items-center', 'whitespace-no-wrap'])};
   color: ${({ theme }) => theme.color};
   line-height: 1.15rem;
 `
 
 const ButtonStyles = props => css`
-  ${tw([
-      'bg-transparent', 'cursor-pointer'
-    ])};
-    background-image: url(${props.theme.color === '#ffffff' ? IconUp : IconUpBlack});
-    background-size: 16px 16px;
-    &:hover {
-      background-color: ${props.theme.color === '#ffffff' ? '#000000' : '#ffffff'};
-      background-image: url(${props.theme.color === '#ffffff' ? IconUp : IconUpBlack});
-    }
+  ${tw(['bg-transparent', 'cursor-pointer'])};
+  background-image: url(${props.theme.color === '#ffffff'
+    ? IconUp
+    : IconUpBlack});
+  background-size: 16px 16px;
+  &:hover {
+    background-color: ${props.theme.color === '#ffffff'
+      ? '#000000'
+      : '#ffffff'};
+    background-image: url(${props.theme.color === '#ffffff'
+      ? IconUp
+      : IconUpBlack});
+  }
 `
 
 const Previous = styled(LittleRoundButton)`
@@ -55,8 +56,8 @@ export const Pager = connect(
   return (
     <PagerRow>
       <Previous onClick={() => countJumbo(decrement)} />
-      <Current>{ jumboCount + 1 }</Current>
-      { length }
+      <Current>{jumboCount + 1}</Current>
+      {length}
       <Next onClick={() => countJumbo(increment)} />
     </PagerRow>
   )

@@ -25,6 +25,7 @@ const FullScreenSection = styled('div')`
   ])};
   @media (max-width: 599px) {
     height: 100vw;
+    min-height: 420px;
   }
   color: ${({ theme }) => theme.color};
 `
