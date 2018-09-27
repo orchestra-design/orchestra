@@ -50,13 +50,13 @@ const Col = styled('div')`
 
 const Heading = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'w-full'])};
+  ${tw(['max-w-xs', 'pl-q24', 'w-full'])};
   color: ${({ theme }) => theme.color};
 `
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'mb-q48', 'w-full'])};
+  ${tw(['max-w-xs', 'mb-q48', 'pl-q24', 'w-full'])};
   color: ${({ theme }) => theme.color};
 `
 
