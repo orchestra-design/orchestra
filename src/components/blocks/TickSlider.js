@@ -27,7 +27,8 @@ const Container = styled('div')`
     'relative',
   ])};
   @media (max-width: 599px) {
-    height: auto;
+    height: 100vw;
+    min-height: 420px;
   }
   @media (min-width: 600px) {
     height: 100vh;
@@ -88,6 +89,7 @@ const CaptionLink = styled(Link)`
     transform: translateX(0%);
   }
   &:hover::after {
+    ${tw(['hidden', 'screen:block'])}
     color: ${({ theme }) => theme.color};
     transform: translateX(112%);
   }
@@ -107,7 +109,7 @@ const enhance = compose(
   lifecycle({
     state: {},
     componentDidMount() {
-      /* const intervalId = setInterval(() => {
+      const intervalId = setInterval(() => {
         not(this.props.hiddenDown) &&
           this.props.countJumbo(
             equals(this.props.jumboCount, length(this.props.image) - 1)
@@ -115,7 +117,7 @@ const enhance = compose(
               : this.props.jumboCount + 1
           )
       }, 6000)
-      this.setState({ intervalId: intervalId }) */
+      this.setState({ intervalId: intervalId })
     },
     componentWillUnmount() {
       clearInterval(this.state.intervalId)
