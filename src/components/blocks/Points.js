@@ -57,7 +57,7 @@ export const Points = ({ points }) => (
             className={css`${tw('max-w-xs w-full')}`}
           >{unless(isNil,() =>
             <Img key={uuid()} 
-              sizes={point.pointsimage.localFile.childImageSharp.sizes}
+              fluid={point.pointsimage.localFile.childImageSharp.fluid}
             />
           )(point.pointsimage && point.pointsimage.localFile)}</div>
           {unless(isNil,() =>

@@ -6,7 +6,7 @@ import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
-import { imageSizes } from '../../helpers'
+import { imageFluid } from '../../helpers'
 
 import { BaseTransition, ImageLinkTransition } from './Transitions'
 import { List, DescriptionSemibold, Heading2, Heading6 } from './Typography'
@@ -128,12 +128,12 @@ export const LinkImage = connect(
       <ImageWrapper {...{ worksGrid }}>
         <Img
           className={Image}
-          sizes={imageSizes(image)}
+          fluid={imageFluid(image)}
           style={{ position: 'absolute' }}
         />
         <Img
           className={HoverImage}
-          sizes={imageSizes(hoverimage)}
+          fluid={imageFluid(hoverimage)}
           style={{ position: 'absolute' }}
         />
       </ImageWrapper>

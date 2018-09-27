@@ -85,7 +85,7 @@ export const Columns = connect(pick(['isMobile']))(
                   {unless(isNil, () => (
                     <Img
                       key={uuid()}
-                      sizes={item.colimage.localFile.childImageSharp.sizes}
+                      fluid={item.colimage.localFile.childImageSharp.fluid}
                     />
                   ))(item.colimage && item.colimage.localFile)}
                 </div>
@@ -138,8 +138,8 @@ export const Columns = connect(pick(['isMobile']))(
                         {unless(isNil, () => (
                           <Img
                             key={uuid()}
-                            sizes={
-                              item.colimage.localFile.childImageSharp.sizes
+                            fluid={
+                              item.colimage.localFile.childImageSharp.fluid
                             }
                           />
                         ))(item.colimage && item.colimage.localFile)}

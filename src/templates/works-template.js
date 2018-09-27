@@ -67,8 +67,8 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768, quality: 80) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
@@ -76,8 +76,8 @@ export const query = graphql`
           hoverimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768, quality: 80) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }

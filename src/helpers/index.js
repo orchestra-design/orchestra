@@ -139,7 +139,7 @@ export const imageResolutions = path([
   'childImageSharp',
   'resolutions',
 ])
-export const imageSizes = path(['localFile', 'childImageSharp', 'sizes'])
+export const imageFluid = path(['localFile', 'childImageSharp', 'fluid'])
 
 export const notIsNil = x => not(isNil(x))
 

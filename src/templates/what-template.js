@@ -66,8 +66,8 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              sizes(maxWidth: 1920, quality: 80) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 1920, quality: 80) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -80,8 +80,8 @@ export const query = graphql`
               url
               localFile {
                 childImageSharp {
-                  sizes(maxWidth: 720, quality: 80) {
-                    ...GatsbyImageSharpSizes_noBase64
+                  fluid(maxWidth: 720, quality: 80) {
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }
@@ -97,8 +97,8 @@ export const query = graphql`
             sictextimage {
               localFile {
                 childImageSharp {
-                  sizes(maxWidth: 240, quality: 80) {
-                    ...GatsbyImageSharpSizes_noBase64
+                  fluid(maxWidth: 240, quality: 80) {
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
               }

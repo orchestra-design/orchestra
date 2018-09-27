@@ -55,8 +55,8 @@ export const query = graphql`
           jumboimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 1920, quality: 80) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 1920, quality: 80) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -66,8 +66,8 @@ export const query = graphql`
           pointsimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 480, quality: 80) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 480, quality: 80) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }

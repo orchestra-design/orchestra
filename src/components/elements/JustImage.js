@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 export const JustImage = ({ image }) => 
   <Img 
-    sizes={image.localFile.childImageSharp.sizes} 
+    fluid={image.localFile.childImageSharp.fluid} 
     className={css`${tw('pin')};`} 
     style={{position: 'absolute'}} 
   />

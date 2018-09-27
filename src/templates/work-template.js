@@ -126,8 +126,8 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              sizes(maxWidth: 1920, quality: 80) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 1920, quality: 80) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -150,8 +150,8 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768, quality: 80) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
@@ -159,8 +159,8 @@ export const query = graphql`
           hoverimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768, quality: 80) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768, quality: 80) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
@@ -187,8 +187,8 @@ export const query = graphql`
                 url
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 1200, quality: 80) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 1200, quality: 80) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -203,8 +203,8 @@ export const query = graphql`
                 url
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 720, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                    fluid(maxWidth: 720, quality: 80) {
+                      ...GatsbyImageSharpFluid_noBase64
                     }
                   }
                 }
@@ -221,8 +221,8 @@ export const query = graphql`
               sictextimage {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 480, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                    fluid(maxWidth: 480, quality: 80) {
+                      ...GatsbyImageSharpFluid_noBase64
                     }
                   }
                 }

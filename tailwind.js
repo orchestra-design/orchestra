@@ -234,16 +234,16 @@ module.exports = {
 
   /*
   |-----------------------------------------------------------------------------
-  | Text sizes                         https://tailwindcss.com/docs/text-sizing
+  | Text fluid                         https://tailwindcss.com/docs/text-sizing
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your text sizes. Name these in whatever way
+  | Here is where you define your text fluid. Name these in whatever way
   | makes the most sense to you. We use size names by default, but
   | you're welcome to use a numeric scale or even something else
   | entirely.
   |
   | By default Tailwind uses the "rem" unit type for most measurements.
-  | This allows you to set a root font size which all other sizes are
+  | This allows you to set a root font size which all other fluid are
   | then based on. That said, you are free to use whatever units you
   | prefer, be it rems, ems, pixels or other.
   |
@@ -251,7 +251,7 @@ module.exports = {
   |
   */
 
-  textSizes: {
+  textFluid: {
     xs: '.75rem', // 12px
     sm: '.875rem', // 14px
     base: '1rem', // 16px
@@ -442,7 +442,7 @@ module.exports = {
   | Width                                    https://tailwindcss.com/docs/width
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your width utility sizes. These can be
+  | Here is where you define your width utility fluid. These can be
   | percentage based, pixels, rems, or any other units. By default
   | we provide a sensible rem based numeric scale, a percentage
   | based fraction scale, plus some other common use-cases. You
@@ -516,7 +516,7 @@ module.exports = {
   | Height                                  https://tailwindcss.com/docs/height
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your height utility sizes. These can be
+  | Here is where you define your height utility fluid. These can be
   | percentage based, pixels, rems, or any other units. By default
   | we provide a sensible rem based numeric scale plus some other
   | common use-cases. You can, of course, modify these values as
@@ -573,7 +573,7 @@ module.exports = {
   | Minimum width                        https://tailwindcss.com/docs/min-width
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your minimum width utility sizes. These can
+  | Here is where you define your minimum width utility fluid. These can
   | be percentage based, pixels, rems, or any other units. We provide a
   | couple common use-cases by default. You can, of course, modify
   | these values as needed.
@@ -592,7 +592,7 @@ module.exports = {
   | Minimum height                      https://tailwindcss.com/docs/min-height
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your minimum height utility sizes. These can
+  | Here is where you define your minimum height utility fluid. These can
   | be percentage based, pixels, rems, or any other units. We provide a
   | few common use-cases by default. You can, of course, modify these
   | values as needed.
@@ -612,7 +612,7 @@ module.exports = {
   | Maximum width                        https://tailwindcss.com/docs/max-width
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your maximum width utility sizes. These can
+  | Here is where you define your maximum width utility fluid. These can
   | be percentage based, pixels, rems, or any other units. By default
   | we provide a sensible rem based scale and a "full width" size,
   | which is basically a reset utility. You can, of course,
@@ -642,7 +642,7 @@ module.exports = {
   | Maximum height                      https://tailwindcss.com/docs/max-height
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your maximum height utility sizes. These can
+  | Here is where you define your maximum height utility fluid. These can
   | be percentage based, pixels, rems, or any other units. We provide a
   | couple common use-cases by default. You can, of course, modify
   | these values as needed.
@@ -661,7 +661,7 @@ module.exports = {
   | Padding                                https://tailwindcss.com/docs/padding
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your padding utility sizes. These can be
+  | Here is where you define your padding utility fluid. These can be
   | percentage based, pixels, rems, or any other units. By default we
   | provide a sensible rem based numeric scale plus a couple other
   | common use-cases like "1px". You can, of course, modify these
@@ -711,7 +711,7 @@ module.exports = {
   | Margin                                  https://tailwindcss.com/docs/margin
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your margin utility sizes. These can be
+  | Here is where you define your margin utility fluid. These can be
   | percentage based, pixels, rems, or any other units. By default we
   | provide a sensible rem based numeric scale plus a couple other
   | common use-cases like "1px". You can, of course, modify these
@@ -762,7 +762,7 @@ module.exports = {
   | Negative margin                https://tailwindcss.com/docs/negative-margin
   |-----------------------------------------------------------------------------
   |
-  | Here is where you define your negative margin utility sizes. These can
+  | Here is where you define your negative margin utility fluid. These can
   | be percentage based, pixels, rems, or any other units. By default we
   | provide matching values to the padding scale since these utilities
   | generally get used together. You can, of course, modify these

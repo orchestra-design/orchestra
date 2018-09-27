@@ -21,7 +21,7 @@ const transitionGroup = data =>
     >
       {image.localFile.childImageSharp ? (
         <Img
-          sizes={image.localFile.childImageSharp.sizes}
+          fluid={image.localFile.childImageSharp.fluid}
           className={css`
             ${tw('pin')};
           `}
@@ -46,13 +46,23 @@ export const ImageForSlider = ({ count, image }) => {
     <Fragment>
       {unless(isNil, () => (
         <Fragment>
-          <Img
-            sizes={data[0].image.localFile.childImageSharp.sizes}
-            className={css`
-              ${tw('pin')};
-            `}
-            style={{ position: 'absolute' }}
-          />
+          {data[0].image.localFile.childImageSharp ? (
+            <Img
+              fluid={data[0].image.localFile.childImageSharp.fluid}
+              className={css`
+                ${tw('pin')};
+              `}
+              style={{ position: 'absolute' }}
+            />
+          ) : (
+            <img
+              className={css`
+                ${tw(['w-full'])};
+              `}
+              src={image.url}
+              alt=""
+            />
+          )}
           <Transition
             native
             items={data}

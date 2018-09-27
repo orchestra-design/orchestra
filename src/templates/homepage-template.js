@@ -95,8 +95,8 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 1920, quality: 80) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 1920, quality: 80) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -118,8 +118,8 @@ export const query = graphql`
               colbackimage {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                    fluid(maxWidth: 1920, quality: 80) {
+                      ...GatsbyImageSharpFluid_noBase64
                     }
                   }
                 }
@@ -129,8 +129,8 @@ export const query = graphql`
               colimage {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 480, quality: 80) {
-                      ...GatsbyImageSharpSizes_noBase64
+                    fluid(maxWidth: 480, quality: 80) {
+                      ...GatsbyImageSharpFluid_noBase64
                     }
                   }
                 }
@@ -180,8 +180,8 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
@@ -189,8 +189,8 @@ export const query = graphql`
           hoverimage {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 768) {
-                  ...GatsbyImageSharpSizes_noBase64
+                fluid(maxWidth: 768) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }

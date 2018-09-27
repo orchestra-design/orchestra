@@ -42,7 +42,7 @@ const transitionGroup = data =>
       style={{ ...style }}
     >
       <Img
-        sizes={image.localFile.childImageSharp.sizes}
+        fluid={image.localFile.childImageSharp.fluid}
         className={css`
           ${tw('pin')};
         `}
@@ -74,7 +74,7 @@ export const Image = compose(
         !isNil(jumboCount) && (
           <Wrapper {...{ backSlider }}>
             <Img
-              sizes={data[0].image.localFile.childImageSharp.sizes}
+              fluid={data[0].image.localFile.childImageSharp.fluid}
               className={css`
                 ${tw('pin')};
               `}

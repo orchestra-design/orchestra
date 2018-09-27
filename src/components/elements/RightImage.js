@@ -25,7 +25,7 @@ const transitionGroup = data =>
         className={css`
           ${tw('pin')};
         `}
-        sizes={image.localFile.childImageSharp.sizes}
+        fluid={image.localFile.childImageSharp.fluid}
         style={{ position: 'absolute' }}
       />
     </animated.div>
@@ -52,7 +52,7 @@ export const RightImage = ({ rightImage, sicgrid }) => {
             ${tw(['md:p-0', 'relative'])};
           `}
         >
-          <Img sizes={data[0].image.localFile.childImageSharp.sizes} />
+          <Img fluid={data[0].image.localFile.childImageSharp.fluid} />
           <Transition
             native
             items={data}

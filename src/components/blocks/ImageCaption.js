@@ -63,7 +63,7 @@ export const ImageCaption = ({ primary, items }) => (
             `}
           >
             {primary.sicimage.localFile.childImageSharp ? (
-              <Img sizes={primary.sicimage.localFile.childImageSharp.sizes} />
+              <Img fluid={primary.sicimage.localFile.childImageSharp.fluid} />
             ) : (
               <img
                 className={css`
@@ -88,7 +88,7 @@ export const ImageCaption = ({ primary, items }) => (
               >
                 <Img
                   key={uuid()}
-                  sizes={item.sictextimage.localFile.childImageSharp.sizes}
+                  fluid={item.sictextimage.localFile.childImageSharp.fluid}
                 />
               </div>
             ))(item.sictextimage)}
