@@ -55,9 +55,11 @@ export const RichText = css`
   }
   & .link {
     ${ButtonText};
+    ${tw(['no-underline'])};
+    color: inherit;
   }
   & a {
-    ${tw(['no-underline'])};
+    ${tw(['underline'])};
     color: inherit;
   }
   & strong {
@@ -102,6 +104,8 @@ export const RichTextSmall = css`
   }
   & .link {
     ${ButtonSmallText};
+    ${tw(['no-underline'])};
+    color: inherit;
   }
   & a {
     ${tw(['underline'])};
