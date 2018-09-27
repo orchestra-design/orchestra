@@ -86,7 +86,7 @@ class ScrollContainer extends Component {
       const newRightImage = pathOr(null, ['props', 'right-image'], child)
       const newSicGrid = pathOr(null, ['props', 'sicgrid'], child)
       const isSlider = path(['props', 'slider'], child)
-      const newTheme = camelCase(pathOr('image', ['props', 'theme'], child))
+      const newTheme = camelCase(pathOr('white', ['props', 'theme'], child))
 
       // Image
       ifElse(
@@ -186,10 +186,18 @@ class ScrollContainer extends Component {
     }
 
     this.props.changeTheme(
-      camelCase(pathOr('image', ['props', 'theme'], this.children[0]))
+      camelCase(
+        pathOr(
+          'white',
+          ['props', 'theme'],
+          Children.only(this.props.children[0])
+        )
+      )
     )
 
-    this.props.setImage(pathOr(null, ['props', 'image'], this.children[0]))
+    this.props.setImage(
+      pathOr(null, ['props', 'image'], Children.only(this.props.children[0]))
+    )
   }
 
   componentWillUnmount() {

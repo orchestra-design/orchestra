@@ -64,7 +64,6 @@ const TemplateWrapper = ({
         <SEO {...{ seo }} />
         <Header
           {...{ allSite }}
-          {...{ color }}
           {...{ lang }}
           {...{ location }}
           {...{ meta }}

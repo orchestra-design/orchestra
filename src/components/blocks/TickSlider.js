@@ -60,11 +60,11 @@ const CaptionLink = styled(Link)`
   ${tw(['no-underline', 'relative'])}
   color: ${({ theme }) => theme.color};
   &::before {
-    ${tw(['absolute', 'border', 'border-solid', 'rounded-full', 'pin'])};
+    ${tw(['absolute', 'border', 'border-solid', 'pin'])};
     border-color: transparent;
     box-shadow: none;
     content: '';
-    margin: -0.125rem -0.5rem;
+    margin: -0.125rem -0.35rem;
     transform: translateY(-0.075);
     transition: all 200ms ease-in-out;
     z-index: -1;
