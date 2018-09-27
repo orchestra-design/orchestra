@@ -10,17 +10,13 @@ import {
 } from '../components/blocks'
 import { ScrollChild } from '../components/elements'
 
-const WhatTemplate = ({
-  data: { what, seo, allSite, links, meta },
-  location,
-}) => {
+const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
   const data = path(['data'], what)
   const { body, image, theme, title } = data
 
   return (
     <TemplateWrapper
       {...{ allSite }}
-      {...{ links }}
       {...{ location }}
       {...{ image }}
       {...{ meta }}
@@ -81,6 +77,7 @@ export const query = graphql`
             sicgrid
             sictheme
             sicimage {
+              url
               localFile {
                 childImageSharp {
                   sizes(maxWidth: 720, quality: 80) {
@@ -124,16 +121,6 @@ export const query = graphql`
                 ...GatsbyImageSharpResolutions_noBase64
               }
             }
-          }
-        }
-      }
-    }
-    links: prismicWhat(lang: { eq: $lang }) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
           }
         }
       }

@@ -6,10 +6,7 @@ import TemplateWrapper from '../components/layouts'
 import { Footer, JumboSlider, Points } from '../components/blocks'
 import { ScrollChild } from '../components/elements'
 
-const HowTemplate = ({
-  data: { how, seo, allSite, links, meta },
-  location,
-}) => {
+const HowTemplate = ({ data: { how, seo, allSite, meta }, location }) => {
   const data = path(['data'], how)
   const { theme } = data
   const image = map(
@@ -22,7 +19,6 @@ const HowTemplate = ({
     <TemplateWrapper
       {...{ allSite }}
       {...{ image }}
-      {...{ links }}
       {...{ location }}
       notDown={true}
       {...{ meta }}
@@ -99,16 +95,6 @@ export const query = graphql`
                 ...GatsbyImageSharpResolutions_noBase64
               }
             }
-          }
-        }
-      }
-    }
-    links: prismicHow(lang: { eq: $lang }) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
           }
         }
       }

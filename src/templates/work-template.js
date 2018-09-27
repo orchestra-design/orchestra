@@ -14,10 +14,8 @@ import {
 } from '../components/blocks'
 import { ScrollChild } from '../components/elements'
 import {
-  concat,
   constant,
   includes,
-  mergeDeepWith,
   path,
   safeMap,
   uuid,
@@ -27,31 +25,18 @@ import {
 import TemplateWrapper from '../components/layouts'
 
 const WorkTemplate = ({
-  data: { work, allworks, seo, allSite, links, meta },
+  data: { work, allworks, seo, allSite, meta },
   location,
 }) => {
   const data = path(['data'], work)
   const tags = path(['tags'], work)
   const { body, color, context, image, statement, theme } = data
-  const appendedLinks = mergeDeepWith(concat, links, {
-    data: {
-      headerlinks: [
-        {
-          linktitle: seo.lang.includes('ru') ? 'Проекты' : 'Works',
-          link: {
-            url: `/${seo.lang.replace('-us', '')}/projects`,
-          },
-        },
-      ],
-    },
-  })
 
   return (
     <Fragment>
       <TemplateWrapper
         {...{ allSite }}
         {...{ color }}
-        links={appendedLinks}
         {...{ image }}
         {...{ location }}
         {...{ meta }}
@@ -199,6 +184,7 @@ export const query = graphql`
             }
             items {
               imgimage {
+                url
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 1200, quality: 80) {
@@ -214,6 +200,7 @@ export const query = graphql`
               sicgrid
               sictheme
               sicimage {
+                url
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 720, quality: 80) {
@@ -273,16 +260,6 @@ export const query = graphql`
                 ...GatsbyImageSharpResolutions_noBase64
               }
             }
-          }
-        }
-      }
-    }
-    links: prismicWorks(lang: { eq: $lang }) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
           }
         }
       }

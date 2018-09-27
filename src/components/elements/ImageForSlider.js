@@ -7,43 +7,64 @@ import { Transition, animated } from 'react-spring'
 import { isArray, isNil, unless, uuid } from '../../helpers'
 
 const Slide = css`
-  ${tw('absolute pin')};  
+  ${tw('absolute pin')};
   will-change: opacity;
 `
 
-const transitionGroup = data => data.map(({ image }) => 
-  style => 
-    <animated.div className={css`${Slide}`} style={{...style}} >
-      <Img 
-        sizes={image.localFile.childImageSharp.sizes} 
-        className={css`${tw('pin')};`} 
-        style={{position: 'absolute'}} 
-      />
+const transitionGroup = data =>
+  data.map(({ image }) => style => (
+    <animated.div
+      className={css`
+        ${Slide};
+      `}
+      style={{ ...style }}
+    >
+      {image.localFile.childImageSharp ? (
+        <Img
+          sizes={image.localFile.childImageSharp.sizes}
+          className={css`
+            ${tw('pin')};
+          `}
+          style={{ position: 'absolute' }}
+        />
+      ) : (
+        <img
+          className={css`
+            ${tw(['w-full'])};
+          `}
+          src={image.url}
+          alt=""
+        />
+      )}
     </animated.div>
-)
+  ))
 
 export const ImageForSlider = ({ count, image }) => {
-  const data = isArray(image) ? [image[count]] : [{...{image}}]
-  
+  const data = isArray(image) ? [image[count]] : [{ ...{ image } }]
+
   return (
     <Fragment>
-      {unless(isNil, () =>
+      {unless(isNil, () => (
         <Fragment>
-          <Img 
-            sizes={data[0].image.localFile.childImageSharp.sizes} 
-            className={css`${tw('pin')};`} 
-            style={{position: 'absolute'}} 
+          <Img
+            sizes={data[0].image.localFile.childImageSharp.sizes}
+            className={css`
+              ${tw('pin')};
+            `}
+            style={{ position: 'absolute' }}
           />
           <Transition
             native
             items={data}
-            keys={data.map(({image}) => `${image}${uuid()}`)}
-            from={{ opacity: .0 }}
-            enter={{ opacity: 1 }} 
-            leave={{ opacity: .0 }}
-          >{ transitionGroup(data) }</Transition> 
+            keys={data.map(({ image }) => `${image}${uuid()}`)}
+            from={{ opacity: 0.0 }}
+            enter={{ opacity: 1 }}
+            leave={{ opacity: 0.0 }}
+          >
+            {transitionGroup(data)}
+          </Transition>
         </Fragment>
-      )(data)}
+      ))(data)}
     </Fragment>
   )
 }
