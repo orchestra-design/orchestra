@@ -96,7 +96,17 @@ export const WorkImageCaption = ({ color, items, primary }) => (
               ${tw('w-full')};
             `}
           >
-            <Img sizes={primary.sicimage.localFile.childImageSharp.sizes} />
+            {primary.sicimage.localFile.childImageSharp ? (
+              <Img sizes={primary.sicimage.localFile.childImageSharp.sizes} />
+            ) : (
+              <img
+                className={css`
+                  ${tw(['w-full'])};
+                `}
+                src={primary.sicimage.url}
+                alt=""
+              />
+            )}
           </div>
         ))(primary.sicimage && primary.sicimage.localFile)}
       </LeftCol>

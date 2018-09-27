@@ -171,6 +171,7 @@ export const query = graphql`
             }
             items {
               imgimage {
+                url
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 1920, quality: 80) {
@@ -189,6 +190,7 @@ export const query = graphql`
                 html
               }
               sicimage {
+                url
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 720, quality: 80) {

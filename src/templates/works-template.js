@@ -23,7 +23,7 @@ const Title = styled('h1')`
 `
 
 const WorksTemplate = ({
-  data: { workspage, allworks, seo, allSite, links, meta },
+  data: { workspage, allworks, seo, allSite, meta },
   location,
 }) => {
   const title = path(['data', 'title', 'text'], workspage)
@@ -34,7 +34,6 @@ const WorksTemplate = ({
       {...{ seo }}
       {...{ allSite }}
       notDown={true}
-      {...{ links }}
       {...{ location }}
       {...{ meta }}
       {...{ title }}
@@ -126,16 +125,6 @@ export const query = graphql`
                 ...GatsbyImageSharpResolutions_noBase64
               }
             }
-          }
-        }
-      }
-    }
-    links: prismicWorks(lang: { eq: $lang }) {
-      data {
-        headerlinks {
-          linktitle
-          link {
-            url
           }
         }
       }
