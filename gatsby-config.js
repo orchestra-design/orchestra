@@ -1,5 +1,14 @@
-var PrismicDOM = require('prismic-dom')
-var Elements = PrismicDOM.RichText.Elements
+const PrismicDOM = require('prismic-dom')
+const tp = require('./src/helpers/tp')
+
+const Elements = PrismicDOM.RichText.Elements
+const linkResolver = () => doc =>
+  doc.type === 'work'
+    ? `/${doc.lang.replace('-us', '')}/projects/${doc.uid.replace(
+        /.{3}$/i,
+        ''
+      )}`
+    : `/${doc.lang.replace('-us', '')}/${doc.uid.replace(/.{3}$/i, '')}`
 
 module.exports = {
   plugins: [
@@ -20,16 +29,7 @@ module.exports = {
       options: {
         repositoryName: `orchestra`,
         accessToken: `MC5XeklwblNBQUFOY3dwUXRL.77-9UQ7vv71r77-9K2gdX--_vUzvv70577-977-977-977-9Nu-_ve-_ve-_ve-_vS3vv73vv73vv71YORxvdA`,
-        linkResolver: () => doc =>
-          doc.type === 'work'
-            ? `/${doc.lang.replace('-us', '')}/projects/${doc.uid.replace(
-                /.{3}$/i,
-                ''
-              )}`
-            : `/${doc.lang.replace('-us', '')}/${doc.uid.replace(
-                /.{3}$/i,
-                ''
-              )}`,
+        linkResolver: linkResolver,
         htmlSerializer: ({ node, key, value }) => (
           type,
           element,
@@ -37,6 +37,14 @@ module.exports = {
           children
         ) => {
           switch (type) {
+            case Elements.paragraph:
+              return `<p>${tp.execute(children.join(''))}</p>`
+            case Elements.hyperlink:
+              const target = element.data.target
+                ? `target="${element.data.target}" rel="noopener noreferrer"`
+                : ''
+              const linkUrl = PrismicDOM.Link.url(element.data, linkResolver)
+              return `<a class="link" ${target} href="${linkUrl}">${content}</a>`
             case Elements.heading5:
               return `<p class="lead">${children.join('')}</p>`
             case Elements.heading6:
@@ -47,15 +55,6 @@ module.exports = {
         },
       },
     },
-    /* {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: [
-          `IBM+Plex+Sans\:600,700`,
-          `Source+Sans+Pro\:400,600&amp;subset=cyrillic`,
-        ],
-      },
-    }, */
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-lodash`,

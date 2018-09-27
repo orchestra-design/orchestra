@@ -54,7 +54,7 @@ export const JumboDownButton = compose(
       const pred = gt(length(jumboCounterChildren) - 1, props.jumboCount)
       window.scrollBy(
         0,
-        pred ? window.innerHeight / 2 : window.innerHeight * 0.75
+        pred ? window.innerHeight / 3 : window.innerHeight * 0.65
       )
       props.countJumbo(pred ? props.jumboCount + 1 : null)
     },

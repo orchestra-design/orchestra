@@ -24,7 +24,8 @@ const MenuButton = styled(SquareButton)`
     'm-q12',
   ])};
   background-image: url(${({ isMenu }) => (isMenu ? IconClose : IconMenu)});
-  border-color: ${({ isMenu, theme }) => (isMenu ? '#ffffff' : theme.color)};
+  border-color: ${({ isMenu, theme }) =>
+    isMenu ? '#ffffff' : theme.borderColor};
   transition: all 0.2s ease-in-out;
   &:hover {
     background-image: url(${({ isMenu }) =>

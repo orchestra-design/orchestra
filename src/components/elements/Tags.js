@@ -18,6 +18,7 @@ const TagsRow = styled('div')`
     'md:flex-col',
     'items-baseline',
     'md:items-start',
+    '-mx-1',
     'w-auto',
   ])};
 `

@@ -74,8 +74,9 @@ const NavContainer = styled('div')`
 `
 
 const TextWrapper = styled('div')`
-  ${tw(['md:absolute', 'mt-q36', 'pin-t', 'pin-l', 'w-full'])};
+  ${tw(['md:absolute', 'mb-q36', 'pin-b', 'pin-l', 'w-full'])};
   color: ${({ theme }) => theme.logoFill};
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.64);
   @media (min-width: 768px) {
     margin-top: calc(64vw * 1 / 2);
   }

@@ -9,7 +9,13 @@ import { changeTheme, countJumbo } from '../../actions'
 
 import { camelCase, equals, length, not } from '../../helpers'
 
-import { ButtonText, Heading2, JustImage, Pager, SimpleRow } from '../elements'
+import {
+  ButtonSmallText,
+  Heading2,
+  JustImage,
+  Pager,
+  SimpleRow,
+} from '../elements'
 
 const Container = styled('div')`
   ${tw([
@@ -21,7 +27,8 @@ const Container = styled('div')`
     'relative',
   ])};
   @media (max-width: 599px) {
-    height: auto;
+    height: 100vw;
+    min-height: 420px;
   }
   @media (min-width: 600px) {
     height: 100vh;
@@ -44,7 +51,7 @@ const Heading = styled('h1')`
 `
 
 const Caption = styled('div')`
-  ${ButtonText};
+  ${ButtonSmallText};
   ${SimpleRow} ${tw([
     'screen:fixed',
     'items-center',
@@ -60,11 +67,11 @@ const CaptionLink = styled(Link)`
   ${tw(['no-underline', 'relative'])}
   color: ${({ theme }) => theme.color};
   &::before {
-    ${tw(['absolute', 'border', 'border-solid', 'rounded-full', 'pin'])};
+    ${tw(['absolute', 'border', 'border-solid', 'pin'])};
     border-color: transparent;
     box-shadow: none;
     content: '';
-    margin: -0.125rem -0.5rem;
+    margin: -0.125rem -0.35rem;
     transform: translateY(-0.075);
     transition: all 200ms ease-in-out;
     z-index: -1;
@@ -82,6 +89,7 @@ const CaptionLink = styled(Link)`
     transform: translateX(0%);
   }
   &:hover::after {
+    ${tw(['hidden', 'screen:block'])}
     color: ${({ theme }) => theme.color};
     transform: translateX(112%);
   }
@@ -101,7 +109,7 @@ const enhance = compose(
   lifecycle({
     state: {},
     componentDidMount() {
-      /* const intervalId = setInterval(() => {
+      const intervalId = setInterval(() => {
         not(this.props.hiddenDown) &&
           this.props.countJumbo(
             equals(this.props.jumboCount, length(this.props.image) - 1)
@@ -109,7 +117,7 @@ const enhance = compose(
               : this.props.jumboCount + 1
           )
       }, 6000)
-      this.setState({ intervalId: intervalId }) */
+      this.setState({ intervalId: intervalId })
     },
     componentWillUnmount() {
       clearInterval(this.state.intervalId)
