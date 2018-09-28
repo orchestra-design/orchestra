@@ -1,7 +1,6 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 import { connect } from 'react-redux'
 import { compose, pure } from 'recompose'
@@ -15,6 +14,8 @@ import {
   unless,
   uuid,
 } from '../../helpers'
+
+import { Img } from './Img'
 
 const Wrapper = styled('div')`
   ${tw(['absolute', 'pin'])};
@@ -42,10 +43,10 @@ const transitionGroup = data =>
       style={{ ...style }}
     >
       <Img
-        fluid={image.localFile.childImageSharp.fluid}
         className={css`
           ${tw('pin')};
         `}
+        src={image}
         style={{ position: 'absolute' }}
       />
     </animated.div>
@@ -74,10 +75,10 @@ export const Image = compose(
         !isNil(jumboCount) && (
           <Wrapper {...{ backSlider }}>
             <Img
-              fluid={data[0].image.localFile.childImageSharp.fluid}
               className={css`
                 ${tw('pin')};
               `}
+              src={data[0].image}
               style={{ position: 'absolute' }}
             />
             <Transition

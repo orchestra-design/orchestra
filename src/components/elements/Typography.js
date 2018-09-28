@@ -37,7 +37,7 @@ export const Description = css`
 
 export const DescriptionSemibold = css`
   ${Description};
-  ${tw(['font-semibold'])};
+  ${tw(['font-opensans', 'font-semibold'])};
 `
 
 export const Heading = css`

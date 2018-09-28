@@ -1,10 +1,16 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import Img from 'gatsby-image'
 import { connect } from 'react-redux'
 
-import { ColumnThree, Container, JustImage, RichText, Row } from '../elements'
+import {
+  ColumnThree,
+  Container,
+  Img,
+  JustImage,
+  RichText,
+  Row,
+} from '../elements'
 
 import {
   and,
@@ -83,10 +89,7 @@ export const Columns = connect(pick(['isMobile']))(
                   `}
                 >
                   {unless(isNil, () => (
-                    <Img
-                      key={uuid()}
-                      fluid={item.colimage.localFile.childImageSharp.fluid}
-                    />
+                    <Img key={uuid()} src={item.colimage} />
                   ))(item.colimage && item.colimage.localFile)}
                 </div>
                 <div
@@ -136,12 +139,7 @@ export const Columns = connect(pick(['isMobile']))(
                         `}
                       >
                         {unless(isNil, () => (
-                          <Img
-                            key={uuid()}
-                            fluid={
-                              item.colimage.localFile.childImageSharp.fluid
-                            }
-                          />
+                          <Img key={uuid()} src={item.colimage} />
                         ))(item.colimage && item.colimage.localFile)}
                       </div>
                     </Col>

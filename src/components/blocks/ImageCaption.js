@@ -1,13 +1,13 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import Img from 'gatsby-image'
 
 import {
   ColumnEight,
   ColumnThree,
   Container,
   Headers,
+  Img,
   RichText,
   Row,
 } from '../elements'
@@ -62,17 +62,7 @@ export const ImageCaption = ({ primary, items }) => (
               ${tw('max-w-xs w-full')};
             `}
           >
-            {primary.sicimage.localFile.childImageSharp ? (
-              <Img fluid={primary.sicimage.localFile.childImageSharp.fluid} />
-            ) : (
-              <img
-                className={css`
-                  ${tw(['w-full'])};
-                `}
-                src={primary.sicimage.url}
-                alt=""
-              />
-            )}
+            <Img src={primary.sicimage} />
           </div>
         ))(primary.sicimage && primary.sicimage.localFile)}
       </LeftCol>
@@ -86,10 +76,7 @@ export const ImageCaption = ({ primary, items }) => (
                   ${tw('max-w-xs w-full')};
                 `}
               >
-                <Img
-                  key={uuid()}
-                  fluid={item.sictextimage.localFile.childImageSharp.fluid}
-                />
+                <Img key={uuid()} src={item.sictextimage} />
               </div>
             ))(item.sictextimage)}
             {unless(isNil, () => (

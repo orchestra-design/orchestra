@@ -5835,6 +5835,50 @@ button,
   font-size: 3rem;
 }
 
+.text-xxs {
+  font-size: .625rem;
+}
+
+.text-body {
+  font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+}
+
+.text-description {
+  font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+}
+
+.text-heading0 {
+  font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+}
+
+.text-heading1 {
+  font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+}
+
+.text-heading2 {
+  font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+}
+
+.text-heading3 {
+  font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+}
+
+.text-heading4 {
+  font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+}
+
+.text-heading5 {
+  font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+}
+
+.text-heading6 {
+  font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+}
+
+.text-list {
+  font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+}
+
 .italic {
   font-style: italic;
 }
@@ -11461,6 +11505,50 @@ button,
 
   .sm\:text-5xl {
     font-size: 3rem;
+  }
+
+  .sm\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .sm\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .sm\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .sm\:italic {
@@ -17092,6 +17180,50 @@ button,
     font-size: 3rem;
   }
 
+  .md\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .md\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .md\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .md\:italic {
     font-style: italic;
   }
@@ -22719,6 +22851,50 @@ button,
 
   .lg\:text-5xl {
     font-size: 3rem;
+  }
+
+  .lg\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .lg\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .lg\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .lg\:italic {
@@ -28350,6 +28526,50 @@ button,
     font-size: 3rem;
   }
 
+  .xl\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .xl\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .xl\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .xl\:italic {
     font-style: italic;
   }
@@ -33979,6 +34199,50 @@ button,
     font-size: 3rem;
   }
 
+  .screen\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .screen\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .screen\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
+  }
+
   .screen\:italic {
     font-style: italic;
   }
@@ -39606,6 +39870,50 @@ button,
 
   .desktop\:text-5xl {
     font-size: 3rem;
+  }
+
+  .desktop\:text-xxs {
+    font-size: .625rem;
+  }
+
+  .desktop\:text-body {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-description {
+    font-size: calc(10px + 4 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading0 {
+    font-size: calc(72px + 72 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading1 {
+    font-size: calc(48px + 48 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading2 {
+    font-size: calc(34px + 34 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading3 {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading4 {
+    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading5 {
+    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-heading6 {
+    font-size: calc(21px + 3 * ((100vw - 320px) / 1280));
+  }
+
+  .desktop\:text-list {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:italic {

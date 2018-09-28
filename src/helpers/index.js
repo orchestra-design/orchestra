@@ -134,13 +134,6 @@ export const includes = curry(
 
 export const lengthLte = curry((num, x) => lte(length(x), num))
 
-export const imageResolutions = path([
-  'localFile',
-  'childImageSharp',
-  'resolutions',
-])
-export const imageFluid = path(['localFile', 'childImageSharp', 'fluid'])
-
 export const notIsNil = x => not(isNil(x))
 
 export const safeMap = curry((fn, xs) => when(notIsNil, map(fn))(xs))

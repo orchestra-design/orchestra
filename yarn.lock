@@ -710,14 +710,6 @@
     core-js "^2.5.3"
     regenerator-runtime "^0.11.1"
 
-"@babel/runtime@7.0.0-beta.51":
-  version "7.0.0-beta.51"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-beta.51.tgz#48b8ed18307034c6620f643514650ca2ccc0165a"
-  integrity sha1-SLjtGDBwNMZiD2Q1FGUMoszAFlo=
-  dependencies:
-    core-js "^2.5.7"
-    regenerator-runtime "^0.11.1"
-
 "@babel/runtime@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
@@ -5449,10 +5441,10 @@ gatsby-cli@^2.4.1:
     yargs "^11.1.0"
     yurnalist "^0.2.1"
 
-gatsby-image@^2.0.0-rc.1:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.10.tgz#65c1f27e6d0cf024b8b31e43ff0d115f3b264446"
-  integrity sha512-kad7qZY7JcRzEUkodCkH38zFpKW1IDlx7AjSyX6aKR4GqJ65BpWrZkY/080IP8tUkyUh+AESn/TgZN+BoKTfLQ==
+gatsby-image@^2.0.0-rc.4:
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.0-rc.4.tgz#afea4d6264dba450edac8d06c17fdc182eeaeb81"
+  integrity sha512-b/t1itnt5vePLtepDMjTbCyLJCjdGk4pIuWjckR1yB/BFky6xuXouaolrDNoOMvdUShQpw2nwL79dAq2gwweRQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     prop-types "^15.6.1"
@@ -5537,10 +5529,10 @@ gatsby-plugin-page-creator@^2.0.0:
     parse-filepath "^1.0.1"
     slash "^1.0.0"
 
-gatsby-plugin-sharp@^2.0.0-rc.0:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.0.5.tgz#b14b9e72fda65b37f862cad46d4d41ae133f11af"
-  integrity sha512-KaMT0pzo+abATq28Cza/EqogPr+4LKVxq5PdxU+N0dV5pSdqseFuPVMx28E0q5bj1X5jeGj3rKW4Q5n93NCllA==
+gatsby-plugin-sharp@^2.0.0-rc.7:
+  version "2.0.0-rc.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.0.0-rc.7.tgz#a08fac164c60c0b73ecd8d8e74e102e9e4c54c1a"
+  integrity sha512-vg3DWo2cpVCp6HCuDv1pnC//K4xisctfElYE1wtp8ZApCNBd3+Yxza2PxriBMB8A2t1lCDT5vVE5OgwdICxI1A==
   dependencies:
     "@babel/runtime" "^7.0.0"
     async "^2.1.2"
@@ -5618,15 +5610,17 @@ gatsby-source-prismic@^1.2.0:
     prismic-dom "^2.1.0"
     prismic-javascript "^1.1.5"
 
-gatsby-transformer-sharp@^^2.1.1-rc.0:
-  version "2.2.0-alpha.80a21f04"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.2.0-alpha.80a21f04.tgz#db06cb75c0f69dcf69fe17b6ba70ab964b5d3703"
-  integrity sha1-2wbLdcD2nc9p/he2unCrlktdNwM=
+gatsby-transformer-sharp@^2.1.1-rc.3:
+  version "2.1.1-rc.3"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.1.1-rc.3.tgz#74a0020bc52be2f872175b0dc30b2253ec15738e"
+  integrity sha512-Dyb2RgwJRo/MZNQWY83sgxVD3TGL7WhgZvxJ9X1Vk0qGqo3nOZx9PQePppK2xHrjJh/P19AeOCFOeM3owwhinA==
   dependencies:
-    "@babel/runtime" "7.0.0-beta.51"
+    "@babel/runtime" "^7.0.0"
     bluebird "^3.5.0"
     fs-extra "^4.0.2"
+    potrace "^2.1.1"
     probe-image-size "^4.0.0"
+    sharp "^0.20.2"
 
 gatsby@^2.0.0-rc.28:
   version "2.0.9"

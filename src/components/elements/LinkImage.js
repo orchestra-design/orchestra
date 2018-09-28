@@ -1,13 +1,12 @@
 /* global tw */
 import React from 'react'
-import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
-import { imageFluid } from '../../helpers'
 
+import { Img } from './Img'
 import { BaseTransition, ImageLinkTransition } from './Transitions'
 import { List, DescriptionSemibold, Heading2, Heading6 } from './Typography'
 
@@ -126,14 +125,10 @@ export const LinkImage = connect(
       to={link.url}
     >
       <ImageWrapper {...{ worksGrid }}>
-        <Img
-          className={Image}
-          fluid={imageFluid(image)}
-          style={{ position: 'absolute' }}
-        />
+        <Img className={Image} src={image} style={{ position: 'absolute' }} />
         <Img
           className={HoverImage}
-          fluid={imageFluid(hoverimage)}
+          src={hoverimage}
           style={{ position: 'absolute' }}
         />
       </ImageWrapper>

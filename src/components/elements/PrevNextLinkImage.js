@@ -1,13 +1,13 @@
 /* global tw */
 import React from 'react'
-import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
-import { imageFluid, constant } from '../../helpers'
+import { constant } from '../../helpers'
 
+import { Img } from './Img'
 import { BaseTransition, ImageLinkTransition } from './Transitions'
 import { DescriptionSemibold, Heading6 } from './Typography'
 
@@ -32,9 +32,6 @@ const LinkedImage = styled(Link)`
     & .${HoverImage} {
       ${tw(['shadow-elevate1', 'opacity-100'])};
     }
-    & .link-hover {
-      ${tw('opacity-100')};
-    }
   }
 `
 
@@ -45,7 +42,6 @@ const TitleWrapper = styled('div')`
     'flex-col',
     'h-1/2',
     'justify-end',
-    'screen:opacity-0',
     'pin-b',
     'pin-l',
     'pin-r',
@@ -85,7 +81,6 @@ export const PrevNextLinkImage = connect(
   { pageTransition }
 )(
   ({
-    color,
     statement,
     link,
     image,
@@ -95,24 +90,18 @@ export const PrevNextLinkImage = connect(
     title,
     worksGrid,
   }) => (
-    <LinkedImage {...{ color }} onClick={pageTransition} to={link.url}>
+    <LinkedImage onClick={pageTransition} to={link.url}>
       <ImageWrapper>
-        <Img
-          className={Image}
-          fluid={imageFluid(image)}
-          style={{ position: 'absolute' }}
-        />
+        <Img className={Image} src={image} style={{ position: 'absolute' }} />
         <Img
           className={HoverImage}
-          fluid={imageFluid(hoverimage)}
+          src={hoverimage}
           style={{ position: 'absolute' }}
         />
       </ImageWrapper>
       <TitleWrapper className="link-hover">
         <Row>
-          <Title className="title-hover" {...{ color }} {...{ worksGrid }}>
-            {statement.text}
-          </Title>
+          <Title {...{ worksGrid }}>{statement.text}</Title>
           <DescriptionText>{title}</DescriptionText>
         </Row>
       </TitleWrapper>

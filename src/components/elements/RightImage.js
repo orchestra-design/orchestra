@@ -1,11 +1,11 @@
 /* global tw */
 import React from 'react'
 import { css } from 'react-emotion'
-import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 
 import { Container } from './Containers'
 import { ColumnTwoFive, ColumnThreeFive } from './Grids'
+import { Img } from './Img'
 import { constant, F, isNil, pathOr, unless, uuid, equals } from '../../helpers'
 
 const Slide = css`
@@ -52,7 +52,7 @@ export const RightImage = ({ rightImage, sicgrid }) => {
             ${tw(['md:p-0', 'relative'])};
           `}
         >
-          <Img fluid={data[0].image.localFile.childImageSharp.fluid} />
+          <Img src={data[0].image} />
           <Transition
             native
             items={data}

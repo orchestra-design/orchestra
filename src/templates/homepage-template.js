@@ -93,6 +93,7 @@ export const query = graphql`
       data {
         slider {
           image {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920, quality: 80) {
@@ -116,6 +117,7 @@ export const query = graphql`
             primary {
               coltheme
               colbackimage {
+                url
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920, quality: 80) {
@@ -127,6 +129,7 @@ export const query = graphql`
             }
             items {
               colimage {
+                url
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 480, quality: 80) {
@@ -178,6 +181,7 @@ export const query = graphql`
       data {
         links {
           image {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 768) {
@@ -187,6 +191,7 @@ export const query = graphql`
             }
           }
           hoverimage {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 768) {
@@ -212,10 +217,11 @@ export const query = graphql`
         seodescription
         seokeywords
         seoimage {
+          url
           localFile {
             childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
+              fixed(width: 1200, height: 630) {
+                ...GatsbyImageSharpFixed_noBase64
               }
             }
           }

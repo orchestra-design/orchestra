@@ -67,6 +67,7 @@ export const RichText = css`
   }
   & ul {
     ${List};
+    ${tw(['my-q48'])};
   }
   & li {
     ${tw(['mb-q12', 'pl-q24', 'relative'])};

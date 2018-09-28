@@ -1,7 +1,6 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 
@@ -15,6 +14,7 @@ import {
   Container,
   Description,
   Headers,
+  Img,
   Heading0,
   RichText,
   Row,
@@ -134,17 +134,7 @@ export const ImageCaptionWithDigits = connect(
               ${tw('md:hidden max-w-xs mb-q24 w-full')};
             `}
           >
-            {primary.sicimage.localFile.childImageSharp ? (
-              <Img fluid={primary.sicimage.localFile.childImageSharp.fluid} />
-            ) : (
-              <img
-                className={css`
-                  ${tw(['w-full'])};
-                `}
-                src={primary.sicimage.url}
-                alt=""
-              />
-            )}
+            <Img src={primary.sicimage} />
           </div>
         ))(primary.sicimage && primary.sicimage.localFile)}
         {unless(isNil, () => (
@@ -180,7 +170,14 @@ export const ImageCaptionWithDigits = connect(
         </div>
         <div
           className={css`
-            ${tw(['flex', 'flex-col', 'sm:w-3/4', 'lg:w-2/3', 'xl:w-1/2'])};
+            ${tw([
+              'flex',
+              'flex-col',
+              'sm:w-3/4',
+              'md:w-full',
+              'lg:w-2/3',
+              'xl:w-1/2',
+            ])};
           `}
         >
           {safeMap(item => (
@@ -199,12 +196,7 @@ export const ImageCaptionWithDigits = connect(
                   />
                   {unless(isNil, () => (
                     <div key={uuid()} className={LinkImage}>
-                      <Img
-                        key={uuid()}
-                        fluid={
-                          item.sictextimage.localFile.childImageSharp.fluid
-                        }
-                      />
+                      <Img key={uuid()} src={item.sictextimage} />
                     </div>
                   ))(item.sictextimage)}
                 </Link>

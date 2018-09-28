@@ -1,10 +1,10 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import { css } from 'react-emotion'
-import Img from 'gatsby-image'
 import { Transition, animated } from 'react-spring'
 
 import { isArray, isNil, unless, uuid } from '../../helpers'
+import { Img } from './Img'
 
 const Slide = css`
   ${tw('absolute pin')};
@@ -19,23 +19,13 @@ const transitionGroup = data =>
       `}
       style={{ ...style }}
     >
-      {image.localFile.childImageSharp ? (
-        <Img
-          fluid={image.localFile.childImageSharp.fluid}
-          className={css`
-            ${tw('pin')};
-          `}
-          style={{ position: 'absolute' }}
-        />
-      ) : (
-        <img
-          className={css`
-            ${tw(['w-full'])};
-          `}
-          src={image.url}
-          alt=""
-        />
-      )}
+      <Img
+        src={image}
+        className={css`
+          ${tw('pin')};
+        `}
+        style={{ position: 'absolute' }}
+      />
     </animated.div>
   ))
 
@@ -46,23 +36,13 @@ export const ImageForSlider = ({ count, image }) => {
     <Fragment>
       {unless(isNil, () => (
         <Fragment>
-          {data[0].image.localFile.childImageSharp ? (
-            <Img
-              fluid={data[0].image.localFile.childImageSharp.fluid}
-              className={css`
-                ${tw('pin')};
-              `}
-              style={{ position: 'absolute' }}
-            />
-          ) : (
-            <img
-              className={css`
-                ${tw(['w-full'])};
-              `}
-              src={image.url}
-              alt=""
-            />
-          )}
+          <Img
+            src={data[0].image}
+            className={css`
+              ${tw('pin')};
+            `}
+            style={{ position: 'absolute' }}
+          />
           <Transition
             native
             items={data}

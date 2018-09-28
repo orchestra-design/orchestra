@@ -148,6 +148,7 @@ export const query = graphql`
         }
         context {
           image {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 768, quality: 80) {
@@ -157,6 +158,7 @@ export const query = graphql`
             }
           }
           hoverimage {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 768, quality: 80) {
@@ -219,6 +221,7 @@ export const query = graphql`
                 html
               }
               sictextimage {
+                url
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 480, quality: 80) {
@@ -254,10 +257,11 @@ export const query = graphql`
         seodescription
         seokeywords
         seoimage {
+          url
           localFile {
             childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
+              fixed(width: 1200, height: 630) {
+                ...GatsbyImageSharpFixed_noBase64
               }
             }
           }

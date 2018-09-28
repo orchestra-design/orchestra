@@ -74,7 +74,7 @@ export const Context = ({ allworks, context }) => {
   const linkUid = path(['link', 'document', 0, 'uid'])
   const getWorkData = uid =>
     compose(
-      pick(['title', 'statement', 'color']),
+      pick(['title', 'statement']),
       path(['data']),
       find(propEq('uid', uid)),
       map(path(['node'])),

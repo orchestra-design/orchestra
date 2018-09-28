@@ -1,57 +1,57 @@
-import React from "react";
-import Helmet from "react-helmet";
+import React from 'react'
+import Helmet from 'react-helmet'
 
-import defaultImage from "../../assets/default.jpg";
-import favicon from "../../assets/favicon.png";
+import defaultImage from '../../assets/default.jpg'
+import favicon from '../../assets/favicon.png'
 
 const getSchemaOrgJSONLD = ({ url, seotitle, getImage, description }) => [
   {
-    "@context": "http://schema.org",
-    "@type": "WebSite",
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
     url,
     name: seotitle,
-    alternateName: seotitle
+    alternateName: seotitle,
   },
   {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
+    '@context': 'http://schema.org',
+    '@type': 'BreadcrumbList',
     itemListElement: [
       {
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: 1,
         item: {
-          "@id": url,
+          '@id': url,
           name: seotitle,
-          getImage
-        }
-      }
-    ]
-  }
-];
+          getImage,
+        },
+      },
+    ],
+  },
+]
 
 export const SEO = ({
   seo: {
     uid,
     lang,
-    data: { seotitle, seodescription, seokeywords, seoimage }
-  }
+    data: { seotitle, seodescription, seokeywords, seoimage },
+  },
 }) => {
-  const siteUrl = "https://www.orchestra-design.com/";
-  const fbAppID = "";
+  const siteUrl = 'https://www.orchestra-design.com/'
+  const fbAppID = ''
   const url =
     uid !== null
-      ? `${siteUrl}${lang.replace("-us", "")}/${uid.replace(/.{3}$/i, "")}`
-      : siteUrl;
+      ? `${siteUrl}${lang.replace('-us', '')}/${uid.replace(/.{3}$/i, '')}`
+      : siteUrl
   const getImage =
     seoimage && seoimage.localFile
-      ? seoimage.localFile.childImageSharp.resolutions.src
-      : defaultImage;
+      ? seoimage.localFile.childImageSharp.fixed.src
+      : defaultImage
   const schemaOrgJSONLD = getSchemaOrgJSONLD({
     url,
     seotitle,
     getImage,
-    seodescription
-  });
+    seodescription,
+  })
 
   return (
     <Helmet
@@ -77,5 +77,5 @@ export const SEO = ({
       <meta property="og:image" content={getImage} />
       <meta property="fb:app_id" content={fbAppID} />
     </Helmet>
-  );
-};
+  )
+}

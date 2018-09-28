@@ -1,11 +1,14 @@
 /* global tw */
 import React from 'react'
 import { css } from 'react-emotion'
-import Img from 'gatsby-image'
+import { Img } from './Img'
 
-export const JustImage = ({ image }) => 
-  <Img 
-    fluid={image.localFile.childImageSharp.fluid} 
-    className={css`${tw('pin')};`} 
-    style={{position: 'absolute'}} 
+export const JustImage = ({ image }) => (
+  <Img
+    src={image}
+    className={css`
+      ${tw('pin')};
+    `}
+    style={{ position: 'absolute' }}
   />
+)

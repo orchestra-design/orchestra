@@ -53,6 +53,7 @@ export const query = graphql`
             text
           }
           jumboimage {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920, quality: 80) {
@@ -64,6 +65,7 @@ export const query = graphql`
         }
         points {
           pointsimage {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 480, quality: 80) {
@@ -89,10 +91,11 @@ export const query = graphql`
         seodescription
         seokeywords
         seoimage {
+          url
           localFile {
             childImageSharp {
-              resolutions(width: 1200, height: 630) {
-                ...GatsbyImageSharpResolutions_noBase64
+              fixed(width: 1200, height: 630) {
+                ...GatsbyImageSharpFixed_noBase64
               }
             }
           }
