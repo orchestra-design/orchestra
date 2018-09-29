@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 
-import { isArray, isNil, unless, uuid } from '../../helpers'
+import { isArray, isNil, unless, uuid, includes } from '../../helpers'
 import { Img } from './Img'
 
 const Slide = css`
@@ -29,19 +29,25 @@ const transitionGroup = data =>
     </animated.div>
   ))
 
-export const ImageForSlider = ({ count, image }) => {
+export const ImageForSlider = ({ count, image, storedTheme }) => {
   const data = isArray(image) ? [image[count]] : [{ ...{ image } }]
 
   return (
     <Fragment>
       {unless(isNil, () => (
-        <Fragment>
+        <div className={css`
+          ${includes('white', storedTheme) 
+            ? tw(['relative'])
+            : tw(['absolute', 'pin'])
+          }
+        `}>
           <Img
             src={data[0].image}
             className={css`
               ${tw('pin')};
             `}
-            style={{ position: 'absolute' }}
+            style={{ position: includes('white', storedTheme) 
+              ? 'relative' : 'absolute' }}
           />
           <Transition
             native
@@ -53,7 +59,7 @@ export const ImageForSlider = ({ count, image }) => {
           >
             {transitionGroup(data)}
           </Transition>
-        </Fragment>
+        </div>
       ))(data)}
     </Fragment>
   )

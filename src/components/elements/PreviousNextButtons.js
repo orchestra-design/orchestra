@@ -35,6 +35,8 @@ export const PrevNextTemplate = styled('span')`
 `
 
 export const NextButton = styled(PrevNextTemplate)`
+  background-image: 
+    url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
   @media (min-width: 601px) {
     background-image: 
       url(${({ storedTheme }) => includes('image', storedTheme) ? IconNext : IconNextBlack});
@@ -42,5 +44,7 @@ export const NextButton = styled(PrevNextTemplate)`
 `
 
 export const PreviousButton = styled(PrevNextTemplate)`
+  background-image: 
+    url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
   transform: rotateZ(180deg);
 `

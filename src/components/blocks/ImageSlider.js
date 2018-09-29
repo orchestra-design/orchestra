@@ -25,6 +25,7 @@ import {
   length,
   unless,
   pick,
+  includes,
 } from '../../helpers'
 
 const BackImage = styled('div')`
@@ -76,7 +77,8 @@ const NavContainer = styled('div')`
 const TextWrapper = styled('div')`
   ${tw(['md:absolute', 'mb-q36', 'pin-b', 'pin-l', 'w-full'])};
   color: ${({ theme }) => theme.logoFill};
-  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.64);
+  text-shadow: 0 0 1rem rgba(0, 0, 0, ${({ storedTheme }) => 
+    includes('white', storedTheme) ? 0 : 0.64});
   @media (min-width: 768px) {
     margin-top: calc(64vw * 1 / 2);
   }
@@ -164,8 +166,8 @@ export const ImageSlider = compose(
             ${tw('relative')};
           `}
         >
-          {and(
-            gt(itemsLength, 1),
+          {and(and(gt(itemsLength, 1), 
+            !includes('white', storedTheme)),
             <BackImage>
               <Container
                 className={css`
@@ -175,7 +177,8 @@ export const ImageSlider = compose(
                 <Slide
                   className={css`
                     &::after {
-                      ${tw(['absolute', 'block', 'pin'])};
+                      ${!includes('white', storedTheme) &&
+                        tw(['absolute', 'block', 'pin'])};
                       background: linear-gradient(
                         180deg,
                         rgba(0, 0, 0, ${backSlider ? 0.96 : 0.24}) 0%,
@@ -205,6 +208,7 @@ export const ImageSlider = compose(
                 <ImageForSlider
                   count={sliderCounter[sliderId] || 0}
                   {...{ image }}
+                  {...{ storedTheme }}
                 />
               </Slide>
             ))(items && items[sliderCounter[sliderId] || 0].imgimage.localFile)}
@@ -217,7 +221,9 @@ export const ImageSlider = compose(
             )}
           </Container>
           {unless(isNil, () => (
-            <TextWrapper>
+            <TextWrapper
+              {...{ storedTheme }}
+            >
               <Container>
                 <Text
                   dangerouslySetInnerHTML={{ __html: primary.imgtext.html }}
@@ -234,6 +240,7 @@ export const ImageSlider = compose(
                 `}
               >
                 <PreviousButton
+                  {...{ storedTheme }}
                   onClick={() => {
                     counter(previous)
                     setImage(toBackImage(previous))

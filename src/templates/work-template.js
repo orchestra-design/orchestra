@@ -5,6 +5,7 @@ import { compose, lifecycle } from 'recompose'
 
 import { sliderCount } from '../actions'
 import {
+  Columns,
   Context,
   Footer,
   ImageSlider,
@@ -77,6 +78,21 @@ const WorkTemplate = ({
                       {...{ color }}
                       items={section.items}
                       primary={section.primary}
+                    />
+                  </ScrollChild>
+                )
+              case 'PrismicWorkBodyColumns':
+                return (
+                  <ScrollChild
+                    key={uuid()}
+                    theme={section.primary.coltheme}
+                    style={{ position: 'relative' }}
+                  >
+                    <Columns
+                      key={uuid()}
+                      items={section.items}
+                      primary={section.primary}
+                      withoutPadding
                     />
                   </ScrollChild>
                 )
@@ -229,6 +245,26 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+            }
+          }
+          ... on PrismicWorkBodyColumns {
+            primary {
+              coltheme
+            }
+            items {
+              colimage {
+                url
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 480, quality: 80) {
+                      ...GatsbyImageSharpFluid_noBase64
+                    }
+                  }
+                }
+              }
+              coltext {
+                html
               }
             }
           }

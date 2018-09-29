@@ -19,7 +19,7 @@ import {
 import { equals } from '../../helpers'
 
 const ColoredContainer = styled(Container)`
-  ${tw(['screen:opacity-0', 'md:pb-q112'])};
+  ${tw(['screen:opacity-0', 'py-q48', 'md:py-q112'])};
   ${({ storedTheme }) =>
     equals(storedTheme, 'colored') && tw(['screen:opacity-100'])};
   ${BaseTransition};

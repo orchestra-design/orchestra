@@ -26,7 +26,7 @@ import {
 
 const RowWrapper = styled('div')`
   ${Row};
-  ${tw(['items-center', 'md:items-start', 'py-q72', 'md:py-q200', 'relative'])};
+  ${tw(['items-center', 'md:items-start', 'py-q48', 'md:py-q200', 'relative'])};
   ${({ hasntImage }) => and(hasntImage, tw(['items-baseline']))};
   color: ${({ theme }) => theme.color};
 `

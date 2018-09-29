@@ -56,18 +56,20 @@ const Col = styled('div')`
 
 const Heading = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'pl-q24', 'w-full'])};
+  ${tw(['max-w-xs', 'w-full'])};
+  ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
 `
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'mb-q48', 'pl-q24', 'w-full'])};
+  ${tw(['max-w-xs', 'mb-q48', 'w-full'])};
+  ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
 `
 
 export const Columns = connect(pick(['isMobile']))(
-  ({ isMobile, primary, items }) => (
+  ({ isMobile, primary, items, withoutPadding }) => (
     <Fragment>
       {unless(isNil, () => (
         <Back>
@@ -102,6 +104,7 @@ export const Columns = connect(pick(['isMobile']))(
                     <Heading
                       key={uuid()}
                       dangerouslySetInnerHTML={{ __html: item.colheading.html }}
+                      {...{withoutPadding}}
                     />
                   ))(item.colheading)}
                 </div>
@@ -115,6 +118,7 @@ export const Columns = connect(pick(['isMobile']))(
                     <Text
                       key={uuid()}
                       dangerouslySetInnerHTML={{ __html: item.coltext.html }}
+                      {...{withoutPadding}}
                     />
                   ))(item.coltext)}
                 </div>
@@ -160,6 +164,7 @@ export const Columns = connect(pick(['isMobile']))(
                             dangerouslySetInnerHTML={{
                               __html: item.colheading.html,
                             }}
+                            {...{withoutPadding}}
                           />
                         ))(item.colheading)}
                       </div>
@@ -181,6 +186,7 @@ export const Columns = connect(pick(['isMobile']))(
                             dangerouslySetInnerHTML={{
                               __html: item.coltext.html,
                             }}
+                            {...{withoutPadding}}
                           />
                         ))(item.coltext)}
                       </div>
