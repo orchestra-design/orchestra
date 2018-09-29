@@ -153,16 +153,6 @@ export const query = graphql`
           ... on PrismicWhoBodyLead {
             primary {
               leadtheme
-              leadimage {
-                url
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
               leadtext {
                 text
               }
@@ -243,3 +233,13 @@ export const query = graphql`
     }
   }
 `
+/* leadimage {
+    url
+    localFile {
+      childImageSharp {
+        fluid(maxWidth: 1920, quality: 80) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  } */
