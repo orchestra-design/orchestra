@@ -44,10 +44,16 @@ const LinkWrapper = styled('div')`
     ])
   : tw(['screen:mb-q48', 'desktop:mb-q72'])
   };
-  height: 20rem;  
+  height: 15rem;
   @media(min-width: 601px) {
     max-width: ${({worksGrid}) => 
       worksGrid && 'calc(1/2 * 100% - 1.5rem)'};
+  }
+  @media(min-width: 768px) {
+    height: 17.5rem;
+  }
+  @media(min-width: 992px) {
+    height: 20rem;
   }
   @media(min-width: 1201px) {
     max-width: ${({worksGrid}) => 

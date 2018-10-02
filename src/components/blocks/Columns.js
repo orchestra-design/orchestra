@@ -56,16 +56,19 @@ const Col = styled('div')`
 
 const Heading = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'w-full'])};
+  ${tw(['max-w-xs'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
 `
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'mb-q48', 'w-full'])};
+  ${tw(['max-w-xs', 'mb-q48'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
+  & ul {
+    ${tw(['my-0'])};
+  }
 `
 
 export const Columns = connect(pick(['isMobile']))(

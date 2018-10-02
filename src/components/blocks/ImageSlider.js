@@ -75,7 +75,7 @@ const NavContainer = styled('div')`
 `
 
 const TextWrapper = styled('div')`
-  ${tw(['md:absolute', 'mb-q36', 'pin-b', 'pin-l', 'w-full'])};
+  ${tw(['md:absolute', 'mb-q36', 'mt-q36', 'md:mt-auto', 'pin-b', 'pin-l', 'w-full'])};
   color: ${({ theme }) => theme.logoFill};
   text-shadow: 0 0 1rem
     rgba(
@@ -163,7 +163,7 @@ export const ImageSlider = compose(
       <div
         className={css`
           ${tw('my-q112 desktop:my-q200 relative')};
-          ${gt(itemsLength, 1) && tw('flex flex-col h-screen justify-center')};
+          ${gt(itemsLength, 1) && tw('flex flex-col min-h-screen justify-center')};
         `}
       >
         <div

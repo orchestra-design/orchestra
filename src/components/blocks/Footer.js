@@ -52,9 +52,9 @@ const Accio = styled('div')`
   ${tw([
     'flex',
     'h-q36',
-    'items-center',
+    'items-baseline',
     'my-q72',
-    'screen:mb-q24',
+    'sm:mb-q24',
     'screen:mt-q144',
   ])};
 `
@@ -93,11 +93,12 @@ export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
         </Row>
         <Row
           className={css`
-            ${tw('mt-q36 screen:mt-q144')};
+            ${tw(['mt-q72', 'screen:mt-q144'])};
           `}
         >
           <Paragraph
             className={css`
+              ${tw(['mb-q24', 'screen:mb-0'])};
               width: calc(186px - 0.75rem);
             `}
             dangerouslySetInnerHTML={{ __html: addressesru.html }}
@@ -107,7 +108,7 @@ export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
         <Row>
           <Paragraph
             className={css`
-              ${tw(['mt-q60'])};
+              ${tw(['mt-q24', 'screen:mt-q60'])};
             `}
           >
             <a

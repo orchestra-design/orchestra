@@ -15,14 +15,13 @@ const Navigaton = styled('nav')`
     'flex-no-wrap',
     'flex-col',
     'md:flex-row',
-    'justify-around',
+    'justify-center',
     'items-stretch',
-    'w-full',
     'md:w-auto',
     'p-0',
     'pr-q8',
   ])};
-  ${props => props.isMenu && tw(['flex', 'flex-1', 'flex-wrap', 'screen:p-0'])};
+  ${props => props.isMenu && tw(['flex', 'flex-1', 'flex-wrap', 'p-0'])};
 `
 
 const Contact = ContactButton.withComponent('a')

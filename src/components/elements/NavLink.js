@@ -13,6 +13,7 @@ import { ButtonText } from './Typography'
 const BlackButton = styled('span')`
   ${Button};
   ${tw([
+    'flex-no-shrink',
     'h-q36',
     'mb-q12',
     'md:mb-0',
@@ -33,6 +34,7 @@ const NonButton = styled('span')`
   ${ButtonText};
   ${tw([
     'flex',
+    'flex-no-shrink',
     'justify-center',
     'bg-white',
     'text-black',

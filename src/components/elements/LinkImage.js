@@ -86,7 +86,7 @@ const Row = styled('div')`
 
 const Title = styled('h3')`
   ${Heading6};
-  ${tw(['mr-1/6', 'text-white', 'w-1/2'])};
+  ${tw(['mr-1/6', 'text-white', 'screen:w-1/2'])};
   @media (min-width: 601px) {
     ${BaseTransition};
     ${({ worksGrid }) => !worksGrid && Heading2};
@@ -95,11 +95,12 @@ const Title = styled('h3')`
 `
 
 const DescriptionText = styled('span')`
+  ${tw(['hidden', 'screen:block'])};
   ${({ worksGrid }) => (worksGrid ? DescriptionSemibold : List)};
   ${({ worksGrid }) =>
     worksGrid
       ? tw(['ml-auto', 'text-white', 'min-w-1/2'])
-      : tw(['mt-q36', 'text-white', 'screen:text-black'])};
+      : tw(['mt-q36', 'text-black'])};
   line-height: 1.125rem;
 `
 

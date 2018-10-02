@@ -31,13 +31,16 @@ const Col = styled('div')`
 const Header = styled('div')`
   ${Heading3};
   ${tw([
-    'mb-q24', 'mt-q36', 'pl-1/6'
+    'mb-q24', 'screen:mb-q36', 'mt-q36', 'pl-1/6'
   ])};
 `
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['pl-1/6'])};
+  ${tw(['pl-1/6'])};  
+  & ul {
+    ${tw(['my-0'])};
+  }
   & li {
     ${tw(['font-semibold'])};
   }
