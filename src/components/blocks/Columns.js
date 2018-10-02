@@ -66,9 +66,6 @@ const Text = styled('div')`
   ${tw(['max-w-xs', 'mb-q48'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
-  & ul {
-    ${tw(['my-0'])};
-  }
 `
 
 export const Columns = connect(pick(['isMobile']))(
