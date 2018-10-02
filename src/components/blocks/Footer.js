@@ -24,7 +24,6 @@ const Row = styled('div')`
 `
 
 const LogoWrapper = styled('div')`
-  ${tw([''])};
   height: 69px;
   width: 186px;
 `
@@ -61,46 +60,71 @@ const Accio = styled('div')`
 `
 
 export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
-  const { description, addresses, links, development, acciolink } = meta.data
+  const {
+    acciolink,
+    addressesfr,
+    addressesru,
+    description,
+    development,
+    email,
+    links,
+  } = meta.data
 
   return (
     <FooterContainer>
       <Container
         className={css`
-          ${tw('flex flex-1 flex-col justify-between')};
+          ${tw(['flex', 'flex-col', 'justify-between'])};
         `}
       >
         <Row>
           <Row
             className={css`
-              ${tw('flex-wrap')};
+              ${tw('w-full screen:items-center')};
             `}
           >
-            <Row
-              className={css`
-                ${tw('w-full screen:items-center')};
-              `}
-            >
-              <LogoWrapper>
-                <Logo />
-              </LogoWrapper>
-              <DescriptionText
-                dangerouslySetInnerHTML={{ __html: description.html }}
-              />
-            </Row>
-            <Row
-              className={css`
-                ${tw('screen:items-end mt-q36 screen:mt-q144')};
-              `}
-            >
-              <Paragraph
-                className={css`
-                  ${tw(['w-full'])};
-                `}
-                dangerouslySetInnerHTML={{ __html: addresses.html }}
-              />
-            </Row>
+            <LogoWrapper>
+              <Logo />
+            </LogoWrapper>
+            <DescriptionText
+              dangerouslySetInnerHTML={{ __html: description.html }}
+            />
           </Row>
+        </Row>
+        <Row
+          className={css`
+            ${tw('mt-q36 screen:mt-q144')};
+          `}
+        >
+          <Paragraph
+            className={css`
+              width: calc(186px - 0.75rem);
+            `}
+            dangerouslySetInnerHTML={{ __html: addressesru.html }}
+          />
+          <Paragraph dangerouslySetInnerHTML={{ __html: addressesfr.html }} />
+        </Row>
+        <Row>
+          <Paragraph
+            className={css`
+              ${tw(['mt-q60'])};
+            `}
+          >
+            <a
+              className={css`
+                ${tw(['no-underline'])};
+                &,
+                &:hover {
+                  color: inherit;
+                }
+              `}
+              href={email.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {email.url.replace('mailto:', '')}
+            </a>
+          </Paragraph>
         </Row>
         <Accio>
           <span

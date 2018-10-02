@@ -116,7 +116,11 @@ export const query = graphql`
         html
         text
       }
-      addresses {
+      addressesru {
+        html
+        text
+      }
+      addressesfr {
         html
         text
       }
