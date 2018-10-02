@@ -40,31 +40,37 @@ export const RightImage = ({ rightImage, sicgrid }) => {
   const data = [{ image: safeImage }]
 
   return (
-    <Container
+    <div
       className={css`
-        ${tw(['fixed', 'flex', 'h-full', 'items-center'])};
+        ${tw(['fixed', 'pin'])};
       `}
     >
-      {safeImage && (
-        <div
-          className={css`
-            ${equals('left', sicgrid) ? ColumnTwoFive : ColumnThreeFive};
-            ${tw(['md:p-0', 'relative'])};
-          `}
-        >
-          <Img src={data[0].image} />
-          <Transition
-            native
-            items={data}
-            keys={data.map(({ image }) => `${image}${uuid()}`)}
-            from={{ opacity: 0.0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0.0 }}
+      <Container
+        className={css`
+          ${tw(['flex', 'h-full', 'items-center'])};
+        `}
+      >
+        {safeImage && (
+          <div
+            className={css`
+              ${equals('left', sicgrid) ? ColumnTwoFive : ColumnThreeFive};
+              ${tw(['md:p-0', 'relative'])};
+            `}
           >
-            {transitionGroup(data)}
-          </Transition>
-        </div>
-      )}
-    </Container>
+            <Img src={data[0].image} />
+            <Transition
+              native
+              items={data}
+              keys={data.map(({ image }) => `${image}${uuid()}`)}
+              from={{ opacity: 0.0 }}
+              enter={{ opacity: 1 }}
+              leave={{ opacity: 0.0 }}
+            >
+              {transitionGroup(data)}
+            </Transition>
+          </div>
+        )}
+      </Container>
+    </div>
   )
 }

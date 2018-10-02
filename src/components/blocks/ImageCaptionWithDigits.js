@@ -175,8 +175,8 @@ export const ImageCaptionWithDigits = connect(
               'flex-col',
               'sm:w-3/4',
               'md:w-full',
-              'lg:w-2/3',
-              'xl:w-1/2',
+              'lg:w-3/4',
+              'xl:w-2/3',
             ])};
           `}
         >

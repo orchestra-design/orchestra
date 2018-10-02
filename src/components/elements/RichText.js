@@ -3,7 +3,6 @@ import { css } from 'react-emotion'
 
 import {
   Body,
-  ButtonText,
   ButtonSmallText,
   Heading2,
   Heading3,
@@ -54,8 +53,7 @@ export const RichText = css`
     ${tw(['m-0'])};
   }
   & .link {
-    ${ButtonText};
-    ${tw(['no-underline'])};
+    ${tw(['underline'])};
     color: inherit;
   }
   & a {

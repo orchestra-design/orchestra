@@ -77,8 +77,13 @@ const NavContainer = styled('div')`
 const TextWrapper = styled('div')`
   ${tw(['md:absolute', 'mb-q36', 'pin-b', 'pin-l', 'w-full'])};
   color: ${({ theme }) => theme.logoFill};
-  text-shadow: 0 0 1rem rgba(0, 0, 0, ${({ storedTheme }) => 
-    includes('white', storedTheme) ? 0 : 0.64});
+  text-shadow: 0 0 1rem
+    rgba(
+      0,
+      0,
+      0,
+      ${({ storedTheme }) => (includes('white', storedTheme) ? 0 : 0.64)}
+    );
   @media (min-width: 768px) {
     margin-top: calc(64vw * 1 / 2);
   }
@@ -166,8 +171,8 @@ export const ImageSlider = compose(
             ${tw('relative')};
           `}
         >
-          {and(and(gt(itemsLength, 1), 
-            !includes('white', storedTheme)),
+          {and(
+            and(gt(itemsLength, 1), !includes('white', storedTheme)),
             <BackImage>
               <Container
                 className={css`
@@ -221,9 +226,7 @@ export const ImageSlider = compose(
             )}
           </Container>
           {unless(isNil, () => (
-            <TextWrapper
-              {...{ storedTheme }}
-            >
+            <TextWrapper {...{ storedTheme }}>
               <Container>
                 <Text
                   dangerouslySetInnerHTML={{ __html: primary.imgtext.html }}

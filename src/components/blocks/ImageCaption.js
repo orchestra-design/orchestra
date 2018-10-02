@@ -10,6 +10,7 @@ import {
   Img,
   RichText,
   Row,
+  RichTextSmall,
 } from '../elements'
 
 import {
@@ -54,7 +55,10 @@ export const ImageCaption = ({ primary, items }) => (
     >
       <LeftCol grid={primary.sicgrid}>
         {unless(isNil, () => (
-          <div dangerouslySetInnerHTML={{ __html: primary.sicheader.html }} />
+          <div
+            className={RichTextSmall}
+            dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
+          />
         ))(primary.sicheader)}
         {unless(isNil, () => (
           <div
