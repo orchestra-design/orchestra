@@ -6,7 +6,9 @@ import styled from 'react-emotion'
 import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 
-import { Header } from '../blocks'
+import { toggleContact } from '../../actions'
+
+import { ContactForm, Header } from '../blocks'
 
 import {
   Back,
@@ -20,7 +22,7 @@ import {
   UpButton,
 } from '../elements'
 
-import { unless, isNil } from '../../helpers'
+import { unless, isNil, pick } from '../../helpers'
 
 import { theme as EmotionTheme } from '../theme'
 import '../../fonts/open-sans/stylesheet.css'
@@ -41,20 +43,22 @@ const ImageWrapper = styled('div')`
 `
 
 const TemplateWrapper = ({
-  seo,
   allSite,
+  backSlider,
+  children,
+  color,
+  contactForm,
+  hasBackImage,
   notDown,
+  image,
   location,
   meta,
-  color,
-  backSlider,
-  hasBackImage,
-  image,
   rightImage,
+  seo,
   sicgrid,
-  title,
-  children,
   storedTheme,
+  title,
+  toggleContact,
 }) => {
   const { lang } = seo
 
@@ -88,24 +92,23 @@ const TemplateWrapper = ({
         <ScrollContainer>{children}</ScrollContainer>
         <DownButton {...{ notDown }} />
         <UpButton />
-        <Contact
-          href={meta.data.email.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        />
+        <Contact onClick={toggleContact} />
+        {contactForm && <ContactForm {...{ meta }} />}
       </Main>
     </ThemeProvider>
   )
 }
 
 export default connect(
-  ({ backSlider, hasBackImage, rightImage, sicgrid, storedTheme }) => ({
-    backSlider,
-    hasBackImage,
-    rightImage,
-    sicgrid,
-    storedTheme,
-  })
+  pick([
+    'backSlider',
+    'contactForm',
+    'hasBackImage',
+    'rightImage',
+    'sicgrid',
+    'storedTheme',
+  ]),
+  { toggleContact }
 )(TemplateWrapper)
 
 export const query = graphql`
@@ -141,6 +144,12 @@ export const query = graphql`
         linktitle
         link {
           url
+        }
+      }
+      query {
+        inputtype
+        question {
+          html
         }
       }
     }

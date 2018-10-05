@@ -4,14 +4,14 @@ const writeSheet = require('./googleSheet')
 const s4 = require('./s4')
 
 module.exports.contact = (event, context, callback) => {
-  const newValues = [[
-    s4(),
-    new Date().toLocaleString('ru-RU', { timeZone: 'UTC' }),
-    event.queryStringParameters.name,
-    event.queryStringParameters.phone,
-    event.queryStringParameters.email,
-    event.queryStringParameters.message,
-  ]]
+  const newValues = [
+    [
+      s4(), 
+      new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })
+    ].concat(
+      event.queryStringParameters.answers.split(',')
+    ),
+  ]
 
   const response = {
     statusCode: 200,
@@ -24,7 +24,7 @@ module.exports.contact = (event, context, callback) => {
       input: event,
     }),
   }
-
+  
   writeSheet('Contacts!A:F', newValues)
   callback(null, response)
 }

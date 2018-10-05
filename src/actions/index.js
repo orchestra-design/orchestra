@@ -13,9 +13,12 @@ import {
   SLIDER_COUNT,
   THEME,
   THIS_FOOTER,
+  TOGGLE_CONTACT,
   TOGGLE_GRID,
   TOGGLE_MENU,
   TOGGLE_WORK_FILTER,
+  UPDATE_CONTACT_MESSAGES,
+  UPDATE_CURRENT
 } from '../constants'
 
 const countJumboAction = createAction(COUNT_JUMBO)
@@ -29,9 +32,12 @@ const setSicGridAction = createAction(SET_SIC_GRIDE)
 const setWorkFilterAction = createAction(SET_WORK_FILTER)
 const sliderCountAction = createAction(SLIDER_COUNT)
 const footerAction = createAction(THIS_FOOTER)
+const toggleContactAction = createAction(TOGGLE_CONTACT)
 const toggleGrideAction = createAction(TOGGLE_GRID)
 const toggleMenuAction = createAction(TOGGLE_MENU)
 const toggleWorkFilterAction = createAction(TOGGLE_WORK_FILTER)
+const updateContactAction = createAction(UPDATE_CONTACT_MESSAGES)
+const updateCurrentAction = createAction(UPDATE_CURRENT)
 
 export const changeTheme = payload => dispatch => {
   dispatch(createAction(THEME)(payload))
@@ -91,6 +97,10 @@ export const sliderCount = payload => dispatch => {
   dispatch(sliderCountAction(payload))
 }
 
+export const toggleContact = () => dispatch => {
+  dispatch(toggleContactAction())
+}
+
 export const toggleGrid = () => dispatch => {
   dispatch(toggleGrideAction())
 }
@@ -101,4 +111,12 @@ export const toggleMenu = () => dispatch => {
 
 export const toggleWorkFilter = () => dispatch => {
   dispatch(toggleWorkFilterAction())
+}
+
+export const updateContactMessages = payload => dispatch => {
+  dispatch(updateContactAction(payload))
+}
+
+export const updateCurrent = payload => dispatch => {
+  dispatch(updateCurrentAction(payload))
 }

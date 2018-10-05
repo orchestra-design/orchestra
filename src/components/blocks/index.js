@@ -1,4 +1,5 @@
 export { Columns } from './Columns'
+export { default as ContactForm } from './ContactForm'
 export { Context } from './Context'
 export { Footer } from './Footer'
 export { Header } from './Header'

@@ -48,6 +48,7 @@
     "rimraf": "^2.6.2",
     "tailwindcss": "^0.5.3",
     "typograf": "^6.7.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "whatwg-fetch": "^3.0.0"
   }
 }

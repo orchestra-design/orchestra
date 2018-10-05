@@ -1,4 +1,4 @@
-import { assoc, merge } from '../helpers'
+import { assoc, concat, merge } from '../helpers'
 import { handleActions } from 'redux-actions'
 
 import { initState } from '../init'
@@ -22,6 +22,7 @@ const reducer = handleActions(
     SLIDER_COUNT: (state, action) =>
       assoc('sliderCounter', merge(state.sliderCounter, action.payload), state),
     THIS_FOOTER: (state, action) => assoc('isFooter', action.payload, state),
+    TOGGLE_CONTACT: state => assoc('contactForm', !state.contactForm, state),
     TOGGLE_GRID: state => assoc('worksGrid', !state.worksGrid, state),
     TOGGLE_MENU: (state, action) =>
       assoc(
@@ -31,6 +32,14 @@ const reducer = handleActions(
       ),
     TOGGLE_WORK_FILTER: state =>
       assoc('worksFiltersOpen', !state.worksFiltersOpen, state),
+    UPDATE_CONTACT_MESSAGES: (state, action) =>
+      assoc(
+        'contactFormMessages',
+        concat(state.contactFormMessages, [action.payload]),
+        state
+      ),
+    UPDATE_CURRENT: (state, action) =>
+      assoc('contactFormCurrent', action.payload, state),
   },
   initState
 )
