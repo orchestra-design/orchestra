@@ -137,7 +137,7 @@ class ContactForm extends Component {
         fetch(
           `https://9q6r2a5wr5.execute-api.us-east-1.amazonaws.com/dev/contact?answers=${this.props.contactFormMessages
             .filter(message => message.answer && message.answer)
-            .map(({ answer }) => answer)}`,
+            .map(({ answer }) => answer.replace(',', ''))}`,
           {
             mode: 'no-cors',
           }
