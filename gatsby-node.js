@@ -84,3 +84,9 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
   setBabelPlugin({ name: 'babel-plugin-tailwind' })
 }
+
+exports.onCreateWebpackConfig = ({ actions: { setWebpackConfig } }) => {
+  setWebpackConfig({
+    entry: 'whatwg-fetch',
+  })
+}

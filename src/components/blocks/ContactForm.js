@@ -2,7 +2,6 @@
 import React, { createRef, Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
-import 'whatwg-fetch'
 
 import { toggleContact, updateCurrent, updateContactMessages } from '../../actions'
 import { Description, SquareButton } from '../elements'
