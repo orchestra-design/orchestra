@@ -54,6 +54,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      manifest: allPrismicManifest {
+        edges {
+          node {
+            uid
+            lang
+          }
+        }
+      }
       work: allPrismicWork {
         edges {
           node {

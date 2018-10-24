@@ -5,6 +5,7 @@ import styled from 'react-emotion'
 
 import {
   Columns,
+  FirstScreen,
   Footer,
   Lead,
   TickSlider,
@@ -25,6 +26,7 @@ const IndexTemplate = ({
   location,
 }) => {
   const body = path(['data', 'body'], page)
+  const description = path(['data', 'description'], page)
   const image = path(['data', 'slider'], page)
   const worksLinks = path(['data', 'links'], works)
 
@@ -38,8 +40,11 @@ const IndexTemplate = ({
       {...{ seo }}
       title={seo.data.seotitle}
     >
-      <ScrollChild theme={'image'}>
-        <TickSlider {...{ image }} {...{ meta }} />
+      <ScrollChild theme={'white'}>
+        <FirstScreen {...{description}} />
+      </ScrollChild>
+      <ScrollChild theme={'white'}>
+        {<TickSlider {...{ image }} />}
       </ScrollChild>
       {safeMap(section => {
         switch (section.__typename) {
@@ -90,7 +95,10 @@ export default IndexTemplate
 export const query = graphql`
   query IndexTemplateQuery($lang: String!) {
     page: prismicHomepage(lang: { eq: $lang }) {
-      data {
+      data {        
+        description {
+          text
+        }
         slider {
           image {
             url
