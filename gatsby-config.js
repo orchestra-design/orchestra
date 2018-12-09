@@ -11,6 +11,10 @@ const linkResolver = () => doc =>
     : `/${doc.lang.replace('-us', '')}/${doc.uid.replace(/.{3}$/i, '')}`
 
 module.exports = {
+  siteMetadata: {
+    title: 'Orchestra Design',
+    siteUrl: 'http://www.orchestra-design.com/',
+  },
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify-cache`,
