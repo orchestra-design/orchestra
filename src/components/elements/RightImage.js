@@ -25,18 +25,17 @@ const transitionGroup = data =>
         className={css`
           ${tw('pin')};
         `}
-        fluid={image.localFile.childImageSharp.fluid}
+        src={image}
         style={{ position: 'absolute' }}
       />
     </animated.div>
   ))
 
 export const RightImage = ({ rightImage, sicgrid }) => {
-  const parsedImage = JSON.parse(rightImage)
   const safeImage = unless(
     isNil,
-    pathOr(false, ['localFile'], parsedImage) ? constant(parsedImage) : F
-  )(parsedImage)
+    pathOr(false, ['localFile'], rightImage) ? constant(rightImage) : F
+  )(rightImage)
   const data = [{ image: safeImage }]
 
   return (

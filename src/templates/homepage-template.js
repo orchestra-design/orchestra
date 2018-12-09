@@ -1,13 +1,13 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 import {
   Columns,
   FirstScreen,
   Footer,
-  Lead,
+  // Lead,
   TickSlider,
   WorksFilters,
   WorksGrid,
@@ -46,6 +46,9 @@ const IndexTemplate = ({
       <ScrollChild theme={'white'}>
         {<TickSlider {...{ image }} />}
       </ScrollChild>
+      <ScrollChild theme={'white'}>
+        <div className={css`${tw(['mt-q72', 'md:mt-q112'])}`} />
+      </ScrollChild>
       {safeMap(section => {
         switch (section.__typename) {
           case 'PrismicHomepageBodyColumns':
@@ -62,16 +65,16 @@ const IndexTemplate = ({
                 />
               </ScrollChild>
             )
-          case 'PrismicHomepageBodyLead':
-            return (
-              <ScrollChild
-                key={uuid()}
-                theme={section.primary.leadtheme}
-                style={{ position: 'relative' }}
-              >
-                <Lead key={uuid()} primary={section.primary} />
-              </ScrollChild>
-            )
+          // case 'PrismicHomepageBodyLead':
+          //   return (
+          //     <ScrollChild
+          //       key={uuid()}
+          //       theme={section.primary.leadtheme}
+          //       style={{ position: 'relative' }}
+          //     >
+          //       <Lead key={uuid()} primary={section.primary} />
+          //     </ScrollChild>
+          //   )
           default:
             return <Fragment key={uuid()} />
         }
@@ -151,14 +154,6 @@ export const query = graphql`
               }
               coltext {
                 html
-              }
-            }
-          }
-          ... on PrismicHomepageBodyLead {
-            primary {
-              leadtheme
-              leadtext {
-                text
               }
             }
           }
@@ -248,3 +243,12 @@ export const query = graphql`
     }
   }
 `
+
+// ... on PrismicHomepageBodyLead {
+//   primary {
+//     leadtheme
+//     leadtext {
+//       text
+//     }
+//   }
+// }

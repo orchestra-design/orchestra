@@ -4245,6 +4245,10 @@ button,
   padding: 12.5rem;
 }
 
+.p-q240 {
+  padding: 15rem;
+}
+
 .p-1\/47 {
   padding: 1.06353%;
 }
@@ -4535,6 +4539,16 @@ button,
 .px-q200 {
   padding-left: 12.5rem;
   padding-right: 12.5rem;
+}
+
+.py-q240 {
+  padding-top: 15rem;
+  padding-bottom: 15rem;
+}
+
+.px-q240 {
+  padding-left: 15rem;
+  padding-right: 15rem;
 }
 
 .py-1\/47 {
@@ -5013,6 +5027,22 @@ button,
 
 .pl-q200 {
   padding-left: 12.5rem;
+}
+
+.pt-q240 {
+  padding-top: 15rem;
+}
+
+.pr-q240 {
+  padding-right: 15rem;
+}
+
+.pb-q240 {
+  padding-bottom: 15rem;
+}
+
+.pl-q240 {
+  padding-left: 15rem;
 }
 
 .pt-1\/47 {
@@ -9929,6 +9959,10 @@ button,
     padding: 12.5rem;
   }
 
+  .sm\:p-q240 {
+    padding: 15rem;
+  }
+
   .sm\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -10219,6 +10253,16 @@ button,
   .sm\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .sm\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .sm\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .sm\:py-1\/47 {
@@ -10697,6 +10741,22 @@ button,
 
   .sm\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .sm\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .sm\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .sm\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .sm\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .sm\:pt-1\/47 {
@@ -15602,6 +15662,10 @@ button,
     padding: 12.5rem;
   }
 
+  .md\:p-q240 {
+    padding: 15rem;
+  }
+
   .md\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -15892,6 +15956,16 @@ button,
   .md\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .md\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .md\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .md\:py-1\/47 {
@@ -16370,6 +16444,22 @@ button,
 
   .md\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .md\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .md\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .md\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .md\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .md\:pt-1\/47 {
@@ -21275,6 +21365,10 @@ button,
     padding: 12.5rem;
   }
 
+  .lg\:p-q240 {
+    padding: 15rem;
+  }
+
   .lg\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -21565,6 +21659,16 @@ button,
   .lg\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .lg\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .lg\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .lg\:py-1\/47 {
@@ -22043,6 +22147,22 @@ button,
 
   .lg\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .lg\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .lg\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .lg\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .lg\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .lg\:pt-1\/47 {
@@ -26948,6 +27068,10 @@ button,
     padding: 12.5rem;
   }
 
+  .xl\:p-q240 {
+    padding: 15rem;
+  }
+
   .xl\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -27238,6 +27362,16 @@ button,
   .xl\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .xl\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .xl\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .xl\:py-1\/47 {
@@ -27716,6 +27850,22 @@ button,
 
   .xl\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .xl\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .xl\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .xl\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .xl\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .xl\:pt-1\/47 {
@@ -32621,6 +32771,10 @@ button,
     padding: 12.5rem;
   }
 
+  .screen\:p-q240 {
+    padding: 15rem;
+  }
+
   .screen\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -32911,6 +33065,16 @@ button,
   .screen\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .screen\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .screen\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .screen\:py-1\/47 {
@@ -33389,6 +33553,22 @@ button,
 
   .screen\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .screen\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .screen\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .screen\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .screen\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .screen\:pt-1\/47 {
@@ -38294,6 +38474,10 @@ button,
     padding: 12.5rem;
   }
 
+  .desktop\:p-q240 {
+    padding: 15rem;
+  }
+
   .desktop\:p-1\/47 {
     padding: 1.06353%;
   }
@@ -38584,6 +38768,16 @@ button,
   .desktop\:px-q200 {
     padding-left: 12.5rem;
     padding-right: 12.5rem;
+  }
+
+  .desktop\:py-q240 {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+
+  .desktop\:px-q240 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .desktop\:py-1\/47 {
@@ -39062,6 +39256,22 @@ button,
 
   .desktop\:pl-q200 {
     padding-left: 12.5rem;
+  }
+
+  .desktop\:pt-q240 {
+    padding-top: 15rem;
+  }
+
+  .desktop\:pr-q240 {
+    padding-right: 15rem;
+  }
+
+  .desktop\:pb-q240 {
+    padding-bottom: 15rem;
+  }
+
+  .desktop\:pl-q240 {
+    padding-left: 15rem;
   }
 
   .desktop\:pt-1\/47 {

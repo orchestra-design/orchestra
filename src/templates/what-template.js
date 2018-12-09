@@ -1,18 +1,20 @@
+/* global tw */
 import React from 'react'
 import { graphql } from 'gatsby'
+import { css } from 'react-emotion'
 
-import { path, pick, uuid } from '../helpers'
+import { path, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import {
   Footer,
   ImageCaptionWithDigits,
-  ImageStatement,
+  // ImageStatement,
 } from '../components/blocks'
 import { ScrollChild } from '../components/elements'
 
 const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
   const data = path(['data'], what)
-  const { body, image, theme, title } = data
+  const { body, image, title } = data
 
   return (
     <TemplateWrapper
@@ -23,15 +25,13 @@ const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild image={JSON.stringify(image)} {...{ theme }}>
-        <ImageStatement
-          data={pick(['title', 'statement', 'image', 'description'], data)}
-        />
+      <ScrollChild theme={'white'} rightImage={body[0].primary.sicimage}>
+        <div className={css`${tw(['mt-q72', 'md:mt-q112'])}`} />
       </ScrollChild>
       {body.map(({ primary, items }, i) => (
         <ScrollChild
           key={uuid()}
-          right-image={JSON.stringify(primary.sicimage)}
+          rightImage={primary.sicimage}
           sicgrid={primary.sicgrid}
           theme={primary.sictheme}
         >
@@ -58,10 +58,6 @@ export const query = graphql`
     what: prismicWhat(lang: { eq: $lang }) {
       data {
         title
-        statement {
-          text
-        }
-        description
         theme
         image {
           url

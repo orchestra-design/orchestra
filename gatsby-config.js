@@ -12,7 +12,6 @@ const linkResolver = () => doc =>
 
 module.exports = {
   plugins: [
-    'gatsby-plugin-emotion',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-sharp`,
@@ -80,6 +79,9 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-sitemap`,
+    },
+    {
       resolve: 'gatsby-plugin-netlify',
       options: {
         mergeSecurityHeaders: true,
@@ -87,13 +89,5 @@ module.exports = {
         mergeCachingHeaders: true,
       },
     },
-    /* {
-      resolve: `gatsby-plugin-yandex-metrika`,
-      options: {
-        trackingId: '49403653',
-        webvisor: false,
-        trackHash: false,
-      },
-    }, */
   ],
 }

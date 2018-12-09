@@ -26,7 +26,7 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       {...{ title }}
     >
       <ScrollChild {...{ theme }}>
-        <ImageStatement data={pick(['title', 'statement', 'image'], data)} />
+        <ImageStatement data={pick(['title', 'image'], data)} />
       </ScrollChild>
       {body ? (
         body.map(section => {
@@ -111,9 +111,6 @@ export const query = graphql`
     who: prismicWho(lang: { eq: $lang }) {
       data {
         title
-        statement {
-          text
-        }
         theme
         image {
           url
@@ -158,39 +155,12 @@ export const query = graphql`
               }
             }
           }
-          ... on PrismicWhoBodyImage {
-            primary {
-              imgtheme
-            }
-            items {
-              imgimage {
-                url
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920, quality: 80) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
           ... on PrismicWhoBodyImageCaption {
             primary {
               sicgrid
               sictheme
               sicheader {
                 html
-              }
-              sicimage {
-                url
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 720, quality: 80) {
-                      ...GatsbyImageSharpFluid_noBase64
-                    }
-                  }
-                }
               }
             }
             items {
@@ -242,4 +212,32 @@ export const query = graphql`
         }
       }
     }
-  } */
+  }
+  ... on PrismicWhoBodyImage {
+    primary {
+      imgtheme
+    }
+    items {
+      imgimage {
+        url
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1920, quality: 80) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+  sicimage {
+    url
+    localFile {
+      childImageSharp {
+        fluid(maxWidth: 720, quality: 80) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+  }
+  */

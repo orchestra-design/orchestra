@@ -17,7 +17,6 @@ import {
   equals,
   isNil,
   length,
-  not,
   safeMap,
   unless,
   uuid,
@@ -26,15 +25,23 @@ import {
 } from '../../helpers'
 
 const Back = styled('div')`
-  ${tw(['absolute', 'hidden', 'md:block', 'pin-t', 'w-full'])};
-  height: 64vh;
+  ${tw([
+    'absolute',
+    'hidden',
+    'md:block',
+    'pin-t',
+    'py-q112',
+    'md:py-q200',
+    'xl:py-q224',
+    'w-full',
+  ])};
 `
 
 const ImageWrapper = styled('div')`
   ${Row};
   ${tw(['flex-wrap', 'items-end', 'pt-q72', 'relative'])};
-  ${({ hasntImage }) => and(not(hasntImage), tw(['md:pt-q200']))};
   ${({ length }) => and(equals(length, 2), tw(['justify-center']))};
+  ${({ hasntImage }) => !hasntImage && tw(['sm:pt-q200'])};
 `
 
 const HeadingWrapper = styled('div')`
@@ -104,7 +111,7 @@ export const Columns = connect(pick(['isMobile']))(
                     <Heading
                       key={uuid()}
                       dangerouslySetInnerHTML={{ __html: item.colheading.html }}
-                      {...{withoutPadding}}
+                      {...{ withoutPadding }}
                     />
                   ))(item.colheading)}
                 </div>
@@ -118,7 +125,7 @@ export const Columns = connect(pick(['isMobile']))(
                     <Text
                       key={uuid()}
                       dangerouslySetInnerHTML={{ __html: item.coltext.html }}
-                      {...{withoutPadding}}
+                      {...{ withoutPadding }}
                     />
                   ))(item.coltext)}
                 </div>
@@ -164,7 +171,7 @@ export const Columns = connect(pick(['isMobile']))(
                             dangerouslySetInnerHTML={{
                               __html: item.colheading.html,
                             }}
-                            {...{withoutPadding}}
+                            {...{ withoutPadding }}
                           />
                         ))(item.colheading)}
                       </div>
@@ -186,7 +193,7 @@ export const Columns = connect(pick(['isMobile']))(
                             dangerouslySetInnerHTML={{
                               __html: item.coltext.html,
                             }}
-                            {...{withoutPadding}}
+                            {...{ withoutPadding }}
                           />
                         ))(item.coltext)}
                       </div>

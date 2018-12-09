@@ -37,7 +37,7 @@ const Description = styled('div')`
 
 export const ImageStatement = ({ data }) => {
   const { image, statement } = data
-  const statementLenght = lt(length(statement.text), 40)
+  const statementLenght = statement && lt(length(statement.text), 40)
 
   return (
     <FullScreenSection>
@@ -55,7 +55,7 @@ export const ImageStatement = ({ data }) => {
           ${tw('relative mb-q72 screen:mb-q144')};
         `}
       >
-        <Heading {...{ statementLenght }}>{statement.text}</Heading>
+        {statement && <Heading {...{ statementLenght }}>{statement.text}</Heading>}
         {unless(isNil, description => <Description>{description}</Description>)(
           pathOr(null, ['description'], data)
         )}

@@ -73,7 +73,7 @@ const LinkImage = css`
   ])};
   bottom: 3rem;
   height: 0;
-  right: -24%;
+  right: -1rem;
   width: 15rem;
   transition: opacity 0.4s ease-in-out;
 `
@@ -173,10 +173,7 @@ export const ImageCaptionWithDigits = connect(
             ${tw([
               'flex',
               'flex-col',
-              'sm:w-3/4',
-              'md:w-full',
-              'lg:w-3/4',
-              'xl:w-2/3',
+              'w-full',
             ])};
           `}
         >

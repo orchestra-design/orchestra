@@ -6,20 +6,10 @@ import styled from 'react-emotion'
 import { path } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import { Footer, WorksGrid, WorksFilters } from '../components/blocks'
-import { Container, Heading1, ScrollChild } from '../components/elements'
+import { Container, ScrollChild } from '../components/elements'
 
 const FirstScreen = styled(Container)`
-  ${tw(['flex', 'flex-col', 'justify-end'])};
-  @media (max-width: 599px) {
-    height: 50vw;
-  }
-  @media (min-width: 600px) {
-    height: 50vh;
-  }
-`
-
-const Title = styled('h1')`
-  ${Heading1};
+  ${tw(['mt-q72', 'md:mt-q112'])};
 `
 
 const WorksTemplate = ({
@@ -39,9 +29,7 @@ const WorksTemplate = ({
       {...{ title }}
     >
       <ScrollChild theme={'white'}>
-        <FirstScreen>
-          <Title>{title}</Title>
-        </FirstScreen>
+        <FirstScreen />
       </ScrollChild>
       <ScrollChild theme={'white'}>
         <WorksFilters {...{ allworks }} lang={seo.lang} />
