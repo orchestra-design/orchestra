@@ -1,20 +1,19 @@
 /* global tw */
 import React from 'react'
 import styled, { css } from 'react-emotion'
-import { connect } from 'react-redux'
 
 import {
-  Body,
+  // Body,
   ButtonText,
   Description,
-  Logo,
+  // Logo,
   Container,
   SocialButton,
 } from '../elements'
-import { safeMap, uuid, pick } from '../../helpers'
+import { safeMap, uuid } from '../../helpers'
 
 const FooterContainer = styled('div')`
-  ${tw(['flex', 'pt-q200', 'w-full'])};
+  ${tw(['flex', 'pt-q144', 'w-full'])};
   color: ${props => props.theme.color};
   min-height: calc(100vh - 375px);
 `
@@ -22,7 +21,7 @@ const FooterContainer = styled('div')`
 const Row = styled('div')`
   ${tw(['flex', 'flex-col', 'screen:flex-row'])};
 `
-
+/* 
 const LogoWrapper = styled('div')`
   height: 69px;
   width: 186px;
@@ -31,7 +30,7 @@ const LogoWrapper = styled('div')`
 const DescriptionText = styled('div')`
   ${Body};
   ${tw(['max-w-sm', 'px-q12'])};
-`
+` */
 
 const Paragraph = styled('div')`
   ${Description};
@@ -59,12 +58,12 @@ const Accio = styled('div')`
   ])};
 `
 
-export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
+export const Footer = ({ meta }) => {
   const {
     acciolink,
     addressesfr,
     addressesru,
-    description,
+    // description,
     development,
     email,
     links,
@@ -83,17 +82,23 @@ export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
               ${tw('w-full screen:items-center')};
             `}
           >
-            <LogoWrapper>
-              <Logo />
-            </LogoWrapper>
-            <DescriptionText
-              dangerouslySetInnerHTML={{ __html: description.html }}
-            />
+            {safeMap(
+              ({ link, linktype }) => (
+                <SocialLink
+                  key={uuid()}
+                  href={link.url}
+                  {...{ linktype }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
+              links
+            )}
           </Row>
         </Row>
         <Row
           className={css`
-            ${tw(['mt-q72', 'screen:mt-q144'])};
+            ${tw(['mt-q72'])};
           `}
         >
           <Paragraph
@@ -148,39 +153,11 @@ export const Footer = connect(pick(['isFooter']))(({ isFooter, meta }) => {
           </Link>
         </Accio>
       </Container>
-      {isFooter && (
-        <div
-          className={css`
-            ${tw([
-              'fixed',
-              'm-q24',
-              'mr-q72',
-              'screen:mr-q80',
-              'pin-b',
-              'pin-r',
-            ])};
-          `}
-        >
-          <Row
-            className={css`
-              ${tw('flex-row screen:ml-auto')};
-            `}
-          >
-            {safeMap(
-              ({ link, linktype }) => (
-                <SocialLink
-                  key={uuid()}
-                  href={link.url}
-                  {...{ linktype }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              ),
-              links
-            )}
-          </Row>
-        </div>
-      )}
     </FooterContainer>
   )
-})
+}
+
+
+/* 
+
+*/

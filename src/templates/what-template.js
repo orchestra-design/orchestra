@@ -60,16 +60,6 @@ export const query = graphql`
       data {
         title
         theme
-        image {
-          url
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920, quality: 80) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
         body {
           primary {
             sicgrid
@@ -126,6 +116,16 @@ export const query = graphql`
 `
 /* 
 
+  image {
+    url
+    localFile {
+      childImageSharp {
+        fluid(maxWidth: 1920, quality: 80) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
   sictextlink {
     url
   }
