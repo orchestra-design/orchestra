@@ -22,6 +22,7 @@ const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
       {...{ location }}
       {...{ image }}
       {...{ meta }}
+      notDown={true}
       {...{ seo }}
       {...{ title }}
     >
@@ -88,19 +89,6 @@ export const query = graphql`
             sictext {
               html
             }
-            sictextlink {
-              url
-            }
-            sictextimage {
-              url
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 480, quality: 80) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -136,3 +124,19 @@ export const query = graphql`
     }
   }
 `
+/* 
+
+  sictextlink {
+    url
+  }
+  sictextimage {
+    url
+    localFile {
+      childImageSharp {
+        fluid(maxWidth: 480, quality: 80) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+  }
+*/

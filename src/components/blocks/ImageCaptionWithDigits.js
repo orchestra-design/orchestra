@@ -1,21 +1,21 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import Link from 'gatsby-link'
+// import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 
 import { pageTransition } from '../../actions'
 
 import {
-  BaseTransition,
-  ButtonText,
+  // BaseTransition,
+  // ButtonText,
   ColumnThreeFive,
   ColumnTwoFive,
   Container,
-  Description,
+  // Description,
   Headers,
   Img,
-  Heading0,
+  // Heading0,
   RichText,
   Row,
 } from '../elements'
@@ -60,8 +60,11 @@ const Text = styled('div')`
   & h2 {
     ${tw(['max-w-xs'])};
   }
+  & li::after {
+    border-radius: 9999px;
+  }
 `
-
+/* 
 const LinkImage = css`
   ${tw([
     'absolute',
@@ -118,7 +121,7 @@ const LinkStyles = css`
     ${tw(['bg-black', 'text-white', 'shadow-none', 'shadow-elevate1'])};
   }
 `
-
+ */
 export const ImageCaptionWithDigits = connect(
   constant,
   { pageTransition }
@@ -137,7 +140,7 @@ export const ImageCaptionWithDigits = connect(
             <Img src={primary.sicimage} />
           </div>
         ))(primary.sicimage && primary.sicimage.localFile)}
-        {unless(isNil, () => (
+        {/* unless(isNil, () => (
           <div
             className={css`
               ${Heading0};
@@ -146,7 +149,7 @@ export const ImageCaptionWithDigits = connect(
           >
             {i + 1}
           </div>
-        ))(i)}
+        ))(i) */}
       </LeftCol>
       <RightCol grid={primary.sicgrid}>
         {safeMap(item => (
@@ -160,15 +163,15 @@ export const ImageCaptionWithDigits = connect(
               ))(item.sictext)}
           </Fragment>
         ))(items)}
-        <div
+        {/* <div
           className={css`
             ${Description};
             ${tw('mb-q24')};
           `}
         >
           {lang.includes('ru') ? 'Ключевые проекты' : 'Key projects'}
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className={css`
             ${tw([
               'flex',
@@ -200,7 +203,7 @@ export const ImageCaptionWithDigits = connect(
               ))(item.sictextlink)}
             </Fragment>
           ))(items)}
-        </div>
+        </div> */}
       </RightCol>
     </RowWrapper>
   </Container>
