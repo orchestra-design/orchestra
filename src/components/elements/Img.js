@@ -2,6 +2,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import GatsbyImage from 'gatsby-image'
+import { withStateHandlers } from 'recompose';
 
 import { F, ifElse, isNil, pathOr } from '../../helpers'
 
@@ -11,7 +12,16 @@ const imageFluid = pathOr(null, ['localFile', 'childImageSharp', 'fluid'])
 
 const safeUrl = pathOr(null, ['url'])
 
-export const Img = ({ src, ...props }) => (
+export const Img = withStateHandlers(
+  ({ initialColor = 'rgba(0, 0, 0, 1)' }) => ({
+    backgroundColor: initialColor,
+  }),
+  {
+    onLoad: () => () => ({
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    }),
+  }
+)(({ backgroundColor, onLoad, src, ...props }) => (
   <>
     {ifElse(
       isNil,
@@ -28,9 +38,21 @@ export const Img = ({ src, ...props }) => (
       () =>
         ifElse(
           isNil,
-          () => <GatsbyImage fixed={imageFixed(src)} {...props} />,
-          () => <GatsbyImage fluid={imageFluid(src)} {...props} />
+          () => <GatsbyImage
+            fixed={imageFixed(src)}
+            {...{ onLoad }}
+            {...{ backgroundColor }}
+            fadeIn
+            {...props}
+          />,
+          () => <GatsbyImage
+            fluid={imageFluid(src)}
+            {...{ onLoad }}
+            {...{ backgroundColor }}
+            fadeIn
+            {...props}
+          />
         )(imageFluid(src))
     )(pathOr(null, ['localFile', 'childImageSharp'], src))}
   </>
-)
+))
