@@ -3,7 +3,11 @@ import React, { createRef, Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
-import { toggleContact, updateCurrent, updateContactMessages } from '../../actions'
+import {
+  toggleContact,
+  updateCurrent,
+  updateContactMessages,
+} from '../../actions'
 import { Description, SquareButton } from '../elements'
 import { delay, pick, toRGBA, uuid } from '../../helpers'
 
@@ -71,7 +75,7 @@ const Button = styled(SquareButton)`
     'rounded-full',
   ])};
   background-image: url(${IconClose});
-  border-color: '#ffffff'}
+  border-color: '#ffffff';
   transition: all 0.2s ease-in-out;
   &:hover {
     background-image: url(${IconCloseBlack});
@@ -101,11 +105,12 @@ class ContactForm extends Component {
         this.props.updateContactMessages(
           this.props.meta.data.query[this.props.contactFormCurrent]
         )
-        this.props.updateCurrent(
-          this.props.contactFormCurrent + 1,
-        )
+        this.props.updateCurrent(this.props.contactFormCurrent + 1)
       }
-      if (this.props.meta.data.query.length - 1 === this.props.contactFormCurrent) {
+      if (
+        this.props.meta.data.query.length - 1 ===
+        this.props.contactFormCurrent
+      ) {
         this.setState({
           done: true,
         })
@@ -134,7 +139,7 @@ class ContactForm extends Component {
     if (this.props.contactFormMessages !== prevProps.contactFormMessages) {
       if (this.state.done) {
         fetch(
-          `https://9q6r2a5wr5.execute-api.us-east-1.amazonaws.com/dev/contact?answers=${this.props.contactFormMessages
+          ` https://v66qfxaz26.execute-api.us-east-1.amazonaws.com/dev/contact?answers=${this.props.contactFormMessages
             .filter(message => message.answer && message.answer)
             .map(({ answer }) => answer.replace(',', ''))}`,
           {
@@ -148,7 +153,11 @@ class ContactForm extends Component {
   }
 
   render() {
-    const { contactFormCurrent, contactFormMessages, toggleContact } = this.props
+    const {
+      contactFormCurrent,
+      contactFormMessages,
+      toggleContact,
+    } = this.props
     const query = this.props.meta.data.query
 
     return (

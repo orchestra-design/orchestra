@@ -1,6 +1,7 @@
 'use strict'
 
 const writeSheet = require('./googleSheet')
+const writeSheetSend = require('./googleSheetSend')
 const s4 = require('./s4')
 
 module.exports.contact = (event, context, callback) => {
@@ -26,5 +27,31 @@ module.exports.contact = (event, context, callback) => {
   }
   
   writeSheet('Contacts!A:F', newValues)
+  callback(null, response)
+}
+
+module.exports.send = (event, context, callback) => {
+  const newValues = [
+    [
+      new Date().toLocaleString('ru-RU', { timeZone: 'UTC' }),
+      event.queryStringParameters.name,
+      event.queryStringParameters.contact,
+      event.queryStringParameters.msg,
+    ],
+  ]
+
+  const response = {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+    },
+    body: JSON.stringify({
+      message: 'Write!',
+      input: event,
+    }),
+  }
+  
+  writeSheetSend('Income!A:D', newValues)
   callback(null, response)
 }

@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws # NOTE: update this with your service name
+service: new-aws # NOTE: update this with your service name
 app: orchestra
 tenant: alexeiaccio
 
@@ -61,6 +61,10 @@ functions:
     handler: handler.contact
     events:
       - http: GET contact
+  send:
+    handler: handler.send
+    events:
+      - http: GET send
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
