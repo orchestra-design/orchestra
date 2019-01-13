@@ -33,7 +33,8 @@ module.exports.contact = (event, context, callback) => {
 module.exports.send = (event, context, callback) => {
   const newValues = [
     [
-      new Date().toLocaleString('ru-RU', { timeZone: 'UTC' }),
+      new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }),
+      event.queryStringParameters.tag,
       event.queryStringParameters.name,
       event.queryStringParameters.contact,
       event.queryStringParameters.msg,
@@ -52,6 +53,6 @@ module.exports.send = (event, context, callback) => {
     }),
   }
   
-  writeSheetSend('Income!A:D', newValues)
+  writeSheetSend('Income!A:E', newValues)
   callback(null, response)
 }
