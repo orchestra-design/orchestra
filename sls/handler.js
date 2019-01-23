@@ -2,6 +2,7 @@
 
 const writeSheet = require('./googleSheet')
 const writeSheetSend = require('./googleSheetSend')
+const sendMail = require('./mailTransport')
 const s4 = require('./s4')
 
 module.exports.contact = (event, context, callback) => {
@@ -41,18 +42,17 @@ module.exports.send = (event, context, callback) => {
     ],
   ]
 
-  const response = {
+  const response = message => ({
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET',
     },
     body: JSON.stringify({
-      message: 'Write!',
-      input: event,
+      message,
     }),
-  }
+  })
   
   writeSheetSend('Income!A:E', newValues)
-  callback(null, response)
+  sendMail(event.queryStringParameters, res => callback(null, response(res)))
 }

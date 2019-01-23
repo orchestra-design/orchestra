@@ -113,3 +113,4 @@ functions:
 
 plugins:
   - serverless-offline
+  - '@jimdo/serverless-dotenv'
