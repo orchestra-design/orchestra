@@ -1,0 +1,95 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title",
+        "placeholder": "Title"
+      }
+    },
+    "links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": null,
+                "height": null
+              },
+              "thumbnails": [],
+              "label": "Image"
+            }
+          },
+          "hoverimage": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": null,
+                "height": null
+              },
+              "thumbnails": [],
+              "label": "HoverImage"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "artwork",
+                "work"
+              ],
+              "label": "Link",
+              "placeholder": "Work"
+            }
+          }
+        },
+        "label": "Links"
+      }
+    }
+  },
+  "SEO": {
+    "seotitle": {
+      "type": "Text",
+      "config": {
+        "label": "SEOTitle",
+        "placeholder": "Title"
+      }
+    },
+    "seodescription": {
+      "type": "Text",
+      "config": {
+        "label": "SEODescription",
+        "placeholder": "Description"
+      }
+    },
+    "seokeywords": {
+      "type": "Text",
+      "config": {
+        "label": "SEOKeywords",
+        "placeholder": "Keywords"
+      }
+    },
+    "seoimage": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "SEOImage"
+      }
+    }
+  }
+}

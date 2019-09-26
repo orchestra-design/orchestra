@@ -100,7 +100,7 @@ const ManifestTemplate = ({
       ) : (
         <ScrollChild theme={'black'} />
       )}
-      <ScrollChild theme={'black'}>
+      <ScrollChild theme={'white'}>
         <Footer {...{ meta }} />
       </ScrollChild>
     </TemplateWrapper>

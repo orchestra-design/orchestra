@@ -17,8 +17,6 @@ const Button = styled(RoundButton)`
     'border-solid',
     'hidden',
     'm-q24',
-    'mb-q72',
-    'screen:mb-q80',
     'pin-b',
     'pin-r',
     'screen:h-q48',

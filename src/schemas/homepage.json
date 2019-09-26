@@ -1,0 +1,240 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title",
+        "placeholder": "Site Title"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Description",
+        "placeholder": "First page text"
+      }
+    },
+    "slider": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 1920,
+                "height": 1200
+              },
+              "thumbnails": [
+                {
+                  "name": "sm",
+                  "width": 800,
+                  "height": 800
+                }
+              ],
+              "label": "Image"
+            }
+          },
+          "theme": {
+            "type": "Select",
+            "config": {
+              "options": [
+                "image",
+                "image-white",
+                "image-inverse"
+              ],
+              "default_value": "image",
+              "label": "Theme",
+              "placeholder": "Theme"
+            }
+          },
+          "worktitle": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2",
+              "label": "WorkTitle",
+              "placeholder": "Moto"
+            }
+          },
+          "caption": {
+            "type": "Text",
+            "config": {
+              "label": "Caption",
+              "placeholder": "Caption"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": [
+                "work"
+              ],
+              "label": "Link",
+              "placeholder": "Link to work"
+            }
+          }
+        },
+        "label": "Slider"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "columns": {
+            "type": "Slice",
+            "fieldset": "Columns",
+            "description": "Section with some columns",
+            "icon": "equalizer",
+            "display": "list",
+            "non-repeat": {
+              "coltheme": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "white",
+                    "black",
+                    "image",
+                    "image-inverse",
+                    "colored",
+                    "colored-inverse"
+                  ],
+                  "default_value": "white",
+                  "label": "ColTheme",
+                  "placeholder": "Color Theme"
+                }
+              },
+              "colbackimage": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "ColBackImage"
+                }
+              }
+            },
+            "repeat": {
+              "colimage": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "ColImage"
+                }
+              },
+              "colheading": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading3",
+                  "label": "ColHeading",
+                  "placeholder": "Heading"
+                }
+              },
+              "coltext": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "ColText",
+                  "placeholder": "Text"
+                }
+              }
+            }
+          },
+          "lead": {
+            "type": "Slice",
+            "fieldset": "Lead",
+            "description": "Section with Lead or Quote",
+            "icon": "reorder",
+            "display": "list",
+            "non-repeat": {
+              "leadtheme": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "white",
+                    "black",
+                    "image",
+                    "image-inverse",
+                    "colored",
+                    "colored-inverse"
+                  ],
+                  "default_value": "white",
+                  "label": "LeadTheme",
+                  "placeholder": "Color Theme"
+                }
+              },
+              "leadimage": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1920,
+                    "height": 1200
+                  },
+                  "thumbnails": [],
+                  "label": "LeadImage"
+                }
+              },
+              "leadtext": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "LeadText",
+                  "placeholder": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  },
+  "SEO": {
+    "seotitle": {
+      "type": "Text",
+      "config": {
+        "label": "SEOTitle",
+        "placeholder": "Title"
+      }
+    },
+    "seodescription": {
+      "type": "Text",
+      "config": {
+        "label": "SEODescription",
+        "placeholder": "Description"
+      }
+    },
+    "seokeywords": {
+      "type": "Text",
+      "config": {
+        "label": "SEOKeywords",
+        "placeholder": "Keywords"
+      }
+    },
+    "seoimage": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "SEOImage"
+      }
+    }
+  }
+}

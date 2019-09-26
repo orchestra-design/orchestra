@@ -103,12 +103,12 @@ const WorkTemplate = ({
         ) : (
           <ScrollChild theme={'black'} />
         )}
-        <ScrollChild theme={'black'}>
+        <ScrollChild theme={'white'}>
           {unless(isNil, () => <Context {...{ allworks }} {...{ context }} />)(
             context[0] && context[0].link
           )}
         </ScrollChild>
-        <ScrollChild theme={'black'}>
+        <ScrollChild theme={'white'}>
           <Footer {...{ meta }} />
         </ScrollChild>
       </TemplateWrapper>
@@ -186,7 +186,9 @@ export const query = graphql`
           link {
             url
             document {
-              uid
+              ...on PrismicWork {
+                uid
+              }
             }
           }
         }

@@ -8,11 +8,10 @@ import { graphql } from 'gatsby'
 
 import { toggleContact } from '../../actions'
 
-import { ContactForm, Header } from '../blocks'
+import { Header } from '../blocks'
 
 import {
   Back,
-  ContactButton,
   DownButton,
   Image,
   Main,
@@ -34,7 +33,6 @@ injectGlobal`
   }
 `
 
-const Contact = ContactButton.withComponent('a')
 
 const ImageWrapper = styled('div')`
   ${tw(['hidden', 'fixed', 'pin'])};
@@ -47,7 +45,6 @@ const TemplateWrapper = ({
   backSlider,
   children,
   color,
-  contactForm,
   hasBackImage,
   notDown,
   image,
@@ -58,7 +55,6 @@ const TemplateWrapper = ({
   sicgrid,
   storedTheme,
   title,
-  toggleContact,
 }) => {
   const { lang } = seo
 
@@ -92,8 +88,6 @@ const TemplateWrapper = ({
         <ScrollContainer>{children}</ScrollContainer>
         <DownButton {...{ notDown }} />
         <UpButton />
-        <Contact onClick={toggleContact} />
-        {contactForm && <ContactForm {...{ meta }} />}
       </Main>
     </ThemeProvider>
   )

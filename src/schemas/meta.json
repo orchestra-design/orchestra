@@ -1,0 +1,141 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Tilte"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em",
+        "label": "Description",
+        "placeholder": "Description"
+      }
+    },
+    "addressesru": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "AddressesRu",
+        "placeholder": "Addresses Russia"
+      }
+    },
+    "addressesfr": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "AddressesFr",
+        "placeholder": "Addresses France"
+      }
+    },
+    "email": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Email",
+        "placeholder": "Email"
+      }
+    },
+    "links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "linktype": {
+            "type": "Text",
+            "config": {
+              "label": "LinkType",
+              "placeholder": "Link Type"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link",
+              "placeholder": "Link"
+            }
+          }
+        },
+        "label": "Links"
+      }
+    }
+  },
+  "Accio": {
+    "development": {
+      "type": "Text",
+      "config": {
+        "label": "Development",
+        "placeholder": "Development"
+      }
+    },
+    "acciolink": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "AccioLink",
+        "placeholder": "Accio Link"
+      }
+    }
+  },
+  "Header": {
+    "headerlinks": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "linktitle": {
+            "type": "Text",
+            "config": {
+              "label": "LinkTitle",
+              "placeholder": "Title"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "label": "Link",
+              "placeholder": "Link"
+            }
+          }
+        },
+        "label": "HeaderLinks"
+      }
+    }
+  },
+  "ContactForm": {
+    "query": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "question": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item",
+              "label": "Question",
+              "placeholder": "Question"
+            }
+          },
+          "inputtype": {
+            "type": "Select",
+            "config": {
+              "options": [
+                "text",
+                "tel",
+                "email"
+              ],
+              "default_value": "text",
+              "label": "InputType",
+              "placeholder": "Type"
+            }
+          }
+        },
+        "label": "Query"
+      }
+    }
+  }
+}

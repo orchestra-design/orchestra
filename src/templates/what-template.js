@@ -45,7 +45,7 @@ const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
           />
         </ScrollChild>
       ))}
-      <ScrollChild theme={'black'}>
+      <ScrollChild theme={'white'}>
         <Footer {...{ meta }} />
       </ScrollChild>
     </TemplateWrapper>

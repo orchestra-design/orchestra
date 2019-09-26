@@ -97,7 +97,7 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       ) : (
         <ScrollChild theme={'black'} />
       )}
-      <ScrollChild theme={'black'}>
+      <ScrollChild theme={'white'}>
         <Footer {...{ meta }} />
       </ScrollChild>
     </TemplateWrapper>

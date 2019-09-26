@@ -35,7 +35,7 @@ const WorksTemplate = ({
         <WorksFilters {...{ allworks }} lang={seo.lang} />
         <WorksGrid {...{ allworks }} {...{ worksLinks }} />
       </ScrollChild>
-      <ScrollChild theme={'black'}>
+      <ScrollChild theme={'white'}>
         <Footer {...{ meta }} />
       </ScrollChild>
     </TemplateWrapper>
@@ -75,7 +75,9 @@ export const query = graphql`
           link {
             url
             document {
-              uid
+              ...on PrismicWork {
+                uid
+              }
             }
           }
         }

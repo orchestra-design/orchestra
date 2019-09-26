@@ -1,0 +1,185 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID or Slug"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2",
+        "label": "Title",
+        "placeholder": "Title"
+      }
+    },
+    "theme": {
+      "type": "Select",
+      "config": {
+        "options": [
+          "image",
+          "image-inverse"
+        ],
+        "default_value": "image",
+        "label": "Theme",
+        "placeholder": "Color Theme"
+      }
+    },
+    "jumbo": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "jumboimage": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 1920,
+                "height": 1200
+              },
+              "thumbnails": [],
+              "label": "JumboImage"
+            }
+          },
+          "jumbotitle": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2, heading3",
+              "label": "JumboTitle",
+              "placeholder": "Title"
+            }
+          }
+        },
+        "label": "Jumbo"
+      }
+    },
+    "points": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "pointsimage": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "PointsImage"
+            }
+          },
+          "pointsheading": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2, heading3, heading4",
+              "label": "PointsHeading",
+              "placeholder": "Heading"
+            }
+          },
+          "pointstext": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph, heading3, heading4, heading5, heading6, strong, em, list-item, o-list-item",
+              "allowTargetBlank": true,
+              "label": "PointsText",
+              "placeholder": "Text"
+            }
+          }
+        },
+        "label": "Points"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "columns": {
+            "type": "Slice",
+            "fieldset": "Columns",
+            "description": "Section with some columns",
+            "icon": "equalizer",
+            "display": "list",
+            "non-repeat": {
+              "coltheme": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "white",
+                    "black",
+                    "image",
+                    "image-inverse",
+                    "colored",
+                    "colored-inverse"
+                  ],
+                  "default_value": "white",
+                  "label": "ColTheme",
+                  "placeholder": "Color Theme"
+                }
+              },
+              "colbackimage": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "ColBackImage"
+                }
+              }
+            },
+            "repeat": {
+              "colimage": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "ColImage"
+                }
+              },
+              "coltext": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "ColText",
+                  "placeholder": "Text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "SEO": {
+    "seotitle": {
+      "type": "Text",
+      "config": {
+        "label": "SEOTitle",
+        "placeholder": "Title"
+      }
+    },
+    "seodescription": {
+      "type": "Text",
+      "config": {
+        "label": "SEODescription",
+        "placeholder": "Description"
+      }
+    },
+    "seokeywords": {
+      "type": "Text",
+      "config": {
+        "label": "SEOKeywords",
+        "placeholder": "Keywords"
+      }
+    },
+    "seoimage": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "SEOImage"
+      }
+    }
+  }
+}

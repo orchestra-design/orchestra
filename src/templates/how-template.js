@@ -31,7 +31,7 @@ const HowTemplate = ({ data: { how, seo, allSite, meta }, location }) => {
       <ScrollChild theme={'white'}>
         <Points {...{ points }} />
       </ScrollChild>
-      <ScrollChild theme={'black'}>
+      <ScrollChild theme={'white'}>
         <Footer {...{ meta }} />
       </ScrollChild>
     </TemplateWrapper>

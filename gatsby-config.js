@@ -33,6 +33,16 @@ module.exports = {
         repositoryName: `orchestra`,
         accessToken: `MC5XeklwblNBQUFOY3dwUXRL.77-9UQ7vv71r77-9K2gdX--_vUzvv70577-977-977-977-9Nu-_ve-_ve-_ve-_vS3vv73vv73vv71YORxvdA`,
         linkResolver: linkResolver,
+        schemas: {
+          homepage: require('./src/schemas/homepage.json'),
+          how: require('./src/schemas/how.json'),
+          manifest: require('./src/schemas/manifest.json'),
+          meta: require('./src/schemas/meta.json'),
+          what: require('./src/schemas/what.json'),
+          who: require('./src/schemas/who.json'),
+          work: require('./src/schemas/work.json'),
+          works: require('./src/schemas/works.json'),
+        },
         htmlSerializer: ({ node, key, value }) => (
           type,
           element,
