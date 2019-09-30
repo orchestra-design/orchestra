@@ -6,7 +6,21 @@ import { RoundButton } from './Buttons'
 import facebook from '../../assets/icon-facebook.svg'
 import facebookBlack from '../../assets/icon-facebook-black.svg'
 import instagram from '../../assets/icon-instagram.svg'
+import vk from '../../assets/icon-vk.svg'
 import instagramBlack from '../../assets/icon-instagram-black.svg'
+import vkBlack from '../../assets/icon-vk-black.svg'
+
+const iconByType = {
+  facebook,
+  instagram,
+  vk,
+}
+
+const iconBlackByType = {
+  facebook: facebookBlack,
+  instagram: instagramBlack,
+  vk: vkBlack,
+}
 
 export const SocialButton = styled(RoundButton)`
   ${tw([
@@ -19,19 +33,9 @@ export const SocialButton = styled(RoundButton)`
     'screen:h-q48',
     'screen:w-q48',
   ])};
-  background-image: url(${({ linktype }) =>
-    linktype === 'facebook'
-      ? facebookBlack
-      : linktype === 'instagram'
-        ? instagramBlack
-        : null});
+  background-image: url(${({ linktype }) => iconBlackByType[linktype]});
   border-color: ${({ theme }) => theme.color};
   &:hover {
-    background-image: url(${({ linktype }) =>
-      linktype === 'facebook'
-        ? facebook
-        : linktype === 'instagram'
-          ? instagram
-          : null});
+    background-image: url(${({ linktype }) => iconByType[linktype]});
   }
 `

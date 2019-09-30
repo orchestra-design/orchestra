@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import {
   BaseTransition,
-  Breadcrumbs,
+  // Breadcrumbs,
   Container,
   Heading1,
   Image,
@@ -47,7 +47,7 @@ const Heading = styled('h1')`
 
 export const WorkStatement = connect(({ storedTheme }) => ({ storedTheme }))(
   ({ data, storedTheme }) => {
-    const { image, statement, title } = data
+    const { image, statement } = data
 
     return (
       <FullScreenSection>
@@ -67,13 +67,13 @@ export const WorkStatement = connect(({ storedTheme }) => ({ storedTheme }))(
           {...{ storedTheme }}
         >
           <Heading>{statement.text}</Heading>
-          <Breadcrumbs
+          {/* <Breadcrumbs
             className={css`
               ${tw('text-black text-body whitespace-normal')};
             `}
           >
             {title}
-          </Breadcrumbs>
+          </Breadcrumbs> */}
         </StatementContainer>
       </FullScreenSection>
     )

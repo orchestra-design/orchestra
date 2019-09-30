@@ -25,21 +25,21 @@ import {
   length,
   unless,
   pick,
-  includes,
+  // includes,
 } from '../../helpers'
 
-const BackImage = styled('div')`
-  ${tw([
-    'absolute',
-    'hidden',
-    'md:block',
-    'mt-q24',
-    'ml-q48',
-    'pin-t',
-    'pin-l',
-    'w-full',
-  ])};
-`
+// const BackImage = styled('div')`
+//   ${tw([
+//     'absolute',
+//     'hidden',
+//     'md:block',
+//     'mt-q24',
+//     'ml-q48',
+//     'pin-t',
+//     'pin-l',
+//     'w-full',
+//   ])};
+// `
 
 const Slide = styled('div')`
   ${({ hasText, length }) =>
@@ -75,21 +75,8 @@ const NavContainer = styled('div')`
 `
 
 const TextWrapper = styled('div')`
-  ${tw(['md:absolute', 'mb-q36', 'mt-q36', 'md:mt-auto', 'pin-b', 'pin-l', 'w-full'])};
+  ${tw(['mb-q36', 'mt-q36', 'md:mt-auto', 'pin-b', 'pin-l', 'w-full'])};
   color: ${({ theme }) => theme.logoFill};
-  text-shadow: 0 0 1rem
-    rgba(
-      0,
-      0,
-      0,
-      ${({ storedTheme }) => (includes('white', storedTheme) ? 0 : 0.64)}
-    );
-  @media (min-width: 768px) {
-    margin-top: calc(64vw * 1 / 2);
-  }
-  @media (min-width: 1200px) {
-    margin-top: calc(1200px * 1 / 2 * 0.64);
-  }
 `
 
 const Text = styled('div')`
@@ -100,16 +87,9 @@ const Text = styled('div')`
     'mb-q24',
     'md:mb-0',
     'w-full',
-    'md:w-1/2',
-    'desktop:w-1/3',
+    'md:w-2/3',
+    'desktop:w-3/4',
   ])};
-  min-width: calc((1 / 3 * 100%) - 1.5rem);
-  @media (min-width: 768px) {
-    max-width: calc((1 / 2 * 100%) - 1.5rem);
-  }
-  @media (min-width: 1200px) {
-    max-width: calc((1 / 3 * 100%) - 1.5rem);
-  }
 `
 
 const previousCount = (length, count) =>
@@ -144,7 +124,7 @@ export const ImageSlider = compose(
   })
 )(
   ({
-    backSlider,
+    // backSlider,
     counter,
     items,
     primary,
@@ -171,7 +151,7 @@ export const ImageSlider = compose(
             ${tw('relative')};
           `}
         >
-          {and(
+          {/* and(
             and(gt(itemsLength, 1), !includes('white', storedTheme)),
             <BackImage>
               <Container
@@ -199,7 +179,7 @@ export const ImageSlider = compose(
                 </Slide>
               </Container>
             </BackImage>
-          )}
+          ) */}
           <Container
             className={css`
               ${tw('relative')};

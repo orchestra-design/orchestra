@@ -19,13 +19,11 @@ import { Img } from './Img'
 
 const Wrapper = styled('div')`
   ${tw(['absolute', 'pin'])};
-  filter: blur(${({ backSlider }) => backSlider && '12px'});
-  transform: scale(1.1);
-  transition: filter ${({ backSlider }) => (backSlider ? 0 : 600)}ms ease-in-out;
   &::after {
-    ${tw(['absolute', 'bg-black', 'hidden', 'opacity-25', 'pin'])};
+    ${tw(['absolute', 'bg-black', 'hidden', 'pin'])};
     ${({ backSlider }) => backSlider && tw(['block'])};
     content: '';
+    opacity: 0.95;
   }
 `
 

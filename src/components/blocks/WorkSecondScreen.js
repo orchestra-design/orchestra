@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 
 import {
   BaseTransition,
-  Breadcrumbs,
+  // Breadcrumbs,
   BodySemibold,
   Container,
-  Heading1,
+  Heading2,
   InfoTags,
   Tags,
   Row,
@@ -38,8 +38,8 @@ const Right = styled('div')`
   ${ColumnTwoFive};
 `
 
-const Heading = styled('h1')`
-  ${Heading1};
+const Heading = styled('h2')`
+  ${Heading2};
   ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
   color: ${({ theme }) => theme.logoFill};
   text-shadow: ${({ theme }) =>
@@ -52,7 +52,7 @@ const Description = styled('div')`
 
 export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
   ({ data, lang, storedTheme, tags }) => {
-    const { descriptiontext, statement, title } = data
+    const { descriptiontext, title } = data
 
     return (
       <ColoredContainer
@@ -68,9 +68,9 @@ export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
                 ${tw('hidden screen:block')};
               `}
             >
-              {statement.text}
+              {title}
             </Heading>
-            <Breadcrumbs
+            {/* <Breadcrumbs
               className={css`
                 ${tw(
                   'hidden screen:block text-black text-body whitespace-normal'
@@ -78,7 +78,7 @@ export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
               `}
             >
               {title}
-            </Breadcrumbs>
+            </Breadcrumbs> */}
           </Left>
           <Right>
             <Description

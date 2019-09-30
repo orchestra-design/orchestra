@@ -13,7 +13,7 @@ import {
 import { safeMap, uuid } from '../../helpers'
 
 const FooterContainer = styled('div')`
-  ${tw(['flex', 'pt-q144', 'w-full'])};
+  ${tw(['flex', 'pt-q24', 'w-full'])};
   color: ${props => props.theme.color};
   min-height: calc(100vh - 375px);
 `
@@ -52,9 +52,7 @@ const Accio = styled('div')`
     'flex',
     'h-q36',
     'items-baseline',
-    'my-q72',
-    'sm:mb-q24',
-    'screen:mt-q144',
+    'my-q24',
   ])};
 `
 
@@ -76,10 +74,22 @@ export const Footer = ({ meta }) => {
           ${tw(['flex', 'flex-col', 'justify-between'])};
         `}
       >
-        <Row>
-          <Row
+        <Row
+          className={css`
+            ${tw(['mt-q72'])};
+          `}
+        >
+          <Paragraph
             className={css`
-              ${tw('w-full screen:items-center')};
+              ${tw(['mb-q24', 'screen:mb-0'])};
+              width: calc(186px - 0.75rem);
+            `}
+            dangerouslySetInnerHTML={{ __html: addressesru.html }}
+          />
+          <Paragraph dangerouslySetInnerHTML={{ __html: addressesfr.html }} />
+          <div
+            className={css`
+              ${tw('flex flex-row mt-q24 screen:mt-0 screen:ml-auto screen:items-center')};
             `}
           >
             {safeMap(
@@ -94,26 +104,12 @@ export const Footer = ({ meta }) => {
               ),
               links
             )}
-          </Row>
-        </Row>
-        <Row
-          className={css`
-            ${tw(['mt-q72'])};
-          `}
-        >
-          <Paragraph
-            className={css`
-              ${tw(['mb-q24', 'screen:mb-0'])};
-              width: calc(186px - 0.75rem);
-            `}
-            dangerouslySetInnerHTML={{ __html: addressesru.html }}
-          />
-          <Paragraph dangerouslySetInnerHTML={{ __html: addressesfr.html }} />
+          </div>
         </Row>
         <Row>
           <Paragraph
             className={css`
-              ${tw(['mt-q24', 'screen:mt-q60'])};
+              ${tw(['mt-q24'])};
             `}
           >
             <a
