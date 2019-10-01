@@ -3,14 +3,7 @@ import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
-import {
-  ColumnThree,
-  Container,
-  Img,
-  JustImage,
-  RichText,
-  Row,
-} from '../elements'
+import { Container, Img, JustImage, RichText, Row } from '../elements'
 
 import {
   and,
@@ -57,8 +50,21 @@ const TextWrapper = styled('div')`
 `
 
 const Col = styled('div')`
-  ${ColumnThree};
-  ${tw(['flex', 'flex-col', 'items-center', 'md:items-start'])};
+  ${tw([
+    'md:px-q12',
+    'mb-q24',
+    'md:mb-0',
+    'w-full',
+    'flex',
+    'flex-col',
+    'items-center',
+    'md:items-start',
+  ])};
+  min-width: calc((${({ cols }) => 1 / cols} * 100%) - 1.5rem);
+  @media (min-width: 768px) {
+    width: calc((${({ cols }) => 1 / cols} * 100%) - 1.5rem);
+    max-width: calc((${({ cols }) => 1 / cols} * 100%) - 1.5rem);
+  }
 `
 
 const Heading = styled('div')`
@@ -76,7 +82,7 @@ const Text = styled('div')`
 `
 
 export const Columns = connect(pick(['isMobile']))(
-  ({ isMobile, primary, items, withoutPadding }) => (
+  ({ isMobile, primary, items, withoutPadding, cols = 3 }) => (
     <Fragment>
       {unless(isNil, () => (
         <Back>
@@ -90,7 +96,7 @@ export const Columns = connect(pick(['isMobile']))(
             length={length(items)}
           >
             {safeMap(item => (
-              <Col key={uuid()}>
+              <Col key={uuid()} cols={cols}>
                 <div
                   key={uuid()}
                   className={css`
@@ -134,7 +140,7 @@ export const Columns = connect(pick(['isMobile']))(
           </ImageWrapper>
         ) : (
           <Fragment>
-            {splitEvery(3, items).map(items => (
+            {splitEvery(cols, items).map(items => (
               <Fragment key={uuid()}>
                 <ImageWrapper
                   hasntImage={isNil(primary.colbackimage)}
@@ -142,7 +148,7 @@ export const Columns = connect(pick(['isMobile']))(
                   length={length(items)}
                 >
                   {safeMap(item => (
-                    <Col key={uuid()}>
+                    <Col key={uuid()} cols={cols}>
                       <div
                         key={uuid()}
                         className={css`
@@ -158,7 +164,7 @@ export const Columns = connect(pick(['isMobile']))(
                 </ImageWrapper>
                 <HeadingWrapper key={uuid()} length={length(items)}>
                   {safeMap(item => (
-                    <Col key={uuid()}>
+                    <Col key={uuid()} cols={cols}>
                       <div
                         key={uuid()}
                         className={css`
@@ -180,7 +186,7 @@ export const Columns = connect(pick(['isMobile']))(
                 </HeadingWrapper>
                 <TextWrapper key={uuid()} length={length(items)}>
                   {safeMap(item => (
-                    <Col key={uuid()}>
+                    <Col key={uuid()} cols={cols}>
                       <div
                         key={uuid()}
                         className={css`

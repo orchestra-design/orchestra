@@ -44,7 +44,7 @@ const WorkTemplate = ({
         {...{ seo }}
         title={statement.text}
       >
-        <ScrollChild image={image} {...{ theme }}>
+        <ScrollChild image={image} {...{ theme }} isFirst>
           <WorkStatement {...{ data }} />
         </ScrollChild>
         <ScrollChild theme={'colored'}>

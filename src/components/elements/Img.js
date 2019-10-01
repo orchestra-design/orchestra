@@ -13,7 +13,7 @@ const imageFluid = pathOr(null, ['localFile', 'childImageSharp', 'fluid'])
 const safeUrl = pathOr(null, ['url'])
 
 export const Img = withStateHandlers(
-  ({ initialColor = 'rgba(0, 0, 0, 1)' }) => ({
+  ({ initialColor = 'rgba(0, 0, 0, 0.1)' }) => ({
     backgroundColor: initialColor,
   }),
   {

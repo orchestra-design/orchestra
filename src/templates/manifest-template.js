@@ -28,7 +28,7 @@ const ManifestTemplate = ({
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild {...{ theme }}>
+      <ScrollChild {...{ theme }} isFirst>
         <ImageStatement data={pick(['title', 'statement', 'image'], data)} />
       </ScrollChild>
       {body ? (

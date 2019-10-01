@@ -25,7 +25,7 @@ const HowTemplate = ({ data: { how, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild {...{ theme }}>
+      <ScrollChild {...{ theme }} isFirst>
         <JumboSlider {...{ data }} />
       </ScrollChild>
       <ScrollChild theme={'white'}>

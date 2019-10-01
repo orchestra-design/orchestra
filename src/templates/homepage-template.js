@@ -40,7 +40,7 @@ const IndexTemplate = ({
       {...{ seo }}
       title={seo.data.seotitle}
     >
-      <ScrollChild theme={'white'}>
+      <ScrollChild theme={'white'} isFirst>
         <FirstScreen {...{description}} />
       </ScrollChild>
       <ScrollChild theme={'white'}>

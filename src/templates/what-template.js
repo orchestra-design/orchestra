@@ -26,13 +26,12 @@ const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild theme={'white'} rightImage={body[0].primary.sicimage}>
+      <ScrollChild theme={'white'} isFirst>
         <div className={css`${tw(['mt-q72', 'md:mt-q112'])}`} />
       </ScrollChild>
       {body.map(({ primary, items }, i) => (
         <ScrollChild
           key={uuid()}
-          rightImage={primary.sicimage}
           sicgrid={primary.sicgrid}
           theme={primary.sictheme}
         >

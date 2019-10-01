@@ -15,7 +15,7 @@ import {
   // Description,
   Headers,
   Img,
-  // Heading0,
+  Heading0,
   RichText,
   Row,
 } from '../elements'
@@ -125,33 +125,34 @@ const LinkStyles = css`
 export const ImageCaptionWithDigits = connect(
   constant,
   { pageTransition }
-)(({ i, items, lang, pageTransition, primary }) => (
+)(({ i, items, /* lang, pageTransition, */ primary }) => (
   <Container>
     <RowWrapper
-      hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}
+      hasntImage={isNil(primary.sicimage)}
     >
       <LeftCol grid={primary.sicgrid}>
         {unless(isNil, () => (
           <div
             className={css`
-              ${tw('md:hidden max-w-xs mb-q24 w-full')};
+              ${tw('max-w-xs mb-q24 w-full')};
             `}
           >
             <Img src={primary.sicimage} />
           </div>
-        ))(primary.sicimage && primary.sicimage.localFile)}
-        {/* unless(isNil, () => (
+        ))(primary.sicimage)}
+      </LeftCol>
+      <RightCol grid={primary.sicgrid}>
+        <div className={Row}>
+        {unless(isNil, () => (
           <div
             className={css`
               ${Heading0};
-              ${tw('mb-q24')};
+              ${tw('mb-q24 pr-q24')};
             `}
           >
             {i + 1}
           </div>
-        ))(i) */}
-      </LeftCol>
-      <RightCol grid={primary.sicgrid}>
+        ))(i)}
         {safeMap(item => (
           <Fragment key={uuid()}>
             {isNil(item.sictextlink) &&
@@ -163,6 +164,7 @@ export const ImageCaptionWithDigits = connect(
               ))(item.sictext)}
           </Fragment>
         ))(items)}
+        </div>
         {/* <div
           className={css`
             ${Description};

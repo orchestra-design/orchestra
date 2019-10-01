@@ -28,7 +28,7 @@ const WorksTemplate = ({
       {...{ meta }}
       {...{ title }}
     >
-      <ScrollChild theme={'white'}>
+      <ScrollChild theme={'white'} isFirst>
         <FirstScreen />
       </ScrollChild>
       <ScrollChild theme={'white'}>

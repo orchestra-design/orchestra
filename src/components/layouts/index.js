@@ -58,6 +58,16 @@ const TemplateWrapper = ({
 }) => {
   const { lang } = seo
 
+  async function loadPolyfills() {
+    if (window !== undefined && typeof window.IntersectionObserver === 'undefined') {
+      await import('intersection-observer')
+    }
+  }
+
+  React.useEffect(() => {
+    loadPolyfills();
+  }, [])
+
   return (
     <ThemeProvider theme={EmotionTheme[storedTheme]}>
       <Main>

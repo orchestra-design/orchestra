@@ -75,7 +75,15 @@ const NavContainer = styled('div')`
 `
 
 const TextWrapper = styled('div')`
-  ${tw(['mb-q36', 'mt-q36', 'md:mt-auto', 'pin-b', 'pin-l', 'w-full'])};
+  ${tw([
+    'relative',
+    'mb-q36',
+    'mt-q36',
+    'md:mt-auto',
+    'pin-b',
+    'pin-l',
+    'w-full',
+  ])};
   color: ${({ theme }) => theme.logoFill};
 `
 
@@ -87,8 +95,8 @@ const Text = styled('div')`
     'mb-q24',
     'md:mb-0',
     'w-full',
-    'md:w-2/3',
-    'desktop:w-3/4',
+    'md:w-5/6',
+    'desktop:w-3/5',
   ])};
 `
 
@@ -122,36 +130,28 @@ export const ImageSlider = compose(
       )(sliderId)
     },
   })
-)(
-  ({
-    // backSlider,
-    counter,
-    items,
-    primary,
-    setImage,
-    sliderCounter,
-    sliderId,
-    storedTheme,
-  }) => {
-    const itemsLength = length(items)
-    const image = items.map(({ imgimage }) => ({ image: imgimage }))
-    const previous = previousCount(itemsLength, sliderCounter[sliderId] || 0)
-    const next = nextCount(itemsLength, sliderCounter[sliderId] || 0)
-    const toBackImage = where => image[where].image
+)(({ // backSlider,
+  counter, items, primary, setImage, sliderCounter, sliderId, storedTheme }) => {
+  const itemsLength = length(items)
+  const image = items.map(({ imgimage }) => ({ image: imgimage }))
+  const previous = previousCount(itemsLength, sliderCounter[sliderId] || 0)
+  const next = nextCount(itemsLength, sliderCounter[sliderId] || 0)
+  const toBackImage = where => image[where].image
 
-    return (
+  return (
+    <div
+      className={css`
+        ${tw('my-q112 desktop:my-q200 relative')};
+        ${gt(itemsLength, 1) &&
+          tw('flex flex-col min-h-screen justify-center')};
+      `}
+    >
       <div
         className={css`
-          ${tw('my-q112 desktop:my-q200 relative')};
-          ${gt(itemsLength, 1) && tw('flex flex-col min-h-screen justify-center')};
+          ${tw('relative')};
         `}
       >
-        <div
-          className={css`
-            ${tw('relative')};
-          `}
-        >
-          {/* and(
+        {/* and(
             and(gt(itemsLength, 1), !includes('white', storedTheme)),
             <BackImage>
               <Container
@@ -180,67 +180,66 @@ export const ImageSlider = compose(
               </Container>
             </BackImage>
           ) */}
-          <Container
-            className={css`
-              ${tw('relative')};
-            `}
-          >
-            {unless(isNil, () => (
-              <Slide
-                hasText={isNil(primary.imgtext && primary.imgtext.html)}
-                length={gt(itemsLength, 1)}
-              >
-                <ImageForSlider
-                  count={sliderCounter[sliderId] || 0}
-                  {...{ image }}
-                  {...{ storedTheme }}
-                />
-              </Slide>
-            ))(items && items[sliderCounter[sliderId] || 0].imgimage.localFile)}
-            {and(
-              gt(itemsLength, 1),
-              <JustPager
-                count={sliderCounter[sliderId] || 0}
-                length={itemsLength}
-              />
-            )}
-          </Container>
+        <Container
+          className={css`
+            ${tw('relative')};
+          `}
+        >
           {unless(isNil, () => (
-            <TextWrapper {...{ storedTheme }}>
-              <Container>
-                <Text
-                  dangerouslySetInnerHTML={{ __html: primary.imgtext.html }}
-                />
-              </Container>
-            </TextWrapper>
-          ))(primary.imgtext)}
+            <Slide
+              hasText={isNil(primary.imgtext && primary.imgtext.html)}
+              length={gt(itemsLength, 1)}
+            >
+              <ImageForSlider
+                count={sliderCounter[sliderId] || 0}
+                {...{ image }}
+                {...{ storedTheme }}
+              />
+            </Slide>
+          ))(items && items[sliderCounter[sliderId] || 0].imgimage.localFile)}
           {and(
             gt(itemsLength, 1),
-            <NavContainer>
-              <Container
-                className={css`
-                  ${tw('flex justify-between items-center')};
-                `}
-              >
-                <PreviousButton
-                  {...{ storedTheme }}
-                  onClick={() => {
-                    counter(previous)
-                    setImage(toBackImage(previous))
-                  }}
-                />
-                <NextButton
-                  {...{ storedTheme }}
-                  onClick={() => {
-                    counter(next)
-                    setImage(toBackImage(next))
-                  }}
-                />
-              </Container>
-            </NavContainer>
+            <JustPager
+              count={sliderCounter[sliderId] || 0}
+              length={itemsLength}
+            />
           )}
-        </div>
+        </Container>
+        {unless(isNil, () => (
+          <TextWrapper {...{ storedTheme }}>
+            <Container>
+              <Text
+                dangerouslySetInnerHTML={{ __html: primary.imgtext.html }}
+              />
+            </Container>
+          </TextWrapper>
+        ))(primary.imgtext)}
+        {and(
+          gt(itemsLength, 1),
+          <NavContainer>
+            <Container
+              className={css`
+                ${tw('flex justify-between items-center')};
+              `}
+            >
+              <PreviousButton
+                {...{ storedTheme }}
+                onClick={() => {
+                  counter(previous)
+                  setImage(toBackImage(previous))
+                }}
+              />
+              <NextButton
+                {...{ storedTheme }}
+                onClick={() => {
+                  counter(next)
+                  setImage(toBackImage(next))
+                }}
+              />
+            </Container>
+          </NavContainer>
+        )}
       </div>
-    )
-  }
-)
+    </div>
+  )
+})

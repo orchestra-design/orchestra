@@ -25,7 +25,7 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild {...{ theme }}>
+      <ScrollChild {...{ theme }} isFirst>
         <ImageStatement data={pick(['title', 'image'], data)} />
       </ScrollChild>
       {body ? (
@@ -40,6 +40,7 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
                 >
                   <Columns
                     key={uuid()}
+                    cols={4}
                     items={section.items}
                     primary={section.primary}
                   />

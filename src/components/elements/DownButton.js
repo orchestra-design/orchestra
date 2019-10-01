@@ -28,7 +28,7 @@ const Button = styled(RoundButton)`
     'z-40',
   ])};
   ${BaseTransition};
-  ${({ hiddenDown, notDown }) => !hiddenDown && !notDown && tw('md:block')};
+  ${({ hiddenDown }) => !hiddenDown && tw('md:block')};
   background-image: url(${({ theme }) =>
     theme.color === '#ffffff' ? IconUp : IconUpBlack});
   background-size: 24px 24px;
@@ -52,6 +52,6 @@ export const DownButton = compose(
       })
     },
   })
-)(({ hiddenDown, notDown, toNext }) => (
-  <Button onClick={toNext} {...{ hiddenDown }} {...{ notDown }} />
+)(({ hiddenDown, notDown, toNext }) => notDown ? null : (
+  <Button onClick={toNext} {...{ hiddenDown }} />
 ))

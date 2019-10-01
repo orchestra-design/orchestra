@@ -16,6 +16,7 @@ import offset from 'dom-helpers/query/offset'
 
 import camelCase from 'lodash/fp/camelCase'
 import debounce from 'lodash/fp/debounce'
+import throttle from 'lodash/fp/throttle'
 import delay from 'lodash/fp/delay'
 //import includes from 'lodash/fp/includes'
 import startCase from 'lodash/fp/startCase'
@@ -122,11 +123,15 @@ export {
   replace,
   splitEvery,
   tail,
+  throttle,
   uniq,
   values,
   view,
   uuid,
 }
+
+export { useMeasure } from './useMeasure'
+export { useThrottle } from './useThrottle'
 
 export const includes = curry(
   (pat, str) => (str && typeof str === 'string' ? str.includes(pat) : false)
