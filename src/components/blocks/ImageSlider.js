@@ -19,7 +19,6 @@ import {
 import {
   and,
   equals,
-  get,
   gt,
   ifElse,
   isNil,
@@ -134,7 +133,6 @@ export const ImageSlider = compose(
 )(({ // backSlider,
   counter, items, primary, setImage, sliderCounter, sliderId, storedTheme }) => {
   const itemsLength = length(items)
-
   const image = items.map(({ imgimage }) => ({ image: imgimage }))
   const previous = previousCount(itemsLength, sliderCounter[sliderId] || 0)
   const next = nextCount(itemsLength, sliderCounter[sliderId] || 0)
@@ -198,7 +196,7 @@ export const ImageSlider = compose(
                 {...{ storedTheme }}
               />
             </Slide>
-          ))(get([(sliderCounter[sliderId] || 0), 'imgimage', 'localFile'], items))}
+          ))(items && items[sliderCounter[sliderId] || 0] && items[sliderCounter[sliderId] || 0].imgimage.localFile)}
           {and(
             gt(itemsLength, 1),
             <JustPager

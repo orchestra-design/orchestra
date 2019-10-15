@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import { css } from 'react-emotion'
 import { Transition, animated } from 'react-spring'
 
-import { isArray, isNil, unless, uuid, includes } from '../../helpers'
+import { isArray, isNil, unless, uuid } from '../../helpers'
 import { Img } from './Img'
 
 const Slide = css`
@@ -36,18 +36,14 @@ export const ImageForSlider = ({ count, image, storedTheme }) => {
     <Fragment>
       {unless(isNil, () => (
         <div className={css`
-          ${includes('white', storedTheme) 
-            ? tw(['relative'])
-            : tw(['absolute', 'pin'])
-          }
+          ${tw(['absolute', 'pin'])};
         `}>
           <Img
             src={data[0].image}
             className={css`
               ${tw('pin')};
             `}
-            style={{ position: includes('white', storedTheme) 
-              ? 'relative' : 'absolute' }}
+            style={{ position: 'absolute' }}
           />
           <Transition
             native
