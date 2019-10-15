@@ -20,6 +20,7 @@ import throttle from 'lodash/fp/throttle'
 import delay from 'lodash/fp/delay'
 //import includes from 'lodash/fp/includes'
 import startCase from 'lodash/fp/startCase'
+import get from 'lodash/fp/get'
 
 import {
   and,
@@ -96,6 +97,7 @@ export {
   F,
   filter,
   find,
+  get,
   gt,
   head,
   identity,
