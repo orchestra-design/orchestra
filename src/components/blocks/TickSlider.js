@@ -95,6 +95,8 @@ const enhance = compose(
 )
 
 export const TickSlider = enhance(({ image, countJumbo, jumboCount }) => {
+  if (image.length === 0) return null
+
   const increment = jumboCount < length(image) - 1 ? jumboCount + 1 : 0
   const color = image[jumboCount].theme === 'image-inverse'
 
