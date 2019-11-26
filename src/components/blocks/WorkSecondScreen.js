@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import {
   BaseTransition,
-  // Breadcrumbs,
   BodySemibold,
   Container,
   Heading2,
@@ -19,7 +18,7 @@ import {
 import { equals } from '../../helpers'
 
 const ColoredContainer = styled(Container)`
-  ${tw(['screen:opacity-0', 'py-q48', 'md:py-q112'])};
+  ${tw(['screen:opacity-0', 'py-q36', 'md:py-q72'])};
   ${({ storedTheme }) =>
     equals(storedTheme, 'colored') && tw(['screen:opacity-100'])};
   ${BaseTransition};
@@ -40,14 +39,13 @@ const Right = styled('div')`
 
 const Heading = styled('h2')`
   ${Heading2};
-  ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
+  ${tw(['max-w-sm'])};
   color: ${({ theme }) => theme.logoFill};
-  text-shadow: ${({ theme }) =>
-    theme.logoShadow && '0 0 1.5rem rgba(0,0,0,0.24)'};
 `
 
 const Description = styled('div')`
   ${BodySemibold};
+  ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
 `
 
 export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
@@ -63,35 +61,23 @@ export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
       >
         <ColoredRow>
           <Left>
-            <Heading
-              className={css`
-                ${tw('hidden screen:block')};
-              `}
-            >
+            <Heading>
               {title}
             </Heading>
-            {/* <Breadcrumbs
-              className={css`
-                ${tw(
-                  'hidden screen:block text-black text-body whitespace-normal'
-                )};
-              `}
-            >
-              {title}
-            </Breadcrumbs> */}
-          </Left>
-          <Right>
-            <Description
-              dangerouslySetInnerHTML={{ __html: descriptiontext.html }}
-            />
-            <InfoTags {...{ data }} {...{ lang }} />
-          </Right>
-        </ColoredRow>
-        <ColoredRow>
+            </Left>
+            <Right>
+              <Description
+                dangerouslySetInnerHTML={{ __html: descriptiontext.html }}
+              />
+            </Right>
+          </ColoredRow>
+          <ColoredRow>
           <Left>
             <Tags {...{ lang }} {...{ tags }} />
           </Left>
-          <Right />
+          <Right>
+            <InfoTags {...{ data }} {...{ lang }} />
+          </Right>
         </ColoredRow>
       </ColoredContainer>
     )

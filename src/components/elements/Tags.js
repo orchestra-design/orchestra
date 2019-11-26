@@ -18,7 +18,6 @@ const TagsRow = styled('div')`
     'md:flex-col',
     'items-baseline',
     'md:items-start',
-    '-mx-1',
     'w-auto',
   ])};
 `
@@ -27,8 +26,8 @@ const LinkStyles = css`
   ${ButtonSmallText};
   ${tw([
     'inline-block',
-    'mb-q4',
-    'mr-q4',
+    'mb-q8',
+    'mr-q8',
     'no-underline',
     'px-q8',
     'py-q4',
@@ -40,6 +39,7 @@ const LinkStyles = css`
     'hover:shadow-elevate1',
     'whitespace-no-wrap',
   ])};
+  box-shadow: 0 0 1px white;
   ${BaseTransition};
 `
 
@@ -53,7 +53,7 @@ export const Tags = connect(
         <span
           className={css`
             ${Description};
-            ${tw(['mb-q4', 'mr-q4', 'px-q8', 'py-q4'])};
+            ${tw(['mb-q8', 'mr-q8', 'py-q4'])};
           `}
         >
           {includes('en', lang) ? 'What:' : 'Услуги:'}

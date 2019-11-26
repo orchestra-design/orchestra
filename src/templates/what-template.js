@@ -33,7 +33,7 @@ const WhatTemplate = ({ data: { what, seo, allSite, meta }, location }) => {
         <ScrollChild
           key={uuid()}
           sicgrid={primary.sicgrid}
-          theme={primary.sictheme}
+          theme={'white'}
         >
           <ImageCaptionWithDigits
             key={uuid()}

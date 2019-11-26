@@ -15,7 +15,6 @@ import { safeMap, uuid } from '../../helpers'
 const FooterContainer = styled('div')`
   ${tw(['flex', 'pt-q24', 'w-full'])};
   color: ${props => props.theme.color};
-  min-height: calc(100vh - 375px);
 `
 
 const Row = styled('div')`
@@ -52,7 +51,8 @@ const Accio = styled('div')`
     'flex',
     'h-q36',
     'items-baseline',
-    'my-q24',
+    'pt-q12',
+    'my-q12',
   ])};
 `
 
@@ -76,12 +76,12 @@ export const Footer = ({ meta }) => {
       >
         <Row
           className={css`
-            ${tw(['mt-q72'])};
+            ${tw(['mt-q48'])};
           `}
         >
           <Paragraph
             className={css`
-              ${tw(['mb-q24', 'screen:mb-0'])};
+              ${tw(['mb-q12', 'screen:mb-0'])};
               width: calc(186px - 0.75rem);
             `}
             dangerouslySetInnerHTML={{ __html: addressesru.html }}
@@ -89,7 +89,7 @@ export const Footer = ({ meta }) => {
           <Paragraph dangerouslySetInnerHTML={{ __html: addressesfr.html }} />
           <div
             className={css`
-              ${tw('flex flex-row mt-q24 screen:mt-0 screen:ml-auto screen:items-center')};
+              ${tw('flex flex-row mt-q12 screen:mt-0 screen:ml-auto screen:items-center')};
             `}
           >
             {safeMap(
@@ -109,7 +109,7 @@ export const Footer = ({ meta }) => {
         <Row>
           <Paragraph
             className={css`
-              ${tw(['mt-q24'])};
+              ${tw(['mt-q12'])};
             `}
           >
             <a

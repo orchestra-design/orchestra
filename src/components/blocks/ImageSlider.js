@@ -75,7 +75,6 @@ const TextWrapper = styled('div')`
     'relative',
     'mb-q36',
     'mt-q36',
-    'md:mt-auto',
     'pin-b',
     'pin-l',
     'w-full',
@@ -137,7 +136,7 @@ export const ImageSlider = compose(
   return (
     <div
       className={css`
-        ${tw('my-q112 desktop:my-q200 relative')};
+        ${tw('my-q36 md:my-q72 relative')};
         ${gt(itemsLength, 1) &&
           tw('flex flex-col min-h-screen justify-center')};
       `}
