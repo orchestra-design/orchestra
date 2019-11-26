@@ -2,10 +2,10 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import { Container, LeadText } from '../elements'
+import { Container, RichText } from '../elements'
 
 const LeadWrapper = styled('div')`
-  ${LeadText};
+  ${RichText};
   ${tw(['flex', 'flex-col', 'justify-center',
     'screen:mx-1/6', 'relative',
   ])};
@@ -19,7 +19,11 @@ const LeadWrapper = styled('div')`
 export const FirstScreen = ({ description }) => (
   <Container>
     <LeadWrapper>
-    { description.text }
+      <div
+        dangerouslySetInnerHTML={{
+          __html: description.html,
+        }}
+      />
     </LeadWrapper>
   </Container>
 )

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { graphql } from 'gatsby'
+// import { graphql } from 'gatsby'
 
 import { includes, path, pick, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
@@ -109,75 +109,75 @@ const ManifestTemplate = ({
 
 export default ManifestTemplate
 
-export const query = graphql`
-  query ManifestTemplateQuery($lang: String!) {
-    manifest: prismicManifest(lang: { eq: $lang }) {
-      data {
-        title
-        statement {
-          text
-        }
-        theme
-        image {
-          url
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920, quality: 80) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        body {
-          __typename
-          ... on PrismicManifestBodyImageCaption {
-            primary {
-              sicgrid
-              sictheme
-              sicheader {
-                html
-              }
-            }
-            items {
-              sictext {
-                html
-              }
-            }
-          }
-        }
-      }
-    }
-    seo: prismicManifest(lang: { eq: $lang }) {
-      uid
-      lang
-      data {
-        seotitle
-        seodescription
-        seokeywords
-        seoimage {
-          url
-          localFile {
-            childImageSharp {
-              fixed(width: 1200, height: 630) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
-            }
-          }
-        }
-      }
-    }
-    allSite: allSitePage {
-      edges {
-        node {
-          path
-        }
-      }
-    }
-    meta: prismicMeta(lang: { eq: $lang }) {
-      ...MetaFragment
-    }
-  }
-`
+// export const query = graphql`
+//   query ManifestTemplateQuery($lang: String!) {
+//     manifest: prismicManifest(lang: { eq: $lang }) {
+//       data {
+//         title
+//         statement {
+//           text
+//         }
+//         theme
+//         image {
+//           url
+//           localFile {
+//             childImageSharp {
+//               fluid(maxWidth: 1920, quality: 80) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//         }
+//         body {
+//           __typename
+//           ... on PrismicManifestBodyImageCaption {
+//             primary {
+//               sicgrid
+//               sictheme
+//               sicheader {
+//                 html
+//               }
+//             }
+//             items {
+//               sictext {
+//                 html
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//     seo: prismicManifest(lang: { eq: $lang }) {
+//       uid
+//       lang
+//       data {
+//         seotitle
+//         seodescription
+//         seokeywords
+//         seoimage {
+//           url
+//           localFile {
+//             childImageSharp {
+//               fixed(width: 1200, height: 630) {
+//                 ...GatsbyImageSharpFixed_noBase64
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//     allSite: allSitePage {
+//       edges {
+//         node {
+//           path
+//         }
+//       }
+//     }
+//     meta: prismicMeta(lang: { eq: $lang }) {
+//       ...MetaFragment
+//     }
+//   }
+// `
 /* leadimage {
     url
     localFile {
