@@ -14,6 +14,9 @@ const LeadWrapper = styled('div')`
   @media (max-width: 599px) {
     height: 100vw;
   }
+  & strong {
+    ${tw(['font-extrabold'])};
+  }
 `
 
 export const FirstScreen = ({ description }) => (

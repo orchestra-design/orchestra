@@ -101,6 +101,7 @@ export const query = graphql`
       data {        
         description {
           text
+          html
         }
         slider {
           image {
