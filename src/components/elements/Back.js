@@ -6,5 +6,5 @@ export const Back = styled('div')`
   background-color: ${props => 
     props.theme.backgroundColor || props.color
   };
-  transition: all .6s ease-in-out;
+  transition: all .8s ease-in-out;
 `

@@ -7,9 +7,10 @@ import { connect } from 'react-redux'
 import { setImage, sliderCount } from '../../actions'
 
 import {
-  ColumnFiveSix,
+  // ColumnFiveSix,
   Container,
-  ImageForSlider,
+  // ImageForSlider,
+  ImageForTickSlider,
   JustPager,
   NextButton,
   PreviousButton,
@@ -42,15 +43,10 @@ import {
 // `
 
 const Slide = styled('div')`
-  ${({ hasText, length }) =>
-    !hasText || length ? ColumnFiveSix : tw(['w-full'])};
-  ${tw(['relative'])};
+  ${tw(['relative', 'w-full'])};
   height: 64vw;
   @media (min-width: 768px) {
-    height: calc(64vw * 5 / 6);
-  }
-  @media (min-width: 1200px) {
-    height: calc(1200px * 5 / 6 * 0.64);
+    height: 86vh;
   }
 `
 
@@ -190,10 +186,9 @@ export const ImageSlider = compose(
               hasText={isNil(primary.imgtext && primary.imgtext.html)}
               length={gt(itemsLength, 1)}
             >
-              <ImageForSlider
+              <ImageForTickSlider
                 count={sliderCounter[sliderId] || 0}
                 {...{ image }}
-                {...{ storedTheme }}
               />
             </Slide>
           ))(items && items[sliderCounter[sliderId] || 0] && items[sliderCounter[sliderId] || 0].imgimage.localFile)}

@@ -43,9 +43,8 @@ export const ImageForTickSlider = ({ count, image }) => {
           <Img
             src={data[0].image}
             className={css`
-              ${tw('pin')};
+              ${tw('h-full')};
             `}
-            style={{ position: 'absolute' }}
           />
           <Transition
             native

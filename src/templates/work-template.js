@@ -58,7 +58,7 @@ const WorkTemplate = ({
                   <ScrollChild
                     key={uuid()}
                     items={section.items}
-                    theme={section.primary.imgtheme}
+                    theme={'white'}
                     slider={includes('image', section.primary.imgtheme)}
                     sliderId={section.prismicId}
                   >
@@ -72,7 +72,7 @@ const WorkTemplate = ({
                 )
               case 'PrismicWorkBodyImageCaption':
                 return (
-                  <ScrollChild key={uuid()} theme={section.primary.sictheme}>
+                  <ScrollChild key={uuid()} theme={'white'}>
                     <WorkImageCaption
                       key={uuid()}
                       {...{ color }}
@@ -85,7 +85,7 @@ const WorkTemplate = ({
                 return (
                   <ScrollChild
                     key={uuid()}
-                    theme={section.primary.coltheme}
+                    theme={'white'}
                     style={{ position: 'relative' }}
                   >
                     <Columns
@@ -101,7 +101,7 @@ const WorkTemplate = ({
             }
           })
         ) : (
-          <ScrollChild theme={'black'} />
+          <ScrollChild theme={'white'} />
         )}
         <ScrollChild theme={'white'}>
           {unless(isNil, () => <Context {...{ allworks }} {...{ context }} />)(

@@ -1,7 +1,7 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 import {
   Columns,
@@ -44,10 +44,7 @@ const IndexTemplate = ({
         <FirstScreen {...{description}} />
       </ScrollChild>
       <ScrollChild theme={'white'}>
-        {<TickSlider {...{ image }} />}
-      </ScrollChild>
-      <ScrollChild theme={'white'}>
-        <div className={css`${tw(['mt-q72', 'md:mt-q112'])}`} />
+        <TickSlider {...{ image }} />
       </ScrollChild>
       {safeMap(section => {
         switch (section.__typename) {
@@ -55,7 +52,7 @@ const IndexTemplate = ({
             return (
               <ScrollChild
                 key={uuid()}
-                theme={section.primary.coltheme}
+                theme={'white'}
                 style={{ position: 'relative' }}
               >
                 <Columns

@@ -12,8 +12,8 @@ const PagerRow = styled('div')`
   ${tw([
     'flex',
     'items-center',
-    '-mt-q12',
-    'md:mt-q4',
+    'mt-q4',
+    'md:mt-q8',
     'relative',
     'whitespace-no-wrap',
   ])};
