@@ -40,9 +40,9 @@ export const RichText = css`
     }
   }
   & h4 {
-    ${Heading4};
+    ${Heading3};
     &:last-of-type {
-      ${tw(['mb-q16', 'md:mb-q24'])};
+      ${tw(['mb-q24', 'md:mb-q32'])};
     }
   }
   & p {

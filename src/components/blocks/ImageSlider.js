@@ -61,13 +61,6 @@ const NavContainer = styled('div')`
     'md:px-1/12',
     'desktop:px-1/6',
   ])};
-  height: 64vw;
-  @media (min-width: 768px) {
-    height: calc(64vw * 5 / 6);
-  }
-  @media (min-width: 1200px) {
-    height: calc(1200px * 5 / 6 * 0.64);
-  }
 `
 
 const TextWrapper = styled('div')`

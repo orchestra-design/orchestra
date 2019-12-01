@@ -42,10 +42,7 @@
     "theme": {
       "type": "Select",
       "config": {
-        "options": [
-          "image",
-          "image-inverse"
-        ],
+        "options": ["image", "image-inverse"],
         "default_value": "image",
         "label": "Theme",
         "placeholder": "Color Theme"
@@ -66,10 +63,7 @@
               "sicgrid": {
                 "type": "Select",
                 "config": {
-                  "options": [
-                    "right",
-                    "left"
-                  ],
+                  "options": ["right", "left"],
                   "default_value": "right",
                   "label": "SICGrid",
                   "placeholder": "Grid"
@@ -358,6 +352,14 @@
         "placeholder": "Description"
       }
     },
+    "map": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Map"
+      }
+    },
     "location": {
       "type": "Text",
       "config": {
@@ -447,10 +449,7 @@
             "type": "Link",
             "config": {
               "select": "document",
-              "customtypes": [
-                "artwork",
-                "work"
-              ],
+              "customtypes": ["artwork", "work"],
               "label": "Link",
               "placeholder": "Work"
             }

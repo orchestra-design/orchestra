@@ -6,8 +6,13 @@ import { Container, RichText } from '../elements'
 
 const LeadWrapper = styled('div')`
   ${RichText};
-  ${tw(['flex', 'flex-col', 'justify-center',
-    'screen:mx-1/6', 'relative',
+  ${tw([
+    'font-semibold',
+    'flex',
+    'flex-col',
+    'justify-center',
+    'screen:mx-1/6',
+    'relative',
   ])};
   ${tw(['screen:min-h-screen'])};
   color: ${({ theme }) => theme.color};

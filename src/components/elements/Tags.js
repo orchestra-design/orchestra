@@ -6,9 +6,9 @@ import styled, { css } from 'react-emotion'
 
 import { pageTransition } from '../../actions'
 
-import { includes, safeMap, uuid, constant } from '../../helpers'
+import { safeMap, uuid, constant } from '../../helpers'
 
-import { ButtonSmallText, Description } from './Typography'
+import { ButtonSmallText } from './Typography'
 import { BaseTransition } from './Transitions'
 
 const TagsRow = styled('div')`
@@ -39,7 +39,7 @@ const LinkStyles = css`
     'hover:shadow-elevate1',
     'whitespace-no-wrap',
   ])};
-  box-shadow: 0 0 1px white;
+  box-shadow: 0 0 1px 0.72px white;
   ${BaseTransition};
 `
 
@@ -50,14 +50,6 @@ export const Tags = connect(
   return (
     tags.length > 0 && (
       <TagsRow>
-        <span
-          className={css`
-            ${Description};
-            ${tw(['mb-q8', 'mr-q8', 'py-q4'])};
-          `}
-        >
-          {includes('en', lang) ? 'What:' : 'Услуги:'}
-        </span>
         {safeMap(tag => (
           <Link
             key={uuid()}

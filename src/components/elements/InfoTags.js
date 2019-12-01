@@ -1,6 +1,6 @@
 /* global tw */
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 import {
   concat,
@@ -39,6 +39,7 @@ const Left = styled('div')`
 const Right = styled('div')`
   ${ColumnTwoFive};
   ${tw(['mb-0'])};
+  color: ${({ theme }) => theme.logoFill};
 `
 
 export const InfoTags = ({ data, lang }) => {
@@ -78,15 +79,10 @@ export const InfoTags = ({ data, lang }) => {
     <Col>
       {safeMap(({ tagtitle, tagdescription }) => (
         <Line key={uuid()}>
-          <Right
-            key={uuid()}
-            className={css`
-              ${tw('screen:text-white')};
-            `}
-          >
+          <Right>
             {tagtitle}
           </Right>
-          <Left key={uuid()} className={DescriptionSemibold}>
+          <Left className={DescriptionSemibold}>
             {tagdescription}
           </Left>
         </Line>

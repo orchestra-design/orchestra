@@ -78,6 +78,7 @@ const WorkTemplate = ({
                       {...{ color }}
                       items={section.items}
                       primary={section.primary}
+                      sliderId={section.prismicId}
                     />
                   </ScrollChild>
                 )
@@ -153,6 +154,16 @@ export const query = graphql`
         descriptiontext {
           html
         }
+        map {
+          url
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1280, quality: 80) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
         location
         type
         status
@@ -216,6 +227,7 @@ export const query = graphql`
             }
           }
           ... on PrismicWorkBodyImageCaption {
+            prismicId
             primary {
               sicgrid
               sictheme

@@ -86,7 +86,6 @@ export const LeadText = css`
     'leading-none',
     'tracking-tight',
     'text-heading5',
-    'font-semibold',
   ])};
 `
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import {
   BaseTransition,
-  BodySemibold,
+  Body,
   Container,
   Heading2,
   InfoTags,
@@ -13,14 +13,12 @@ import {
   Row,
   ColumnThreeFive,
   ColumnTwoFive,
+  Map,
 } from '../elements'
 
-import { equals } from '../../helpers'
 
 const ColoredContainer = styled(Container)`
-  ${tw(['screen:opacity-0', 'py-q36', 'md:py-q72'])};
-  ${({ storedTheme }) =>
-    equals(storedTheme, 'colored') && tw(['screen:opacity-100'])};
+  ${tw(['py-q36', 'md:py-q72'])};
   ${BaseTransition};
 `
 
@@ -39,18 +37,18 @@ const Right = styled('div')`
 
 const Heading = styled('h2')`
   ${Heading2};
-  ${tw(['max-w-sm'])};
+  ${tw(['max-w-sm', 'md:mb-q40'])};
   color: ${({ theme }) => theme.logoFill};
 `
 
 const Description = styled('div')`
-  ${BodySemibold};
+  ${Body};
   ${tw(['max-w-sm', 'mb-q24', 'md:mb-q40'])};
 `
 
 export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
   ({ data, lang, storedTheme, tags }) => {
-    const { descriptiontext, title } = data
+    const { descriptiontext, title, map } = data
 
     return (
       <ColoredContainer
@@ -76,6 +74,7 @@ export const WorkSecondScreen = connect(({ storedTheme }) => ({ storedTheme }))(
             <Tags {...{ lang }} {...{ tags }} />
           </Left>
           <Right>
+            <Map map={map} />
             <InfoTags {...{ data }} {...{ lang }} />
           </Right>
         </ColoredRow>

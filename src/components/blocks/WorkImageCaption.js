@@ -23,6 +23,7 @@ import {
   uuid,
   includes,
 } from '../../helpers'
+import { Slider } from './Slider'
 
 const RowWrapper = styled('div')`
   ${Row};
@@ -34,9 +35,11 @@ const RowWrapper = styled('div')`
 const LeftCol = styled('div')`
   ${tw(['md:text-right'])};
   ${({ grid }) =>
-    ifElse(equals('left'), constant(ColumnTwoFive), constant(ColumnThreeFive))(
-      grid
-    )};
+    ifElse(
+      equals('left'),
+      constant(ColumnTwoFive),
+      constant(ColumnThreeFive)
+    )(grid)};
   @media (max-width: 768px) {
     order: ${({ hasntHeader }) => (hasntHeader ? 1 : 0)};
   }
@@ -44,7 +47,7 @@ const LeftCol = styled('div')`
 
 const Header = styled('div')`
   ${Headers};
-  ${tw(['mb-q36'])};
+  ${tw(['mb-q32'])};
   color: ${({ color, theme }) =>
     theme.backgroundColor ? color : theme.logoFill};
 `
@@ -52,9 +55,11 @@ const Header = styled('div')`
 const RightCol = styled('div')`
   ${tw(['flex', 'flex-col', 'items-start'])};
   ${({ grid }) =>
-    ifElse(equals('left'), constant(ColumnThreeFive), constant(ColumnTwoFive))(
-      grid
-    )};
+    ifElse(
+      equals('left'),
+      constant(ColumnThreeFive),
+      constant(ColumnTwoFive)
+    )(grid)};
 `
 
 const Text = styled('div')`
@@ -69,7 +74,7 @@ const Text = styled('div')`
   }
 `
 
-export const WorkImageCaption = ({ color, items, primary }) => (
+export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
   <Container>
     <RowWrapper
       hasntImage={isNil(primary.sicimage && primary.sicimage.localFile)}
@@ -78,17 +83,15 @@ export const WorkImageCaption = ({ color, items, primary }) => (
         grid={primary.sicgrid}
         hasntHeader={isNil(primary.sicheader && primary.sicheader.html)}
       >
-        {unless(
-          isNil,
-          () =>
-            includes('><', primary.sicheader.html) ? (
-              false
-            ) : (
-              <Header
-                {...{ color }}
-                dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
-              />
-            )
+        {unless(isNil, () =>
+          includes('><', primary.sicheader.html) ? (
+            false
+          ) : (
+            <Header
+              {...{ color }}
+              dangerouslySetInnerHTML={{ __html: primary.sicheader.html }}
+            />
+          )
         )(primary.sicheader && primary.sicheader.html)}
         {unless(isNil, () => (
           <div
@@ -99,6 +102,12 @@ export const WorkImageCaption = ({ color, items, primary }) => (
             <Img src={primary.sicimage} />
           </div>
         ))(primary.sicimage && primary.sicimage.localFile)}
+        {unless(isNil, () => (
+          <Text
+            {...{ color }}
+            dangerouslySetInnerHTML={{ __html: primary.siccaption }}
+          />
+        ))(primary.siccaption)}
       </LeftCol>
       <RightCol grid={primary.sicgrid}>
         {safeMap(item => (
@@ -111,18 +120,22 @@ export const WorkImageCaption = ({ color, items, primary }) => (
                   dangerouslySetInnerHTML={{ __html: item.sictext.html }}
                 />
               ))(item.sictext)}
-            {item.sictextimage &&
-              item.sictextimage.localFile && (
-                <div
-                  className={css`
-                    ${tw('max-w-xs mt-q24 w-full')};
-                  `}
-                >
-                  <Img key={uuid()} src={item.sictextimage} />
-                </div>
-              )}
           </Fragment>
         ))(items)}
+        {items[0].sictextimage && (
+          <div
+            className={css`
+              ${tw('w-full')};
+            `}
+          >
+            <Slider
+              items={items.map(({ sictextimage }) => ({
+                image: sictextimage,
+              }))}
+              {...{ sliderId }}
+            />
+          </div>
+        )}
       </RightCol>
     </RowWrapper>
   </Container>
