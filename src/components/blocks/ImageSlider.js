@@ -57,9 +57,6 @@ const NavContainer = styled('div')`
     'justify-between',
     'items-center',
     'pin',
-    'px-q32',
-    'md:px-1/12',
-    'desktop:px-1/6',
   ])};
 `
 
@@ -186,6 +183,33 @@ export const ImageSlider = compose(
           ))(items && items[sliderCounter[sliderId] || 0] && items[sliderCounter[sliderId] || 0].imgimage.localFile)}
           {and(
             gt(itemsLength, 1),
+            <NavContainer>
+              <Container
+                className={css`
+                  ${tw('flex justify-between items-center w-full h-full')};
+                `}
+              >
+                <PreviousButton
+                  {...{ storedTheme }}
+                  onClick={() => {
+                    counter(previous)
+                    setImage(toBackImage(previous))
+                  }}
+                />
+                <NextButton
+                  {...{ storedTheme }}
+                  onClick={() => {
+                    counter(next)
+                    setImage(toBackImage(next))
+                  }}
+                />
+              </Container>
+            </NavContainer>
+          )}
+        </Container>
+        <Container>
+          {and(
+            gt(itemsLength, 1),
             <JustPager
               count={sliderCounter[sliderId] || 0}
               length={itemsLength}
@@ -201,31 +225,6 @@ export const ImageSlider = compose(
             </Container>
           </TextWrapper>
         ))(primary.imgtext)}
-        {and(
-          gt(itemsLength, 1),
-          <NavContainer>
-            <Container
-              className={css`
-                ${tw('flex justify-between items-center')};
-              `}
-            >
-              <PreviousButton
-                {...{ storedTheme }}
-                onClick={() => {
-                  counter(previous)
-                  setImage(toBackImage(previous))
-                }}
-              />
-              <NextButton
-                {...{ storedTheme }}
-                onClick={() => {
-                  counter(next)
-                  setImage(toBackImage(next))
-                }}
-              />
-            </Container>
-          </NavContainer>
-        )}
       </div>
     </div>
   )

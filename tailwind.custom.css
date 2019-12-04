@@ -2674,7 +2674,7 @@ button,
 }
 
 .leading-body {
-  line-height: 1.143;
+  line-height: 1.5;
 }
 
 .leading-heading {
@@ -8388,7 +8388,7 @@ button,
   }
 
   .sm\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .sm\:leading-heading {
@@ -14091,7 +14091,7 @@ button,
   }
 
   .md\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .md\:leading-heading {
@@ -19794,7 +19794,7 @@ button,
   }
 
   .lg\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .lg\:leading-heading {
@@ -25497,7 +25497,7 @@ button,
   }
 
   .xl\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .xl\:leading-heading {
@@ -31200,7 +31200,7 @@ button,
   }
 
   .screen\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .screen\:leading-heading {
@@ -36903,7 +36903,7 @@ button,
   }
 
   .desktop\:leading-body {
-    line-height: 1.143;
+    line-height: 1.5;
   }
 
   .desktop\:leading-heading {

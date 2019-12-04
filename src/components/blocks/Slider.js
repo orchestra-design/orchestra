@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { sliderCount } from '../../actions'
 
 import {
-  Container,
   ImgForSlider,
   JustPager,
   NextButton,
@@ -36,9 +35,6 @@ const NavContainer = styled('div')`
     'justify-between',
     'items-center',
     'pin',
-    'px-q32',
-    'md:px-1/12',
-    'desktop:px-1/6',
   ])};
 `
 
@@ -71,51 +67,33 @@ export const Slider = compose(
       )(sliderId)
     },
   })
-)(
-  ({
-    counter,
-    items,
-    sliderCounter,
-    sliderId,
-    storedTheme,
-  }) => {
-    const itemsLength = length(items)
-    const previous = previousCount(itemsLength, sliderCounter[sliderId] || 0)
-    const next = nextCount(itemsLength, sliderCounter[sliderId] || 0)
+)(({ counter, items, sliderCounter, sliderId, storedTheme }) => {
+  const itemsLength = length(items)
+  const previous = previousCount(itemsLength, sliderCounter[sliderId] || 0)
+  const next = nextCount(itemsLength, sliderCounter[sliderId] || 0)
 
-    return (
+  return (
+    <Fragment>
       <div
         className={css`
-          ${tw('mb-q24 md:mb-q32 relative')};
+          ${tw('relative')};
         `}
       >
-        <Fragment>
-          {unless(isNil, () => (
-            <Slide>
-              <ImgForSlider
-                count={sliderCounter[sliderId] || 0}
-                image={items}
-              />
-            </Slide>
-          ))(
-            items &&
-              items[sliderCounter[sliderId] || 0] &&
-              items[sliderCounter[sliderId] || 0].image.localFile
-          )}
-          {and(
-            gt(itemsLength, 1),
-            <JustPager
-              count={sliderCounter[sliderId] || 0}
-              length={itemsLength}
-            />
-          )}
-        </Fragment>
+        {unless(isNil, () => (
+          <Slide>
+            <ImgForSlider count={sliderCounter[sliderId] || 0} image={items} />
+          </Slide>
+        ))(
+          items &&
+            items[sliderCounter[sliderId] || 0] &&
+            items[sliderCounter[sliderId] || 0].image.localFile
+        )}
         {and(
           gt(itemsLength, 1),
           <NavContainer>
-            <Container
+            <div
               className={css`
-                ${tw('flex justify-between items-center')};
+                ${tw('flex justify-between items-center h-full w-full')};
               `}
             >
               <PreviousButton
@@ -130,10 +108,17 @@ export const Slider = compose(
                   counter(next)
                 }}
               />
-            </Container>
+            </div>
           </NavContainer>
         )}
       </div>
-    )
-  }
-)
+      {and(
+        gt(itemsLength, 1),
+        <JustPager
+          count={sliderCounter[sliderId] || 0}
+          length={itemsLength}
+        />
+      )}
+    </Fragment>
+  )
+})

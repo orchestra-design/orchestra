@@ -3,8 +3,8 @@ import React, { Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 
 import {
-  ColumnThreeFive,
-  ColumnTwoFive,
+  ColumnEight,
+  ColumnThree,
   Container,
   Headers,
   Img,
@@ -37,8 +37,8 @@ const LeftCol = styled('div')`
   ${({ grid }) =>
     ifElse(
       equals('left'),
-      constant(ColumnTwoFive),
-      constant(ColumnThreeFive)
+      constant(ColumnThree),
+      constant(ColumnEight)
     )(grid)};
   @media (max-width: 768px) {
     order: ${({ hasntHeader }) => (hasntHeader ? 1 : 0)};
@@ -57,8 +57,8 @@ const RightCol = styled('div')`
   ${({ grid }) =>
     ifElse(
       equals('left'),
-      constant(ColumnThreeFive),
-      constant(ColumnTwoFive)
+      constant(ColumnEight),
+      constant(ColumnThree)
     )(grid)};
 `
 
@@ -113,13 +113,13 @@ export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
         {safeMap(item => (
           <Fragment key={uuid()}>
             {isNil(item.sictextlink) &&
-              unless(isNil, () => (
+              item.sictext && item.sictext.html && !item.sictext.html.includes('></') && (
                 <Text
                   key={uuid()}
                   {...{ color }}
                   dangerouslySetInnerHTML={{ __html: item.sictext.html }}
                 />
-              ))(item.sictext)}
+              )}
           </Fragment>
         ))(items)}
         {items[0].sictextimage && (

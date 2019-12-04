@@ -319,7 +319,7 @@ module.exports = {
     normal: 1.5,
     loose: 2,
     // Orchestra
-    body: 1.143,
+    body: 1.5,
     heading: 0.86666,
   },
 

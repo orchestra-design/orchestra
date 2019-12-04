@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { connect } from 'react-redux'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 import { pageTransition } from '../../actions'
 
@@ -22,7 +22,7 @@ const TagsRow = styled('div')`
   ])};
 `
 
-const LinkStyles = css`
+const StyledLink = styled(Link)`
   ${ButtonSmallText};
   ${tw([
     'inline-block',
@@ -31,15 +31,14 @@ const LinkStyles = css`
     'no-underline',
     'px-q8',
     'py-q4',
-    'text-black',
-    'screen:text-white',
     'hover:bg-black',
     'hover:text-white',
     'shadow-none',
     'hover:shadow-elevate1',
     'whitespace-no-wrap',
   ])};
-  box-shadow: 0 0 1px 0.72px white;
+  color: ${({ theme }) => theme.logoFill};
+  box-shadow: ${({ theme }) => `0 0 1px 0.72px ${theme.logoFill}`};
   ${BaseTransition};
 `
 
@@ -51,14 +50,13 @@ export const Tags = connect(
     tags.length > 0 && (
       <TagsRow>
         {safeMap(tag => (
-          <Link
+          <StyledLink
             key={uuid()}
-            className={LinkStyles}
             onClick={pageTransition}
             to={`/${lang}/projects?filter=${tag}`}
           >
             {tag}
-          </Link>
+          </StyledLink>
         ))(tags)}
       </TagsRow>
     )

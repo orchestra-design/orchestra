@@ -10,41 +10,59 @@ import IconNext from '../../assets/icon-next.svg'
 import IconNextBlack from '../../assets/icon-next-black.svg'
 
 export const PrevNextTemplate = styled('span')`
-  ${Button};
   ${tw([
     'flex',
+    'flex-col',
+    'items-center',
+    'justify-center',
     'cursor-pointer',
-    'bg-center',
-    'bg-transparent',
-    'hover:bg-black',
-    'bg-no-repeat',
-    'h-q36',
-    'w-q72',
-    'shadow-none',
-    'hover:shadow-elevate1',
+    'h-full',
+    'w-1/3'
   ])};
-  ${BaseTransition};
-  background-image: url(${IconNext});
-  background-size: 36px 20px;
-  @media (min-width: 601px) {
-    background-size: 40x 24px;
+  &::after {
+    ${Button};
+    ${tw([
+      'flex',
+      'bg-center',
+      'bg-transparent',
+      'hover:bg-black',
+      'bg-no-repeat',
+      'h-q36',
+      'w-q72',
+      'shadow-none',
+      'hover:shadow-elevate1',
+    ])};
+    ${BaseTransition};
+    content: '';
+    background-image: url(${IconNext});
+    background-size: 36px 20px;
+    @media (min-width: 601px) {
+      background-size: 40x 24px;
+    }
   }
-  &:hover {
+  &:hover::after {
+    ${tw([
+      'bg-black',
+      'shadow-elevate1',
+    ])};
     background-image: url(${IconNext});
   }
 `
 
 export const NextButton = styled(PrevNextTemplate)`
-  background-image: 
-    url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
-  @media (min-width: 601px) {
-    background-image: 
-      url(${({ storedTheme }) => includes('image', storedTheme) ? IconNext : IconNextBlack});
+  &::after {
+    ${tw('self-end')};
+    background-image: url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
+    @media (min-width: 601px) {
+      background-image: url(${({ storedTheme }) => includes('image', storedTheme) ? IconNext : IconNextBlack});
+    }
   }
 `
 
 export const PreviousButton = styled(PrevNextTemplate)`
-  background-image: 
-    url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
-  transform: rotateZ(180deg);
+  &::after {
+    ${tw('self-start')};
+    background-image: url(${({ storedTheme }) => includes('white', storedTheme) ? IconNextBlack : IconNext});
+    transform: rotateZ(180deg);
+  }
 `
