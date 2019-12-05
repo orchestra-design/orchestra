@@ -21,7 +21,7 @@ export const Headers = css`
     ${Heading3};
   }
   & h4 {
-    ${Heading4};
+    ${Heading3};
   }
 `
 
@@ -50,7 +50,7 @@ export const RichText = css`
   }
   & .lead {
     ${LeadText};
-    ${tw(['m-0'])};
+    ${tw(['mb-q16', 'md:mb-q24'])};
   }
   & .link {
     ${tw(['underline'])};
@@ -65,7 +65,7 @@ export const RichText = css`
   }
   & ul {
     ${List};
-    ${tw(['my-q48'])};
+    ${tw(['my-q24'])};
   }
   & li {
     ${tw(['mb-q12', 'pl-q24', 'relative'])};

@@ -14,7 +14,7 @@ import {
   JustPager,
   NextButton,
   PreviousButton,
-  RichTextSmall,
+  RichText,
 } from '../elements'
 
 import {
@@ -63,8 +63,7 @@ const NavContainer = styled('div')`
 const TextWrapper = styled('div')`
   ${tw([
     'relative',
-    'mb-q36',
-    'mt-q36',
+    'mt-q12',
     'pin-b',
     'pin-l',
     'w-full',
@@ -73,15 +72,12 @@ const TextWrapper = styled('div')`
 `
 
 const Text = styled('div')`
-  ${RichTextSmall};
+  ${RichText};
   ${tw(['ml-auto'])};
   ${tw([
     'md:px-q12',
-    'mb-q24',
-    'md:mb-0',
     'w-full',
-    'md:w-5/6',
-    'desktop:w-3/5',
+    'md:w-2/3',
   ])};
 `
 
@@ -126,9 +122,7 @@ export const ImageSlider = compose(
   return (
     <div
       className={css`
-        ${tw('my-q36 md:my-q72 relative')};
-        ${gt(itemsLength, 1) &&
-          tw('flex flex-col min-h-screen justify-center')};
+        ${tw('flex flex-col justify-center my-q36 md:my-q72 relative')};
       `}
     >
       <div

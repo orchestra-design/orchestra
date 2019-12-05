@@ -25,7 +25,8 @@ const GridRow = styled('div')`
     'screen:flex-row',
     'screen:-mx-q12',
     'screen:justify-center',
-    'pt-q72',
+    'mt-q24',
+    'md:mt-q40',
   ])};
 `
 

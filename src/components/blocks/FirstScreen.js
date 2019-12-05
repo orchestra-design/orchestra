@@ -11,14 +11,14 @@ const LeadWrapper = styled('div')`
     'flex',
     'flex-col',
     'justify-center',
+    'mb-q48',
+    'mt-q72',
+    'md:my-q72',
     'screen:mx-1/6',
     'relative',
   ])};
   ${tw(['screen:min-h-screen'])};
   color: ${({ theme }) => theme.color};
-  @media (max-width: 599px) {
-    height: 100vw;
-  }
   & strong {
     ${tw(['font-extrabold'])};
   }

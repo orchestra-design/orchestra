@@ -5,7 +5,7 @@ export const Body = css`
   ${tw([
     'font-opensans',
     'font-normal',
-    'leading-body',
+    'leading-normal',
     'text-body',
     'tracking-normal',
   ])};
@@ -15,7 +15,7 @@ export const BodySemibold = css`
   ${tw([
     'font-opensans',
     'font-semibold',
-    'leading-body',
+    'leading-normal',
     'text-body',
     'tracking-normal',
   ])};

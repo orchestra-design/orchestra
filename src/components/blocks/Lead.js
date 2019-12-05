@@ -13,7 +13,7 @@ const LeadWrapper = styled('div')`
     'flex-col',
     'justify-center',
     'screen:ml-1/12',
-    'py-q48',
+    'my-q48',
   ])};
   ${({ hasImage }) => and(hasImage, tw(['min-h-screen']))};
   color: ${({ theme }) => theme.color};

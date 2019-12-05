@@ -27,19 +27,15 @@ import { Slider } from './Slider'
 
 const RowWrapper = styled('div')`
   ${Row};
-  ${tw(['items-center', 'md:items-start', 'py-q48', 'md:py-q72', 'relative'])};
+  ${tw(['items-center', 'md:items-start', 'mb-q48', 'md:mb-q72', 'relative'])};
   ${({ hasntImage }) => and(hasntImage, tw(['items-baseline']))};
   color: ${({ theme }) => theme.color};
 `
 
 const LeftCol = styled('div')`
-  ${tw(['md:text-right'])};
+  ${({ hasntText }) => hasntText && tw(['md:text-right'])};
   ${({ grid }) =>
-    ifElse(
-      equals('left'),
-      constant(ColumnThree),
-      constant(ColumnEight)
-    )(grid)};
+    ifElse(equals('left'), constant(ColumnThree), constant(ColumnEight))(grid)};
   @media (max-width: 768px) {
     order: ${({ hasntHeader }) => (hasntHeader ? 1 : 0)};
   }
@@ -47,19 +43,18 @@ const LeftCol = styled('div')`
 
 const Header = styled('div')`
   ${Headers};
-  ${tw(['mb-q32'])};
-  color: ${({ color, theme }) =>
-    theme.backgroundColor ? color : theme.logoFill};
+  ${tw(['mb-q24', 'md:mb-q32'])};
+  & h2,
+  & h3 {
+    color: ${({ color, theme }) =>
+      theme.backgroundColor ? color : theme.logoFill};
+  }
 `
 
 const RightCol = styled('div')`
   ${tw(['flex', 'flex-col', 'items-start'])};
   ${({ grid }) =>
-    ifElse(
-      equals('left'),
-      constant(ColumnEight),
-      constant(ColumnThree)
-    )(grid)};
+    ifElse(equals('left'), constant(ColumnEight), constant(ColumnThree))(grid)};
 `
 
 const Text = styled('div')`
@@ -82,9 +77,12 @@ export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
       <LeftCol
         grid={primary.sicgrid}
         hasntHeader={isNil(primary.sicheader && primary.sicheader.html)}
+        hasntText={isNil(
+          primary.siccaption && !includes('p></p', primary.siccaption)
+        )}
       >
         {unless(isNil, () =>
-          includes('><', primary.sicheader.html) ? (
+          includes('></', primary.sicheader.html) ? (
             false
           ) : (
             <Header
@@ -104,6 +102,9 @@ export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
         ))(primary.sicimage && primary.sicimage.localFile)}
         {unless(isNil, () => (
           <Text
+            className={css`
+              ${tw(['mb-q24'])};
+            `}
             {...{ color }}
             dangerouslySetInnerHTML={{ __html: primary.siccaption }}
           />
@@ -113,7 +114,9 @@ export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
         {safeMap(item => (
           <Fragment key={uuid()}>
             {isNil(item.sictextlink) &&
-              item.sictext && item.sictext.html && !item.sictext.html.includes('></') && (
+              item.sictext &&
+              item.sictext.html &&
+              !item.sictext.html.includes('p></p') && (
                 <Text
                   key={uuid()}
                   {...{ color }}

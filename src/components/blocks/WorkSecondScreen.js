@@ -18,7 +18,7 @@ import {
 
 
 const ColoredContainer = styled(Container)`
-  ${tw(['py-q36', 'md:py-q72'])};
+  ${tw(['my-q36', 'md:my-q72'])};
   ${BaseTransition};
 `
 

@@ -27,7 +27,7 @@ const Back = styled('div')`
 
 const ImageWrapper = styled('div')`
   ${Row};
-  ${tw(['flex-wrap', 'items-end', 'pt-q72', 'relative'])};
+  ${tw(['flex-wrap', 'items-end', 'md:pt-q72', 'relative'])};
   ${({ length }) => length !== 0 && tw(['justify-center'])};
   ${({ hasntImage }) => !hasntImage && tw(['sm:pt-q200'])};
 `
@@ -35,14 +35,17 @@ const ImageWrapper = styled('div')`
 const Col = styled('div')`
   ${tw([
     'md:px-q12',
-    'mb-q24',
-    'md:mb-0',
     'w-full',
     'flex',
     'flex-col',
     'items-center',
     'md:items-start',
   ])};
+  &:not(:last-child) {
+    @media (max-width: 767px) {
+      ${tw(['mb-q24'])};
+    }
+  }
   min-width: calc((${({ cols }) => 1 / cols} * 100%) - 1.5rem);
   @media (min-width: 768px) {
     width: calc((${({ cols }) => 1 / cols} * 100%) - 1.5rem);
@@ -59,7 +62,7 @@ const Heading = styled('div')`
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs', 'mb-q48'])};
+  ${tw(['max-w-xs'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
 `
@@ -84,43 +87,44 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
               align-self: ${((item.coltext && item.coltext.html && item.coltext.html.includes('></')) || (item.colimage && !item.colimage.localFile)) && 'flex-start'};
             `}
           >
-            <div
-              className={css`
-                ${tw('max-w-xs w-full')};
-              `}
-            >
-              {unless(isNil, () => <Img key={uuid()} src={item.colimage} />)(
-                item.colimage && item.colimage.localFile
-              )}
-            </div>
-            <div
-              key={uuid()}
-              className={css`
-                ${tw('max-w-xs mt-q24 w-full')};
-              `}
-            >
-              {unless(isNil, () => (
+            {item.colimage && item.colimage.localFile && (
+              <div
+                className={css`
+                  ${tw('max-w-xs w-full')};
+                `}
+              >
+                <Img key={uuid()} src={item.colimage} />
+              </div>
+            )}
+            {(item.colheading && item.colheading.html && !item.colheading.html.includes('></')) && (
+              <div
+                key={uuid()}
+                className={css`
+                  ${tw('max-w-xs w-full')};
+                  ${item.colimage && item.colimage.localFile && tw('mt-q24')};
+                `}
+              >
                 <Heading
                   key={uuid()}
                   dangerouslySetInnerHTML={{ __html: item.colheading.html }}
                   withoutPadding={withoutPadding || (item.colimage && !item.colimage.localFile)}
                 />
-              ))(item.colheading)}
-            </div>
-            <div
-              key={uuid()}
-              className={css`
-                ${tw('max-w-xs w-full')};
-              `}
-            >
-              {unless(isNil, () => (
+              </div>
+            )}
+            {(item.coltext && item.coltext.html && !item.coltext.html.includes('></')) && (
+              <div
+                key={uuid()}
+                className={css`
+                  ${tw('max-w-xs w-full')};
+                `}
+              >
                 <Text
                   key={uuid()}
                   dangerouslySetInnerHTML={{ __html: item.coltext.html }}
                   withoutPadding={withoutPadding || (item.colimage && !item.colimage.localFile)}
                 />
-              ))(item.coltext)}
-            </div>
+              </div>
+            )}
           </Col>
         ))(items)}
       </ImageWrapper>
