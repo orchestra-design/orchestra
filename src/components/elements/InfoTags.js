@@ -24,7 +24,7 @@ import { Description, DescriptionSemibold } from './Typography'
 
 const Col = styled('div')`
   ${Description};
-  ${tw(['flex', 'flex-col', 'w-full'])};
+  ${tw(['flex', 'flex-col', 'mb-q36', 'md:mb-q72', 'w-full'])};
 `
 
 const Line = styled('div')`
