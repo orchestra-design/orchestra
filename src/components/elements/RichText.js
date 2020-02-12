@@ -21,7 +21,7 @@ export const Headers = css`
     ${Heading3};
   }
   & h4 {
-    ${Heading3};
+    ${Heading4};
   }
 `
 
@@ -40,9 +40,9 @@ export const RichText = css`
     }
   }
   & h4 {
-    ${Heading3};
+    ${Heading4};
     &:last-of-type {
-      ${tw(['mb-q24', 'md:mb-q32'])};
+      ${tw(['mb-q20', 'md:mb-q24'])};
     }
   }
   & p {

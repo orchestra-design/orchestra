@@ -5894,11 +5894,11 @@ button,
 }
 
 .text-heading4 {
-  font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+  font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
 }
 
 .text-heading5 {
-  font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+  font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
 }
 
 .text-heading6 {
@@ -11596,11 +11596,11 @@ button,
   }
 
   .sm\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .sm\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .sm\:text-heading6 {
@@ -17299,11 +17299,11 @@ button,
   }
 
   .md\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .md\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .md\:text-heading6 {
@@ -23002,11 +23002,11 @@ button,
   }
 
   .lg\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .lg\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .lg\:text-heading6 {
@@ -28705,11 +28705,11 @@ button,
   }
 
   .xl\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .xl\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .xl\:text-heading6 {
@@ -34408,11 +34408,11 @@ button,
   }
 
   .screen\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .screen\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .screen\:text-heading6 {
@@ -40111,11 +40111,11 @@ button,
   }
 
   .desktop\:text-heading4 {
-    font-size: calc(24px + 18 * ((100vw - 320px) / 1280));
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:text-heading5 {
-    font-size: calc(24px + 12 * ((100vw - 320px) / 1280));
+    font-size: calc(21px + 6 * ((100vw - 320px) / 1280));
   }
 
   .desktop\:text-heading6 {
