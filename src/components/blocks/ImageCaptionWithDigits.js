@@ -33,7 +33,7 @@ import {
 
 const RowWrapper = styled('div')`
   ${Row};
-  ${tw(['items-center', 'md:items-start', 'my-q48', 'md:my-q72', 'relative'])};
+  ${tw(['items-center', 'my-q48', 'md:my-q72', 'relative'])};
   ${({ hasntImage }) => and(hasntImage, tw(['items-baseline']))};
   color: ${({ theme }) => theme.color};
 `
@@ -143,7 +143,7 @@ export const ImageCaptionWithDigits = connect(
       </LeftCol>
       <RightCol grid={primary.sicgrid}>
         <div className={Row}>
-        {unless(isNil, () => (
+        {/* unless(isNil, () => (
           <div
             className={css`
               ${Heading0};
@@ -152,7 +152,7 @@ export const ImageCaptionWithDigits = connect(
           >
             {i + 1}
           </div>
-        ))(i)}
+        ))(i) */}
         {safeMap(item => (
           <Fragment key={uuid()}>
             {isNil(item.sictextlink) &&
