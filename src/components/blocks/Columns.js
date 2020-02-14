@@ -4,13 +4,7 @@ import styled, { css } from 'react-emotion'
 
 import { Container, Img, JustImage, RichText, Row } from '../elements'
 
-import {
-  isNil,
-  length,
-  safeMap,
-  unless,
-  uuid,
-} from '../../helpers'
+import { isNil, length, safeMap, unless, uuid } from '../../helpers'
 
 const Back = styled('div')`
   ${tw([
@@ -27,7 +21,7 @@ const Back = styled('div')`
 
 const ImageWrapper = styled('div')`
   ${Row};
-  ${tw(['flex-wrap', 'items-end', 'md:pt-q72', 'relative'])};
+  ${tw(['flex-wrap', 'items-start', 'md:pt-q72', 'relative'])};
   ${({ length }) => length !== 0 && tw(['justify-center'])};
   ${({ hasntImage }) => !hasntImage && tw(['sm:pt-q200'])};
 `
@@ -80,51 +74,63 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
         length={length(items) % cols}
       >
         {safeMap(item => (
-          <Col
-            key={uuid()}
-            cols={cols}
-            className={css`
-              align-self: ${((item.coltext && item.coltext.html && item.coltext.html.includes('></')) || (item.colimage && !item.colimage.localFile)) && 'flex-start'};
-            `}
-          >
+          <Col key={uuid()} cols={cols}>
             {item.colimage && item.colimage.localFile && (
               <div
                 className={css`
-                  ${tw('max-w-xs w-full')};
+                  ${tw('max-w-xs relative w-full')};
+                  padding-bottom: 100%;
                 `}
               >
-                <Img key={uuid()} src={item.colimage} />
-              </div>
-            )}
-            {(item.colheading && item.colheading.html && !item.colheading.html.includes('></')) && (
-              <div
-                key={uuid()}
-                className={css`
-                  ${tw('max-w-xs w-full')};
-                  ${item.colimage && item.colimage.localFile && tw('mt-q24')};
-                `}
-              >
-                <Heading
+                <Img
                   key={uuid()}
-                  dangerouslySetInnerHTML={{ __html: item.colheading.html }}
-                  withoutPadding={withoutPadding || (item.colimage && !item.colimage.localFile)}
+                  className={css`
+                    ${tw('pin')}
+                  `}
+                  src={item.colimage}
+                  style={{ position: 'absolute' }}
                 />
               </div>
             )}
-            {(item.coltext && item.coltext.html && !item.coltext.html.includes('></')) && (
-              <div
-                key={uuid()}
-                className={css`
-                  ${tw('max-w-xs w-full')};
-                `}
-              >
-                <Text
+            {item.colheading &&
+              item.colheading.html &&
+              !item.colheading.html.includes('></') && (
+                <div
                   key={uuid()}
-                  dangerouslySetInnerHTML={{ __html: item.coltext.html }}
-                  withoutPadding={withoutPadding || (item.colimage && !item.colimage.localFile)}
-                />
-              </div>
-            )}
+                  className={css`
+                    ${tw('max-w-xs w-full')};
+                    ${item.colimage && item.colimage.localFile && tw('mt-q24')};
+                  `}
+                >
+                  <Heading
+                    key={uuid()}
+                    dangerouslySetInnerHTML={{ __html: item.colheading.html }}
+                    withoutPadding={
+                      withoutPadding ||
+                      (item.colimage && !item.colimage.localFile)
+                    }
+                  />
+                </div>
+              )}
+            {item.coltext &&
+              item.coltext.html &&
+              !item.coltext.html.includes('></') && (
+                <div
+                  key={uuid()}
+                  className={css`
+                    ${tw('max-w-xs w-full')};
+                  `}
+                >
+                  <Text
+                    key={uuid()}
+                    dangerouslySetInnerHTML={{ __html: item.coltext.html }}
+                    withoutPadding={
+                      withoutPadding ||
+                      (item.colimage && !item.colimage.localFile)
+                    }
+                  />
+                </div>
+              )}
           </Col>
         ))(items)}
       </ImageWrapper>
