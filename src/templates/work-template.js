@@ -178,7 +178,7 @@ export const query = graphql`
             url
             localFile {
               childImageSharp {
-                fluid(maxWidth: 768, quality: 80) {
+                fluid(maxWidth: 1200, quality: 80) {
                   ...GatsbyImageSharpFluid_noBase64
                 }
               }
@@ -188,7 +188,7 @@ export const query = graphql`
             url
             localFile {
               childImageSharp {
-                fluid(maxWidth: 768, quality: 80) {
+                fluid(maxWidth: 1200, quality: 80) {
                   ...GatsbyImageSharpFluid_noBase64
                 }
               }
@@ -254,7 +254,7 @@ export const query = graphql`
                 url
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 480, quality: 80) {
+                    fluid(maxWidth: 720, quality: 80) {
                       ...GatsbyImageSharpFluid_noBase64
                     }
                   }
@@ -271,7 +271,7 @@ export const query = graphql`
                 url
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 480, quality: 80) {
+                    fluid(maxWidth: 720, quality: 80) {
                       ...GatsbyImageSharpFluid_noBase64
                     }
                   }
