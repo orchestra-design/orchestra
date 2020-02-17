@@ -25,9 +25,9 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      <ScrollChild {...{ theme }} isFirst>
+      {/* <ScrollChild {...{ theme }} isFirst>
         <ImageStatement data={pick(['title', 'image'], data)} />
-      </ScrollChild>
+      </ScrollChild> */}
       {body ? (
         body.map(section => {
           switch (section.__typename) {
