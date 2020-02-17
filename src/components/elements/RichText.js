@@ -23,6 +23,10 @@ export const Headers = css`
   & h4 {
     ${Heading4};
   }
+  & .lead {
+    ${LeadText};
+    ${tw(['mb-q16', 'md:mb-q24'])};
+  }
 `
 
 export const RichText = css`

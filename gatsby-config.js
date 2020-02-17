@@ -49,6 +49,10 @@ module.exports = {
           content,
           children
         ) => {
+          if (typeof children === 'string' && children.length === 0) {
+            return null
+          }
+
           switch (type) {
             case Elements.paragraph:
               return `<p>${tp.execute(children.join(''))}</p>`

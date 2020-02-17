@@ -115,8 +115,7 @@ export const WorkImageCaption = ({ color, items, primary, sliderId }) => (
           <Fragment key={uuid()}>
             {isNil(item.sictextlink) &&
               item.sictext &&
-              item.sictext.html &&
-              !item.sictext.html.includes('p></p') && (
+              item.sictext.html && (
                 <Text
                   key={uuid()}
                   {...{ color }}
