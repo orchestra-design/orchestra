@@ -8,7 +8,7 @@ import {
   Footer,
   ImageSlider,
   ImageCaption,
-  ImageStatement,
+  // ImageStatement,
   Lead,
 } from '../components/blocks'
 import { ScrollChild } from '../components/elements'
@@ -25,9 +25,10 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       {...{ seo }}
       {...{ title }}
     >
-      {/* <ScrollChild {...{ theme }} isFirst>
-        <ImageStatement data={pick(['title', 'image'], data)} />
-      </ScrollChild> */}
+      <ScrollChild theme={'black'} isFirst>
+        <div style={{ height: '7.5rem' }} />
+        {/* <ImageStatement data={pick(['title', 'image'], data)} /> */}
+      </ScrollChild>
       {body ? (
         body.map(section => {
           switch (section.__typename) {

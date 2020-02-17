@@ -58,6 +58,7 @@ const Text = styled('div')`
   ${RichText};
   ${tw(['max-w-xs'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
+  ${({ withoutHeading }) => withoutHeading && tw(['mt-q24'])}
   color: ${({ theme }) => theme.color};
 `
 
@@ -113,8 +114,7 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
                 </div>
               )}
             {item.coltext &&
-              item.coltext.html &&
-              !item.coltext.html.includes('></') && (
+              item.coltext.html && (
                 <div
                   key={uuid()}
                   className={css`
@@ -124,6 +124,7 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
                   <Text
                     key={uuid()}
                     dangerouslySetInnerHTML={{ __html: item.coltext.html }}
+                    withoutHeading={ !item.colheading }
                     withoutPadding={
                       withoutPadding ||
                       (item.colimage && !item.colimage.localFile)
