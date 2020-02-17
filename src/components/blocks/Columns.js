@@ -49,14 +49,12 @@ const Col = styled('div')`
 
 const Heading = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   color: ${({ theme }) => theme.color};
 `
 
 const Text = styled('div')`
   ${RichText};
-  ${tw(['max-w-xs'])};
   ${({ withoutPadding }) => !withoutPadding && tw(['pl-q24'])}
   ${({ withoutHeading }) => withoutHeading && tw(['mt-q24'])}
   color: ${({ theme }) => theme.color};
@@ -79,7 +77,7 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
             {item.colimage && item.colimage.localFile && (
               <div
                 className={css`
-                  ${tw('max-w-xs relative w-full')};
+                  ${tw('relative w-full')};
                   padding-bottom: 100%;
                 `}
               >
@@ -99,7 +97,7 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
                 <div
                   key={uuid()}
                   className={css`
-                    ${tw('max-w-xs w-full')};
+                    ${tw('w-full')};
                     ${item.colimage && item.colimage.localFile && tw('mt-q24')};
                   `}
                 >
@@ -118,7 +116,7 @@ export const Columns = ({ primary, items, withoutPadding, cols = 3 }) => (
                 <div
                   key={uuid()}
                   className={css`
-                    ${tw('max-w-xs w-full')};
+                    ${tw('w-full')};
                   `}
                 >
                   <Text

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import { includes, path, pick, uuid } from '../helpers'
+import { includes, path, uuid } from '../helpers'
 import TemplateWrapper from '../components/layouts'
 import {
   Columns,
@@ -15,7 +15,7 @@ import { ScrollChild } from '../components/elements'
 
 const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
   const data = path(['data'], who)
-  const { body, image, theme, title } = data
+  const { body, image, title } = data
   return (
     <TemplateWrapper
       {...{ allSite }}

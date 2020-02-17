@@ -15,7 +15,7 @@ import {
   // Description,
   Headers,
   Img,
-  Heading0,
+  // Heading0,
   RichText,
   Row,
 } from '../elements'
