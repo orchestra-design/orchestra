@@ -2,7 +2,6 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import IconNext from '../../assets/icon-next.svg'
 import IconNextBlack from '../../assets/icon-next-black.svg'
 import {
   compose,
@@ -60,12 +59,9 @@ const NavContainer = styled('div')`
 `
 
 const NextButton = styled(PrevNextTemplate)`
-  ${tw(['desktop:hover:bg-black'])};
-  background-image: url(${IconNextBlack});
-  @media (min-width: 1200px) {
-    &:hover {
-      background-image: url(${IconNext});
-    }
+  ${tw('hidden desktop:flex')};
+  &::after {
+    background-image: url(${IconNextBlack});
   }
 `
 

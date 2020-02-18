@@ -24,6 +24,7 @@ const WhoTemplate = ({ data: { who, seo, allSite, meta }, location }) => {
       {...{ meta }}
       {...{ seo }}
       {...{ title }}
+      notDown={true}
     >
       <ScrollChild theme={'black'} isFirst>
         <div style={{ height: '7.5rem' }} />
