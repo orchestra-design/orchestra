@@ -9,6 +9,7 @@ import {
   Context,
   Footer,
   ImageSlider,
+  Video,
   WorkImageCaption,
   WorkStatement,
   WorkSecondScreen,
@@ -54,7 +55,11 @@ const WorkTemplate = ({
           body.map(section => {
             switch (section.__typename) {
               case 'PrismicWorkBodyImage':
-                return (
+                return section.items.some(x => x.imgvideo && x.imgvideo.html) ? (
+                  <ScrollChild key={uuid()} theme={'white'}>
+                    <Video item={section.items[0]} />
+                  </ScrollChild>
+                ) : (
                   <ScrollChild
                     key={uuid()}
                     items={section.items}
@@ -63,7 +68,6 @@ const WorkTemplate = ({
                     sliderId={section.prismicId}
                   >
                     <ImageSlider
-                      key={uuid()}
                       items={section.items}
                       primary={section.primary}
                       sliderId={section.prismicId}
@@ -118,10 +122,7 @@ const WorkTemplate = ({
 }
 
 export default compose(
-  connect(
-    constant,
-    { sliderCount }
-  ),
+  connect(constant, { sliderCount }),
   lifecycle({
     componentDidMount() {
       safeMap(section => this.props.sliderCount({ [section.prismicId]: 0 }))(
@@ -197,7 +198,7 @@ export const query = graphql`
           link {
             url
             document {
-              ...on PrismicWork {
+              ... on PrismicWork {
                 uid
               }
             }
@@ -223,6 +224,9 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+              imgvideo {
+                html
               }
             }
           }

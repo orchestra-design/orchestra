@@ -58,7 +58,7 @@ export const InfoTags = ({ data, lang }) => {
     )(lang, obj, key)
   )
   const translate = translateHandler(translations, lang)
-  const pickKeys = pick(['location', 'type', 'status', 'timeline', 'client'])
+  const pickKeys = pick(['location', 'status', 'timeline', 'client'])
   const keysIt = compose(
     map(translate),
     keysIn,
