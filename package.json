@@ -20,8 +20,6 @@
     "gatsby": "^2.13.65",
     "gatsby-image": "^2.2.8",
     "gatsby-plugin-lodash": "^3.0.1",
-    "gatsby-plugin-netlify": "^2.1.11",
-    "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-offline": "2.2.9",
     "gatsby-plugin-sharp": "^2.2.12",
     "gatsby-plugin-sitemap": "^2.2.10",

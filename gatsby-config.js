@@ -17,7 +17,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-sharp`,
     `gatsby-image`,
     {
@@ -100,11 +99,11 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
     },
     {
-      resolve: 'gatsby-plugin-netlify',
+      resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        mergeSecurityHeaders: true,
-        mergeLinkHeaders: true,
-        mergeCachingHeaders: true,
+        trackingId: '49403653',
+        webvisor: true,
+        trackHash: true,
       },
     },
   ],
