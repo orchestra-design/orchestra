@@ -6152,6 +6152,11 @@ gatsby-plugin-sitemap@^2.2.10:
     pify "^3.0.0"
     sitemap "^1.13.0"
 
+gatsby-plugin-yandex-metrika@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-yandex-metrika/-/gatsby-plugin-yandex-metrika-2.3.0.tgz#993966d55169ec9bbf6331971989f565743ee8a7"
+  integrity sha512-BTHhuWIymduwVo1PzcRrFTNr1F5CfflhkarTgG2QeyEi7JBOBycGhJVJRzC0DPjb3uI58kSuYw4/gx5HC5jPLw==
+
 gatsby-react-router-scroll@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.1.9.tgz#7793827c3b492d4d55f84b33a153129cdbb04063"
